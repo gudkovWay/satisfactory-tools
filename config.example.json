@@ -1,0 +1,18 @@
+{
+  "_comment": [
+    "Defaults, so the flags do not have to be typed every time. Copy to",
+    "config.json (next to sfbp.py) or to ~/.config/satisfactory-tools/config.json",
+    "and edit. Anything left out is worked out automatically -- run",
+    "`python3 sfbp.py paths` to see what that finds on your machine.",
+    "Command-line flags override this file; this file overrides autodetection.",
+    "",
+    "The values below are a real Linux/Proton setup, kept as a worked example.",
+    "On Windows save_dir is %LOCALAPPDATA%\\FactoryGame\\Saved\\SaveGames;",
+    "on macOS it is inside the CrossOver or Whisky bottle."
+  ],
+
+  "save_dir": "/home/q/games/SteamLibrary/steamapps/compatdata/526870/pfx/drive_c/users/steamuser/AppData/Local/FactoryGame/Saved/SaveGames",
+  "save": "cachys.sav",
+  "bp_dir": "/home/q/games/SteamLibrary/steamapps/compatdata/526870/pfx/drive_c/users/steamuser/AppData/Local/FactoryGame/Saved/SaveGames/blueprints/каша",
+  "rules": ["packs.json"]
+}

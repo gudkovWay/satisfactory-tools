@@ -1,0 +1,77 @@
+{
+  "_comment": [
+    "The pack layouts this repository used to keep as one organize_<pack>.py",
+    "each. Nothing here is needed to sort a new pack -- the default rules and",
+    "the auto-detected category handle that. These exist because the packs",
+    "below are big and idiosyncratic, and somebody already worked out where",
+    "their pieces belong.",
+    "",
+    "    python3 sfbp.py organize --rules packs.json",
+    "",
+    "Category rules run top-down, so 'RDv4W' has to sit above 'RDv4'."
+  ],
+
+  "categories": [
+    { "_": "TheHighwayGuy", "name": "THG Pixelart", "any": ["Pixelart"] },
+    { "name": "THG Highway 2F", "all": ["THG", "2F"] },
+    { "name": "THG Highway",    "any": ["THG"] },
+
+    { "_": "sixsense: the system is the suffix on the file name",
+      "name": "ML", "any": ["(ML_"] },
+    { "name": "TL", "any": ["(TL_", "re:\\(TL\\)$"] },
+
+    { "_": "Swarley / EnderpriseArchitecture / dark station pack",
+      "name": "DarkStation", "any": ["futuristic"] },
+    { "name": "Swarley",    "any": ["re:^SwarleyPack"] },
+
+    { "_": "rail platform pack (French names)",
+      "name": "Plateforme", "any": ["PLATEFORME", "FONDATION RAIL"] },
+
+    { "name": "Svosh NEON", "any": ["Svosh", "NEON Road"] },
+
+    { "_": "Hornslet, ~500 blueprints, cut into families by name prefix",
+      "name": "Horn CTP", "any": ["re:^CTP "] },
+    { "name": "Horn CRS", "any": ["re:^CRS "] },
+    { "name": "Horn CBT", "any": ["re:^CBT "] },
+    { "name": "Horn CCP", "any": ["re:^CCP "] },
+    { "name": "Horn CBR", "any": ["re:^CBR "] },
+    { "name": "Horn 2L",  "any": ["re:^2L "] },
+    { "name": "Horn Series", "any": ["re:^\\d{3,4} ", "re:^\\d{2} Bonus "] },
+
+    { "_": "the road/rail sets already in the save",
+      "name": "RLRDv1", "any": ["re:^RLRDv1", "re:^RLRD Support"] },
+    { "name": "RDv4W",  "any": ["re:^RDv4W"] },
+    { "name": "RDv4",   "any": ["re:^RDv4"] },
+    { "name": "RoadRail", "any": ["re:^RoadRail Seg", "re:^T-Junction",
+                                  "re:^X-Junction", "re:^Pillar",
+                                  "re:^Double Pillar"] }
+  ],
+
+  "subcategories": [
+    { "name": "Targaryen", "cat": "THG Pixelart", "any": ["Targaryen"] },
+    { "name": "Ficsit",    "cat": "THG Pixelart", "any": ["Ficsit"] },
+
+    { "_": "THG names lose their degree sign when saved: 'Left 30' not 'Left 30°'",
+      "name": "Curves", "cat": "THG Highway",
+      "any": ["re:(Left|Right)\\s*\\d", "°", "S Left", "S Right"] },
+    { "name": "Curves", "cat": "THG Highway 2F",
+      "any": ["re:(Left|Right)\\s*\\d", "°", "S Left", "S Right"] },
+
+    { "name": "Colonnes", "cat": "Plateforme", "any": ["COLONE", "COLONNE"] },
+    { "name": "Junctions", "cat": "Plateforme", "any": ["EN Y"] },
+    { "name": "Fondations", "cat": "Plateforme", "any": ["re:^FONDATION"] },
+    { "name": "Plateformes", "cat": "Plateforme", "any": ["PLATEFORME"] },
+
+    { "name": "Anchors", "cat": "Svosh NEON",
+      "any": ["Anchor"], "none": ["Integrated Road"] },
+
+    { "name": "Cnnct", "cat": "RDv4", "any": ["Cnnct"] }
+  ],
+
+  "order": ["RDv4", "RDv4W", "RLRDv1", "RoadRail",
+            "ML", "TL",
+            "THG Highway", "THG Highway 2F", "THG Pixelart",
+            "Svosh NEON", "Swarley", "Enderprise", "DarkStation", "Plateforme",
+            "Horn CTP", "Horn CRS", "Horn CBT", "Horn CCP", "Horn CBR",
+            "Horn 2L", "Horn Series"]
+}

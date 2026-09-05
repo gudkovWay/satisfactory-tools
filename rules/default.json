@@ -1,0 +1,87 @@
+{
+  "_comment": [
+    "Generic sub-category rules: the union of the keyword chains that used to",
+    "live in one organize_<pack>.py per pack. Order is load-bearing -- the",
+    "first rule that matches wins, so the exceptions sit above the general",
+    "cases. Patterns are case-insensitive substrings; 're:' makes one a regex.",
+    "Add your own with --rules myrules.json; those are checked first."
+  ],
+
+  "categories": [],
+
+  "subcategories": [
+    { "name": "Pixelart",  "any": ["Pixelart", "Pixel Art"] },
+
+    { "_": "trackside furniture, before Ends: 'Pillar End' is a pillar",
+      "name": "Support",
+      "any": ["Pillar", "Support", "Suppport", "PowerTower", "Power Tower",
+              "Streetsign", "Street Sign", "Pier", "Colonne", "Colone",
+              "Pylon", "Scaffold", "Buttress"] },
+
+    { "name": "Stations",  "any": ["Station", "Depot", "Terminal", "Platform",
+                                   "Plateforme", "Freight"] },
+    { "name": "Roundabout", "any": ["Roundabout", "RoundAbout", "Round About",
+                                    "Rond-point", "Clover"] },
+    { "name": "Junctions", "any": ["Junction", "Intersection", "Crossing",
+                                   "Four Way", "4-Way", "T-Section", "X-Section",
+                                   "T-Junction", "X-Junction", "Interchange",
+                                   "Overpass", "Underpass", "re:\\bcross\\b",
+                                   "re:\\ben y\\b", "Switch", "Split", "Merge"] },
+    { "name": "Ramps",     "any": ["Ramp", "Elevator", "Lift", "Spiral"] },
+
+    { "_": "before Straight: 'Straight End T' is an end, not a straight",
+      "name": "Ends", "any": ["re:\\bend\\b", "End Cap", "Endcap", "Terminus",
+                              "Dead End", "Buffer Stop"] },
+
+    { "name": "Curves",    "any": ["Curve", "Curved", "Bend", "Turn", "°",
+                                   "Degree", "re:(?:left|right)\\s*\\d",
+                                   "re:\\bs[- ](?:left|right)\\b",
+                                   "re:\\b(?:45|90|30|60|15|22|180)\\b"] },
+    { "name": "Incline",   "any": ["Incline", "Decline", "Ascend", "Descend",
+                                   "Slope", "Updown", "Up Down", "Rise",
+                                   "re:\\b\\d+\\s*m(?:eter)?\\s+(?:up|down)\\b"] },
+    { "name": "Adapters",  "any": ["Adapter", "Adaptor", "Connector", "Cnnct",
+                                   "Transition"] },
+    { "name": "Bridges",   "any": ["Bridge", "Viaduct", "Arch", "Tunnel", "Warren"] },
+    { "name": "Walkways",  "any": ["Walkway", "Catwalk", "Stairs", "Staircase",
+                                   "Ladder", "Ramp Walk"] },
+    { "name": "Walls",     "any": ["Wall", "Facade", "Panel", "Fence"] },
+    { "name": "Foundations", "any": ["Foundation", "Fondation", "Base Plate",
+                                     "Baseplate", "Floor", "Slab"] },
+    { "name": "Rails",     "any": ["Rail", "Track", "Train", "Monorail",
+                                   "Subway", "Locomotive"] },
+    { "name": "Roads",     "any": ["Road", "Highway", "Lane", "Street", "Truck"] },
+    { "name": "Pipes",     "any": ["Pipe", "Pipeline", "Hypertube", "Hyperloop",
+                                   "Fluid", "Water", "Valve", "Pump"] },
+    { "name": "Belts",     "any": ["Belt", "Conveyor", "Splitter", "Merger",
+                                   "Manifold", "Sushi"] },
+    { "name": "Power",     "any": ["Power", "Generator", "Battery", "Substation",
+                                   "Nuclear", "Fuel", "Coal", "Turbine",
+                                   "Solar", "Powercell", "Energi"] },
+    { "name": "Factory",   "any": ["Factory", "Manufacturer", "Refinery",
+                                   "Smelter", "Smelting", "Foundry", "Assembler",
+                                   "Blender", "Packager", "Constructor",
+                                   "Miner", "Mine", "Extractor", "Encoder",
+                                   "Collider", "Converter"] },
+    { "name": "Storage",   "any": ["Storage", "Container", "Warehouse", "Buffer",
+                                   "Silo"] },
+    { "name": "Lamps",     "any": ["Lamp", "Light", "Neon", "Lighting"] },
+    { "name": "Decor",     "any": ["Decor", "Sign", "Statue", "Logo", "Banner",
+                                   "Ficsit", "Tree", "Garden"] },
+    { "name": "Drones",    "any": ["Drone"] },
+    { "name": "Vehicles",  "any": ["Vehicle", "Tractor", "Explorer", "Factory Cart"] },
+
+    { "_": "last, because almost everything long is 'straight' something",
+      "name": "Straight", "any": ["Straight", "re:\\bline\\b", "Segment", "Seg "] }
+  ],
+
+  "order": [],
+
+  "sub_order": {
+    "*": ["Straight", "Curves", "Incline", "Ramps", "Ends", "Adapters",
+          "Junctions", "Roundabout", "Bridges", "Rails", "Roads", "Pipes",
+          "Belts", "Foundations", "Walls", "Walkways", "Stations", "Support",
+          "Power", "Factory", "Storage", "Drones", "Vehicles", "Lamps",
+          "Decor", "Pixelart", "Misc"]
+  }
+}

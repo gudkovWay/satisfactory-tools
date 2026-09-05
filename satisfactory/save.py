@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Satisfactory (save version 60 / U1.1) -- reorganise blueprint categories.
+Satisfactory save container (save version 60 / U1.1) -- read, edit, write.
 
-Rewrites the `mBlueprintCategoryRecords` property inside the BP_GameState
-object of the save, so blueprints end up in real categories/sub-categories
-instead of all sitting in "Undefined".
+The only edit anything here makes is to a single property inside one object:
+`mBlueprintCategoryRecords` on BP_GameState. Everything else exists to reach
+that property and to put the file back together byte-for-byte around it.
 
 Container format
 ----------------
@@ -237,6 +237,37 @@ def write_save(path, header, body, max_chunk=MAX_CHUNK):
     open(path, 'wb').write(out)
     return len(out)
 
+
+
+# --------------------------------------------------------------------------
+# save header
+# --------------------------------------------------------------------------
+
+HEADER_FIELDS = ["saveName", "mapName", "mapOptions", "sessionName"]
+
+
+def parse_header(header):
+    """The plain-text head of the file, up to the first chunk.
+
+    Only the leading fields are read -- enough for `sessionName`, which is what
+    the game names the blueprint folder after.
+    """
+    r = Reader(header)
+    out = {"headerVersion": r.i32(), "saveVersion": r.i32(), "buildVersion": r.i32()}
+    for name in HEADER_FIELDS:
+        out[name] = r.fstring()
+    out["playTime"] = r.i32()
+    return out
+
+
+def read_header(path):
+    """Read just the header of a save, without decompressing the body."""
+    with open(path, 'rb') as f:
+        head = f.read(65536)
+    first = head.find(struct.pack('<Q', PKG_TAG))
+    if first < 0:
+        raise ValueError("no chunk tag found -- unsupported save version")
+    return parse_header(head[:first])
 
 # --------------------------------------------------------------------------
 # locating the pieces inside the body
