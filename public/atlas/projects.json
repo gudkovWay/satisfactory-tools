@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "projects": [
+    {
+      "id": "modular-engine-100",
+      "saveId": "cachys",
+      "kind": "factory",
+      "title": "Модульные двигатели",
+      "subtitle": "Каньонный моторный комбинат",
+      "revision": "a2c8c251afb7a45338499c2ead18cfc426a580afaa675e4f6156b68444c30732",
+      "updatedAt": "2026-10-22T10:19:38Z",
+      "status": "blocked",
+      "target": {
+        "itemId": "Desc_SpaceElevatorPart_4_C",
+        "label": "Modular Engine",
+        "rate": 100,
+        "unit": "шт/мин"
+      },
+      "preview": {
+        "src": "/atlas/cachys/modular-engine-100/revisions/a2c8c251afb7a45338499c2ead18cfc426a580afaa675e4f6156b68444c30732/visuals/zones/F1-00.webp",
+        "alt": "Шесть машин и центральный проход",
+        "caption": "Приближённая AI-иллюстрация по игровым референсам, не игровой скриншот.",
+        "kind": "concept"
+      },
+      "drawingCount": 49,
+      "zoneCount": 52
+    },
+    {
+      "id": "coastal-me250-acu100",
+      "saveId": "cachys",
+      "kind": "factory",
+      "title": "Прибрежный комбинат · ME250 + ACU100",
+      "subtitle": "Цеха, этапы сборки и парные чертежи / виды рабочих зон",
+      "revision": "c76ce456d8db6fc77d2582f39681dbc715efaeb7e974a11f830fcde8c694b832",
+      "updatedAt": "2026-10-23T00:42:08.663837+00:00",
+      "status": "blocked",
+      "target": {
+        "itemId": "Desc_SpaceElevatorPart_4_C",
+        "label": "Modular Engine",
+        "rate": 250.0,
+        "unit": "шт/мин"
+      },
+      "preview": {
+        "src": "/atlas/cachys/coastal-me250-acu100/revisions/c76ce456d8db6fc77d2582f39681dbc715efaeb7e974a11f830fcde8c694b832/views/campus-full.webp",
+        "alt": "Весь прибрежный комбинат с отдельным энергоаннексом",
+        "kind": "concept",
+        "caption": "Общий архитектурный концепт."
+      },
+      "drawingCount": 96,
+      "zoneCount": 51
+    }
+  ]
+}

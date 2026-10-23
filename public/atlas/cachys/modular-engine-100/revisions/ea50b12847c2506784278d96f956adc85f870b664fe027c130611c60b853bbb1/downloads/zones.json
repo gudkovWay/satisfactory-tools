@@ -1,0 +1,4282 @@
+{
+  "title": "Готовые пространства и инструкция по зонам",
+  "engineering_sha256": "7f9a8a6f6fea3956d22fb63a4faf10c1a3f7cfa12500add4a0fcd08517ca239b",
+  "fidelity": "Reference-led AI illustration, not exported mod meshes or in-game screenshots. Exact data from plan.json.",
+  "levels": [
+    {
+      "id": "T0",
+      "name": "Нижняя техническая галерея",
+      "z": 88,
+      "type": "technical",
+      "purpose": "Приём сырья, нефтяные коллекторы, вывоз кокса; 7 м чистого пространства под плитой F1."
+    },
+    {
+      "id": "F1",
+      "name": "Металл и заготовки",
+      "z": 96,
+      "type": "production",
+      "purpose": "Три литейных и три конструктора. Центральный проход y=44…52 м; передний проход y=88…96 м."
+    },
+    {
+      "id": "T1",
+      "name": "Разводка сборочного этажа",
+      "z": 108,
+      "type": "technical",
+      "purpose": "Подача труб, слитков, пластика и резины к F2. Высота между плитами 4 м, чистая: 3 м."
+    },
+    {
+      "id": "F2",
+      "name": "Роторы и электронные компоненты",
+      "z": 112,
+      "type": "production",
+      "purpose": "Восемь ассемблеров, два ряда по четыре. Проход y=38…50 м; восточная сервисная галерея x=120…128 м."
+    },
+    {
+      "id": "T2",
+      "name": "Разводка финального этажа",
+      "z": 124,
+      "type": "technical",
+      "purpose": "Два независимых резиновых ввода по 750/мин, компоненты к производителям и отдельный спуск готового двигателя."
+    },
+    {
+      "id": "F3",
+      "name": "Двигатели, умная обшивка и генераторы",
+      "z": 128,
+      "type": "production",
+      "purpose": "Пятнадцать производителей: десять Modular Engine, два мотора, два Smart Plating, один Crystal Oscillator. Потолок на z=148 м."
+    },
+    {
+      "id": "RF",
+      "name": "Открытый нефтехимический двор",
+      "z": 96,
+      "type": "production",
+      "purpose": "Девятнадцать НПЗ на сетке 16×28 м и пять независимых линий в утилизаторы. Над НПЗ нет перекрытия."
+    },
+    {
+      "id": "ROOF",
+      "name": "Крыша и верхняя галерея",
+      "z": 148,
+      "type": "roof",
+      "purpose": "Парапет до 152 м, световой фонарь до 156 м. Лестница выходит на крышу; силовые шины не проходят через остекление."
+    },
+    {
+      "id": "CORE",
+      "name": "Лестницы, шахты и питание",
+      "z": null,
+      "type": "infrastructure"
+    },
+    {
+      "id": "DEPOT",
+      "name": "Окружение и железная дорога",
+      "z": 96,
+      "type": "infrastructure"
+    }
+  ],
+  "zones": [
+    {
+      "id": "T0-00",
+      "level": "T0",
+      "title": "Нижняя галерея целиком",
+      "sheet": "T0",
+      "panel": 0,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Разметить несущие опоры и свободный восточный проход.",
+        "До закрытия F1 проложить рудные и коксовые линии; трубы оставить под внешним двором."
+      ],
+      "network": "z88; до низа плиты F1 -7м. Межэтажные линии уходят в отдельное восточное ядро.",
+      "parts": [
+        "FND",
+        "BEAM",
+        "RAIL",
+        "REAL_LIGHT",
+        "PWR"
+      ],
+      "scope": "Общий разрез галереи",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/T0-00.webp",
+      "sheet_image": "visuals/sheets/T0.webp",
+      "width": 760,
+      "height": 504,
+      "references": [],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "T0-01",
+      "level": "T0",
+      "title": "Четыре независимых рудных ввода",
+      "sheet": "T0",
+      "panel": 1,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Разнести железо, медь, катерий и кварц по четырём подписанным отверстиям.",
+        "Железо и медь ответвить к F1; катерий и кварц направить к внешним НПЗ."
+      ],
+      "network": "Fe430,555556; Cu119,336420; Caterium119,722222; Quartz200/мин. Один вид сырья на ленту.",
+      "parts": [
+        "FND",
+        "HOLE",
+        "SIGN",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/T0-01.webp",
+      "sheet_image": "visuals/sheets/T0.webp",
+      "width": 760,
+      "height": 504,
+      "references": [],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "T0-02",
+      "level": "T0",
+      "title": "Кокс и подача стали к конструкторам",
+      "sheet": "T0",
+      "panel": 2,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Отделить539,475309кокса для металла до утилизации избытка.",
+        "Развести422,222222к стали и117,253086к меди.",
+        "633,333333стали распределить по211,111111в каждый из трёх конструкторов."
+      ],
+      "network": "Не смешивать возврат кокса с вывозом5139,691358/мин в SINK. Магистраль стали и коксовые ветви не должны пересекать проход.",
+      "parts": [
+        "FND",
+        "SPLIT",
+        "RAIL",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/T0-02.webp",
+      "sheet_image": "visuals/sheets/T0.webp",
+      "width": 760,
+      "height": 504,
+      "references": [],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "T0-03",
+      "level": "T0",
+      "title": "Внешний ввод нефти и воды",
+      "sheet": "T0",
+      "panel": 3,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Под двором RF построить отдельную трубную галерею.",
+        "Проложить две нефтяные линии O-A/O-B и отдельную воду.",
+        "Насосы выставлять по реальному напору, не по декоративной горизонтальной схеме."
+      ],
+      "network": "O-A324,722222; O-B326,111111; W50,611111м³/мин. Бюджет каждой трубы600. Всего6новых Mk.2 насосов в проекте; подъём между насосами≤45м.",
+      "parts": [
+        "FND",
+        "PIPE",
+        "CAT",
+        "RAIL",
+        "REAL_LIGHT",
+        "PWR"
+      ],
+      "scope": "Вид зоны",
+      "variance": "В кадре хорошо видны только две трубы. По плану обязательны ТРИ независимых ввода; отсутствующую линию не удалять.",
+      "production_owner": false,
+      "image": "visuals/zones/T0-03.webp",
+      "sheet_image": "visuals/sheets/T0.webp",
+      "width": 760,
+      "height": 504,
+      "references": [],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "F1-00",
+      "level": "F1",
+      "title": "Шесть машин и центральный проход",
+      "sheet": "F1",
+      "panel": 0,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Плита18×12фундаментов8м наz96.",
+        "Сначала выставить центры машин, затем отверстия и стены.",
+        "Оставить поперечный проходy44…52и переднийy88…96."
+      ],
+      "network": "Три литейных в рядуy24; три конструктора в рядуy68. Человеческий коридорx120…128.",
+      "parts": [
+        "FND",
+        "BEAM",
+        "RAIL",
+        "REAL_LIGHT",
+        "PWR"
+      ],
+      "scope": "Общий вид F1",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/F1-00.webp",
+      "sheet_image": "visuals/sheets/F1.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/foundry.png",
+        "visuals/references/constructor.png"
+      ],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "F1-01",
+      "level": "F1",
+      "title": "Три разных сплава",
+      "sheet": "F1",
+      "panel": 1,
+      "processes": [
+        "P07",
+        "P08",
+        "P17"
+      ],
+      "placement_ids": [
+        "P07-01",
+        "P08-01",
+        "P17-01"
+      ],
+      "steps": [
+        "Слева Easy Iron Alloy, в центре Easy Coke Steel, справа Easy Tempered Copper.",
+        "Подвести каждому два независимых сырьевых входа из T0.",
+        "Выходы железа/меди отправить к F2, сталь: к трём конструкторам F1."
+      ],
+      "network": "Центры(20,24),(60,24),(100,24). Это три разных рецепта, не три одинаковых сталелитейных линии.",
+      "parts": [
+        "FND",
+        "BEAM",
+        "HOLE",
+        "PWR",
+        "REAL_LIGHT",
+        "GLS"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": true,
+      "image": "visuals/zones/F1-01.webp",
+      "sheet_image": "visuals/sheets/F1.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/foundry.png",
+        "visuals/references/constructor.png"
+      ],
+      "groups": [
+        {
+          "id": "P07",
+          "recipe_key": "Recipe_Easy_IngotIron_C",
+          "recipe_path": "/EasyAltRecipes/Recipes/T3/Recipe_Easy_IngotIron.Recipe_Easy_IngotIron_C",
+          "name": "EasyAlt: Iron Alloy Ingot",
+          "machine": "foundry",
+          "machine_tier": 3,
+          "duration_s": 12.0,
+          "cycles_min": 0.6944444444444444,
+          "cycles_fraction": "25/36",
+          "machines": 1,
+          "clock": 0.013888888888888888,
+          "clock_fraction": "1/72",
+          "inputs": {
+            "Desc_OreIron_C": 8.333333333333334,
+            "Desc_OreCopper_C": 2.0833333333333335
+          },
+          "outputs": {
+            "Desc_IronIngot_C": 16.666666666666668
+          },
+          "source": "installed EasyAltRecipes 2.7.2",
+          "machine_name": "Литейная Mk.3",
+          "zone_machines": 1,
+          "zone_inputs": {
+            "Desc_OreIron_C": 8.333333333333334,
+            "Desc_OreCopper_C": 2.0833333333333335
+          },
+          "zone_outputs": {
+            "Desc_IronIngot_C": 16.666666666666668
+          }
+        },
+        {
+          "id": "P08",
+          "recipe_key": "Recipe_Easy_CokeSteelIngot_C",
+          "recipe_path": "/EasyAltRecipes/Recipes/v2_T5/Recipe_Easy_CokeSteelIngot.Recipe_Easy_CokeSteelIngot_C",
+          "name": "EasyAlt: Coke Steel Ingot",
+          "machine": "foundry",
+          "machine_tier": 3,
+          "duration_s": 4.0,
+          "cycles_min": 70.37037037037037,
+          "cycles_fraction": "1900/27",
+          "machines": 1,
+          "clock": 0.4691358024691358,
+          "clock_fraction": "38/81",
+          "inputs": {
+            "Desc_OreIron_C": 422.22222222222223,
+            "Desc_PetroleumCoke_C": 422.22222222222223
+          },
+          "outputs": {
+            "Desc_SteelIngot_C": 633.3333333333334
+          },
+          "source": "installed EasyAltRecipes 2.7.2",
+          "machine_name": "Литейная Mk.3",
+          "zone_machines": 1,
+          "zone_inputs": {
+            "Desc_OreIron_C": 422.22222222222223,
+            "Desc_PetroleumCoke_C": 422.22222222222223
+          },
+          "zone_outputs": {
+            "Desc_SteelIngot_C": 633.3333333333334
+          }
+        },
+        {
+          "id": "P17",
+          "recipe_key": "Recipe_Easy_TemperedCopperIngot_C",
+          "recipe_path": "/EasyAltRecipes/Recipes/v2_T5/Recipe_Easy_TemperedCopperIngot.Recipe_Easy_TemperedCopperIngot_C",
+          "name": "EasyAlt: Tempered Copper Ingot",
+          "machine": "foundry",
+          "machine_tier": 3,
+          "duration_s": 12.0,
+          "cycles_min": 23.450617283950617,
+          "cycles_fraction": "3799/162",
+          "machines": 1,
+          "clock": 0.46901234567901234,
+          "clock_fraction": "3799/8100",
+          "inputs": {
+            "Desc_OreCopper_C": 117.25308641975309,
+            "Desc_PetroleumCoke_C": 117.25308641975309
+          },
+          "outputs": {
+            "Desc_CopperIngot_C": 351.75925925925924
+          },
+          "source": "installed EasyAltRecipes 2.7.2",
+          "machine_name": "Литейная Mk.3",
+          "zone_machines": 1,
+          "zone_inputs": {
+            "Desc_OreCopper_C": 117.25308641975309,
+            "Desc_PetroleumCoke_C": 117.25308641975309
+          },
+          "zone_outputs": {
+            "Desc_CopperIngot_C": 351.75925925925924
+          }
+        }
+      ],
+      "placements": [
+        {
+          "id": "P07-01",
+          "process": "P07",
+          "floor": "F1",
+          "x": 20,
+          "y": 24,
+          "z": 96,
+          "kind": "foundry",
+          "clock": 0.013888888888888888,
+          "number": 1,
+          "width": 10,
+          "depth": 10,
+          "height": 9,
+          "cell": [
+            16,
+            16
+          ]
+        },
+        {
+          "id": "P08-01",
+          "process": "P08",
+          "floor": "F1",
+          "x": 60,
+          "y": 24,
+          "z": 96,
+          "kind": "foundry",
+          "clock": 0.4691358024691358,
+          "number": 1,
+          "width": 10,
+          "depth": 10,
+          "height": 9,
+          "cell": [
+            16,
+            16
+          ]
+        },
+        {
+          "id": "P17-01",
+          "process": "P17",
+          "floor": "F1",
+          "x": 100,
+          "y": 24,
+          "z": 96,
+          "kind": "foundry",
+          "clock": 0.46901234567901234,
+          "number": 1,
+          "width": 10,
+          "depth": 10,
+          "height": 9,
+          "cell": [
+            16,
+            16
+          ]
+        }
+      ],
+      "position_image": "visuals/zones/F1-01-positions.svg"
+    },
+    {
+      "id": "F1-02",
+      "level": "F1",
+      "title": "Три одинаковых конструктора труб",
+      "sheet": "F1",
+      "panel": 2,
+      "processes": [
+        "P01"
+      ],
+      "placement_ids": [
+        "P01-01",
+        "P01-02",
+        "P01-03"
+      ],
+      "steps": [
+        "Поставить конструкторы на(20,68),(60,68),(100,68).",
+        "Дать каждому211,111111стали/мин.",
+        "Собрать422,222222труб/мин и поднять в T1."
+      ],
+      "network": "Каждый конструктор70,370370%; выход140,740741трубы/мин. Не ставить четвёртый остаточный конструктор.",
+      "parts": [
+        "FND",
+        "SPLIT",
+        "HOLE",
+        "PWR",
+        "REAL_LIGHT",
+        "GLS"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": true,
+      "image": "visuals/zones/F1-02.webp",
+      "sheet_image": "visuals/sheets/F1.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/foundry.png",
+        "visuals/references/constructor.png"
+      ],
+      "groups": [
+        {
+          "id": "P01",
+          "recipe_key": "Recipe_SteelPipe_C",
+          "recipe_path": "/Game/FactoryGame/Recipes/Constructor/Recipe_SteelPipe.Recipe_SteelPipe_C",
+          "name": "Steel Pipe",
+          "machine": "constructor",
+          "machine_tier": 3,
+          "duration_s": 6.0,
+          "cycles_min": 211.11111111111111,
+          "cycles_fraction": "1900/9",
+          "machines": 3,
+          "clock": 0.7037037037037037,
+          "clock_fraction": "19/27",
+          "inputs": {
+            "Desc_SteelIngot_C": 633.3333333333334
+          },
+          "outputs": {
+            "Desc_SteelPipe_C": 422.22222222222223
+          },
+          "source": "shipped Docs/en-US.json",
+          "machine_name": "Конструктор Mk.3",
+          "zone_machines": 3,
+          "zone_inputs": {
+            "Desc_SteelIngot_C": 633.3333333333334
+          },
+          "zone_outputs": {
+            "Desc_SteelPipe_C": 422.22222222222223
+          }
+        }
+      ],
+      "placements": [
+        {
+          "id": "P01-01",
+          "process": "P01",
+          "floor": "F1",
+          "x": 20,
+          "y": 68,
+          "z": 96,
+          "kind": "constructor",
+          "clock": 0.7037037037037037,
+          "number": 1,
+          "width": 8,
+          "depth": 10,
+          "height": 9,
+          "cell": [
+            16,
+            16
+          ]
+        },
+        {
+          "id": "P01-02",
+          "process": "P01",
+          "floor": "F1",
+          "x": 60,
+          "y": 68,
+          "z": 96,
+          "kind": "constructor",
+          "clock": 0.7037037037037037,
+          "number": 2,
+          "width": 8,
+          "depth": 10,
+          "height": 9,
+          "cell": [
+            16,
+            16
+          ]
+        },
+        {
+          "id": "P01-03",
+          "process": "P01",
+          "floor": "F1",
+          "x": 100,
+          "y": 68,
+          "z": 96,
+          "kind": "constructor",
+          "clock": 0.7037037037037037,
+          "number": 3,
+          "width": 8,
+          "depth": 10,
+          "height": 9,
+          "cell": [
+            16,
+            16
+          ]
+        }
+      ],
+      "position_image": "visuals/zones/F1-02-positions.svg"
+    },
+    {
+      "id": "F1-03",
+      "level": "F1",
+      "title": "Проход, освещение и смотровой проём",
+      "sheet": "F1",
+      "panel": 3,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Оградить только реальный проём в T0, не обводить весь цех светом.",
+        "Розетки вести по стене/колоннам; ответвления к каждой машине отдельно.",
+        "Не ставить опоры или кабели поперёк лестничного выхода."
+      ],
+      "network": "Люки на иллюстрации поясняют доступ. Их точный контур согласовать с несущими балками и реальными коллизиями.",
+      "parts": [
+        "FND",
+        "CAT",
+        "RAIL",
+        "PWR",
+        "REAL_LIGHT",
+        "LIGHT",
+        "GLS"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/F1-03.webp",
+      "sheet_image": "visuals/sheets/F1.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/foundry.png",
+        "visuals/references/constructor.png"
+      ],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "T1-00",
+      "level": "T1",
+      "title": "Низкая межэтажная разводка",
+      "sheet": "T1",
+      "panel": 0,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Не зашивать3м чистой высоты декоративными воздуховодами.",
+        "Магистрали вести на+1м, короткие пересечения на+2м.",
+        "Оставить восточный путь обслуживания свободным."
+      ],
+      "network": "T1z108; F2z112. Никаких четырёх ярусов лент внутри3м.",
+      "parts": [
+        "FND",
+        "BEAM",
+        "RAIL",
+        "REAL_LIGHT",
+        "PWR"
+      ],
+      "scope": "Общий разрез T1",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/T1-00.webp",
+      "sheet_image": "visuals/sheets/T1.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/assembler.png"
+      ],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "T1-01",
+      "level": "T1",
+      "title": "Шесть входных потоков F2",
+      "sheet": "T1",
+      "panel": 1,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Поднять трубы, медь, катерий, пластик, железо и резину в отдельные линии.",
+        "Сначала разметить потребителей F2, затем короткие ветви к каждому ассемблеру."
+      ],
+      "network": "Трубы422,222222; Cu351,759259; Cat79,814815; пластик52,777778; Fe16,666667; резина16,666667/мин.",
+      "parts": [
+        "FND",
+        "SPLIT",
+        "HOLE",
+        "SIGN",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/T1-01.webp",
+      "sheet_image": "visuals/sheets/T1.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/assembler.png"
+      ],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "T1-02",
+      "level": "T1",
+      "title": "Локальные петли роторов и электроники",
+      "sheet": "T1",
+      "panel": 2,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Провод444,444444 направить локально в роторы.",
+        "Быстропровод780разделить600к статорам и180к AI Limiter.",
+        "Пластины33,333333оставить для RIP; наверх поднимать только реальные конечные потоки."
+      ],
+      "network": "Из T1 наверх: роторы166,666667, статоры100, AI20, RIP33,333333. Не выводить весь провод на F3.",
+      "parts": [
+        "FND",
+        "SPLIT",
+        "HOLE",
+        "SIGN",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/T1-02.webp",
+      "sheet_image": "visuals/sheets/T1.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/assembler.png"
+      ],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "T1-03",
+      "level": "T1",
+      "title": "Интерфейс шахт и обслуживание",
+      "sheet": "T1",
+      "panel": 3,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Отделить ограждением материалоподъёмники от людей.",
+        "Подписать оба конца каждой линии одинаковым кодом.",
+        "Подвести свет и питание по стене, не через проход."
+      ],
+      "network": "Общее ядроx128…144; человеческая галереяx120…128. Проёмы не заменяют проверку реальных портов.",
+      "parts": [
+        "FND",
+        "HOLE",
+        "RAIL",
+        "STAIR",
+        "CAT",
+        "SIGN",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/T1-03.webp",
+      "sheet_image": "visuals/sheets/T1.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/assembler.png"
+      ],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "F2-00",
+      "level": "F2",
+      "title": "Два ряда по четыре ассемблера",
+      "sheet": "F2a",
+      "panel": 0,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Выставить x16/40/64/88 и y22/66.",
+        "Держать проходy38…50открытым.",
+        "Подписать восемь рецептов до подключения лент."
+      ],
+      "network": "8Assembler Mk.3. Входы/выходы ориентировать одинаково по принятому плану; направление на художественном кадре не инструкция порта.",
+      "parts": [
+        "FND",
+        "BEAM",
+        "RAIL",
+        "REAL_LIGHT",
+        "PWR"
+      ],
+      "scope": "Общий вид F2",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/F2-00.webp",
+      "sheet_image": "visuals/sheets/F2a.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/assembler.png"
+      ],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "F2-01",
+      "level": "F2",
+      "title": "Роторы без винтов",
+      "sheet": "F2a",
+      "panel": 1,
+      "processes": [
+        "P19"
+      ],
+      "placement_ids": [
+        "P19-01",
+        "P19-02"
+      ],
+      "steps": [
+        "Два ассемблера наx16/40,y22.",
+        "Каждому111,111111трубы и222,222222провода.",
+        "Общий выход разделить100к моторам и66,666667к Smart Plating."
+      ],
+      "network": "Два одинаковых92,592593%.",
+      "parts": [
+        "FND",
+        "SPLIT",
+        "HOLE",
+        "PWR",
+        "REAL_LIGHT",
+        "GLS"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": true,
+      "image": "visuals/zones/F2-01.webp",
+      "sheet_image": "visuals/sheets/F2a.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/assembler.png"
+      ],
+      "groups": [
+        {
+          "id": "P19",
+          "recipe_key": "Recipe_Easy_SteelRotor_C",
+          "recipe_path": "/EasyAltRecipes/Recipes/v2_T3/Recipe_Easy_SteelRotor.Recipe_Easy_SteelRotor_C",
+          "name": "EasyAlt: Steel Rotor",
+          "machine": "assembler",
+          "machine_tier": 3,
+          "duration_s": 20.0,
+          "cycles_min": 55.55555555555556,
+          "cycles_fraction": "500/9",
+          "machines": 2,
+          "clock": 0.9259259259259259,
+          "clock_fraction": "25/27",
+          "inputs": {
+            "Desc_SteelPipe_C": 222.22222222222223,
+            "Desc_Wire_C": 444.44444444444446
+          },
+          "outputs": {
+            "Desc_Rotor_C": 166.66666666666666
+          },
+          "source": "installed EasyAltRecipes 2.7.2",
+          "machine_name": "Ассемблер Mk.3",
+          "zone_machines": 2,
+          "zone_inputs": {
+            "Desc_SteelPipe_C": 222.22222222222223,
+            "Desc_Wire_C": 444.44444444444446
+          },
+          "zone_outputs": {
+            "Desc_Rotor_C": 166.66666666666666
+          }
+        }
+      ],
+      "placements": [
+        {
+          "id": "P19-01",
+          "process": "P19",
+          "floor": "F2",
+          "x": 16,
+          "y": 22,
+          "z": 112,
+          "kind": "assembler",
+          "clock": 0.9259259259259259,
+          "number": 1,
+          "width": 9,
+          "depth": 16,
+          "height": 8,
+          "cell": [
+            16,
+            24
+          ]
+        },
+        {
+          "id": "P19-02",
+          "process": "P19",
+          "floor": "F2",
+          "x": 40,
+          "y": 22,
+          "z": 112,
+          "kind": "assembler",
+          "clock": 0.9259259259259259,
+          "number": 2,
+          "width": 9,
+          "depth": 16,
+          "height": 8,
+          "cell": [
+            16,
+            24
+          ]
+        }
+      ],
+      "position_image": "visuals/zones/F2-01-positions.svg"
+    },
+    {
+      "id": "F2-02",
+      "level": "F2",
+      "title": "Статоры",
+      "sheet": "F2a",
+      "panel": 2,
+      "processes": [
+        "P09"
+      ],
+      "placement_ids": [
+        "P09-01"
+      ],
+      "steps": [
+        "Один ассемблерx64,y22.",
+        "Дать200труб и600быстропровода.",
+        "100статоров поднять в T2 к моторам."
+      ],
+      "network": "100%; локальная ветка быстропровода из соседней ячейки.",
+      "parts": [
+        "FND",
+        "SPLIT",
+        "HOLE",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": true,
+      "image": "visuals/zones/F2-02.webp",
+      "sheet_image": "visuals/sheets/F2a.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/assembler.png"
+      ],
+      "groups": [
+        {
+          "id": "P09",
+          "recipe_key": "Recipe_Easy_Stator_C",
+          "recipe_path": "/EasyAltRecipes/Recipes/T4/Recipe_Easy_Stator.Recipe_Easy_Stator_C",
+          "name": "EasyAlt: Quickwire Stator",
+          "machine": "assembler",
+          "machine_tier": 3,
+          "duration_s": 24.0,
+          "cycles_min": 25.0,
+          "cycles_fraction": "25",
+          "machines": 1,
+          "clock": 1.0,
+          "clock_fraction": "1",
+          "inputs": {
+            "Desc_SteelPipe_C": 200.0,
+            "Desc_HighSpeedWire_C": 600.0
+          },
+          "outputs": {
+            "Desc_Stator_C": 100.0
+          },
+          "source": "installed EasyAltRecipes 2.7.2",
+          "machine_name": "Ассемблер Mk.3",
+          "zone_machines": 1,
+          "zone_inputs": {
+            "Desc_SteelPipe_C": 200.0,
+            "Desc_HighSpeedWire_C": 600.0
+          },
+          "zone_outputs": {
+            "Desc_Stator_C": 100.0
+          }
+        }
+      ],
+      "placements": [
+        {
+          "id": "P09-01",
+          "process": "P09",
+          "floor": "F2",
+          "x": 64,
+          "y": 22,
+          "z": 112,
+          "kind": "assembler",
+          "clock": 1.0,
+          "number": 1,
+          "width": 9,
+          "depth": 16,
+          "height": 8,
+          "cell": [
+            16,
+            24
+          ]
+        }
+      ],
+      "position_image": "visuals/zones/F2-02-positions.svg"
+    },
+    {
+      "id": "F2-03",
+      "level": "F2",
+      "title": "Общий быстропровод",
+      "sheet": "F2a",
+      "panel": 3,
+      "processes": [
+        "P18"
+      ],
+      "placement_ids": [
+        "P18-01"
+      ],
+      "steps": [
+        "Один ассемблерx88,y22.",
+        "65катерия и292,5меди на вход.",
+        "780быстропровода разделить600/180."
+      ],
+      "network": "65%; не забирать долю AI Limiter для статоров.",
+      "parts": [
+        "FND",
+        "SPLIT",
+        "HOLE",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": true,
+      "image": "visuals/zones/F2-03.webp",
+      "sheet_image": "visuals/sheets/F2a.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/assembler.png"
+      ],
+      "groups": [
+        {
+          "id": "P18",
+          "recipe_key": "Recipe_Easy_Quickwire_C",
+          "recipe_path": "/EasyAltRecipes/Recipes/T4/Recipe_Easy_Quickwire.Recipe_Easy_Quickwire_C",
+          "name": "EasyAlt: Fused Quickwire",
+          "machine": "assembler",
+          "machine_tier": 3,
+          "duration_s": 12.0,
+          "cycles_min": 32.5,
+          "cycles_fraction": "65/2",
+          "machines": 1,
+          "clock": 0.65,
+          "clock_fraction": "13/20",
+          "inputs": {
+            "Desc_GoldIngot_C": 65.0,
+            "Desc_CopperIngot_C": 292.5
+          },
+          "outputs": {
+            "Desc_HighSpeedWire_C": 780.0
+          },
+          "source": "installed EasyAltRecipes 2.7.2",
+          "machine_name": "Ассемблер Mk.3",
+          "zone_machines": 1,
+          "zone_inputs": {
+            "Desc_GoldIngot_C": 65.0,
+            "Desc_CopperIngot_C": 292.5
+          },
+          "zone_outputs": {
+            "Desc_HighSpeedWire_C": 780.0
+          }
+        }
+      ],
+      "placements": [
+        {
+          "id": "P18-01",
+          "process": "P18",
+          "floor": "F2",
+          "x": 88,
+          "y": 22,
+          "z": 112,
+          "kind": "assembler",
+          "clock": 0.65,
+          "number": 1,
+          "width": 9,
+          "depth": 16,
+          "height": 8,
+          "cell": [
+            16,
+            24
+          ]
+        }
+      ],
+      "position_image": "visuals/zones/F2-03-positions.svg"
+    },
+    {
+      "id": "F2-04",
+      "level": "F2",
+      "title": "Провод для роторов",
+      "sheet": "F2b",
+      "panel": 0,
+      "processes": [
+        "P06"
+      ],
+      "placement_ids": [
+        "P06-01"
+      ],
+      "steps": [
+        "Ассемблерx16,y66.",
+        "Подать59,259259меди и14,814815катерия.",
+        "Весь444,444444провод оставить в локальной роторной ветке."
+      ],
+      "network": "49,382716%; не нужна отдельная кабельная цепь.",
+      "parts": [
+        "FND",
+        "SPLIT",
+        "HOLE",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": true,
+      "image": "visuals/zones/F2-04.webp",
+      "sheet_image": "visuals/sheets/F2b.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/assembler.png"
+      ],
+      "groups": [
+        {
+          "id": "P06",
+          "recipe_key": "Recipe_Alternate_FusedWire_C",
+          "recipe_path": "/Game/FactoryGame/Recipes/AlternateRecipes/New_Update3/Recipe_Alternate_FusedWire.Recipe_Alternate_FusedWire_C",
+          "name": "Alternate: Fused Wire",
+          "machine": "assembler",
+          "machine_tier": 3,
+          "duration_s": 20.0,
+          "cycles_min": 14.814814814814815,
+          "cycles_fraction": "400/27",
+          "machines": 1,
+          "clock": 0.49382716049382713,
+          "clock_fraction": "40/81",
+          "inputs": {
+            "Desc_CopperIngot_C": 59.25925925925926,
+            "Desc_GoldIngot_C": 14.814814814814815
+          },
+          "outputs": {
+            "Desc_Wire_C": 444.44444444444446
+          },
+          "source": "shipped Docs/en-US.json",
+          "machine_name": "Ассемблер Mk.3",
+          "zone_machines": 1,
+          "zone_inputs": {
+            "Desc_CopperIngot_C": 59.25925925925926,
+            "Desc_GoldIngot_C": 14.814814814814815
+          },
+          "zone_outputs": {
+            "Desc_Wire_C": 444.44444444444446
+          }
+        }
+      ],
+      "placements": [
+        {
+          "id": "P06-01",
+          "process": "P06",
+          "floor": "F2",
+          "x": 16,
+          "y": 66,
+          "z": 112,
+          "kind": "assembler",
+          "clock": 0.49382716049382713,
+          "number": 1,
+          "width": 9,
+          "depth": 16,
+          "height": 8,
+          "cell": [
+            16,
+            24
+          ]
+        }
+      ],
+      "position_image": "visuals/zones/F2-04-positions.svg"
+    },
+    {
+      "id": "F2-05",
+      "level": "F2",
+      "title": "Покрытые железные пластины",
+      "sheet": "F2b",
+      "panel": 1,
+      "processes": [
+        "P15"
+      ],
+      "placement_ids": [
+        "P15-01"
+      ],
+      "steps": [
+        "Ассемблерx40,y66.",
+        "Малые входы16,666667железа и2,777778пластика не подключать к неправильной магистрали.",
+        "33,333333пластин отдать RIP."
+      ],
+      "network": "3,703704%; низкая частота намеренная, не ошибка округления.",
+      "parts": [
+        "FND",
+        "SPLIT",
+        "HOLE",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": true,
+      "image": "visuals/zones/F2-05.webp",
+      "sheet_image": "visuals/sheets/F2b.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/assembler.png"
+      ],
+      "groups": [
+        {
+          "id": "P15",
+          "recipe_key": "Recipe_Easy_CoatedIronPlate_C",
+          "recipe_path": "/EasyAltRecipes/Recipes/v2_T5/Recipe_Easy_CoatedIronPlate.Recipe_Easy_CoatedIronPlate_C",
+          "name": "EasyAlt: Coated Iron Plate",
+          "machine": "assembler",
+          "machine_tier": 3,
+          "duration_s": 8.0,
+          "cycles_min": 2.7777777777777777,
+          "cycles_fraction": "25/9",
+          "machines": 1,
+          "clock": 0.037037037037037035,
+          "clock_fraction": "1/27",
+          "inputs": {
+            "Desc_IronIngot_C": 16.666666666666668,
+            "Desc_Plastic_C": 2.7777777777777777
+          },
+          "outputs": {
+            "Desc_IronPlate_C": 33.333333333333336
+          },
+          "source": "installed EasyAltRecipes 2.7.2",
+          "machine_name": "Ассемблер Mk.3",
+          "zone_machines": 1,
+          "zone_inputs": {
+            "Desc_IronIngot_C": 16.666666666666668,
+            "Desc_Plastic_C": 2.7777777777777777
+          },
+          "zone_outputs": {
+            "Desc_IronPlate_C": 33.333333333333336
+          }
+        }
+      ],
+      "placements": [
+        {
+          "id": "P15-01",
+          "process": "P15",
+          "floor": "F2",
+          "x": 40,
+          "y": 66,
+          "z": 112,
+          "kind": "assembler",
+          "clock": 0.037037037037037035,
+          "number": 1,
+          "width": 9,
+          "depth": 16,
+          "height": 8,
+          "cell": [
+            16,
+            24
+          ]
+        }
+      ],
+      "position_image": "visuals/zones/F2-05-positions.svg"
+    },
+    {
+      "id": "F2-06",
+      "level": "F2",
+      "title": "AI Limiter для генератора",
+      "sheet": "F2b",
+      "panel": 2,
+      "processes": [
+        "P16"
+      ],
+      "placement_ids": [
+        "P16-01"
+      ],
+      "steps": [
+        "Ассемблерx64,y66.",
+        "180быстропровода+50пластика.",
+        "20AI Limiter поднять к единственному генератору F3."
+      ],
+      "network": "25%; локальный вход из P18.",
+      "parts": [
+        "FND",
+        "SPLIT",
+        "HOLE",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": true,
+      "image": "visuals/zones/F2-06.webp",
+      "sheet_image": "visuals/sheets/F2b.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/assembler.png"
+      ],
+      "groups": [
+        {
+          "id": "P16",
+          "recipe_key": "Recipe_Easy_PlasticAiLimiter_C",
+          "recipe_path": "/EasyAltRecipes/Recipes/v2_T7/Recipe_Easy_PlasticAiLimiter.Recipe_Easy_PlasticAiLimiter_C",
+          "name": "EasyAlt: Plastic AI Limiter",
+          "machine": "assembler",
+          "machine_tier": 3,
+          "duration_s": 15.0,
+          "cycles_min": 10.0,
+          "cycles_fraction": "10",
+          "machines": 1,
+          "clock": 0.25,
+          "clock_fraction": "1/4",
+          "inputs": {
+            "Desc_HighSpeedWire_C": 180.0,
+            "Desc_Plastic_C": 50.0
+          },
+          "outputs": {
+            "Desc_CircuitBoardHighSpeed_C": 20.0
+          },
+          "source": "installed EasyAltRecipes 2.7.2",
+          "machine_name": "Ассемблер Mk.3",
+          "zone_machines": 1,
+          "zone_inputs": {
+            "Desc_HighSpeedWire_C": 180.0,
+            "Desc_Plastic_C": 50.0
+          },
+          "zone_outputs": {
+            "Desc_CircuitBoardHighSpeed_C": 20.0
+          }
+        }
+      ],
+      "placements": [
+        {
+          "id": "P16-01",
+          "process": "P16",
+          "floor": "F2",
+          "x": 64,
+          "y": 66,
+          "z": 112,
+          "kind": "assembler",
+          "clock": 0.25,
+          "number": 1,
+          "width": 9,
+          "depth": 16,
+          "height": 8,
+          "cell": [
+            16,
+            24
+          ]
+        }
+      ],
+      "position_image": "visuals/zones/F2-06-positions.svg"
+    },
+    {
+      "id": "F2-07",
+      "level": "F2",
+      "title": "Усиленные пластины без винтов",
+      "sheet": "F2b",
+      "panel": 3,
+      "processes": [
+        "P20"
+      ],
+      "placement_ids": [
+        "P20-01"
+      ],
+      "steps": [
+        "Ассемблерx88,y66.",
+        "33,333333пластин+16,666667резины.",
+        "33,333333RIP поднять к Smart Plating."
+      ],
+      "network": "83,333333%; резина из вспомогательного отвода, не из двух финальных750линий.",
+      "parts": [
+        "FND",
+        "SPLIT",
+        "HOLE",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": true,
+      "image": "visuals/zones/F2-07.webp",
+      "sheet_image": "visuals/sheets/F2b.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/assembler.png"
+      ],
+      "groups": [
+        {
+          "id": "P20",
+          "recipe_key": "Recipe_Easy_AdheredIronPlate_C",
+          "recipe_path": "/EasyAltRecipes/Recipes/v2_T5/Recipe_Easy_AdheredIronPlate.Recipe_Easy_AdheredIronPlate_C",
+          "name": "EasyAlt: Adhered Iron Plate",
+          "machine": "assembler",
+          "machine_tier": 3,
+          "duration_s": 30.0,
+          "cycles_min": 16.666666666666668,
+          "cycles_fraction": "50/3",
+          "machines": 1,
+          "clock": 0.8333333333333334,
+          "clock_fraction": "5/6",
+          "inputs": {
+            "Desc_IronPlate_C": 33.333333333333336,
+            "Desc_Rubber_C": 16.666666666666668
+          },
+          "outputs": {
+            "Desc_IronPlateReinforced_C": 33.333333333333336
+          },
+          "source": "installed EasyAltRecipes 2.7.2",
+          "machine_name": "Ассемблер Mk.3",
+          "zone_machines": 1,
+          "zone_inputs": {
+            "Desc_IronPlate_C": 33.333333333333336,
+            "Desc_Rubber_C": 16.666666666666668
+          },
+          "zone_outputs": {
+            "Desc_IronPlateReinforced_C": 33.333333333333336
+          }
+        }
+      ],
+      "placements": [
+        {
+          "id": "P20-01",
+          "process": "P20",
+          "floor": "F2",
+          "x": 88,
+          "y": 66,
+          "z": 112,
+          "kind": "assembler",
+          "clock": 0.8333333333333334,
+          "number": 1,
+          "width": 9,
+          "depth": 16,
+          "height": 8,
+          "cell": [
+            16,
+            24
+          ]
+        }
+      ],
+      "position_image": "visuals/zones/F2-07-positions.svg"
+    },
+    {
+      "id": "T2-00",
+      "level": "T2",
+      "title": "Три раздельных материала к ME",
+      "sheet": "T2",
+      "panel": 0,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Сначала две независимые резиновые магистрали.",
+        "Моторы и Smart Plating развести отдельными лентами.",
+        "Экспорт ME вести отдельным спуском."
+      ],
+      "network": "T2z124; чистая высота3м. Два яруса, не четыре.",
+      "parts": [
+        "FND",
+        "BEAM",
+        "RAIL",
+        "REAL_LIGHT",
+        "PWR"
+      ],
+      "scope": "Общий разрез T2",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/T2-00.webp",
+      "sheet_image": "visuals/sheets/T2.webp",
+      "width": 760,
+      "height": 504,
+      "references": [],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "T2-01",
+      "level": "T2",
+      "title": "Банк A: пять отводов",
+      "sheet": "T2",
+      "panel": 1,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Одна резиновая магистраль750к пяти потребителям.",
+        "На каждую машину150резины,20моторов,20Smart Plating.",
+        "Не соединять этот ввод с банком B после распределения."
+      ],
+      "network": "A:750резины+100моторов+100Smart Plating →50ME/мин. Пять отводов по150/20/20.",
+      "parts": [
+        "FND",
+        "SPLIT",
+        "HOLE",
+        "SIGN",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/T2-01.webp",
+      "sheet_image": "visuals/sheets/T2.webp",
+      "width": 760,
+      "height": 504,
+      "references": [],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "T2-02",
+      "level": "T2",
+      "title": "Банк B и вспомогательная сборка",
+      "sheet": "T2",
+      "panel": 2,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Повторить независимую схему A для B.",
+        "Отдельно провести100роторов+100статоров+20генераторов к моторам.",
+        "К Smart Plating:66,666667роторов+33,333333RIP+500пластика; к генератору200кварца+100резины+20AI."
+      ],
+      "network": "B:750/100/100 →50ME. Вспомогательная резина116,666667снимается ДО разделения1500наA/B.",
+      "parts": [
+        "FND",
+        "SPLIT",
+        "HOLE",
+        "SIGN",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "Кадр показывает финальные магистрали. Вспомогательные ветки заднего ряда описаны здесь и на размерном плане T2, не все видны с этой камеры.",
+      "production_owner": false,
+      "image": "visuals/zones/T2-02.webp",
+      "sheet_image": "visuals/sheets/T2.webp",
+      "width": 760,
+      "height": 504,
+      "references": [],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "T2-03",
+      "level": "T2",
+      "title": "Отдельный спуск100ME к депо",
+      "sheet": "T2",
+      "panel": 3,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Собрать выходы десяти машин без подмешивания полуфабрикатов.",
+        "Спустить100ME/мин отдельной линией в два буфера депо.",
+        "Оставить доступ к спуску со всех технических уровней."
+      ],
+      "network": "Непрерывный расчёт100/мин; остановка грузовой платформы компенсируется буферами, не увеличением часов машин.",
+      "parts": [
+        "FND",
+        "HOLE",
+        "RAIL",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/T2-03.webp",
+      "sheet_image": "visuals/sheets/T2.webp",
+      "width": 760,
+      "height": 504,
+      "references": [],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "F3-00",
+      "level": "F3",
+      "title": "Пятнадцать производителей",
+      "sheet": "F3banks",
+      "panel": 0,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Сетка x16/40/64/88/112, рядыy16/44/72.",
+        "Два передних ряда -10ME, задний -2мотора/2Smart Plating/1генератор.",
+        "Сначала машины/техэтаж, затем высокий светлый зал."
+      ],
+      "network": "z128, потолокz147/крышаz148; не переносить цилиндры НПЗ внутрь.",
+      "parts": [
+        "FND",
+        "BEAM",
+        "RAIL",
+        "REAL_LIGHT",
+        "PWR"
+      ],
+      "scope": "Общий вид F3",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/F3-00.webp",
+      "sheet_image": "visuals/sheets/F3banks.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/manufacturer.png"
+      ],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "F3-01",
+      "level": "F3",
+      "title": "Modular Engine: банк A",
+      "sheet": "F3banks",
+      "panel": 1,
+      "processes": [
+        "P05"
+      ],
+      "placement_ids": [
+        "P05-01",
+        "P05-02",
+        "P05-03",
+        "P05-04",
+        "P05-05"
+      ],
+      "steps": [
+        "Пять машин рядаy16на100%.",
+        "Подать750резины/100моторов/100Smart Plating.",
+        "Снять50ME/мин и объединить только готовый выход с B."
+      ],
+      "network": "На машину20Motor+150Rubber+20Smart Plating →10ME/мин.",
+      "parts": [
+        "FND",
+        "SPLIT",
+        "HOLE",
+        "PWR",
+        "REAL_LIGHT",
+        "GLS"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": true,
+      "image": "visuals/zones/F3-01.webp",
+      "sheet_image": "visuals/sheets/F3banks.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/manufacturer.png"
+      ],
+      "groups": [
+        {
+          "id": "P05",
+          "recipe_key": "Recipe_SpaceElevatorPart_4_C",
+          "recipe_path": "/Game/FactoryGame/Recipes/SpaceElevatorParts/Recipe_SpaceElevatorPart_4.Recipe_SpaceElevatorPart_4_C",
+          "name": "Modular Engine",
+          "machine": "manufacturer",
+          "machine_tier": 3,
+          "duration_s": 60.0,
+          "cycles_min": 100.0,
+          "cycles_fraction": "100",
+          "machines": 10,
+          "clock": 1.0,
+          "clock_fraction": "1",
+          "inputs": {
+            "Desc_Motor_C": 200.0,
+            "Desc_Rubber_C": 1500.0,
+            "Desc_SpaceElevatorPart_1_C": 200.0
+          },
+          "outputs": {
+            "Desc_SpaceElevatorPart_4_C": 100.0
+          },
+          "source": "shipped Docs/en-US.json",
+          "machine_name": "Производитель Mk.3",
+          "zone_machines": 5,
+          "zone_inputs": {
+            "Desc_Motor_C": 100.0,
+            "Desc_Rubber_C": 750.0,
+            "Desc_SpaceElevatorPart_1_C": 100.0
+          },
+          "zone_outputs": {
+            "Desc_SpaceElevatorPart_4_C": 50.0
+          }
+        }
+      ],
+      "placements": [
+        {
+          "id": "P05-01",
+          "process": "P05",
+          "floor": "F3",
+          "x": 16,
+          "y": 16,
+          "z": 128,
+          "kind": "manufacturer",
+          "clock": 1.0,
+          "number": 1,
+          "width": 18,
+          "depth": 16,
+          "height": 16,
+          "cell": [
+            24,
+            24
+          ]
+        },
+        {
+          "id": "P05-02",
+          "process": "P05",
+          "floor": "F3",
+          "x": 40,
+          "y": 16,
+          "z": 128,
+          "kind": "manufacturer",
+          "clock": 1.0,
+          "number": 2,
+          "width": 18,
+          "depth": 16,
+          "height": 16,
+          "cell": [
+            24,
+            24
+          ]
+        },
+        {
+          "id": "P05-03",
+          "process": "P05",
+          "floor": "F3",
+          "x": 64,
+          "y": 16,
+          "z": 128,
+          "kind": "manufacturer",
+          "clock": 1.0,
+          "number": 3,
+          "width": 18,
+          "depth": 16,
+          "height": 16,
+          "cell": [
+            24,
+            24
+          ]
+        },
+        {
+          "id": "P05-04",
+          "process": "P05",
+          "floor": "F3",
+          "x": 88,
+          "y": 16,
+          "z": 128,
+          "kind": "manufacturer",
+          "clock": 1.0,
+          "number": 4,
+          "width": 18,
+          "depth": 16,
+          "height": 16,
+          "cell": [
+            24,
+            24
+          ]
+        },
+        {
+          "id": "P05-05",
+          "process": "P05",
+          "floor": "F3",
+          "x": 112,
+          "y": 16,
+          "z": 128,
+          "kind": "manufacturer",
+          "clock": 1.0,
+          "number": 5,
+          "width": 18,
+          "depth": 16,
+          "height": 16,
+          "cell": [
+            24,
+            24
+          ]
+        }
+      ],
+      "position_image": "visuals/zones/F3-01-positions.svg"
+    },
+    {
+      "id": "F3-02",
+      "level": "F3",
+      "title": "Modular Engine: банк B",
+      "sheet": "F3banks",
+      "panel": 2,
+      "processes": [
+        "P05"
+      ],
+      "placement_ids": [
+        "P05-06",
+        "P05-07",
+        "P05-08",
+        "P05-09",
+        "P05-10"
+      ],
+      "steps": [
+        "Пять машин рядаy44на100%.",
+        "Второй независимый ввод750резины и100/100полуфабрикатов.",
+        "Снять ещё50ME/мин."
+      ],
+      "network": "Тот же ритм пяти ячеек; не один перегруженный резиновый конвейер на все10.",
+      "parts": [
+        "FND",
+        "SPLIT",
+        "HOLE",
+        "PWR",
+        "REAL_LIGHT",
+        "GLS"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": true,
+      "image": "visuals/zones/F3-02.webp",
+      "sheet_image": "visuals/sheets/F3banks.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/manufacturer.png"
+      ],
+      "groups": [
+        {
+          "id": "P05",
+          "recipe_key": "Recipe_SpaceElevatorPart_4_C",
+          "recipe_path": "/Game/FactoryGame/Recipes/SpaceElevatorParts/Recipe_SpaceElevatorPart_4.Recipe_SpaceElevatorPart_4_C",
+          "name": "Modular Engine",
+          "machine": "manufacturer",
+          "machine_tier": 3,
+          "duration_s": 60.0,
+          "cycles_min": 100.0,
+          "cycles_fraction": "100",
+          "machines": 10,
+          "clock": 1.0,
+          "clock_fraction": "1",
+          "inputs": {
+            "Desc_Motor_C": 200.0,
+            "Desc_Rubber_C": 1500.0,
+            "Desc_SpaceElevatorPart_1_C": 200.0
+          },
+          "outputs": {
+            "Desc_SpaceElevatorPart_4_C": 100.0
+          },
+          "source": "shipped Docs/en-US.json",
+          "machine_name": "Производитель Mk.3",
+          "zone_machines": 5,
+          "zone_inputs": {
+            "Desc_Motor_C": 100.0,
+            "Desc_Rubber_C": 750.0,
+            "Desc_SpaceElevatorPart_1_C": 100.0
+          },
+          "zone_outputs": {
+            "Desc_SpaceElevatorPart_4_C": 50.0
+          }
+        }
+      ],
+      "placements": [
+        {
+          "id": "P05-06",
+          "process": "P05",
+          "floor": "F3",
+          "x": 16,
+          "y": 44,
+          "z": 128,
+          "kind": "manufacturer",
+          "clock": 1.0,
+          "number": 6,
+          "width": 18,
+          "depth": 16,
+          "height": 16,
+          "cell": [
+            24,
+            24
+          ]
+        },
+        {
+          "id": "P05-07",
+          "process": "P05",
+          "floor": "F3",
+          "x": 40,
+          "y": 44,
+          "z": 128,
+          "kind": "manufacturer",
+          "clock": 1.0,
+          "number": 7,
+          "width": 18,
+          "depth": 16,
+          "height": 16,
+          "cell": [
+            24,
+            24
+          ]
+        },
+        {
+          "id": "P05-08",
+          "process": "P05",
+          "floor": "F3",
+          "x": 64,
+          "y": 44,
+          "z": 128,
+          "kind": "manufacturer",
+          "clock": 1.0,
+          "number": 8,
+          "width": 18,
+          "depth": 16,
+          "height": 16,
+          "cell": [
+            24,
+            24
+          ]
+        },
+        {
+          "id": "P05-09",
+          "process": "P05",
+          "floor": "F3",
+          "x": 88,
+          "y": 44,
+          "z": 128,
+          "kind": "manufacturer",
+          "clock": 1.0,
+          "number": 9,
+          "width": 18,
+          "depth": 16,
+          "height": 16,
+          "cell": [
+            24,
+            24
+          ]
+        },
+        {
+          "id": "P05-10",
+          "process": "P05",
+          "floor": "F3",
+          "x": 112,
+          "y": 44,
+          "z": 128,
+          "kind": "manufacturer",
+          "clock": 1.0,
+          "number": 10,
+          "width": 18,
+          "depth": 16,
+          "height": 16,
+          "cell": [
+            24,
+            24
+          ]
+        }
+      ],
+      "position_image": "visuals/zones/F3-02-positions.svg"
+    },
+    {
+      "id": "F3-03",
+      "level": "F3",
+      "title": "Поперечный проход и доступ к T2",
+      "sheet": "F3banks",
+      "panel": 3,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Сохранить проход между рядами.",
+        "Оградить смотровой проём и вывести доступ к лестнице.",
+        "Кабели держать у стен/колонн, не провешивать через галерею."
+      ],
+      "network": "Камера показывает характер прохода; точные проёмы и опоры согласуются по сетке.",
+      "parts": [
+        "FND",
+        "CAT",
+        "RAIL",
+        "STAIR",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/F3-03.webp",
+      "sheet_image": "visuals/sheets/F3banks.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/manufacturer.png"
+      ],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "F3-04",
+      "level": "F3",
+      "title": "Два Rigor Motor",
+      "sheet": "F3support",
+      "panel": 0,
+      "processes": [
+        "P10"
+      ],
+      "placement_ids": [
+        "P10-01",
+        "P10-02"
+      ],
+      "steps": [
+        "Поставить две машиныx16/40,y72.",
+        "Каждой50роторов+50статоров+10генераторов.",
+        "Каждая выдаёт100моторов/мин; общий выход200разделить поровну A/B."
+      ],
+      "network": "Обе100%.",
+      "parts": [
+        "FND",
+        "SPLIT",
+        "HOLE",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": true,
+      "image": "visuals/zones/F3-04.webp",
+      "sheet_image": "visuals/sheets/F3support.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/manufacturer.png"
+      ],
+      "groups": [
+        {
+          "id": "P10",
+          "recipe_key": "Recipe_Easy_RigorMotor_C",
+          "recipe_path": "/EasyAltRecipes/Recipes/v2_T4/Recipe_Easy_RigorMotor.Recipe_Easy_RigorMotor_C",
+          "name": "EasyAlt: Rigor Motor",
+          "machine": "manufacturer",
+          "machine_tier": 3,
+          "duration_s": 60.0,
+          "cycles_min": 20.0,
+          "cycles_fraction": "20",
+          "machines": 2,
+          "clock": 1.0,
+          "clock_fraction": "1",
+          "inputs": {
+            "Desc_Rotor_C": 100.0,
+            "Desc_Stator_C": 100.0,
+            "Desc_CrystalOscillator_C": 20.0
+          },
+          "outputs": {
+            "Desc_Motor_C": 200.0
+          },
+          "source": "installed EasyAltRecipes 2.7.2",
+          "machine_name": "Производитель Mk.3",
+          "zone_machines": 2,
+          "zone_inputs": {
+            "Desc_Rotor_C": 100.0,
+            "Desc_Stator_C": 100.0,
+            "Desc_CrystalOscillator_C": 20.0
+          },
+          "zone_outputs": {
+            "Desc_Motor_C": 200.0
+          }
+        }
+      ],
+      "placements": [
+        {
+          "id": "P10-01",
+          "process": "P10",
+          "floor": "F3",
+          "x": 16,
+          "y": 72,
+          "z": 128,
+          "kind": "manufacturer",
+          "clock": 1.0,
+          "number": 1,
+          "width": 18,
+          "depth": 16,
+          "height": 16,
+          "cell": [
+            24,
+            24
+          ]
+        },
+        {
+          "id": "P10-02",
+          "process": "P10",
+          "floor": "F3",
+          "x": 40,
+          "y": 72,
+          "z": 128,
+          "kind": "manufacturer",
+          "clock": 1.0,
+          "number": 2,
+          "width": 18,
+          "depth": 16,
+          "height": 16,
+          "cell": [
+            24,
+            24
+          ]
+        }
+      ],
+      "position_image": "visuals/zones/F3-04-positions.svg"
+    },
+    {
+      "id": "F3-05",
+      "level": "F3",
+      "title": "Два Smart Plating",
+      "sheet": "F3support",
+      "panel": 1,
+      "processes": [
+        "P13"
+      ],
+      "placement_ids": [
+        "P13-01",
+        "P13-02"
+      ],
+      "steps": [
+        "Машиныx64/88,y72.",
+        "Каждой16,666667RIP+33,333333ротора+250пластика.",
+        "Каждая100Smart Plating/мин, по100кA/B."
+      ],
+      "network": "Одинаковые66,666667%.",
+      "parts": [
+        "FND",
+        "SPLIT",
+        "HOLE",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": true,
+      "image": "visuals/zones/F3-05.webp",
+      "sheet_image": "visuals/sheets/F3support.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/manufacturer.png"
+      ],
+      "groups": [
+        {
+          "id": "P13",
+          "recipe_key": "Recipe_Easy_PlasticSmartPlating_C",
+          "recipe_path": "/EasyAltRecipes/Recipes/T5/Recipe_Easy_PlasticSmartPlating.Recipe_Easy_PlasticSmartPlating_C",
+          "name": "EasyAlt: Plastic Smart Plating",
+          "machine": "manufacturer",
+          "machine_tier": 3,
+          "duration_s": 24.0,
+          "cycles_min": 33.333333333333336,
+          "cycles_fraction": "100/3",
+          "machines": 2,
+          "clock": 0.6666666666666666,
+          "clock_fraction": "2/3",
+          "inputs": {
+            "Desc_IronPlateReinforced_C": 33.333333333333336,
+            "Desc_Rotor_C": 66.66666666666667,
+            "Desc_Plastic_C": 500.0
+          },
+          "outputs": {
+            "Desc_SpaceElevatorPart_1_C": 200.0
+          },
+          "source": "installed EasyAltRecipes 2.7.2",
+          "machine_name": "Производитель Mk.3",
+          "zone_machines": 2,
+          "zone_inputs": {
+            "Desc_IronPlateReinforced_C": 33.333333333333336,
+            "Desc_Rotor_C": 66.66666666666667,
+            "Desc_Plastic_C": 500.0
+          },
+          "zone_outputs": {
+            "Desc_SpaceElevatorPart_1_C": 200.0
+          }
+        }
+      ],
+      "placements": [
+        {
+          "id": "P13-01",
+          "process": "P13",
+          "floor": "F3",
+          "x": 64,
+          "y": 72,
+          "z": 128,
+          "kind": "manufacturer",
+          "clock": 0.6666666666666666,
+          "number": 1,
+          "width": 18,
+          "depth": 16,
+          "height": 16,
+          "cell": [
+            24,
+            24
+          ]
+        },
+        {
+          "id": "P13-02",
+          "process": "P13",
+          "floor": "F3",
+          "x": 88,
+          "y": 72,
+          "z": 128,
+          "kind": "manufacturer",
+          "clock": 0.6666666666666666,
+          "number": 2,
+          "width": 18,
+          "depth": 16,
+          "height": 16,
+          "cell": [
+            24,
+            24
+          ]
+        }
+      ],
+      "position_image": "visuals/zones/F3-05-positions.svg"
+    },
+    {
+      "id": "F3-06",
+      "level": "F3",
+      "title": "Единственный Crystal Oscillator",
+      "sheet": "F3support",
+      "panel": 2,
+      "processes": [
+        "P11"
+      ],
+      "placement_ids": [
+        "P11-01"
+      ],
+      "steps": [
+        "Машинаx112,y72.",
+        "Подать200кристаллов+100резины+20AI Limiter.",
+        "20генераторов поделить по10между моторами."
+      ],
+      "network": "100%; не расходовать на неё резину из финальныхA/B.",
+      "parts": [
+        "FND",
+        "SPLIT",
+        "HOLE",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": true,
+      "image": "visuals/zones/F3-06.webp",
+      "sheet_image": "visuals/sheets/F3support.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/manufacturer.png"
+      ],
+      "groups": [
+        {
+          "id": "P11",
+          "recipe_key": "Recipe_Easy_CrystalOscillator_C",
+          "recipe_path": "/EasyAltRecipes/Recipes/T5/Recipe_Easy_CrystalOscillator.Recipe_Easy_CrystalOscillator_C",
+          "name": "EasyAlt: Insulated Crystal Oscillator",
+          "machine": "manufacturer",
+          "machine_tier": 3,
+          "duration_s": 30.0,
+          "cycles_min": 20.0,
+          "cycles_fraction": "20",
+          "machines": 1,
+          "clock": 1.0,
+          "clock_fraction": "1",
+          "inputs": {
+            "Desc_QuartzCrystal_C": 200.0,
+            "Desc_Rubber_C": 100.0,
+            "Desc_CircuitBoardHighSpeed_C": 20.0
+          },
+          "outputs": {
+            "Desc_CrystalOscillator_C": 20.0
+          },
+          "source": "installed EasyAltRecipes 2.7.2",
+          "machine_name": "Производитель Mk.3",
+          "zone_machines": 1,
+          "zone_inputs": {
+            "Desc_QuartzCrystal_C": 200.0,
+            "Desc_Rubber_C": 100.0,
+            "Desc_CircuitBoardHighSpeed_C": 20.0
+          },
+          "zone_outputs": {
+            "Desc_CrystalOscillator_C": 20.0
+          }
+        }
+      ],
+      "placements": [
+        {
+          "id": "P11-01",
+          "process": "P11",
+          "floor": "F3",
+          "x": 112,
+          "y": 72,
+          "z": 128,
+          "kind": "manufacturer",
+          "clock": 1.0,
+          "number": 1,
+          "width": 18,
+          "depth": 16,
+          "height": 16,
+          "cell": [
+            24,
+            24
+          ]
+        }
+      ],
+      "position_image": "visuals/zones/F3-06-positions.svg"
+    },
+    {
+      "id": "F3-07",
+      "level": "F3",
+      "title": "Восточная сервисная галерея",
+      "sheet": "F3support",
+      "panel": 3,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Отделить ограждением шахты от людей.",
+        "Сохранить сквозной путь к крыше.",
+        "Подсветить двери, не каждую кромку."
+      ],
+      "network": "x120…128: люди; x128…144: ядро.",
+      "parts": [
+        "FND",
+        "STAIR",
+        "CAT",
+        "RAIL",
+        "PWR",
+        "REAL_LIGHT",
+        "LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/F3-07.webp",
+      "sheet_image": "visuals/sheets/F3support.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/manufacturer.png"
+      ],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "RF-00",
+      "level": "RF",
+      "title": "Внешний двор без крыши",
+      "sheet": "RFa",
+      "panel": 0,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Отделить двор от корпуса: x160…256,y0…112.",
+        "Сетка16×28м; всего19НПЗ, пять резервных клеток.",
+        "Оставить32мсвободной высоты и доступ к портам."
+      ],
+      "network": "Не закрывать башни перекрытием F2. Место двора на ландшафте ещё не утверждено.",
+      "parts": [
+        "FND",
+        "BEAM",
+        "RAIL",
+        "REAL_LIGHT",
+        "PWR"
+      ],
+      "scope": "Обзор двора; точное число: на плане",
+      "variance": "Обзор передаёт организацию рядов, а не точную расстановку всех19НПЗ. Авторитетен размерный план RF.",
+      "production_owner": false,
+      "image": "visuals/zones/RF-00.webp",
+      "sheet_image": "visuals/sheets/RFa.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/refinery.png"
+      ],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "RF-01",
+      "level": "RF",
+      "title": "Резина: девять НПЗ",
+      "sheet": "RFa",
+      "panel": 1,
+      "processes": [
+        "P03"
+      ],
+      "placement_ids": [
+        "P03-01",
+        "P03-02",
+        "P03-03",
+        "P03-04",
+        "P03-05",
+        "P03-06",
+        "P03-07",
+        "P03-08",
+        "P03-09"
+      ],
+      "steps": [
+        "Шесть машин первого ряда и три первых второго.",
+        "Все девять на89,814815%.",
+        "P03-01…05 дают898,148/мин: приоритет100 к P11 и16,667 к P20;750 к банку A; остаток31,481 к банку B. P03-06…09 дают718,519 и с этим остатком формируют750 банка B. Умные сплиттеры: нужный предмет/Any на потребителя, Overflow дальше; сначала предзаполни боковые ветки. Ни один участок не переносит1616,667/мин."
+      ],
+      "network": "Сумма1616,666667Rubber; нефть485м³/мин. Ни одна общая лента не несёт1616,667. Коллекторы O-A/O-B не объединять в одну перегруженную трубу.",
+      "parts": [
+        "FND",
+        "PIPE",
+        "CAT",
+        "RAIL",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Крупный вид типового ряда из трёх; повторить до9по плану",
+      "variance": "",
+      "production_owner": true,
+      "image": "visuals/zones/RF-01.webp",
+      "sheet_image": "visuals/sheets/RFa.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/refinery.png"
+      ],
+      "groups": [
+        {
+          "id": "P03",
+          "recipe_key": "Recipe_Rubber_C",
+          "recipe_path": "/Game/FactoryGame/Recipes/OilRefinery/Recipe_Rubber.Recipe_Rubber_C",
+          "name": "Rubber",
+          "machine": "refinery",
+          "machine_tier": 3,
+          "duration_s": 6.0,
+          "cycles_min": 808.3333333333334,
+          "cycles_fraction": "2425/3",
+          "machines": 9,
+          "clock": 0.8981481481481481,
+          "clock_fraction": "97/108",
+          "inputs": {
+            "Desc_LiquidOil_C": 485.0
+          },
+          "outputs": {
+            "Desc_Rubber_C": 1616.6666666666667,
+            "Desc_HeavyOilResidue_C": 323.3333333333333
+          },
+          "source": "shipped Docs/en-US.json",
+          "machine_name": "НПЗ Mk.3",
+          "zone_machines": 9,
+          "zone_inputs": {
+            "Desc_LiquidOil_C": 485.0
+          },
+          "zone_outputs": {
+            "Desc_Rubber_C": 1616.6666666666667,
+            "Desc_HeavyOilResidue_C": 323.3333333333333
+          }
+        }
+      ],
+      "placements": [
+        {
+          "id": "P03-01",
+          "process": "P03",
+          "floor": "RF",
+          "x": 168,
+          "y": 14,
+          "z": 96,
+          "kind": "refinery",
+          "clock": 0.8981481481481481,
+          "number": 1,
+          "width": 10,
+          "depth": 22,
+          "height": 32,
+          "cell": [
+            16,
+            28
+          ]
+        },
+        {
+          "id": "P03-02",
+          "process": "P03",
+          "floor": "RF",
+          "x": 184,
+          "y": 14,
+          "z": 96,
+          "kind": "refinery",
+          "clock": 0.8981481481481481,
+          "number": 2,
+          "width": 10,
+          "depth": 22,
+          "height": 32,
+          "cell": [
+            16,
+            28
+          ]
+        },
+        {
+          "id": "P03-03",
+          "process": "P03",
+          "floor": "RF",
+          "x": 200,
+          "y": 14,
+          "z": 96,
+          "kind": "refinery",
+          "clock": 0.8981481481481481,
+          "number": 3,
+          "width": 10,
+          "depth": 22,
+          "height": 32,
+          "cell": [
+            16,
+            28
+          ]
+        },
+        {
+          "id": "P03-04",
+          "process": "P03",
+          "floor": "RF",
+          "x": 216,
+          "y": 14,
+          "z": 96,
+          "kind": "refinery",
+          "clock": 0.8981481481481481,
+          "number": 4,
+          "width": 10,
+          "depth": 22,
+          "height": 32,
+          "cell": [
+            16,
+            28
+          ]
+        },
+        {
+          "id": "P03-05",
+          "process": "P03",
+          "floor": "RF",
+          "x": 232,
+          "y": 14,
+          "z": 96,
+          "kind": "refinery",
+          "clock": 0.8981481481481481,
+          "number": 5,
+          "width": 10,
+          "depth": 22,
+          "height": 32,
+          "cell": [
+            16,
+            28
+          ]
+        },
+        {
+          "id": "P03-06",
+          "process": "P03",
+          "floor": "RF",
+          "x": 248,
+          "y": 14,
+          "z": 96,
+          "kind": "refinery",
+          "clock": 0.8981481481481481,
+          "number": 6,
+          "width": 10,
+          "depth": 22,
+          "height": 32,
+          "cell": [
+            16,
+            28
+          ]
+        },
+        {
+          "id": "P03-07",
+          "process": "P03",
+          "floor": "RF",
+          "x": 168,
+          "y": 42,
+          "z": 96,
+          "kind": "refinery",
+          "clock": 0.8981481481481481,
+          "number": 7,
+          "width": 10,
+          "depth": 22,
+          "height": 32,
+          "cell": [
+            16,
+            28
+          ]
+        },
+        {
+          "id": "P03-08",
+          "process": "P03",
+          "floor": "RF",
+          "x": 184,
+          "y": 42,
+          "z": 96,
+          "kind": "refinery",
+          "clock": 0.8981481481481481,
+          "number": 8,
+          "width": 10,
+          "depth": 22,
+          "height": 32,
+          "cell": [
+            16,
+            28
+          ]
+        },
+        {
+          "id": "P03-09",
+          "process": "P03",
+          "floor": "RF",
+          "x": 200,
+          "y": 42,
+          "z": 96,
+          "kind": "refinery",
+          "clock": 0.8981481481481481,
+          "number": 9,
+          "width": 10,
+          "depth": 22,
+          "height": 32,
+          "cell": [
+            16,
+            28
+          ]
+        }
+      ],
+      "position_image": "visuals/zones/RF-01-positions.svg"
+    },
+    {
+      "id": "RF-02",
+      "level": "RF",
+      "title": "Пластик: три НПЗ",
+      "sheet": "RFa",
+      "panel": 2,
+      "processes": [
+        "P02"
+      ],
+      "placement_ids": [
+        "P02-01",
+        "P02-02",
+        "P02-03"
+      ],
+      "steps": [
+        "Три последние клетки второго ряда.",
+        "Каждая92,129630%.",
+        "552,777778пластика:500обшивка,50AI,2,777778пластины."
+      ],
+      "network": "Нефть165,833333; побочный HFO55,277778м³/мин.",
+      "parts": [
+        "FND",
+        "PIPE",
+        "CAT",
+        "RAIL",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": true,
+      "image": "visuals/zones/RF-02.webp",
+      "sheet_image": "visuals/sheets/RFa.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/refinery.png"
+      ],
+      "groups": [
+        {
+          "id": "P02",
+          "recipe_key": "Recipe_Plastic_C",
+          "recipe_path": "/Game/FactoryGame/Recipes/OilRefinery/Recipe_Plastic.Recipe_Plastic_C",
+          "name": "Plastic",
+          "machine": "refinery",
+          "machine_tier": 3,
+          "duration_s": 6.0,
+          "cycles_min": 276.3888888888889,
+          "cycles_fraction": "4975/18",
+          "machines": 3,
+          "clock": 0.9212962962962963,
+          "clock_fraction": "199/216",
+          "inputs": {
+            "Desc_LiquidOil_C": 165.83333333333334
+          },
+          "outputs": {
+            "Desc_Plastic_C": 552.7777777777778,
+            "Desc_HeavyOilResidue_C": 55.27777777777778
+          },
+          "source": "shipped Docs/en-US.json",
+          "machine_name": "НПЗ Mk.3",
+          "zone_machines": 3,
+          "zone_inputs": {
+            "Desc_LiquidOil_C": 165.83333333333334
+          },
+          "zone_outputs": {
+            "Desc_Plastic_C": 552.7777777777778,
+            "Desc_HeavyOilResidue_C": 55.27777777777778
+          }
+        }
+      ],
+      "placements": [
+        {
+          "id": "P02-01",
+          "process": "P02",
+          "floor": "RF",
+          "x": 216,
+          "y": 42,
+          "z": 96,
+          "kind": "refinery",
+          "clock": 0.9212962962962963,
+          "number": 1,
+          "width": 10,
+          "depth": 22,
+          "height": 32,
+          "cell": [
+            16,
+            28
+          ]
+        },
+        {
+          "id": "P02-02",
+          "process": "P02",
+          "floor": "RF",
+          "x": 232,
+          "y": 42,
+          "z": 96,
+          "kind": "refinery",
+          "clock": 0.9212962962962963,
+          "number": 2,
+          "width": 10,
+          "depth": 22,
+          "height": 32,
+          "cell": [
+            16,
+            28
+          ]
+        },
+        {
+          "id": "P02-03",
+          "process": "P02",
+          "floor": "RF",
+          "x": 248,
+          "y": 42,
+          "z": 96,
+          "kind": "refinery",
+          "clock": 0.9212962962962963,
+          "number": 3,
+          "width": 10,
+          "depth": 22,
+          "height": 32,
+          "cell": [
+            16,
+            28
+          ]
+        }
+      ],
+      "position_image": "visuals/zones/RF-02-positions.svg"
+    },
+    {
+      "id": "RF-03",
+      "level": "RF",
+      "title": "Пять НПЗ кокса",
+      "sheet": "RFa",
+      "panel": 3,
+      "processes": [
+        "P04"
+      ],
+      "placement_ids": [
+        "P04-01",
+        "P04-02",
+        "P04-03",
+        "P04-04",
+        "P04-05"
+      ],
+      "steps": [
+        "Первые пять клеток третьего ряда.",
+        "Каждая94,652778%; HFO75,722222на машину.",
+        "Сначала539,475309к металлу; избыток5139,691358по пяти SINK-линиям."
+      ],
+      "network": "Все378,611111HFO должны уходить в кокс. Без утилизации останавливается резина/пластик.",
+      "parts": [
+        "FND",
+        "PIPE",
+        "CAT",
+        "RAIL",
+        "SPLIT",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": true,
+      "image": "visuals/zones/RF-03.webp",
+      "sheet_image": "visuals/sheets/RFa.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/refinery.png"
+      ],
+      "groups": [
+        {
+          "id": "P04",
+          "recipe_key": "Recipe_PetroleumCoke_C",
+          "recipe_path": "/Game/FactoryGame/Recipes/OilRefinery/Recipe_PetroleumCoke.Recipe_PetroleumCoke_C",
+          "name": "Petroleum Coke",
+          "machine": "refinery",
+          "machine_tier": 3,
+          "duration_s": 6.0,
+          "cycles_min": 473.2638888888889,
+          "cycles_fraction": "34075/72",
+          "machines": 5,
+          "clock": 0.9465277777777777,
+          "clock_fraction": "1363/1440",
+          "inputs": {
+            "Desc_HeavyOilResidue_C": 378.6111111111111
+          },
+          "outputs": {
+            "Desc_PetroleumCoke_C": 5679.166666666667
+          },
+          "source": "shipped Docs/en-US.json",
+          "machine_name": "НПЗ Mk.3",
+          "zone_machines": 5,
+          "zone_inputs": {
+            "Desc_HeavyOilResidue_C": 378.6111111111111
+          },
+          "zone_outputs": {
+            "Desc_PetroleumCoke_C": 5679.166666666667
+          }
+        }
+      ],
+      "placements": [
+        {
+          "id": "P04-01",
+          "process": "P04",
+          "floor": "RF",
+          "x": 168,
+          "y": 70,
+          "z": 96,
+          "kind": "refinery",
+          "clock": 0.9465277777777777,
+          "number": 1,
+          "width": 10,
+          "depth": 22,
+          "height": 32,
+          "cell": [
+            16,
+            28
+          ]
+        },
+        {
+          "id": "P04-02",
+          "process": "P04",
+          "floor": "RF",
+          "x": 184,
+          "y": 70,
+          "z": 96,
+          "kind": "refinery",
+          "clock": 0.9465277777777777,
+          "number": 2,
+          "width": 10,
+          "depth": 22,
+          "height": 32,
+          "cell": [
+            16,
+            28
+          ]
+        },
+        {
+          "id": "P04-03",
+          "process": "P04",
+          "floor": "RF",
+          "x": 200,
+          "y": 70,
+          "z": 96,
+          "kind": "refinery",
+          "clock": 0.9465277777777777,
+          "number": 3,
+          "width": 10,
+          "depth": 22,
+          "height": 32,
+          "cell": [
+            16,
+            28
+          ]
+        },
+        {
+          "id": "P04-04",
+          "process": "P04",
+          "floor": "RF",
+          "x": 216,
+          "y": 70,
+          "z": 96,
+          "kind": "refinery",
+          "clock": 0.9465277777777777,
+          "number": 4,
+          "width": 10,
+          "depth": 22,
+          "height": 32,
+          "cell": [
+            16,
+            28
+          ]
+        },
+        {
+          "id": "P04-05",
+          "process": "P04",
+          "floor": "RF",
+          "x": 232,
+          "y": 70,
+          "z": 96,
+          "kind": "refinery",
+          "clock": 0.9465277777777777,
+          "number": 5,
+          "width": 10,
+          "depth": 22,
+          "height": 32,
+          "cell": [
+            16,
+            28
+          ]
+        }
+      ],
+      "position_image": "visuals/zones/RF-03-positions.svg"
+    },
+    {
+      "id": "RF-04",
+      "level": "RF",
+      "title": "Чистый катерий",
+      "sheet": "RFb",
+      "panel": 0,
+      "processes": [
+        "P14"
+      ],
+      "placement_ids": [
+        "P14-01"
+      ],
+      "steps": [
+        "Последняя клетка третьего ряда(248,70).",
+        "119,722222руды+23,944444воды.",
+        "79,814815слитка:65быстропровод+14,814815провод."
+      ],
+      "network": "26,604938%; отдельная водяная ветка.",
+      "parts": [
+        "FND",
+        "PIPE",
+        "CAT",
+        "RAIL",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": true,
+      "image": "visuals/zones/RF-04.webp",
+      "sheet_image": "visuals/sheets/RFb.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/refinery.png"
+      ],
+      "groups": [
+        {
+          "id": "P14",
+          "recipe_key": "Recipe_Easy_PureCateriumIngot_C",
+          "recipe_path": "/EasyAltRecipes/Recipes/T5/Recipe_Easy_PureCateriumIngot.Recipe_Easy_PureCateriumIngot_C",
+          "name": "EasyAlt: Pure Caterium Ingot",
+          "machine": "refinery",
+          "machine_tier": 3,
+          "duration_s": 20.0,
+          "cycles_min": 7.981481481481482,
+          "cycles_fraction": "431/54",
+          "machines": 1,
+          "clock": 0.2660493827160494,
+          "clock_fraction": "431/1620",
+          "inputs": {
+            "Desc_OreGold_C": 119.72222222222223,
+            "Desc_Water_C": 23.944444444444443
+          },
+          "outputs": {
+            "Desc_GoldIngot_C": 79.81481481481481
+          },
+          "source": "installed EasyAltRecipes 2.7.2",
+          "machine_name": "НПЗ Mk.3",
+          "zone_machines": 1,
+          "zone_inputs": {
+            "Desc_OreGold_C": 119.72222222222223,
+            "Desc_Water_C": 23.944444444444443
+          },
+          "zone_outputs": {
+            "Desc_GoldIngot_C": 79.81481481481481
+          }
+        }
+      ],
+      "placements": [
+        {
+          "id": "P14-01",
+          "process": "P14",
+          "floor": "RF",
+          "x": 248,
+          "y": 70,
+          "z": 96,
+          "kind": "refinery",
+          "clock": 0.2660493827160494,
+          "number": 1,
+          "width": 10,
+          "depth": 22,
+          "height": 32,
+          "cell": [
+            16,
+            28
+          ]
+        }
+      ],
+      "position_image": "visuals/zones/RF-04-positions.svg"
+    },
+    {
+      "id": "RF-05",
+      "level": "RF",
+      "title": "Чистый кварц",
+      "sheet": "RFb",
+      "panel": 1,
+      "processes": [
+        "P12"
+      ],
+      "placement_ids": [
+        "P12-01"
+      ],
+      "steps": [
+        "Первая клетка четвёртого ряда(168,98).",
+        "200кварца+26,666667воды.",
+        "200кристаллов отправить в Crystal Oscillator."
+      ],
+      "network": "22,222222%; не смешивать с катериевым выходом.",
+      "parts": [
+        "FND",
+        "PIPE",
+        "CAT",
+        "RAIL",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": true,
+      "image": "visuals/zones/RF-05.webp",
+      "sheet_image": "visuals/sheets/RFb.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/refinery.png"
+      ],
+      "groups": [
+        {
+          "id": "P12",
+          "recipe_key": "Recipe_Easy_PureQuartzCrystal_C",
+          "recipe_path": "/EasyAltRecipes/Recipes/T3/Recipe_Easy_PureQuartzCrystal.Recipe_Easy_PureQuartzCrystal_C",
+          "name": "EasyAlt: Pure Quartz Crystal",
+          "machine": "refinery",
+          "machine_tier": 3,
+          "duration_s": 16.0,
+          "cycles_min": 8.333333333333334,
+          "cycles_fraction": "25/3",
+          "machines": 1,
+          "clock": 0.2222222222222222,
+          "clock_fraction": "2/9",
+          "inputs": {
+            "Desc_RawQuartz_C": 200.0,
+            "Desc_Water_C": 26.666666666666668
+          },
+          "outputs": {
+            "Desc_QuartzCrystal_C": 200.0
+          },
+          "source": "installed EasyAltRecipes 2.7.2",
+          "machine_name": "НПЗ Mk.3",
+          "zone_machines": 1,
+          "zone_inputs": {
+            "Desc_RawQuartz_C": 200.0,
+            "Desc_Water_C": 26.666666666666668
+          },
+          "zone_outputs": {
+            "Desc_QuartzCrystal_C": 200.0
+          }
+        }
+      ],
+      "placements": [
+        {
+          "id": "P12-01",
+          "process": "P12",
+          "floor": "RF",
+          "x": 168,
+          "y": 98,
+          "z": 96,
+          "kind": "refinery",
+          "clock": 0.2222222222222222,
+          "number": 1,
+          "width": 10,
+          "depth": 22,
+          "height": 32,
+          "cell": [
+            16,
+            28
+          ]
+        }
+      ],
+      "position_image": "visuals/zones/RF-05-positions.svg"
+    },
+    {
+      "id": "RF-06",
+      "level": "RF",
+      "title": "Коллекторы под двором",
+      "sheet": "RFb",
+      "panel": 2,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Две нефти, один HFO, одна вода: четыре подписанных контура.",
+        "HFOподавать в пять коксовых НПЗ, не в резервуар без выхода.",
+        "Воду50,611111разделить23,944444/26,666667."
+      ],
+      "network": "O-A324,722222/O-B326,111111/HFO378,611111/W50,611111м³/мин. На иллюстрации не все четыре линии видны.",
+      "parts": [
+        "FND",
+        "PIPE",
+        "CAT",
+        "RAIL",
+        "SIGN",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "Положение клапанов и насосов иллюстративное. Напор и фактические порты проверяются в игре.",
+      "production_owner": false,
+      "image": "visuals/zones/RF-06.webp",
+      "sheet_image": "visuals/sheets/RFb.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/refinery.png"
+      ],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "RF-07",
+      "level": "RF",
+      "title": "Пять независимых утилизаторов",
+      "sheet": "SINK",
+      "panel": 3,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Для каждой коксовой линии отдельный SINK.",
+        "Каждый из5НПЗ выдаёт1135,833/мин отдельной лентойMk.4. Линия1 сначала кормит две литейные539,475/мин, Overflow596,358 вSINK1. Линии2…5 каждая идут в свойSINK. Общую5679,167 или остаточную5139,691 ленту не собирай. Утилизаторы держать под питанием постоянно.",
+        "Сохранить доступ к питанию и отводу кокса на металл."
+      ],
+      "network": "SINK1:596,358025/мин; SINK2…5:по1135,833333/мин. Это не дополнительные производственные машины в счёте48.",
+      "parts": [
+        "FND",
+        "CAT",
+        "RAIL",
+        "SIGN",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "Форма SINK уточнена отдельным настоящим игровым референсом; размещение и соединения всё ещё иллюстративны.",
+      "production_owner": false,
+      "image": "visuals/zones/RF-07.webp",
+      "sheet_image": "visuals/sheets/SINK.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/refinery.png",
+        "visuals/references/awesome-sink.png"
+      ],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "ROOF-00",
+      "level": "ROOF",
+      "title": "Крыша целиком",
+      "sheet": "ROOF",
+      "panel": 0,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Крыша наz148, парапетдо152.",
+        "Фонарьx56…88,y16…80, верхдо156.",
+        "Не добавлять производственные трубы/HVACради декора."
+      ],
+      "network": "Один центральный световой фонарь, пять арочных секций с16мритмом.",
+      "parts": [
+        "FND",
+        "ARCH",
+        "RGL",
+        "BEAM",
+        "RAIL"
+      ],
+      "scope": "Общий вид кровли",
+      "variance": "Оборудование, видимое сквозь стекло, условное; раскладка F3не берётся из крыши.",
+      "production_owner": false,
+      "image": "visuals/zones/ROOF-00.webp",
+      "sheet_image": "visuals/sheets/ROOF.webp",
+      "width": 760,
+      "height": 504,
+      "references": [],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "ROOF-01",
+      "level": "ROOF",
+      "title": "Сборный световой фонарь",
+      "sheet": "ROOF",
+      "panel": 1,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Сначала пробный32мпролёт арки SS_Mod.",
+        "Проверить совмещение гнутого стекла Architecture05сбалками.",
+        "Только после образца повторить пять секций."
+      ],
+      "network": "Модовые ARCH/RGLподтверждены по рецептам, но их точные меши/стыки не извлечены.",
+      "parts": [
+        "ARCH",
+        "RGL",
+        "BEAM"
+      ],
+      "scope": "Вид зоны",
+      "variance": "Арки и гнутое стекло показаны приближённо, не как доказанный игровой mesh.",
+      "production_owner": false,
+      "image": "visuals/zones/ROOF-01.webp",
+      "sheet_image": "visuals/sheets/ROOF.webp",
+      "width": 760,
+      "height": 504,
+      "references": [],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "ROOF-02",
+      "level": "ROOF",
+      "title": "Выход и обслуживание крыши",
+      "sheet": "ROOF",
+      "panel": 2,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Вывести лестницу к восточному пути обслуживания.",
+        "Оградить путь, не перекрывая стекло.",
+        "Питание/свет у двери, никаких кабелей через фонарь."
+      ],
+      "network": "Кровля обслуживается из общего ядра, не прыжками по аркам.",
+      "parts": [
+        "FND",
+        "CAT",
+        "RAIL",
+        "STAIR",
+        "DOOR",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/ROOF-02.webp",
+      "sheet_image": "visuals/sheets/ROOF.webp",
+      "width": 760,
+      "height": 504,
+      "references": [],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "ROOF-03",
+      "level": "ROOF",
+      "title": "Фасадный угол и технические пояса",
+      "sheet": "ROOF",
+      "panel": 3,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Бетонные рёбра16мритмом.",
+        "Остекление рабочих этажей; тёмные поясаT1/T2.",
+        "Белый рабочий свет, голубая навигация, янтарные предупреждения."
+      ],
+      "network": "Не копировать лишние этажи или декоративные решётки как обязательный новый ассет.",
+      "parts": [
+        "FND",
+        "BASE",
+        "GLS",
+        "BEAM",
+        "DOOR",
+        "LIGHT",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "Фасадная пластика приблизительная. Выбирать реальные детали по кодам ниже, не искать выдуманную цельную стену из кадра.",
+      "production_owner": false,
+      "image": "visuals/zones/ROOF-03.webp",
+      "sheet_image": "visuals/sheets/ROOF.webp",
+      "width": 760,
+      "height": 504,
+      "references": [],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "CORE-00",
+      "level": "CORE",
+      "title": "Отдельные пути людей и материалов",
+      "sheet": "CORE",
+      "panel": 0,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Лестничный блокx128…136,y0…16.",
+        "Материальные шахтыx132/136/140,y32…84сшагом4м.",
+        "Не совмещать лестницу с конвейерным шахтным проёмом."
+      ],
+      "network": "Общий разрез ядра;15лестничных маршей по4мс промежуточными площадками.",
+      "parts": [
+        "FND",
+        "STAIR",
+        "CAT",
+        "RAIL",
+        "HOLE",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Разрез устройства ядра",
+      "variance": "Машины фоном обобщены и не соответствуют поэтажным рецептам. Считать и размещать их только по F1/F2/F3.",
+      "production_owner": false,
+      "image": "visuals/zones/CORE-00.webp",
+      "sheet_image": "visuals/sheets/CORE.webp",
+      "width": 760,
+      "height": 504,
+      "references": [],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "CORE-01",
+      "level": "CORE",
+      "title": "Лестницы и площадки",
+      "sheet": "CORE",
+      "panel": 1,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Марш FICSIT8×4, затем ровная площадка.",
+        "ДвериT0/F1/T1/F2/T2/F3/крышаподписать по отметкам.",
+        "Не заставлять площадки разделителями или буферами."
+      ],
+      "network": "Проход свободен; точные коллизии модовых лестниц не проверены.",
+      "parts": [
+        "STAIR",
+        "CAT",
+        "RAIL",
+        "DOOR",
+        "REAL_LIGHT",
+        "SIGN"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/CORE-01.webp",
+      "sheet_image": "visuals/sheets/CORE.webp",
+      "width": 760,
+      "height": 504,
+      "references": [],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "CORE-02",
+      "level": "CORE",
+      "title": "Питание по стенам",
+      "sheet": "CORE",
+      "panel": 2,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Ввод питания в ядро, далее поэтажные Double Wall Outlet Mk.2.",
+        "Отдельные ветви на цеха, внешний двор и свет.",
+        "Никакой декоративной кабельной трассы через проход."
+      ],
+      "network": "Номинал/запасэнергии: в разделе электроснабжения. Кадр не добавляет новое оборудование к списку покупок.",
+      "parts": [
+        "PWR",
+        "REAL_LIGHT",
+        "LIGHT",
+        "SIGN"
+      ],
+      "scope": "Вид зоны",
+      "variance": "Форма выключателя в иллюстрации не является подтверждённой отдельной модовой деталью; обязательны только перечисленные розетки/провода.",
+      "production_owner": false,
+      "image": "visuals/zones/CORE-02.webp",
+      "sheet_image": "visuals/sheets/CORE.webp",
+      "width": 760,
+      "height": 504,
+      "references": [],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "CORE-03",
+      "level": "CORE",
+      "title": "Подъёмники и отверстия плит",
+      "sheet": "CORE",
+      "panel": 3,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Сначала поставить реальные подъёмники на выбранные порты.",
+        "Затем закрывать плиту вокруг отверстий.",
+        "Порты не должны попадать в колонну или ограждение."
+      ],
+      "network": "Каждому материалу отдельная подписанная линия. Вид иллюстрирует защиту шахт, не количество всех подъёмников.",
+      "parts": [
+        "FND",
+        "HOLE",
+        "RAIL",
+        "SIGN",
+        "REAL_LIGHT",
+        "PWR"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/CORE-03.webp",
+      "sheet_image": "visuals/sheets/CORE.webp",
+      "width": 760,
+      "height": 504,
+      "references": [],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "DEPOT-00",
+      "level": "DEPOT",
+      "title": "Корпус, двор и отправка вместе",
+      "sheet": "DEPOT",
+      "panel": 0,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Корпус144×96; общий участок272×208.",
+        "ДворRFвосточнее; депоюжнее, независимо от главного рельса.",
+        "Строить на местности только после проверки места."
+      ],
+      "network": "Показан шаблон окружения; это НЕ снимок/цифровой двойник выбранного участка.",
+      "parts": [
+        "FND",
+        "BASE",
+        "GLS",
+        "ARCH",
+        "RGL",
+        "BEAM",
+        "CAT",
+        "RAIL",
+        "REAL_LIGHT"
+      ],
+      "scope": "Общий образ комплекса",
+      "variance": "Ландшафт сгенерирован и не подтверждает пригодность координат. Новая площадка по-прежнему не утверждена.",
+      "production_owner": false,
+      "image": "visuals/zones/DEPOT-00.webp",
+      "sheet_image": "visuals/sheets/DEPOT.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/freight-platform.png",
+        "visuals/references/industrial-storage-container.png"
+      ],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "DEPOT-01",
+      "level": "DEPOT",
+      "title": "Новая станция отправки",
+      "sheet": "DEPOT",
+      "panel": 1,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Станция16×34+однагрузоваяплатформа16×34.",
+        "Один локомотив+одингрузовойвагон.",
+        "Отдельный тупик/обход, чтобы погрузка не держала магистраль."
+      ],
+      "network": "Вагон32слота×50=1600ME; расчётный цикл12миндаёт133,333/мин. Реальный маршрут/задержки не замерены.",
+      "parts": [
+        "FND",
+        "CAT",
+        "RAIL",
+        "BUF",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/DEPOT-01.webp",
+      "sheet_image": "visuals/sheets/DEPOT.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/freight-platform.png",
+        "visuals/references/industrial-storage-container.png"
+      ],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "DEPOT-02",
+      "level": "DEPOT",
+      "title": "Два буфера готовых двигателей",
+      "sheet": "DEPOT",
+      "panel": 2,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Отдельный спуск100MEсT2к первому контейнеру.",
+        "Два Industrial Storage Container последовательно, затем платформа.",
+        "Никаких полуфабрикатов в этом выходе."
+      ],
+      "network": "2×48слотов×50=4800ME,48минпроизводства. Буфер не заменяет достаточную пропускную способность лент.",
+      "parts": [
+        "FND",
+        "BUF",
+        "CAT",
+        "RAIL",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "",
+      "production_owner": false,
+      "image": "visuals/zones/DEPOT-02.webp",
+      "sheet_image": "visuals/sheets/DEPOT.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/freight-platform.png",
+        "visuals/references/industrial-storage-container.png"
+      ],
+      "groups": [],
+      "placements": []
+    },
+    {
+      "id": "DEPOT-03",
+      "level": "DEPOT",
+      "title": "Новая приёмка у общего склада",
+      "sheet": "DEPOT",
+      "panel": 3,
+      "processes": [],
+      "placement_ids": [],
+      "steps": [
+        "Новая грузовая приёмная платформа и два буфера.",
+        "Отдельная разгрузочная линия к общему складу.",
+        "Не считать существующую Skövdeготовой двухстанционной сетью."
+      ],
+      "network": "Та же вместимость буферов; трасса≈1,6км: резерв, не построенная/проверенная длина.",
+      "parts": [
+        "FND",
+        "BUF",
+        "CAT",
+        "RAIL",
+        "PWR",
+        "REAL_LIGHT"
+      ],
+      "scope": "Вид зоны",
+      "variance": "Окружение HUB/склада условное; существующие сооружения не переставляются по этому кадру.",
+      "production_owner": false,
+      "image": "visuals/zones/DEPOT-03.webp",
+      "sheet_image": "visuals/sheets/DEPOT.webp",
+      "width": 760,
+      "height": 504,
+      "references": [
+        "visuals/references/freight-platform.png",
+        "visuals/references/industrial-storage-container.png"
+      ],
+      "groups": [],
+      "placements": []
+    }
+  ],
+  "coverage": {
+    "levels": 8,
+    "infrastructure_sections": 2,
+    "views": 52,
+    "production_groups": 20,
+    "owned_machine_placements": 48,
+    "missing_placements": [],
+    "duplicate_placements": []
+  },
+  "source_to_output": [
+    {
+      "zone": "T0-00",
+      "source": "visuals/sheets/T0.webp",
+      "source_sha256": "f8513a2d9d9d774b9fa8f64764b9e1420a9d660ec375f109bc3be996a60bcae1",
+      "crop_box": [
+        4,
+        4,
+        764,
+        508
+      ],
+      "output": "visuals/zones/T0-00.webp",
+      "output_sha256": "53de9a885e45c5ab9d31813db636179f15d0371d51ce9d1286f71b7cfa055fb5",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "T0-01",
+      "source": "visuals/sheets/T0.webp",
+      "source_sha256": "f8513a2d9d9d774b9fa8f64764b9e1420a9d660ec375f109bc3be996a60bcae1",
+      "crop_box": [
+        772,
+        4,
+        1532,
+        508
+      ],
+      "output": "visuals/zones/T0-01.webp",
+      "output_sha256": "4e38da70a853ccde4989a37e011de011789c4c31261d92f45c7ef93c9bdca7da",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "T0-02",
+      "source": "visuals/sheets/T0.webp",
+      "source_sha256": "f8513a2d9d9d774b9fa8f64764b9e1420a9d660ec375f109bc3be996a60bcae1",
+      "crop_box": [
+        4,
+        516,
+        764,
+        1020
+      ],
+      "output": "visuals/zones/T0-02.webp",
+      "output_sha256": "8d3442d8e872a075872e1c66d6f7a059dec9abb00d3df0cccac2231ecec0208a",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "T0-03",
+      "source": "visuals/sheets/T0.webp",
+      "source_sha256": "f8513a2d9d9d774b9fa8f64764b9e1420a9d660ec375f109bc3be996a60bcae1",
+      "crop_box": [
+        772,
+        516,
+        1532,
+        1020
+      ],
+      "output": "visuals/zones/T0-03.webp",
+      "output_sha256": "9af3940b99719969ab76b2773bdf33513b32d77f4d2a4b098a4e2c07714d7a9d",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F1-00",
+      "source": "visuals/sheets/F1.webp",
+      "source_sha256": "eac1fdbed9e64a472dc3a33282e5dba66e457098a812cfb6d762ba1cb4d96534",
+      "crop_box": [
+        4,
+        4,
+        764,
+        508
+      ],
+      "output": "visuals/zones/F1-00.webp",
+      "output_sha256": "031db731849fab331c559a30ea244364f17d1c1cc0194446834e108ea2bae21e",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F1-01",
+      "source": "visuals/sheets/F1.webp",
+      "source_sha256": "eac1fdbed9e64a472dc3a33282e5dba66e457098a812cfb6d762ba1cb4d96534",
+      "crop_box": [
+        772,
+        4,
+        1532,
+        508
+      ],
+      "output": "visuals/zones/F1-01.webp",
+      "output_sha256": "2e3b7c9b45933eb578163a31795506a88779ffe8b78b7c36010b42835b2b343f",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F1-02",
+      "source": "visuals/sheets/F1.webp",
+      "source_sha256": "eac1fdbed9e64a472dc3a33282e5dba66e457098a812cfb6d762ba1cb4d96534",
+      "crop_box": [
+        4,
+        516,
+        764,
+        1020
+      ],
+      "output": "visuals/zones/F1-02.webp",
+      "output_sha256": "59d4a767149cfee5d8fe7ccabfa6a57d5fee7803ebf8057a88354f267d049414",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F1-03",
+      "source": "visuals/sheets/F1.webp",
+      "source_sha256": "eac1fdbed9e64a472dc3a33282e5dba66e457098a812cfb6d762ba1cb4d96534",
+      "crop_box": [
+        772,
+        516,
+        1532,
+        1020
+      ],
+      "output": "visuals/zones/F1-03.webp",
+      "output_sha256": "27ae284b5c6d42c44660746a68503efe6f77a73c7234ab66cd4d54676fa37b03",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "T1-00",
+      "source": "visuals/sheets/T1.webp",
+      "source_sha256": "1b7f90b52dffc80ee0e97ce7ad53c800f493eff4362c143be8752307c7fc4f03",
+      "crop_box": [
+        4,
+        4,
+        764,
+        508
+      ],
+      "output": "visuals/zones/T1-00.webp",
+      "output_sha256": "9cc5579fc50f0b497cd494e79fb9848fddaa784d3c6bad25d451c958bf297625",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "T1-01",
+      "source": "visuals/sheets/T1.webp",
+      "source_sha256": "1b7f90b52dffc80ee0e97ce7ad53c800f493eff4362c143be8752307c7fc4f03",
+      "crop_box": [
+        772,
+        4,
+        1532,
+        508
+      ],
+      "output": "visuals/zones/T1-01.webp",
+      "output_sha256": "8c0a4e756ee8fb440325377e70e5c45ec57b8c75d387d465ca6300095d72caa5",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "T1-02",
+      "source": "visuals/sheets/T1.webp",
+      "source_sha256": "1b7f90b52dffc80ee0e97ce7ad53c800f493eff4362c143be8752307c7fc4f03",
+      "crop_box": [
+        4,
+        516,
+        764,
+        1020
+      ],
+      "output": "visuals/zones/T1-02.webp",
+      "output_sha256": "b84cc39ec03fef2f33e6c1bd8ae09acd8fe4c3989063b448c7b0a14622e40878",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "T1-03",
+      "source": "visuals/sheets/T1.webp",
+      "source_sha256": "1b7f90b52dffc80ee0e97ce7ad53c800f493eff4362c143be8752307c7fc4f03",
+      "crop_box": [
+        772,
+        516,
+        1532,
+        1020
+      ],
+      "output": "visuals/zones/T1-03.webp",
+      "output_sha256": "755ebda4bb60d348fb8aff98db01dd9fd17da29d2c79d3c12423baaae9d1bd3f",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F2-00",
+      "source": "visuals/sheets/F2a.webp",
+      "source_sha256": "512a13071fc8e57c56fcd70a4c5ce0789a21d63cddacb0bb712311e74fa1f8cf",
+      "crop_box": [
+        4,
+        4,
+        764,
+        508
+      ],
+      "output": "visuals/zones/F2-00.webp",
+      "output_sha256": "d2ad4095dd3f9049dc02fb7d7aaacd16c3d8c1559422e8494a1234675c1f6516",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F2-01",
+      "source": "visuals/sheets/F2a.webp",
+      "source_sha256": "512a13071fc8e57c56fcd70a4c5ce0789a21d63cddacb0bb712311e74fa1f8cf",
+      "crop_box": [
+        772,
+        4,
+        1532,
+        508
+      ],
+      "output": "visuals/zones/F2-01.webp",
+      "output_sha256": "2b4c9d91974ede314b706d7c3828feb8ad6c1afb10631273dfc64084c9a836c4",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F2-02",
+      "source": "visuals/sheets/F2a.webp",
+      "source_sha256": "512a13071fc8e57c56fcd70a4c5ce0789a21d63cddacb0bb712311e74fa1f8cf",
+      "crop_box": [
+        4,
+        516,
+        764,
+        1020
+      ],
+      "output": "visuals/zones/F2-02.webp",
+      "output_sha256": "560ad7014faf5b211b1022a5e193c16de93c36711159b46eb6b3ff179b129932",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F2-03",
+      "source": "visuals/sheets/F2a.webp",
+      "source_sha256": "512a13071fc8e57c56fcd70a4c5ce0789a21d63cddacb0bb712311e74fa1f8cf",
+      "crop_box": [
+        772,
+        516,
+        1532,
+        1020
+      ],
+      "output": "visuals/zones/F2-03.webp",
+      "output_sha256": "ea3a9686b5365b26a9e41a714f4482d8c69d4175d07f9275c6acf1a053ee4188",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F2-04",
+      "source": "visuals/sheets/F2b.webp",
+      "source_sha256": "c92cd754fef8f60e6431e216bcf2576a1b3ae12c27050111b52044e642ad5680",
+      "crop_box": [
+        4,
+        4,
+        764,
+        508
+      ],
+      "output": "visuals/zones/F2-04.webp",
+      "output_sha256": "175a9770bd20fdd73ad63dd0c399d8c63b15bb6e4ce8bdac466cee669b06463c",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F2-05",
+      "source": "visuals/sheets/F2b.webp",
+      "source_sha256": "c92cd754fef8f60e6431e216bcf2576a1b3ae12c27050111b52044e642ad5680",
+      "crop_box": [
+        772,
+        4,
+        1532,
+        508
+      ],
+      "output": "visuals/zones/F2-05.webp",
+      "output_sha256": "a79eb580a18c897b169ae76a9f17b5081695c75866e7bee8b3650f267bcb725f",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F2-06",
+      "source": "visuals/sheets/F2b.webp",
+      "source_sha256": "c92cd754fef8f60e6431e216bcf2576a1b3ae12c27050111b52044e642ad5680",
+      "crop_box": [
+        4,
+        516,
+        764,
+        1020
+      ],
+      "output": "visuals/zones/F2-06.webp",
+      "output_sha256": "b43c00f1fa92d60e78fafb12d0608558920dfba1af924506dcf0020cd24cd92e",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F2-07",
+      "source": "visuals/sheets/F2b.webp",
+      "source_sha256": "c92cd754fef8f60e6431e216bcf2576a1b3ae12c27050111b52044e642ad5680",
+      "crop_box": [
+        772,
+        516,
+        1532,
+        1020
+      ],
+      "output": "visuals/zones/F2-07.webp",
+      "output_sha256": "ebf930510fc56d23f5da51f47c0216c1c450135a6d4d818944f06cdbed5c4a07",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "T2-00",
+      "source": "visuals/sheets/T2.webp",
+      "source_sha256": "254274f8beef0f5badc55a86d8469defdda66a701526f116fffc81d847a89b06",
+      "crop_box": [
+        4,
+        4,
+        764,
+        508
+      ],
+      "output": "visuals/zones/T2-00.webp",
+      "output_sha256": "eb2eaa55f86544f7ea18fe9cb5cf3904e86aabdd05807242f2f77d5ecca50a35",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "T2-01",
+      "source": "visuals/sheets/T2.webp",
+      "source_sha256": "254274f8beef0f5badc55a86d8469defdda66a701526f116fffc81d847a89b06",
+      "crop_box": [
+        772,
+        4,
+        1532,
+        508
+      ],
+      "output": "visuals/zones/T2-01.webp",
+      "output_sha256": "d1ec14bfae73814d4a5ac6f41cf64c1114593a67530075259bf02a409d1f8c83",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "T2-02",
+      "source": "visuals/sheets/T2.webp",
+      "source_sha256": "254274f8beef0f5badc55a86d8469defdda66a701526f116fffc81d847a89b06",
+      "crop_box": [
+        4,
+        516,
+        764,
+        1020
+      ],
+      "output": "visuals/zones/T2-02.webp",
+      "output_sha256": "8ab747f38c5fffe4e116802a5efad7bb74ff32fe4778bff43f82088695adde7b",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "T2-03",
+      "source": "visuals/sheets/T2.webp",
+      "source_sha256": "254274f8beef0f5badc55a86d8469defdda66a701526f116fffc81d847a89b06",
+      "crop_box": [
+        772,
+        516,
+        1532,
+        1020
+      ],
+      "output": "visuals/zones/T2-03.webp",
+      "output_sha256": "b989f52e72705633d0d889dafee2033ed25ec150b0f6f84296bdbfdcc5f1980e",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F3-00",
+      "source": "visuals/sheets/F3banks.webp",
+      "source_sha256": "5532dfeeaa00799a3262abe0eb95fe80885c74e9c4e48347a858c381d906943c",
+      "crop_box": [
+        4,
+        4,
+        764,
+        508
+      ],
+      "output": "visuals/zones/F3-00.webp",
+      "output_sha256": "fb56c07967a54f4e400ae78beb1fcf7bec9b5c1628f9c94f926a79b2d5aa56d4",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F3-01",
+      "source": "visuals/sheets/F3banks.webp",
+      "source_sha256": "5532dfeeaa00799a3262abe0eb95fe80885c74e9c4e48347a858c381d906943c",
+      "crop_box": [
+        772,
+        4,
+        1532,
+        508
+      ],
+      "output": "visuals/zones/F3-01.webp",
+      "output_sha256": "d9f7a8ff584da40c952fbf1f3bfdcd4552f5f78903b650a1b4ad090dca96266d",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F3-02",
+      "source": "visuals/sheets/F3banks.webp",
+      "source_sha256": "5532dfeeaa00799a3262abe0eb95fe80885c74e9c4e48347a858c381d906943c",
+      "crop_box": [
+        4,
+        516,
+        764,
+        1020
+      ],
+      "output": "visuals/zones/F3-02.webp",
+      "output_sha256": "0cbd93f00734e576d1509c1cc8058b7f3df82d46acba709412eb9d24d5741052",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F3-03",
+      "source": "visuals/sheets/F3banks.webp",
+      "source_sha256": "5532dfeeaa00799a3262abe0eb95fe80885c74e9c4e48347a858c381d906943c",
+      "crop_box": [
+        772,
+        516,
+        1532,
+        1020
+      ],
+      "output": "visuals/zones/F3-03.webp",
+      "output_sha256": "db24e9a2755a464c433d9e9015066e3049637c80787de486dc14e2f2d2d9d74e",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F3-04",
+      "source": "visuals/sheets/F3support.webp",
+      "source_sha256": "b3ca7881b2e108187bb2dd46984f9cd96a41b15a3d8cca6a8af85c99fb27c11a",
+      "crop_box": [
+        4,
+        4,
+        764,
+        508
+      ],
+      "output": "visuals/zones/F3-04.webp",
+      "output_sha256": "bf73378be4e02b3c35c18ed1d0aaec588b11e4761e02dec0e2678681243a0923",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F3-05",
+      "source": "visuals/sheets/F3support.webp",
+      "source_sha256": "b3ca7881b2e108187bb2dd46984f9cd96a41b15a3d8cca6a8af85c99fb27c11a",
+      "crop_box": [
+        772,
+        4,
+        1532,
+        508
+      ],
+      "output": "visuals/zones/F3-05.webp",
+      "output_sha256": "74d4aab0a5b545248d9b4ce8754c44be6434c44c72c573bd5560141b9ca93594",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F3-06",
+      "source": "visuals/sheets/F3support.webp",
+      "source_sha256": "b3ca7881b2e108187bb2dd46984f9cd96a41b15a3d8cca6a8af85c99fb27c11a",
+      "crop_box": [
+        4,
+        516,
+        764,
+        1020
+      ],
+      "output": "visuals/zones/F3-06.webp",
+      "output_sha256": "8b5f7b00d4e10293b029341ba799017a2b1a48e412107e1dbccd419af81ce132",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "F3-07",
+      "source": "visuals/sheets/F3support.webp",
+      "source_sha256": "b3ca7881b2e108187bb2dd46984f9cd96a41b15a3d8cca6a8af85c99fb27c11a",
+      "crop_box": [
+        772,
+        516,
+        1532,
+        1020
+      ],
+      "output": "visuals/zones/F3-07.webp",
+      "output_sha256": "bf2d0e276c3473fa9ea695b83a3700cbb13038bf22266897e9581b5a52bb6780",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "RF-00",
+      "source": "visuals/sheets/RFa.webp",
+      "source_sha256": "99e7ebea58450bb47a6b8c3b1fa3242a70440b28192ffb011a4d1703e356d165",
+      "crop_box": [
+        4,
+        4,
+        764,
+        508
+      ],
+      "output": "visuals/zones/RF-00.webp",
+      "output_sha256": "e4016bdcbaba80a22dc912fdf2e9f10d8fb0b540833ea480bf6c84f8c5a1641c",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "RF-01",
+      "source": "visuals/sheets/RFa.webp",
+      "source_sha256": "99e7ebea58450bb47a6b8c3b1fa3242a70440b28192ffb011a4d1703e356d165",
+      "crop_box": [
+        772,
+        4,
+        1532,
+        508
+      ],
+      "output": "visuals/zones/RF-01.webp",
+      "output_sha256": "b8ea8af3e0bb4ec9102e1b3e7928c87d7d36a79c62cb6a197a6b7dfef72f75c0",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "RF-02",
+      "source": "visuals/sheets/RFa.webp",
+      "source_sha256": "99e7ebea58450bb47a6b8c3b1fa3242a70440b28192ffb011a4d1703e356d165",
+      "crop_box": [
+        4,
+        516,
+        764,
+        1020
+      ],
+      "output": "visuals/zones/RF-02.webp",
+      "output_sha256": "57ca40a222a727da0cbe3d4bbaf362256e9d6135984bdcdc48e96c61fb00e6d3",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "RF-03",
+      "source": "visuals/sheets/RFa.webp",
+      "source_sha256": "99e7ebea58450bb47a6b8c3b1fa3242a70440b28192ffb011a4d1703e356d165",
+      "crop_box": [
+        772,
+        516,
+        1532,
+        1020
+      ],
+      "output": "visuals/zones/RF-03.webp",
+      "output_sha256": "a079a901b906cc2550808ff46b872ead9f5d1de87428afda3fd3e73f45967797",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "RF-04",
+      "source": "visuals/sheets/RFb.webp",
+      "source_sha256": "4735dd604dcea72311a881d6eb5a96867fe0989ba7b55b716abce9b68ed3fdfd",
+      "crop_box": [
+        4,
+        4,
+        764,
+        508
+      ],
+      "output": "visuals/zones/RF-04.webp",
+      "output_sha256": "25740c3aeba5ba33a304035c213c18ba6c86c4814f26992ff9a94e606d648634",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "RF-05",
+      "source": "visuals/sheets/RFb.webp",
+      "source_sha256": "4735dd604dcea72311a881d6eb5a96867fe0989ba7b55b716abce9b68ed3fdfd",
+      "crop_box": [
+        772,
+        4,
+        1532,
+        508
+      ],
+      "output": "visuals/zones/RF-05.webp",
+      "output_sha256": "991ea7f6e474a6eb12f11b83a81d4559b9f3f6a6ab87ef9df3cae4899d26863c",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "RF-06",
+      "source": "visuals/sheets/RFb.webp",
+      "source_sha256": "4735dd604dcea72311a881d6eb5a96867fe0989ba7b55b716abce9b68ed3fdfd",
+      "crop_box": [
+        4,
+        516,
+        764,
+        1020
+      ],
+      "output": "visuals/zones/RF-06.webp",
+      "output_sha256": "cb66142f8f0e3b6ec6901ef7ad54d3ad30910deb3ae95efab763669b3caa691c",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "RF-07",
+      "source": "visuals/sheets/SINK.webp",
+      "source_sha256": "4d529341a83f12237b8985aa548a160e357c4b770187a978cf7e729d92af25b6",
+      "crop_box": [
+        772,
+        516,
+        1532,
+        1020
+      ],
+      "output": "visuals/zones/RF-07.webp",
+      "output_sha256": "3d26b9d047167ce390c28cc1ab8997f395fd2ac24be0b8ffc56d58d6bd521af7",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "ROOF-00",
+      "source": "visuals/sheets/ROOF.webp",
+      "source_sha256": "f187d272ba2fba3b5babb57d3808bf8116cfc6310bb43663ff0c04520eb5b16a",
+      "crop_box": [
+        4,
+        4,
+        764,
+        508
+      ],
+      "output": "visuals/zones/ROOF-00.webp",
+      "output_sha256": "9692d5d50a2a9ce9ad4e451e86e74dcf8828f04133615e0c5dc5babf4270774a",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "ROOF-01",
+      "source": "visuals/sheets/ROOF.webp",
+      "source_sha256": "f187d272ba2fba3b5babb57d3808bf8116cfc6310bb43663ff0c04520eb5b16a",
+      "crop_box": [
+        772,
+        4,
+        1532,
+        508
+      ],
+      "output": "visuals/zones/ROOF-01.webp",
+      "output_sha256": "3e3520b55b4741ba874316f6f5fd191a5ff71c0bbff3d5e6ca84bf74dbb848d3",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "ROOF-02",
+      "source": "visuals/sheets/ROOF.webp",
+      "source_sha256": "f187d272ba2fba3b5babb57d3808bf8116cfc6310bb43663ff0c04520eb5b16a",
+      "crop_box": [
+        4,
+        516,
+        764,
+        1020
+      ],
+      "output": "visuals/zones/ROOF-02.webp",
+      "output_sha256": "8c573dcb4e7761b8dd5fef8d0287287120bd47fb8635172b0b18ba43558f6328",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "ROOF-03",
+      "source": "visuals/sheets/ROOF.webp",
+      "source_sha256": "f187d272ba2fba3b5babb57d3808bf8116cfc6310bb43663ff0c04520eb5b16a",
+      "crop_box": [
+        772,
+        516,
+        1532,
+        1020
+      ],
+      "output": "visuals/zones/ROOF-03.webp",
+      "output_sha256": "c01c1ac23cd3f83d914e69cd7f0e621d045c20895a1ca409a049dad3e5e53c89",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "CORE-00",
+      "source": "visuals/sheets/CORE.webp",
+      "source_sha256": "0ce28d22d11da83e71ee45b893d3543a628e5c32eadc766bd298da99baee4892",
+      "crop_box": [
+        4,
+        4,
+        764,
+        508
+      ],
+      "output": "visuals/zones/CORE-00.webp",
+      "output_sha256": "7625d4f411a317b6b96360f65595a5c0611da276a2525106dd5408f1f05015ad",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "CORE-01",
+      "source": "visuals/sheets/CORE.webp",
+      "source_sha256": "0ce28d22d11da83e71ee45b893d3543a628e5c32eadc766bd298da99baee4892",
+      "crop_box": [
+        772,
+        4,
+        1532,
+        508
+      ],
+      "output": "visuals/zones/CORE-01.webp",
+      "output_sha256": "4952d486eac84d62b98503434b355223b386432c49d517a6f483d104efe5e826",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "CORE-02",
+      "source": "visuals/sheets/CORE.webp",
+      "source_sha256": "0ce28d22d11da83e71ee45b893d3543a628e5c32eadc766bd298da99baee4892",
+      "crop_box": [
+        4,
+        516,
+        764,
+        1020
+      ],
+      "output": "visuals/zones/CORE-02.webp",
+      "output_sha256": "30764003fa4fb9fbeb7681af96108414b23d7ca93bf9a8ec4ca59fbc5a2a3ff8",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "CORE-03",
+      "source": "visuals/sheets/CORE.webp",
+      "source_sha256": "0ce28d22d11da83e71ee45b893d3543a628e5c32eadc766bd298da99baee4892",
+      "crop_box": [
+        772,
+        516,
+        1532,
+        1020
+      ],
+      "output": "visuals/zones/CORE-03.webp",
+      "output_sha256": "751cd1f550dff2f7a325c177076710d310d08d701e6cdaf3f26cb2c8c9e3e86c",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "DEPOT-00",
+      "source": "visuals/sheets/DEPOT.webp",
+      "source_sha256": "e5b5b396d926c447ccc8b3e414449f277eb4a08c20fe83a854259c220b0d621d",
+      "crop_box": [
+        4,
+        4,
+        764,
+        508
+      ],
+      "output": "visuals/zones/DEPOT-00.webp",
+      "output_sha256": "83205844d8a74b0f4f3ebb4cdf303644bd199b81f007f62ae95cbdc32ea27d18",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "DEPOT-01",
+      "source": "visuals/sheets/DEPOT.webp",
+      "source_sha256": "e5b5b396d926c447ccc8b3e414449f277eb4a08c20fe83a854259c220b0d621d",
+      "crop_box": [
+        772,
+        4,
+        1532,
+        508
+      ],
+      "output": "visuals/zones/DEPOT-01.webp",
+      "output_sha256": "003ec63211d71d452b4b421270dca6ebd41f6bc703cbcec09f9aeb2aebab0aba",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "DEPOT-02",
+      "source": "visuals/sheets/DEPOT.webp",
+      "source_sha256": "e5b5b396d926c447ccc8b3e414449f277eb4a08c20fe83a854259c220b0d621d",
+      "crop_box": [
+        4,
+        516,
+        764,
+        1020
+      ],
+      "output": "visuals/zones/DEPOT-02.webp",
+      "output_sha256": "5022a64070db681f4c26634b2c53eda0c912e1d456f601d421d9c819019a39c3",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    },
+    {
+      "zone": "DEPOT-03",
+      "source": "visuals/sheets/DEPOT.webp",
+      "source_sha256": "e5b5b396d926c447ccc8b3e414449f277eb4a08c20fe83a854259c220b0d621d",
+      "crop_box": [
+        772,
+        516,
+        1532,
+        1020
+      ],
+      "output": "visuals/zones/DEPOT-03.webp",
+      "output_sha256": "765eb58684a258a412559fc7ed3a712af9f981c8d112949469abc2837f0c5fa1",
+      "operation": "Pillow crop; no upscale; WebP quality94"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "saves": [
+    {
+      "id": "cachys",
+      "name": "cachys",
+      "sessionName": "каша",
+      "sourceLabel": "cachys.sav · 22.10.2026 14:38 · стоимость0,75 / энергия×2 / лифт×50",
+      "sourceSha256": "bf7cd21316c46d0539e6475842ef64d45a5ecf23876b6eb1b2e38e25dd81cc77",
+      "snapshotAt": "2026-10-22T14:38:02Z",
+      "modCount": 96
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "at": "2026-10-22T10:13:10Z",
+  "source": "verified: current-save-analysis.json",
+  "calculation": "native exact_flows recalculated20groups; native project validator required before publication",
+  "game_runtime": "unverified",
+  "illustration_reuse": "52zoneviews and49drawings unchanged; original image-byte provenance retained in historical build-manifest.json",
+  "planSha256": "55a59d069453713f1a6bbee0ebd9c8d06b55ddf6d7e8b7eafa00346a06e3e6a5",
+  "recipesSha256": "55f8cb1b606a8a535250091648af0d75768ceb114271b23c3415045b281f4731",
+  "saveSha256": "b3d6e36ea914d669c1aa62606ccf96a2babe44d9edc29b7c0b97fe9146aa49df"
+}

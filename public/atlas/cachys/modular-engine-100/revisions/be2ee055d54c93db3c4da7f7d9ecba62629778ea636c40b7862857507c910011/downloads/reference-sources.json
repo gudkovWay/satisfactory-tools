@@ -1,0 +1,128 @@
+[
+  {
+    "name": "Ceiling Light",
+    "url": "https://static.satisfactory-calculator.com/img/gameStable1.0/IconDesc_CeilingLight_256.png?v=1725286558",
+    "page": "https://satisfactory-calculator.com/en/interactive-map",
+    "file": "visuals/references/ceiling-light.png",
+    "sha256": "28e8a4e8dfee0dda1c903a01250de7ca88c4af7c64be09745e3a54f815c7b83e",
+    "bytes": 40366,
+    "kind": "game icon mirror, not exported MkPlus mesh"
+  },
+  {
+    "name": "Foundry",
+    "url": "https://static.satisfactory-calculator.com/img/gameStable1.0/IconDesc_Foundry_256.png?v=1725286563",
+    "page": "https://satisfactory-calculator.com/en/interactive-map",
+    "file": "visuals/references/foundry.png",
+    "sha256": "7946f68c0dc5079d84617df8d21decf3af7f400867545fec9553dda6c1dc54c9",
+    "bytes": 59959,
+    "kind": "game icon mirror, not exported MkPlus mesh"
+  },
+  {
+    "name": "Constructor",
+    "url": "https://static.satisfactory-calculator.com/img/gameStable1.0/IconDesc_ConstructorMk1_256.png?v=1725286553",
+    "page": "https://satisfactory-calculator.com/en/interactive-map",
+    "file": "visuals/references/constructor.png",
+    "sha256": "a50da8ba168262eb8d728bcb3ebf9dafde3ae044184d55fa546926962e23432e",
+    "bytes": 52273,
+    "kind": "game icon mirror, not exported MkPlus mesh"
+  },
+  {
+    "name": "Assembler",
+    "url": "https://static.satisfactory-calculator.com/img/gameStable1.0/IconDesc_AssemblerMk1_256.png?v=1725286557",
+    "page": "https://satisfactory-calculator.com/en/interactive-map",
+    "file": "visuals/references/assembler.png",
+    "sha256": "9a4e625918cae35ca274c9bd1ff7d9adfd7c47edd3b65fc29af1ca5f59c0761e",
+    "bytes": 64594,
+    "kind": "game icon mirror, not exported MkPlus mesh"
+  },
+  {
+    "name": "Manufacturer",
+    "url": "https://static.satisfactory-calculator.com/img/gameStable1.0/IconDesc_Manufacturer_256.png?v=1725286555",
+    "page": "https://satisfactory-calculator.com/en/interactive-map",
+    "file": "visuals/references/manufacturer.png",
+    "sha256": "9b4fb0eb1c407446d074bfd05cc0ede235352a7a6beaed4ffe691f6a1a4d37de",
+    "bytes": 52301,
+    "kind": "game icon mirror, not exported MkPlus mesh"
+  },
+  {
+    "name": "Refinery",
+    "url": "https://static.satisfactory-calculator.com/img/gameStable1.0/IconDesc_OilRefinery_256.png?v=1725286550",
+    "page": "https://satisfactory-calculator.com/en/interactive-map",
+    "file": "visuals/references/refinery.png",
+    "sha256": "54c42340cf0721beb8765194c437e1997df6cada0bcf1db74759cd8226d89511",
+    "bytes": 32472,
+    "kind": "game icon mirror, not exported MkPlus mesh"
+  },
+  {
+    "name": "Industrial Storage Container",
+    "url": "https://static.satisfactory-calculator.com/img/gameStable1.0/IconDesc_StorageContainerMk2_256.png?v=1725286543",
+    "page": "https://satisfactory-calculator.com/en/interactive-map",
+    "file": "visuals/references/industrial-storage-container.png",
+    "sha256": "52c9337a7a1c2df0d1f18f29adb6cca3345d153c3b17d2034551fba9cd394df8",
+    "bytes": 66886,
+    "kind": "game icon mirror, not exported MkPlus mesh"
+  },
+  {
+    "name": "Freight Platform",
+    "url": "https://static.satisfactory-calculator.com/img/gameStable1.0/IconDesc_DockingStation_256.png?v=1725286570",
+    "page": "https://satisfactory-calculator.com/en/interactive-map",
+    "file": "visuals/references/freight-platform.png",
+    "sha256": "d29c0146b4580c33db5202305e89e7dd162c553798e42579c2dead5b9cc91059",
+    "bytes": 51540,
+    "kind": "game icon mirror, not exported MkPlus mesh"
+  },
+  {
+    "name": "AWESOME Sink",
+    "url": "https://static.satisfactory-calculator.com/img/gameStable1.0/ResourceSink_256.png?v=1687261605",
+    "page": "https://satisfactory-calculator.com/en/buildings",
+    "file": "visuals/references/awesome-sink.png",
+    "sha256": "16c5015755ac5c39d8425229e0986361f6786099dcdeb5b22e9ab03bf1ebf5e8",
+    "bytes": 53161,
+    "kind": "game icon mirror"
+  },
+  {
+    "name": "Foundation Stairs (4 m)",
+    "url": "https://static.satisfactory-calculator.com/img/gameStable1.0/IconDesc_FicsitStair_8x4_256.png?v=1725286657",
+    "page": "https://satisfactory-calculator.com/en/interactive-map",
+    "file": "visuals/references/ficsit-stairs.png",
+    "sha256": "1d9a1cce80f05ed2c9e9a38cfeefd519f90b4086d64ba42e946e4bf190881b7f",
+    "bytes": 79059,
+    "kind": "game icon mirror; vanilla appearance reference"
+  },
+  {
+    "name": "Straight Catwalk",
+    "url": "https://static.satisfactory-calculator.com/img/gameStable1.0/IconDesc_CatwalkStraight_256.png?v=1725286572",
+    "page": "https://satisfactory-calculator.com/en/interactive-map",
+    "file": "visuals/references/catwalk.png",
+    "sha256": "746b656959a6db0ba2a318d9a3e8242aea5bbb8a8a264ab02a7928b15a08ab25",
+    "bytes": 55854,
+    "kind": "game icon mirror; vanilla appearance reference"
+  },
+  {
+    "name": "Painted Beam",
+    "url": "https://static.satisfactory-calculator.com/img/gameStable1.0/IconDesc_BeamPainted_256.png?v=1725286504",
+    "page": "https://satisfactory-calculator.com/en/interactive-map",
+    "file": "visuals/references/painted-beam.png",
+    "sha256": "054b62e649d8d4988a065d2416dcfb8691ce13861bd1d76e2fd97cc3d42d65c5",
+    "bytes": 27636,
+    "kind": "game icon mirror; vanilla appearance reference"
+  },
+  {
+    "name": "Industrial Railing",
+    "url": "https://static.satisfactory-calculator.com/img/gameStable1.0/IconDesc_Fences_256.png?v=1725286574",
+    "page": "https://satisfactory-calculator.com/en/interactive-map",
+    "file": "visuals/references/railing.png",
+    "sha256": "9df0ad4b0613260923c0ddd682f23525d195115a6d391ed8a31ceccac311c413",
+    "bytes": 35133,
+    "kind": "game icon mirror; vanilla appearance reference"
+  },
+  {
+    "name": "Double Wall Outlet Mk.2",
+    "url": "https://static.satisfactory-calculator.com/img/gameStable1.0/PowerPoleWallDouble_MK2_256.png?v=1725286542",
+    "page": "https://satisfactory-calculator.com/en/interactive-map",
+    "file": "visuals/references/wall-outlet.png",
+    "sha256": "8de7d7abe62591cb8212313cad9de63ddd15efb6c0106fe2c842f357d7e1f8fa",
+    "bytes": 37417,
+    "kind": "game icon mirror; vanilla appearance reference"
+  }
+]
