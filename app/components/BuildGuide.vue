@@ -1,12 +1,25 @@
 <script setup lang="ts">
 import type { Drawing, GuideStep, Level, ProjectDocument } from '~~/shared/types/project'
-import { useMediaQuery } from '@vueuse/core'
+import { useElementBounding, useMediaQuery, useResizeObserver, useWindowSize } from '@vueuse/core'
 
 const props = defineProps<{ project: ProjectDocument }>()
 const { blockGrid, horizontal, vertical, floorHeight } = useConstructionUnits(() => props.project)
 const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
 const stageDirection = ref(1)
 const stageList = useTemplateRef<HTMLElement>('stage-list')
+const guideLayout = useTemplateRef<HTMLElement>('guide-layout')
+const stageScroll = useTemplateRef<HTMLElement>('stage-scroll')
+const desktopGuide = useMediaQuery('(min-width: 1280px)')
+const { height: windowHeight } = useWindowSize()
+const { top: guideTop, update: measureGuide } = useElementBounding(guideLayout)
+const workspaceHeight = computed(() => {
+  if (!guideLayout.value || !desktopGuide.value || !Number.isFinite(windowHeight.value)) return null
+  const available = Math.floor(windowHeight.value - Math.max(16, guideTop.value) - 16)
+  return available >= 240 ? available : null
+})
+useResizeObserver(computed(() => guideLayout.value?.closest<HTMLElement>('.project-content')), measureGuide)
+const stageTransitioning = ref(false)
+const stepIndicator = ref<{ height: string; transform: string }>()
 const route = useRoute()
 const { completed, isComplete, toggle, reset, storageError } = useProjectProgress(props.project)
 const stages = computed(() => props.project.build.steps)
@@ -21,24 +34,78 @@ const activeStage = computed<GuideStep | null>(() => stages.value[selectedIndex.
 const previousStage = computed(() => stages.value[selectedIndex.value - 1])
 const nextStage = computed(() => stages.value[selectedIndex.value + 1])
 const stageArticle = useTemplateRef<HTMLElement>('stage-article')
-async function goToStage(id: string) {
-  if (!stages.value.some(stage => stage.id === id) || id === activeStage.value?.id) return
+async function goToStage(id: string, focusContent = true) {
+  if (stageTransitioning.value || !stages.value.some(stage => stage.id === id) || id === activeStage.value?.id) return
   await navigateTo({ path: route.path, query: { ...route.query, stage: id } })
-  stageArticle.value?.focus({ preventScroll: true })
+  if (focusContent) stageScroll.value?.focus({ preventScroll: true })
 }
-watch(selectedIndex, async (index, previous) => {
-  stageDirection.value = index >= previous ? 1 : -1
+async function positionCurrentStep(center = false) {
   await nextTick()
   const list = stageList.value
   const button = list?.querySelector<HTMLElement>('[aria-current="step"]')
-  if (!list || !button) return
+  if (!list || !button || !button.offsetHeight) return
   const top = button.getBoundingClientRect().top - list.getBoundingClientRect().top + list.scrollTop
-  if (top < list.scrollTop || top + button.offsetHeight > list.scrollTop + list.clientHeight) {
-    list.scrollTo({ top: top - (list.clientHeight - button.offsetHeight) / 2, behavior: reducedMotion.value ? 'instant' : 'smooth' })
-  }
+  stepIndicator.value = { height: `${button.offsetHeight}px`, transform: `translateY(${top}px)` }
+  if (center) list.scrollTo({
+    top: top - (list.clientHeight - button.offsetHeight) / 2,
+    behavior: reducedMotion.value ? 'instant' : 'smooth'
+  })
+}
+useResizeObserver(stageList, () => positionCurrentStep())
+watch(selectedIndex, (index, previous) => {
+  stageDirection.value = index >= previous ? 1 : -1
+  positionCurrentStep(true)
 })
-function resetStageScroll() {
-  stageArticle.value?.scrollTo({ top: 0 })
+onMounted(() => positionCurrentStep(true))
+function finishStageTransition() {
+  stageScroll.value?.scrollTo({ top: 0 })
+  stageTransitioning.value = false
+}
+let lastWheelAt = 0
+let wheelDirection = 0
+let wheelDistance = 0
+let wheelConsumed = false
+function onStageWheel(event: WheelEvent) {
+  if (workspaceHeight.value === null || event.defaultPrevented || event.ctrlKey || event.shiftKey
+    || !event.deltaY || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return
+  const direction = Math.sign(event.deltaY)
+  const now = performance.now()
+  if (now - lastWheelAt > 180 || direction !== wheelDirection) {
+    wheelDistance = 0
+    wheelConsumed = false
+  }
+  lastWheelAt = now
+  wheelDirection = direction
+  let target = event.target instanceof Element ? event.target : null
+  const content = stageScroll.value
+  if (content?.contains(target)) {
+    while (target) {
+      const scrollable = /auto|scroll/.test(getComputedStyle(target).overflowY)
+      const remaining = direction > 0
+        ? target.scrollHeight - target.clientHeight - target.scrollTop
+        : target.scrollTop
+      if (scrollable && remaining > 1) {
+        // Reaching the text boundary must not spend the same gesture on the next stage.
+        wheelDistance = 0
+        wheelConsumed = true
+        return
+      }
+      if (target === content) break
+      target = target.parentElement
+    }
+  }
+  if (wheelConsumed || stageTransitioning.value) {
+    event.preventDefault()
+    return
+  }
+  const stage = stages.value[selectedIndex.value + direction]
+  if (!stage) return
+  event.preventDefault()
+  const delta = Math.abs(event.deltaY) * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? workspaceHeight.value : 1)
+  wheelDistance += delta
+  if (wheelDistance < 60) return
+  wheelConsumed = true
+  void goToStage(stage.id, false)
 }
 const levelMap = computed(() => new Map(props.project.levels.map(level => [level.id, level])))
 const processNames = computed(() => new Map((props.project.production?.processes ?? []).map(process => [process.id, `${process.recipeName} (${process.machineName})`])))
@@ -92,12 +159,13 @@ function onResetClose() {
       </header>
       <p v-if="storageError" class="notice notice-warning" role="alert">{{ storageError }}</p>
       <div class="field guide-stage-select"><label for="build-stage-select">Этап строительства</label><TheSelect trigger-id="build-stage-select" :model-value="activeStage?.id || ''" :options="stageOptions" @update:model-value="goToStage(String($event))" /></div>
-      <div class="guide-layout" :style="{ '--stage-direction': stageDirection }">
-        <nav ref="stage-list" class="guide-index" aria-label="Этапы строительства" tabindex="0"><ol>
+      <div ref="guide-layout" class="guide-layout" :class="{ 'guide-viewport': workspaceHeight !== null }" :style="{ '--stage-direction': stageDirection, '--guide-height': workspaceHeight === null ? undefined : `${workspaceHeight}px` }" @wheel="onStageWheel">
+        <nav ref="stage-list" class="guide-index" aria-label="Этапы строительства" tabindex="0"><span v-if="stepIndicator" class="step-index-indicator" :style="stepIndicator" aria-hidden="true" /><ol>
           <li v-for="(stage, index) in stages" :key="stage.id"><button type="button" class="step-link" :aria-current="stage.id === activeStage?.id ? 'step' : undefined" @click="goToStage(stage.id)"><span class="step-number" :class="{ 'step-complete': isComplete(stage.id) }">{{ isComplete(stage.id) ? '✓' : index + 1 }}</span><span>{{ guideStageLabel(stage) }}</span><span v-if="isComplete(stage.id)" class="sr-only">Выполнен</span></button></li>
         </ol></nav>
-        <article v-if="activeStage" ref="stage-article" class="guide-step" tabindex="-1" :aria-labelledby="`stage-${activeStage.id}-title`">
-          <Transition name="stage" mode="out-in" @after-enter="resetStageScroll">
+        <article v-if="activeStage" ref="stage-article" class="guide-step" :aria-busy="stageTransitioning" :aria-labelledby="`stage-${activeStage.id}-title`">
+          <div ref="stage-scroll" class="stage-scroll" tabindex="0" :aria-labelledby="`stage-${activeStage.id}-title`">
+          <Transition name="stage" mode="out-in" @before-leave="stageTransitioning = true" @after-enter="finishStageTransition">
           <div :key="activeStage.id" class="stage-content">
           <header class="stage-heading"><div><p class="fine">Этап {{ selectedIndex + 1 }} / {{ stages.length }}</p><h2 :id="`stage-${activeStage.id}-title`">{{ guideStageLabel(activeStage) }}</h2></div><label class="stage-completion check-row"><input :checked="isComplete(activeStage.id)" type="checkbox" @change="toggle(activeStage.id)"><span>{{ isComplete(activeStage.id) ? 'Этап отмечен' : 'Отметить этап' }}</span></label></header>
           <div class="stage-work">
@@ -117,9 +185,10 @@ function onResetClose() {
             <details v-if="stageZones.length" :key="`${activeStage.id}-zones`" class="reference-disclosure"><summary>Иллюстрации зон · {{ stageZones.length }}</summary><p class="fine">Приближённые AI-виды, не игровые скриншоты. Размеры бери из чертежей.</p><ul><li v-for="zone in stageZones" :key="zone.id"><NuxtLink class="text-link" :to="{ path: `${projectPath}/drawings`, query: { zone: zone.id } }">{{ zone.id }} · {{ zone.title }}</NuxtLink></li></ul></details>
             <details v-if="activeStage.body && activeStage.body !== activeStage.actions.join(' ')" :key="`${activeStage.id}-body`" class="reference-disclosure"><summary>Описание из плана</summary><p>{{ constructionText(activeStage.body) }}</p></details>
           </div>
-          <footer class="guide-actions"><Button variant="outline" :disabled="!previousStage" @click="previousStage && goToStage(previousStage.id)">Предыдущий этап</Button><Button :disabled="!nextStage" @click="nextStage && goToStage(nextStage.id)">Следующий этап</Button></footer>
           </div>
           </Transition>
+          </div>
+          <footer class="guide-actions"><Button variant="outline" :disabled="!previousStage" @click="previousStage && goToStage(previousStage.id)">Предыдущий этап</Button><Button :disabled="!nextStage" @click="nextStage && goToStage(nextStage.id)">Следующий этап</Button></footer>
         </article>
       </div>
       <details v-if="commissioningChecks.length" class="reference-disclosure commissioning-checklist"><summary>Проверка готового завода <span class="fine">{{ doneChecks }} / {{ commissioningChecks.length }}</span></summary><p class="fine">Личный чек-лист для проверки в игре. Отметки не снимают ограничения площадки.</p><ul class="check-list"><li v-for="check in commissioningChecks" :key="check.id"><label class="check-row"><input :checked="isComplete(check.id)" type="checkbox" @change="toggle(check.id)"><span>{{ constructionText(check.text) }}</span></label></li></ul></details>
