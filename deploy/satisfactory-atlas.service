@@ -1,0 +1,26 @@
+[Unit]
+Description=Satisfactory factory atlas (local static site)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/.local/share/satisfactory-atlas/current
+ExecStart=/usr/bin/python3 -m http.server 5173 --bind 127.0.0.1 --directory %h/.local/share/satisfactory-atlas/current
+Restart=on-failure
+RestartSec=3
+UMask=0077
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=read-only
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+LockPersonality=yes
+MemoryHigh=96M
+MemoryMax=128M
+MemorySwapMax=0
+CPUWeight=20
+CPUQuota=10%
+TasksMax=32
+
+[Install]
+WantedBy=default.target
