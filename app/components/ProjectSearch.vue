@@ -3,15 +3,16 @@ import { Search, X, CornerDownLeft } from '@lucide/vue'
 import { useEventListener } from '@vueuse/core'
 import type { ProjectDocument } from '~~/shared/types/project'
 const props = defineProps<{ project: ProjectDocument }>()
+const world = useWorld()
 const dialog = useTemplateRef<HTMLDialogElement>('dialog')
 const input = useTemplateRef<HTMLInputElement>('input')
 const query = ref('')
 const selected = ref(0)
 let trigger: HTMLElement | null = null
 const entries = computed(() => {
-  const base = projectUrl(props.project.saveId, props.project.id)
+  const base = projectUrl(world.value.manifest, props.project.id)
   return [
-    ...projectSections.map(section => ({ id: section.id, title: section.label, group: 'Разделы', to: projectUrl(props.project.saveId, props.project.id, section.id) })),
+    ...projectSections.map(section => ({ id: section.id, title: section.label, group: 'Разделы', to: projectUrl(world.value.manifest, props.project.id, section.id) })),
     ...props.project.build.steps.map((step, i) => ({ id: step.id, title: `${i + 1}. ${guideStageLabel(step)}`, group: 'Этапы стройки', to: `${base}/build?stage=${encodeURIComponent(step.id)}` })),
     ...props.project.drawings.map(drawing => ({ id: drawing.id, title: drawing.label, group: 'Чертежи', to: `${base}/drawings?drawing=${encodeURIComponent(drawing.id)}` }))
   ]

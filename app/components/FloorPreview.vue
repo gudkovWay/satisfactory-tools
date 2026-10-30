@@ -3,6 +3,7 @@ import { ArrowUpRight, Layers } from '@lucide/vue'
 import { useMediaQuery } from '@vueuse/core'
 import type { ProjectDocument } from '~~/shared/types/project'
 const props = defineProps<{ project: ProjectDocument }>()
+const world = useWorld()
 const { floorHeight } = useConstructionUnits(() => props.project)
 const floors = computed(() => (props.project.zoneAtlas?.levels ?? []).map(level => ({
   ...level,
@@ -29,7 +30,7 @@ function selectByKey(event: KeyboardEvent, index: number) {
     <div class="floor-explorer">
       <div class="floor-tabs" role="tablist" aria-label="Уровни завода" :aria-orientation="vertical ? 'vertical' : 'horizontal'"><button v-for="(floor, index) in floors" :id="`floor-preview-${floor.id}`" :key="floor.id" type="button" role="tab" :tabindex="floor.id === selected.id ? 0 : -1" :aria-selected="floor.id === selected.id" aria-controls="floor-preview-panel" @click="selectedId = floor.id" @keydown="selectByKey($event, index)"><span class="floor-code">{{ floor.id }}</span><span>{{ floor.name }}</span><span class="floor-height">{{ floor.z == null ? '' : floorHeight(floor.z) }}</span></button></div>
       <div id="floor-preview-panel" class="floor-panel" role="tabpanel" :aria-labelledby="`floor-preview-${selected.id}`">
-        <Transition name="picture" mode="out-in"><NuxtLink :key="selected.id" :to="{ path: projectUrl(project.saveId, project.id, 'drawings'), query: { zone: selected.view.id } }" class="floor-image"><img :src="selected.view.image.src" :alt="`${selected.name}. Приближённая AI-иллюстрация.`" width="1280" height="800" loading="lazy"><span class="floor-open">Открыть зону <ArrowUpRight :size="16" aria-hidden="true" /></span></NuxtLink></Transition>
+        <Transition name="picture" mode="out-in"><NuxtLink :key="selected.id" :to="{ path: projectUrl(world.manifest, project.id, 'drawings'), query: { zone: selected.view.id } }" class="floor-image"><img :src="selected.view.image.src" :alt="`${selected.name}. Приближённая AI-иллюстрация.`" width="1280" height="800" loading="lazy"><span class="floor-open">Открыть зону <ArrowUpRight :size="16" aria-hidden="true" /></span></NuxtLink></Transition>
         <p class="fine">AI-концепт уровня. Размеры и координаты бери из чертежей.</p>
       </div>
     </div>

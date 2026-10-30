@@ -2,6 +2,7 @@
 import type { ProjectDocument } from '~~/shared/types/project'
 
 const props = defineProps<{ project: ProjectDocument }>()
+const world = useWorld()
 const { horizontal, vertical, floorHeight, coordinateLabel } = useConstructionUnits(() => props.project)
 const route = useRoute()
 const atlas = computed(() => props.project.zoneAtlas)
@@ -129,7 +130,7 @@ function restoreFocus() { zoomTrigger?.focus(); zoomTrigger = null }
     </section>
     <section class="zone-parts"><h3>Детали для этой зоны</h3>
       <ul><li v-for="part in parts" :key="part.code"><strong>{{ part.code }}</strong> · {{ part.name }} <span class="fine">({{ part.mod }})</span><details><summary>Найти деталь {{ part.code }}</summary><p>{{ part.role }}</p><p class="recipe-path">{{ part.recipePath }}</p></details></li></ul>
-      <NuxtLink class="text-link" :to="projectUrl(project.saveId, project.id, 'parts')">Вся спецификация проекта</NuxtLink>
+      <NuxtLink class="text-link" :to="projectUrl(world.manifest, project.id, 'parts')">Вся спецификация проекта</NuxtLink>
     </section>
     <details class="zone-reference-details"><summary>Настоящие игровые референсы оборудования и деталей</summary><p class="fine">Это игровые иконки-референсы. Они не подтверждают точность модовых мешей, портов или AI-кадра.</p>
       <div class="zone-reference-grid"><figure v-for="reference in references" :key="reference.id"><img :src="reference.image.src" :alt="reference.name" width="128" height="128" loading="lazy"><figcaption><a class="text-link" :href="reference.sourceUrl" target="_blank" rel="noopener noreferrer">{{ reference.name }}</a></figcaption></figure></div>

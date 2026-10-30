@@ -3,6 +3,7 @@ import type { Drawing, GuideStep, Level, ProjectDocument } from '~~/shared/types
 import { useElementBounding, useMediaQuery, useResizeObserver, useWindowSize } from '@vueuse/core'
 
 const props = defineProps<{ project: ProjectDocument }>()
+const world = useWorld()
 const { blockGrid, horizontal, vertical, floorHeight } = useConstructionUnits(() => props.project)
 const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
 const stageDirection = ref(1)
@@ -24,7 +25,7 @@ const route = useRoute()
 const { completed, isComplete, toggle, reset, storageError } = useProjectProgress(props.project)
 const stages = computed(() => props.project.build.steps)
 const stageOptions = computed(() => stages.value.map((stage, index) => ({ value: stage.id, label: `${index + 1}. ${guideStageLabel(stage)}` })))
-const projectPath = computed(() => projectUrl(props.project.saveId, props.project.id))
+const projectPath = computed(() => projectUrl(world.value.manifest, props.project.id))
 const selectedIndex = computed(() => {
   const requested = Array.isArray(route.query.stage) ? route.query.stage[0] : route.query.stage
   const index = stages.value.findIndex(stage => stage.id === requested)

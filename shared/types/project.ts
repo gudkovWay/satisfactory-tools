@@ -203,7 +203,9 @@ export interface ZoneAtlas {
 }
 export interface ProjectDocument extends ProjectSummary {
   schemaVersion: 1
-  source: { saveSha256: string; snapshotLabel: string; recipeSha256?: string; modSnapshotSha256?: string; sourceSession?: string; planSha256?: string; snapshotAt?: string }
+  progressRevision?: string
+  progressSignature?: string
+  source: { saveSha256: string; snapshotLabel: string; recipeSha256?: string; modSnapshotSha256?: string; sourceSession?: string; planSha256?: string; snapshotAt?: string; planning?: { mode: 'forecast'; tier: number; density: number; prerequisites: string[] } }
   dependencies: Array<{ saveId: string; projectId: string; role: string }>
   readiness: { constructionReady: boolean; blockers: string[] }
   overview: { paragraphs: string[]; decisions: Decision[]; concept?: Asset }

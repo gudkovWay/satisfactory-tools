@@ -1,8 +1,14 @@
 import tailwindcss from '@tailwindcss/vite'
-import catalogue from './public/atlas/projects.json'
-import { projectSections, projectUrl } from './app/utils/project'
+import { projectSections, projectUrl, worldUrl } from './app/utils/world-routes'
+import type { WorldManifest } from './shared/types/world'
+import registry from './public/worlds/index.json'
 
-const projectRoutes = catalogue.projects.flatMap(project => projectSections.map(section => projectUrl(project.saveId, project.id, section.id)))
+// The data registry selects manifests; static imports would require code edits for each world.
+const worldRoutes = (await Promise.all(registry.worlds.map(async record => {
+  const base = worldUrl(record.id)
+  const { default: manifest }: { default: WorldManifest } = await import(`./public${base}/manifest.json`, { with: { type: 'json' } })
+  return [base, ...manifest.analyses.map(item => `${base}/analysis/${item.id}`), ...manifest.tiers.map(tier => `${base}/tiers/${tier.id}`), ...manifest.projects.flatMap(project => projectSections.map(section => projectUrl(manifest, project.id, section.id)))]
+}))).flat()
 
 export default defineNuxtConfig({
   compatibilityDate: '2026-10-22',
@@ -14,14 +20,12 @@ export default defineNuxtConfig({
   vite: { plugins: [tailwindcss()] },
   css: ['~/assets/css/main.css'],
   colorMode: { preference: 'dark', fallback: 'dark', classSuffix: '' },
-  app: {
-    head: {
-      htmlAttrs: { lang: 'ru' },
-      title: 'Заводской атлас',
-      meta: [{ name: 'description', content: 'Проекты и пошаговые инструкции для мира Satisfactory.' }],
-      link: [{ rel: 'preload', href: '/fonts/onest-variable.ttf', as: 'font', type: 'font/ttf', crossorigin: 'anonymous' }],
-    }
-  },
+  app: { head: {
+    htmlAttrs: { lang: 'ru' },
+    title: 'Строительный атлас Satisfactory',
+    meta: [{ name: 'description', content: 'Миры Satisfactory: анализ, архитектура, заводы и пошаговое строительство.' }],
+    link: [{ rel: 'preload', href: '/fonts/onest-variable.ttf', as: 'font', type: 'font/ttf', crossorigin: 'anonymous' }]
+  } },
   typescript: { strict: true },
-  nitro: { prerender: { crawlLinks: true, routes: ['/', ...projectRoutes] } }
+  nitro: { prerender: { crawlLinks: true, routes: ['/', '/world', ...worldRoutes] } }
 })

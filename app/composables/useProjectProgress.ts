@@ -1,7 +1,7 @@
 import type { ProjectDocument } from '~~/shared/types/project'
 
 export function useProjectProgress(project: ProjectDocument) {
-  const key = `factory-progress:${project.saveId}:${project.id}:${project.revision}`
+  const key = `factory-progress:${project.saveId}:${project.id}:${project.progressRevision ?? project.revision}`
   const completed = useState<string[]>(key, () => [])
   const storageError = ref<string | null>(null)
   const validIds = new Set([
