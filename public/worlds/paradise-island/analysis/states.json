@@ -1,0 +1,597 @@
+{
+  "id": "states",
+  "title": "02 · Возможности WB",
+  "summary": "Полные ноды, независимые выходы, транспорт, плотность и энергия — до выбора размеров заводов.",
+  "dependsOn": [
+    "seed"
+  ],
+  "states": [
+    {
+      "miner": 1,
+      "tier": 1,
+      "purity": "normal",
+      "clock": 1,
+      "shards": 0,
+      "raw": 240,
+      "ports": 2,
+      "belt": 750,
+      "lanes": 1,
+      "perLane": 240,
+      "powerMW": 20,
+      "transportLimited": false
+    },
+    {
+      "miner": 1,
+      "tier": 1,
+      "purity": "normal",
+      "clock": 1.5,
+      "shards": 1,
+      "raw": 360,
+      "ports": 2,
+      "belt": 750,
+      "lanes": 1,
+      "perLane": 360,
+      "powerMW": 34.182984515031315,
+      "transportLimited": false
+    },
+    {
+      "miner": 1,
+      "tier": 1,
+      "purity": "normal",
+      "clock": 2,
+      "shards": 2,
+      "raw": 480,
+      "ports": 2,
+      "belt": 750,
+      "lanes": 1,
+      "perLane": 480,
+      "powerMW": 50.00000000009142,
+      "transportLimited": false
+    },
+    {
+      "miner": 1,
+      "tier": 1,
+      "purity": "normal",
+      "clock": 2.5,
+      "shards": 3,
+      "raw": 600,
+      "ports": 2,
+      "belt": 750,
+      "lanes": 1,
+      "perLane": 600,
+      "powerMW": 67.15495666789552,
+      "transportLimited": false
+    },
+    {
+      "miner": 1,
+      "tier": 1,
+      "purity": "pure",
+      "clock": 1,
+      "shards": 0,
+      "raw": 480,
+      "ports": 2,
+      "belt": 750,
+      "lanes": 1,
+      "perLane": 480,
+      "powerMW": 20,
+      "transportLimited": false
+    },
+    {
+      "miner": 1,
+      "tier": 1,
+      "purity": "pure",
+      "clock": 1.5,
+      "shards": 1,
+      "raw": 720,
+      "ports": 2,
+      "belt": 750,
+      "lanes": 1,
+      "perLane": 720,
+      "powerMW": 34.182984515031315,
+      "transportLimited": false
+    },
+    {
+      "miner": 1,
+      "tier": 1,
+      "purity": "pure",
+      "clock": 2,
+      "shards": 2,
+      "raw": 960,
+      "ports": 2,
+      "belt": 750,
+      "lanes": 2,
+      "perLane": 480,
+      "powerMW": 50.00000000009142,
+      "transportLimited": false
+    },
+    {
+      "miner": 1,
+      "tier": 1,
+      "purity": "pure",
+      "clock": 2.5,
+      "shards": 3,
+      "raw": 1200,
+      "ports": 2,
+      "belt": 750,
+      "lanes": 2,
+      "perLane": 600,
+      "powerMW": 67.15495666789552,
+      "transportLimited": false
+    },
+    {
+      "miner": 2,
+      "tier": 3,
+      "purity": "normal",
+      "clock": 1,
+      "shards": 0,
+      "raw": 480,
+      "ports": 3,
+      "belt": 1000,
+      "lanes": 1,
+      "perLane": 480,
+      "powerMW": 40,
+      "transportLimited": false
+    },
+    {
+      "miner": 2,
+      "tier": 3,
+      "purity": "normal",
+      "clock": 1.5,
+      "shards": 1,
+      "raw": 720,
+      "ports": 3,
+      "belt": 1000,
+      "lanes": 1,
+      "perLane": 720,
+      "powerMW": 68.36596903006263,
+      "transportLimited": false
+    },
+    {
+      "miner": 2,
+      "tier": 3,
+      "purity": "normal",
+      "clock": 2,
+      "shards": 2,
+      "raw": 960,
+      "ports": 3,
+      "belt": 1000,
+      "lanes": 1,
+      "perLane": 960,
+      "powerMW": 100.00000000018284,
+      "transportLimited": false
+    },
+    {
+      "miner": 2,
+      "tier": 3,
+      "purity": "normal",
+      "clock": 2.5,
+      "shards": 3,
+      "raw": 1200,
+      "ports": 3,
+      "belt": 1000,
+      "lanes": 2,
+      "perLane": 600,
+      "powerMW": 134.30991333579104,
+      "transportLimited": false
+    },
+    {
+      "miner": 2,
+      "tier": 3,
+      "purity": "pure",
+      "clock": 1,
+      "shards": 0,
+      "raw": 960,
+      "ports": 3,
+      "belt": 1000,
+      "lanes": 1,
+      "perLane": 960,
+      "powerMW": 40,
+      "transportLimited": false
+    },
+    {
+      "miner": 2,
+      "tier": 3,
+      "purity": "pure",
+      "clock": 1.5,
+      "shards": 1,
+      "raw": 1440,
+      "ports": 3,
+      "belt": 1000,
+      "lanes": 2,
+      "perLane": 720,
+      "powerMW": 68.36596903006263,
+      "transportLimited": false
+    },
+    {
+      "miner": 2,
+      "tier": 3,
+      "purity": "pure",
+      "clock": 2,
+      "shards": 2,
+      "raw": 1920,
+      "ports": 3,
+      "belt": 1000,
+      "lanes": 2,
+      "perLane": 960,
+      "powerMW": 100.00000000018284,
+      "transportLimited": false
+    },
+    {
+      "miner": 2,
+      "tier": 3,
+      "purity": "pure",
+      "clock": 2.5,
+      "shards": 3,
+      "raw": 2400,
+      "ports": 3,
+      "belt": 1000,
+      "lanes": 3,
+      "perLane": 800,
+      "powerMW": 134.30991333579104,
+      "transportLimited": false
+    },
+    {
+      "miner": 3,
+      "tier": 5,
+      "purity": "normal",
+      "clock": 1,
+      "shards": 0,
+      "raw": 960,
+      "ports": 4,
+      "belt": 1500,
+      "lanes": 1,
+      "perLane": 960,
+      "powerMW": 80,
+      "transportLimited": false
+    },
+    {
+      "miner": 3,
+      "tier": 5,
+      "purity": "normal",
+      "clock": 1.5,
+      "shards": 1,
+      "raw": 1440,
+      "ports": 4,
+      "belt": 1500,
+      "lanes": 1,
+      "perLane": 1440,
+      "powerMW": 136.73193806012526,
+      "transportLimited": false
+    },
+    {
+      "miner": 3,
+      "tier": 5,
+      "purity": "normal",
+      "clock": 2,
+      "shards": 2,
+      "raw": 1920,
+      "ports": 4,
+      "belt": 1500,
+      "lanes": 2,
+      "perLane": 960,
+      "powerMW": 200.00000000036567,
+      "transportLimited": false
+    },
+    {
+      "miner": 3,
+      "tier": 5,
+      "purity": "normal",
+      "clock": 2.5,
+      "shards": 3,
+      "raw": 2400,
+      "ports": 4,
+      "belt": 1500,
+      "lanes": 2,
+      "perLane": 1200,
+      "powerMW": 268.6198266715821,
+      "transportLimited": false
+    },
+    {
+      "miner": 3,
+      "tier": 5,
+      "purity": "pure",
+      "clock": 1,
+      "shards": 0,
+      "raw": 1920,
+      "ports": 4,
+      "belt": 1500,
+      "lanes": 2,
+      "perLane": 960,
+      "powerMW": 80,
+      "transportLimited": false
+    },
+    {
+      "miner": 3,
+      "tier": 5,
+      "purity": "pure",
+      "clock": 1.5,
+      "shards": 1,
+      "raw": 2880,
+      "ports": 4,
+      "belt": 1500,
+      "lanes": 2,
+      "perLane": 1440,
+      "powerMW": 136.73193806012526,
+      "transportLimited": false
+    },
+    {
+      "miner": 3,
+      "tier": 5,
+      "purity": "pure",
+      "clock": 2,
+      "shards": 2,
+      "raw": 3840,
+      "ports": 4,
+      "belt": 1500,
+      "lanes": 3,
+      "perLane": 1280,
+      "powerMW": 200.00000000036567,
+      "transportLimited": false
+    },
+    {
+      "miner": 3,
+      "tier": 5,
+      "purity": "pure",
+      "clock": 2.5,
+      "shards": 3,
+      "raw": 4800,
+      "ports": 4,
+      "belt": 1500,
+      "lanes": 4,
+      "perLane": 1200,
+      "powerMW": 268.6198266715821,
+      "transportLimited": false
+    },
+    {
+      "miner": 4,
+      "tier": 8,
+      "purity": "normal",
+      "clock": 1,
+      "shards": 0,
+      "raw": 1920,
+      "ports": 6,
+      "belt": 1800,
+      "lanes": 2,
+      "perLane": 960,
+      "powerMW": 160,
+      "transportLimited": false
+    },
+    {
+      "miner": 4,
+      "tier": 8,
+      "purity": "normal",
+      "clock": 1.5,
+      "shards": 1,
+      "raw": 2880,
+      "ports": 6,
+      "belt": 1800,
+      "lanes": 2,
+      "perLane": 1440,
+      "powerMW": 273.4638761202505,
+      "transportLimited": false
+    },
+    {
+      "miner": 4,
+      "tier": 8,
+      "purity": "normal",
+      "clock": 2,
+      "shards": 2,
+      "raw": 3840,
+      "ports": 6,
+      "belt": 1800,
+      "lanes": 3,
+      "perLane": 1280,
+      "powerMW": 400.00000000073135,
+      "transportLimited": false
+    },
+    {
+      "miner": 4,
+      "tier": 8,
+      "purity": "normal",
+      "clock": 2.5,
+      "shards": 3,
+      "raw": 4800,
+      "ports": 6,
+      "belt": 1800,
+      "lanes": 3,
+      "perLane": 1600,
+      "powerMW": 537.2396533431642,
+      "transportLimited": false
+    },
+    {
+      "miner": 4,
+      "tier": 8,
+      "purity": "pure",
+      "clock": 1,
+      "shards": 0,
+      "raw": 3840,
+      "ports": 6,
+      "belt": 1800,
+      "lanes": 3,
+      "perLane": 1280,
+      "powerMW": 160,
+      "transportLimited": false
+    },
+    {
+      "miner": 4,
+      "tier": 8,
+      "purity": "pure",
+      "clock": 1.5,
+      "shards": 1,
+      "raw": 5760,
+      "ports": 6,
+      "belt": 1800,
+      "lanes": 4,
+      "perLane": 1440,
+      "powerMW": 273.4638761202505,
+      "transportLimited": false
+    },
+    {
+      "miner": 4,
+      "tier": 8,
+      "purity": "pure",
+      "clock": 2,
+      "shards": 2,
+      "raw": 7680,
+      "ports": 6,
+      "belt": 1800,
+      "lanes": 5,
+      "perLane": 1536,
+      "powerMW": 400.00000000073135,
+      "transportLimited": false
+    },
+    {
+      "miner": 4,
+      "tier": 8,
+      "purity": "pure",
+      "clock": 2.5,
+      "shards": 3,
+      "raw": 9600,
+      "ports": 6,
+      "belt": 1800,
+      "lanes": 6,
+      "perLane": 1600,
+      "powerMW": 537.2396533431642,
+      "transportLimited": false
+    }
+  ],
+  "sections": [
+    {
+      "title": "Добыча и порты",
+      "paragraphs": [
+        "Q = базовая добыча normal × чистота × частота. Для pure множитель 2. Число выходов не умножает Q: оно позволяет вывезти его несколькими линиями.",
+        "Miner I pure: 480/720/960/1200 руды/мин на 100/150/200/250%. При 100% достаточно одной WB Mk1 750; при 200% нужны обе линии, например по 480. При 250% — две по 600. Слияние их назад в одну 750 снова ограничит вывоз.",
+        "Таблица — все дискретные состояния выбранных четырёх ступеней частоты для normal/pure и четырёх WB-майнеров. Промежуточные частоты вычисляются той же формулой. Это не обещание перебрать бесконечные комбинации всех заводов.",
+        "Колонки линий показывают достаточную равномерную раскладку, а не гарантированный автоматический делёж портов. При пуске измерить оба выхода и настроить разводку."
+      ]
+    },
+    {
+      "title": "Разблокировки и шардовый бюджет",
+      "paragraphs": [
+        "В текущем сейве открыт Miner I/Belt I. Miner II/Belt II — WB Extraction II, тир3; Miner III — тир5; Miner IV — тир8. Belt II = 1000, III = 1500, IV = 1800 на одну ленту. Ванильная Mk3 270 не является апгрейдом WB Mk1 750.",
+        "100% не требует осколков. 150/200/250% требуют 1/2/3 осколка на бур и доступного overclock. Два pure и один normal Miner I дают 1200/1800/2400/3000 железа/мин при одинаковой частоте. На 250% это 9 осколков, которых наличие в снимке не доказано.",
+        "План начинается на 100%; усиление — отдельный этап после добычи осколков и ввода энергии. Не считать 250% исходным состоянием и не занижать Miner I до31,25% ради маленького рецепта."
+      ]
+    },
+    {
+      "title": "Плотность — не бесплатное сырьё",
+      "paragraphs": [
+        "WB D5/D10/D15 умножают производственную скорость и базовую мощность на5/10/15. Рецептурные соотношения не меняются. D5 доступен после исходной технологии здания; D10 дополнительно требует WB Production x10 в тире3; D15 — тир5. Производственные машины WB не разгоняются выше100%.",
+        "Мощность группы = количество × базовая MW × плотность × частота^1,321928. Для производства допустимо выставить частоту под точный баланс; добывающие опорные линии проектируются на100% или выше. Заполненный конечный склад всё равно остановит потребителя и бур — это backpressure, не ошибка настройки.",
+        "Не сносить исправные D5 при открытии D10: добавлять новые секции D10, старые менять только когда это реально уменьшает занятое место."
+      ]
+    },
+    {
+      "title": "Энергетические состояния",
+      "paragraphs": [
+        "Biomass5 =150MW; два встроенных сжигателя HUB дают40MW отдельно. При полной150MW нагрузке твёрдое биотопливо450MJ расходуется20/мин на один WB-сжигатель.332 топлива — только16,6 burner-минут при полном выпуске, не вечное питание.",
+        "Тир2 WB Autonomous Power:150 пластин+75 кабеля. Один Coal5 =375MW,75угля/мин и225м³/мин воды. Один Water2 =240м³/мин и40MW. На модуль — отдельная труба Mk1 с225/300, не общая450 для двух. Водозабор не разгоняется.",
+        "Модули станции2/4/8/12 дают750/1500/3000/4500MW, требуют150/300/600/900угля и80/160/320/480MW воды. Угольный бур100% pure даёт480: хватает6 модулей (450угля), не восьми. Для8 нужен150% (720), для12 —200% (960) либо Miner II100% (960).",
+        "WB Storage5 =500MWh и максимум500MW зарядки, Storage10 =1000/1000 после D10. Обе требуют исходного Power Storage тира4. Генерация не возрастает от батареи; заряд берётся только из свободной мощности."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "WB — каталог и генератор из установленного исходного профиля",
+      "url": "/worlds/paradise-island/analysis/seed.json"
+    }
+  ],
+  "sourceSha256": "02d102cc00601a51b87cc8917f65dae57f9cf5dd797e03a8d3abe390f0f0b3b0",
+  "extractors": [
+    {
+      "id": 1,
+      "label": "WB Miner I",
+      "tier": 1
+    },
+    {
+      "id": 2,
+      "label": "WB Miner II",
+      "tier": 3
+    },
+    {
+      "id": 3,
+      "label": "WB Miner III",
+      "tier": 5
+    },
+    {
+      "id": 4,
+      "label": "WB Miner IV",
+      "tier": 8
+    }
+  ],
+  "tables": [
+    {
+      "caption": "Сценарии всей сети: производство + добыча + водозаборы; прочие потребители добавляются отдельно",
+      "columns": [
+        "Состояние",
+        "Нагрузка, MW",
+        "С 25% резервом",
+        "Генерация, MW",
+        "Уголь / мин",
+        "Вода / мин"
+      ],
+      "rows": [
+        [
+          "home",
+          "382.08",
+          "477.6",
+          "600",
+          "0",
+          "0"
+        ],
+        [
+          "coal-bootstrap",
+          "917.297",
+          "1146.621",
+          "1350",
+          "150",
+          "450"
+        ],
+        [
+          "stock",
+          "977.591",
+          "1221.989",
+          "1500",
+          "300",
+          "900"
+        ],
+        [
+          "phase1",
+          "1711.396",
+          "2139.245",
+          "2250",
+          "450",
+          "1350"
+        ],
+        [
+          "phase1-boost",
+          "3756.982",
+          "4696.228",
+          "5250",
+          "1050",
+          "3150"
+        ],
+        [
+          "tier3",
+          "1285.368",
+          "1606.71",
+          "2250",
+          "450",
+          "1350"
+        ],
+        [
+          "tier4",
+          "2156.227",
+          "2695.284",
+          "3000",
+          "600",
+          "1800"
+        ]
+      ]
+    }
+  ],
+  "worldId": "paradise-island",
+  "saveId": "slave",
+  "saveSha256": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6"
+}

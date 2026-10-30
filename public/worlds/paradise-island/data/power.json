@@ -1,0 +1,148 @@
+{
+  "states": [
+    {
+      "id": "home",
+      "projects": [
+        "iron-home",
+        "copper-home",
+        "concrete"
+      ],
+      "processMW": 322.0799222057731,
+      "extractorsMW": 60,
+      "waterMW": 0,
+      "totalMW": 382.0799222057731,
+      "generationMW": 600,
+      "requiredWithReserveMW": 477.59990275721634,
+      "headroomMW": 217.92007779422693,
+      "coalDemand": 0,
+      "waterDemand": 0,
+      "modules": 0,
+      "unbudgeted": "Насосы по фактическому напору, транспорт и посторонние107модовых потребителя не включены. Перед вводом удержать25% над измеренной нагрузкой."
+    },
+    {
+      "id": "coal-bootstrap",
+      "projects": [
+        "iron-home",
+        "copper-sheets",
+        "concrete",
+        "rotor-stock"
+      ],
+      "processMW": 737.2969686262214,
+      "extractorsMW": 100,
+      "waterMW": 80,
+      "totalMW": 917.2969686262214,
+      "generationMW": 1350,
+      "requiredWithReserveMW": 1146.6212107827769,
+      "headroomMW": 432.7030313737786,
+      "coalDemand": 150,
+      "waterDemand": 450,
+      "modules": 2,
+      "biomassUnits": 4,
+      "unbudgeted": "Временный гибрид750MWугля+600MWбиомассы. Топливо заготавливается вручную; насосы сверить отдельно."
+    },
+    {
+      "id": "stock",
+      "projects": [
+        "iron-home",
+        "copper-sheets",
+        "concrete",
+        "frame-stock"
+      ],
+      "processMW": 717.5914721528171,
+      "extractorsMW": 100,
+      "waterMW": 160,
+      "totalMW": 977.5914721528171,
+      "generationMW": 1500,
+      "requiredWithReserveMW": 1221.9893401910215,
+      "headroomMW": 522.4085278471829,
+      "coalDemand": 300,
+      "waterDemand": 900,
+      "modules": 4,
+      "unbudgeted": "Насосы по фактическому напору, транспорт и посторонние107модовых потребителя не включены. Перед вводом удержать25% над измеренной нагрузкой."
+    },
+    {
+      "id": "phase1",
+      "projects": [
+        "iron-home",
+        "copper-sheets",
+        "concrete",
+        "phase-one"
+      ],
+      "processMW": 1351.396228014163,
+      "extractorsMW": 120,
+      "waterMW": 240,
+      "totalMW": 1711.396228014163,
+      "generationMW": 2250,
+      "requiredWithReserveMW": 2139.2452850177037,
+      "headroomMW": 538.603771985837,
+      "coalDemand": 450,
+      "waterDemand": 1350,
+      "modules": 6,
+      "unbudgeted": "Насосы по фактическому напору, транспорт и посторонние107модовых потребителя не включены. Перед вводом удержать25% над измеренной нагрузкой."
+    },
+    {
+      "id": "phase1-boost",
+      "projects": [
+        "iron-home",
+        "copper-sheets",
+        "concrete",
+        "phase-one-boost"
+      ],
+      "processMW": 2935.5173099112985,
+      "extractorsMW": 261.46487000368654,
+      "waterMW": 560,
+      "totalMW": 3756.982179914985,
+      "generationMW": 5250,
+      "requiredWithReserveMW": 4696.227724893732,
+      "headroomMW": 1493.017820085015,
+      "coalDemand": 1050,
+      "waterDemand": 3150,
+      "modules": 14,
+      "unbudgeted": "Насосы по фактическому напору, транспорт и посторонние107модовых потребителя не включены. Перед вводом удержать25% над измеренной нагрузкой."
+    },
+    {
+      "id": "tier3",
+      "projects": [
+        "iron-home",
+        "copper-sheets",
+        "concrete",
+        "steel-start",
+        "frame-stock"
+      ],
+      "processMW": 905.3680687282188,
+      "extractorsMW": 140,
+      "waterMW": 240,
+      "totalMW": 1285.3680687282188,
+      "generationMW": 2250,
+      "requiredWithReserveMW": 1606.7100859102734,
+      "headroomMW": 964.6319312717812,
+      "coalDemand": 450,
+      "waterDemand": 1350,
+      "modules": 6,
+      "unbudgeted": "Насосы по фактическому напору, транспорт и посторонние107модовых потребителя не включены. Перед вводом удержать25% над измеренной нагрузкой."
+    },
+    {
+      "id": "tier4",
+      "projects": [
+        "iron-home",
+        "copper-sheets",
+        "concrete",
+        "steel-expanded",
+        "mechanics-stock",
+        "components",
+        "concrete-expanded"
+      ],
+      "processMW": 1596.2274553562793,
+      "extractorsMW": 240,
+      "waterMW": 320,
+      "totalMW": 2156.2274553562793,
+      "generationMW": 3000,
+      "requiredWithReserveMW": 2695.284319195349,
+      "headroomMW": 843.7725446437207,
+      "coalDemand": 600,
+      "waterDemand": 1800,
+      "modules": 8,
+      "unbudgeted": "Насосы по фактическому напору, транспорт и посторонние107модовых потребителя не включены. Перед вводом удержать25% над измеренной нагрузкой."
+    }
+  ]
+}

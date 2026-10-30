@@ -1,0 +1,315 @@
+{
+  "provenance": {
+    "save_sha256": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
+    "scope": "forecast-standard-recipes",
+    "source": "SCIM gameData snapshot; WB source transforms; not an unlocked recipe inventory",
+    "source_sha256": "104a31f096660de25dc17b3921840f4f330c473469e34becc3e7a23c3a08453b",
+    "game_runtime_verified": false
+  },
+  "recipes": [
+    {
+      "class_name": "Recipe_IngotIron_C",
+      "id": "/Game/FactoryGame/Recipes/Smelter/Recipe_IngotIron.Recipe_IngotIron_C",
+      "name": "Iron Ingot",
+      "machine": "smelter",
+      "duration": 2,
+      "inputs": {
+        "Desc_OreIron_C": 1
+      },
+      "outputs": {
+        "Desc_IronIngot_C": 1
+      },
+      "availableFromTier": 1
+    },
+    {
+      "class_name": "Recipe_IngotCopper_C",
+      "id": "/Game/FactoryGame/Recipes/Smelter/Recipe_IngotCopper.Recipe_IngotCopper_C",
+      "name": "Copper Ingot",
+      "machine": "smelter",
+      "duration": 2,
+      "inputs": {
+        "Desc_OreCopper_C": 1
+      },
+      "outputs": {
+        "Desc_CopperIngot_C": 1
+      },
+      "availableFromTier": 1
+    },
+    {
+      "class_name": "Recipe_IngotSteel_C",
+      "id": "/Game/FactoryGame/Recipes/Smelter/Recipe_IngotSteel.Recipe_IngotSteel_C",
+      "name": "Steel Ingot",
+      "machine": "foundry",
+      "duration": 4,
+      "inputs": {
+        "Desc_OreIron_C": 3,
+        "Desc_Coal_C": 3
+      },
+      "outputs": {
+        "Desc_SteelIngot_C": 3
+      },
+      "availableFromTier": 3
+    },
+    {
+      "class_name": "Recipe_IronPlate_C",
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_IronPlate.Recipe_IronPlate_C",
+      "name": "Iron Plate",
+      "machine": "constructor",
+      "duration": 6,
+      "inputs": {
+        "Desc_IronIngot_C": 3
+      },
+      "outputs": {
+        "Desc_IronPlate_C": 2
+      },
+      "availableFromTier": 1
+    },
+    {
+      "class_name": "Recipe_IronRod_C",
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_IronRod.Recipe_IronRod_C",
+      "name": "Iron Rod",
+      "machine": "constructor",
+      "duration": 4,
+      "inputs": {
+        "Desc_IronIngot_C": 1
+      },
+      "outputs": {
+        "Desc_IronRod_C": 1
+      },
+      "availableFromTier": 1
+    },
+    {
+      "class_name": "Recipe_Screw_C",
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_Screw.Recipe_Screw_C",
+      "name": "Screws",
+      "machine": "constructor",
+      "duration": 6,
+      "inputs": {
+        "Desc_IronRod_C": 1
+      },
+      "outputs": {
+        "Desc_IronScrew_C": 4
+      },
+      "availableFromTier": 1
+    },
+    {
+      "class_name": "Recipe_Wire_C",
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_Wire.Recipe_Wire_C",
+      "name": "Wire",
+      "machine": "constructor",
+      "duration": 4,
+      "inputs": {
+        "Desc_CopperIngot_C": 1
+      },
+      "outputs": {
+        "Desc_Wire_C": 2
+      },
+      "availableFromTier": 1
+    },
+    {
+      "class_name": "Recipe_Cable_C",
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_Cable.Recipe_Cable_C",
+      "name": "Cable",
+      "machine": "constructor",
+      "duration": 2,
+      "inputs": {
+        "Desc_Wire_C": 2
+      },
+      "outputs": {
+        "Desc_Cable_C": 1
+      },
+      "availableFromTier": 1
+    },
+    {
+      "class_name": "Recipe_Concrete_C",
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_Concrete.Recipe_Concrete_C",
+      "name": "Concrete",
+      "machine": "constructor",
+      "duration": 4,
+      "inputs": {
+        "Desc_Stone_C": 3
+      },
+      "outputs": {
+        "Desc_Cement_C": 1
+      },
+      "availableFromTier": 1
+    },
+    {
+      "class_name": "Recipe_CopperSheet_C",
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_CopperSheet.Recipe_CopperSheet_C",
+      "name": "Copper Sheet",
+      "machine": "constructor",
+      "duration": 6,
+      "inputs": {
+        "Desc_CopperIngot_C": 2
+      },
+      "outputs": {
+        "Desc_CopperSheet_C": 1
+      },
+      "availableFromTier": 2
+    },
+    {
+      "class_name": "Recipe_IronPlateReinforced_C",
+      "id": "/Game/FactoryGame/Recipes/Assembler/Recipe_IronPlateReinforced.Recipe_IronPlateReinforced_C",
+      "name": "Reinforced Iron Plate",
+      "machine": "assembler",
+      "duration": 12,
+      "inputs": {
+        "Desc_IronPlate_C": 6,
+        "Desc_IronScrew_C": 12
+      },
+      "outputs": {
+        "Desc_IronPlateReinforced_C": 1
+      },
+      "availableFromTier": 1
+    },
+    {
+      "class_name": "Recipe_Rotor_C",
+      "id": "/Game/FactoryGame/Recipes/Assembler/Recipe_Rotor.Recipe_Rotor_C",
+      "name": "Rotor",
+      "machine": "assembler",
+      "duration": 15,
+      "inputs": {
+        "Desc_IronRod_C": 5,
+        "Desc_IronScrew_C": 25
+      },
+      "outputs": {
+        "Desc_Rotor_C": 1
+      },
+      "availableFromTier": 2
+    },
+    {
+      "class_name": "Recipe_ModularFrame_C",
+      "id": "/Game/FactoryGame/Recipes/Assembler/Recipe_ModularFrame.Recipe_ModularFrame_C",
+      "name": "Modular Frame",
+      "machine": "assembler",
+      "duration": 60,
+      "inputs": {
+        "Desc_IronPlateReinforced_C": 3,
+        "Desc_IronRod_C": 12
+      },
+      "outputs": {
+        "Desc_ModularFrame_C": 2
+      },
+      "availableFromTier": 2
+    },
+    {
+      "class_name": "Recipe_SpaceElevatorPart_1_C",
+      "id": "/Game/FactoryGame/Recipes/SpaceElevatorParts/Recipe_SpaceElevatorPart_1.Recipe_SpaceElevatorPart_1_C",
+      "name": "Smart Plating",
+      "machine": "assembler",
+      "duration": 30,
+      "inputs": {
+        "Desc_IronPlateReinforced_C": 1,
+        "Desc_Rotor_C": 1
+      },
+      "outputs": {
+        "Desc_SpaceElevatorPart_1_C": 1
+      },
+      "availableFromTier": 2
+    },
+    {
+      "class_name": "Recipe_SteelBeam_C",
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_SteelBeam.Recipe_SteelBeam_C",
+      "name": "Steel Beam",
+      "machine": "constructor",
+      "duration": 4,
+      "inputs": {
+        "Desc_SteelIngot_C": 4
+      },
+      "outputs": {
+        "Desc_SteelPlate_C": 1
+      },
+      "availableFromTier": 3
+    },
+    {
+      "class_name": "Recipe_SteelPipe_C",
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_SteelPipe.Recipe_SteelPipe_C",
+      "name": "Steel Pipe",
+      "machine": "constructor",
+      "duration": 6,
+      "inputs": {
+        "Desc_SteelIngot_C": 3
+      },
+      "outputs": {
+        "Desc_SteelPipe_C": 2
+      },
+      "availableFromTier": 3
+    },
+    {
+      "class_name": "Recipe_EncasedIndustrialBeam_C",
+      "id": "/Game/FactoryGame/Recipes/Assembler/Recipe_EncasedIndustrialBeam.Recipe_EncasedIndustrialBeam_C",
+      "name": "Encased Industrial Beam",
+      "machine": "assembler",
+      "duration": 10,
+      "inputs": {
+        "Desc_SteelPlate_C": 3,
+        "Desc_Cement_C": 6
+      },
+      "outputs": {
+        "Desc_SteelPlateReinforced_C": 1
+      },
+      "availableFromTier": 4
+    },
+    {
+      "class_name": "Recipe_Stator_C",
+      "id": "/Game/FactoryGame/Recipes/Assembler/Recipe_Stator.Recipe_Stator_C",
+      "name": "Stator",
+      "machine": "assembler",
+      "duration": 12,
+      "inputs": {
+        "Desc_SteelPipe_C": 3,
+        "Desc_Wire_C": 8
+      },
+      "outputs": {
+        "Desc_Stator_C": 1
+      },
+      "availableFromTier": 4
+    },
+    {
+      "class_name": "Recipe_Motor_C",
+      "id": "/Game/FactoryGame/Recipes/Assembler/Recipe_Motor.Recipe_Motor_C",
+      "name": "Motor",
+      "machine": "assembler",
+      "duration": 12,
+      "inputs": {
+        "Desc_Rotor_C": 2,
+        "Desc_Stator_C": 2
+      },
+      "outputs": {
+        "Desc_Motor_C": 1
+      },
+      "availableFromTier": 4
+    },
+    {
+      "class_name": "Recipe_SpaceElevatorPart_2_C",
+      "id": "/Game/FactoryGame/Recipes/SpaceElevatorParts/Recipe_SpaceElevatorPart_2.Recipe_SpaceElevatorPart_2_C",
+      "name": "Versatile Framework",
+      "machine": "assembler",
+      "duration": 24,
+      "inputs": {
+        "Desc_ModularFrame_C": 1,
+        "Desc_SteelPlate_C": 12
+      },
+      "outputs": {
+        "Desc_SpaceElevatorPart_2_C": 2
+      },
+      "availableFromTier": 3
+    },
+    {
+      "class_name": "Recipe_SpaceElevatorPart_3_C",
+      "id": "/Game/FactoryGame/Recipes/SpaceElevatorParts/Recipe_SpaceElevatorPart_3.Recipe_SpaceElevatorPart_3_C",
+      "name": "Automated Wiring",
+      "machine": "assembler",
+      "duration": 24,
+      "inputs": {
+        "Desc_Stator_C": 1,
+        "Desc_Cable_C": 20
+      },
+      "outputs": {
+        "Desc_SpaceElevatorPart_3_C": 1
+      },
+      "availableFromTier": 4
+    }
+  ]
+}

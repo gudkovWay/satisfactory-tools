@@ -2,52 +2,456 @@
   "schemaVersion": 1,
   "projects": [
     {
-      "id": "modular-engine-100",
-      "saveId": "cachys",
+      "id": "iron-home",
+      "saveId": "slave",
       "kind": "factory",
-      "title": "Модульные двигатели",
-      "subtitle": "Каньонный моторный комбинат",
-      "revision": "a2c8c251afb7a45338499c2ead18cfc426a580afaa675e4f6156b68444c30732",
-      "updatedAt": "2026-10-22T10:19:38Z",
+      "title": "Домашнее железо",
+      "subtitle": "Paradise Island · тир1 · Домашнее железо",
+      "revision": "500ded861d03834de2ad511ccb1de3ed1a0d262bf659473c736797b350c21129",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
       "status": "blocked",
       "target": {
-        "itemId": "Desc_SpaceElevatorPart_4_C",
-        "label": "Modular Engine",
+        "itemId": "Desc_IronPlate_C",
+        "label": "Пластины",
         "rate": 100,
-        "unit": "шт/мин"
+        "unit": "/мин"
       },
       "preview": {
-        "src": "/atlas/cachys/modular-engine-100/revisions/a2c8c251afb7a45338499c2ead18cfc426a580afaa675e4f6156b68444c30732/visuals/zones/F1-00.webp",
-        "alt": "Шесть машин и центральный проход",
-        "caption": "Приближённая AI-иллюстрация по игровым референсам, не игровой скриншот.",
-        "kind": "concept"
+        "src": "/atlas/slave/iron-home/revisions/500ded861d03834de2ad511ccb1de3ed1a0d262bf659473c736797b350c21129/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
       },
-      "drawingCount": 49,
-      "zoneCount": 52
+      "drawingCount": 1
     },
     {
-      "id": "coastal-me250-acu100",
-      "saveId": "cachys",
+      "id": "copper-home",
+      "saveId": "slave",
       "kind": "factory",
-      "title": "Прибрежный комбинат · ME250 + ACU100",
-      "subtitle": "Цеха, этапы сборки и парные чертежи / виды рабочих зон",
-      "revision": "c76ce456d8db6fc77d2582f39681dbc715efaeb7e974a11f830fcde8c694b832",
-      "updatedAt": "2026-10-23T08:43:38.368881+00:00",
+      "title": "Провод и кабель",
+      "subtitle": "Paradise Island · тир1 · Медный цех",
+      "revision": "a92a7964e1a43d1dc88de2e37d77e3a927577688999fbda400517acd15b4aec6",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
       "status": "blocked",
       "target": {
-        "itemId": "Desc_SpaceElevatorPart_4_C",
-        "label": "Modular Engine",
-        "rate": 250.0,
-        "unit": "шт/мин"
+        "itemId": "Desc_Cable_C",
+        "label": "Кабель",
+        "rate": 240,
+        "unit": "/мин"
       },
       "preview": {
-        "src": "/atlas/cachys/coastal-me250-acu100/revisions/c76ce456d8db6fc77d2582f39681dbc715efaeb7e974a11f830fcde8c694b832/views/campus-full.webp",
-        "alt": "Весь прибрежный комбинат с отдельным энергоаннексом",
-        "kind": "concept",
-        "caption": "Общий архитектурный концепт."
+        "src": "/atlas/slave/copper-home/revisions/a92a7964e1a43d1dc88de2e37d77e3a927577688999fbda400517acd15b4aec6/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
       },
-      "drawingCount": 96,
-      "zoneCount": 51
+      "drawingCount": 2
+    },
+    {
+      "id": "concrete",
+      "saveId": "slave",
+      "kind": "factory",
+      "title": "Бетонный двор",
+      "subtitle": "Paradise Island · тир1 · Бетонный двор",
+      "revision": "e0ae6c1aa93c621f3fec8fad902e3352f1e5dc73f71d0f1e4a72d78be5df92af",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "target": {
+        "itemId": "Desc_Cement_C",
+        "label": "Бетон",
+        "rate": 160,
+        "unit": "/мин"
+      },
+      "preview": {
+        "src": "/atlas/slave/concrete/revisions/e0ae6c1aa93c621f3fec8fad902e3352f1e5dc73f71d0f1e4a72d78be5df92af/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 1
+    },
+    {
+      "id": "copper-sheets",
+      "saveId": "slave",
+      "kind": "factory",
+      "title": "Добавить медные листы",
+      "subtitle": "Paradise Island · тир2 · Медный цех",
+      "revision": "3f482cce1c6333f2f9f23b965c7a2cbab46dce51dc10e81f211182c83dbd1991",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "target": {
+        "itemId": "Desc_Cable_C",
+        "label": "Кабель",
+        "rate": 200,
+        "unit": "/мин"
+      },
+      "preview": {
+        "src": "/atlas/slave/copper-sheets/revisions/3f482cce1c6333f2f9f23b965c7a2cbab46dce51dc10e81f211182c83dbd1991/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 2
+    },
+    {
+      "id": "frame-stock",
+      "saveId": "slave",
+      "kind": "factory",
+      "title": "Партия модульных каркасов",
+      "subtitle": "Paradise Island · тир2 · Механический двор",
+      "revision": "b1b0bae18d53a583bd1b8b91c139e6225489fb88ff034e5afe5fcee21badb558",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "target": {
+        "itemId": "Desc_ModularFrame_C",
+        "label": "Модульные каркасы",
+        "rate": 20,
+        "unit": "/мин"
+      },
+      "preview": {
+        "src": "/atlas/slave/frame-stock/revisions/b1b0bae18d53a583bd1b8b91c139e6225489fb88ff034e5afe5fcee21badb558/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 1
+    },
+    {
+      "id": "rotor-stock",
+      "saveId": "slave",
+      "kind": "factory",
+      "title": "Переключить двор на роторы",
+      "subtitle": "Paradise Island · тир2 · Механический двор",
+      "revision": "350c9d0c0910eebed11c7266d9dbac3e0ded699773baef71af240f34cef5abe7",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "target": {
+        "itemId": "Desc_Rotor_C",
+        "label": "Роторы",
+        "rate": 42.666666666666664,
+        "unit": "/мин"
+      },
+      "preview": {
+        "src": "/atlas/slave/rotor-stock/revisions/350c9d0c0910eebed11c7266d9dbac3e0ded699773baef71af240f34cef5abe7/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 2
+    },
+    {
+      "id": "phase-one",
+      "saveId": "slave",
+      "kind": "factory",
+      "title": "Фаза1 · два полных бура",
+      "subtitle": "Paradise Island · тир2 · Механический двор",
+      "revision": "13d134c53f4368a1d3427f1fab6db04f3671c9f99c617792d3dd6be4c2460ab2",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "target": {
+        "itemId": "Desc_SpaceElevatorPart_1_C",
+        "label": "Smart Plating",
+        "rate": 40,
+        "unit": "/мин"
+      },
+      "preview": {
+        "src": "/atlas/slave/phase-one/revisions/13d134c53f4368a1d3427f1fab6db04f3671c9f99c617792d3dd6be4c2460ab2/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 2
+    },
+    {
+      "id": "phase-one-boost",
+      "saveId": "slave",
+      "kind": "factory",
+      "title": "Опция · ускорить фазу1",
+      "subtitle": "Paradise Island · тир2 · Механический двор",
+      "revision": "35292b5813b34b9e127d22dc9965c8afce4343c42a0bc44b0b1a4308e4ded3cd",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "target": {
+        "itemId": "Desc_SpaceElevatorPart_1_C",
+        "label": "Smart Plating",
+        "rate": 100,
+        "unit": "/мин"
+      },
+      "preview": {
+        "src": "/atlas/slave/phase-one-boost/revisions/35292b5813b34b9e127d22dc9965c8afce4343c42a0bc44b0b1a4308e4ded3cd/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 6
+    },
+    {
+      "id": "steel-start",
+      "saveId": "slave",
+      "kind": "factory",
+      "title": "Первый стальной модуль",
+      "subtitle": "Paradise Island · тир3 · Стальной двор",
+      "revision": "baa975342b884613b0dcb5564f8a54195c746cfa014dda23bf01818af3143b29",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "target": {
+        "itemId": "Desc_SteelPlate_C",
+        "label": "Балки",
+        "rate": 80,
+        "unit": "/мин"
+      },
+      "preview": {
+        "src": "/atlas/slave/steel-start/revisions/baa975342b884613b0dcb5564f8a54195c746cfa014dda23bf01818af3143b29/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 1
+    },
+    {
+      "id": "steel-expanded",
+      "saveId": "slave",
+      "kind": "factory",
+      "title": "Стальной двор D10",
+      "subtitle": "Paradise Island · тир3 · Стальной двор",
+      "revision": "167a851023661aba530465c2c956a2808e6798d6f4d9b2387a587479f9ca6ad9",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "target": {
+        "itemId": "Desc_SteelPlate_C",
+        "label": "Балки",
+        "rate": 150,
+        "unit": "/мин"
+      },
+      "preview": {
+        "src": "/atlas/slave/steel-expanded/revisions/167a851023661aba530465c2c956a2808e6798d6f4d9b2387a587479f9ca6ad9/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 1
+    },
+    {
+      "id": "mechanics-stock",
+      "saveId": "slave",
+      "kind": "factory",
+      "title": "Механика для стройки D10",
+      "subtitle": "Paradise Island · тир3 · Механический двор",
+      "revision": "6431a76d3c81e62a82c8c520720e429de3191ea684ce220e0705723c13440cc1",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "target": {
+        "itemId": "Desc_IronPlateReinforced_C",
+        "label": "Усиленные пластины",
+        "rate": 20,
+        "unit": "/мин"
+      },
+      "preview": {
+        "src": "/atlas/slave/mechanics-stock/revisions/6431a76d3c81e62a82c8c520720e429de3191ea684ce220e0705723c13440cc1/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 1
+    },
+    {
+      "id": "concrete-expanded",
+      "saveId": "slave",
+      "kind": "factory",
+      "title": "Вторая бетонная линия",
+      "subtitle": "Paradise Island · тир4 · Бетонный двор",
+      "revision": "b926abe8a01b9596eaef5d46e0a7cff5ab66ec2e05a634bdb2ee3567a863c8bd",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "target": {
+        "itemId": "Desc_Cement_C",
+        "label": "Бетон",
+        "rate": 160,
+        "unit": "/мин"
+      },
+      "preview": {
+        "src": "/atlas/slave/concrete-expanded/revisions/b926abe8a01b9596eaef5d46e0a7cff5ab66ec2e05a634bdb2ee3567a863c8bd/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 1
+    },
+    {
+      "id": "components",
+      "saveId": "slave",
+      "kind": "factory",
+      "title": "EIB, статоры и моторы",
+      "subtitle": "Paradise Island · тир4 · EIB / статоры / моторы",
+      "revision": "3db91072228ae9fcc614f507e1cc6e6073a58d9b98d64a8cc6aeb940891eb1a9",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "target": {
+        "itemId": "Desc_SteelPlateReinforced_C",
+        "label": "EIB",
+        "rate": 20,
+        "unit": "/мин"
+      },
+      "preview": {
+        "src": "/atlas/slave/components/revisions/3db91072228ae9fcc614f507e1cc6e6073a58d9b98d64a8cc6aeb940891eb1a9/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 1
+    },
+    {
+      "id": "hub",
+      "saveId": "slave",
+      "kind": "warehouse",
+      "title": "HUB и исследовательский двор",
+      "subtitle": "Paradise Island · тир1 · HUB · существующий",
+      "revision": "821df5187e42a80744e97859e022712d96c9cb5de8ee3d4d0fed6a6691571d9f",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "preview": {
+        "src": "/atlas/slave/hub/revisions/821df5187e42a80744e97859e022712d96c9cb5de8ee3d4d0fed6a6691571d9f/layout.svg",
+        "alt": "Размерная схема и рабочие проходы",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 1
+    },
+    {
+      "id": "warehouse",
+      "saveId": "slave",
+      "kind": "warehouse",
+      "title": "Склад · первые восемь ячеек",
+      "subtitle": "Paradise Island · тир1 · Склад стройматериалов",
+      "revision": "d37703dad01705cacecdefd465c647c2474b7ab3c09c08b55df01d7a983ed730",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "preview": {
+        "src": "/atlas/slave/warehouse/revisions/d37703dad01705cacecdefd465c647c2474b7ab3c09c08b55df01d7a983ed730/layout.svg",
+        "alt": "Размерная схема и рабочие проходы",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 1
+    },
+    {
+      "id": "bio-start",
+      "saveId": "slave",
+      "kind": "warehouse",
+      "title": "Биостарт и независимый перезапуск",
+      "subtitle": "Paradise Island · тир1 · Временный биостарт",
+      "revision": "eaa9bf50efcb4a243226f10a2537417a10a6823cf7e617af895cefd86359e560",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "preview": {
+        "src": "/atlas/slave/bio-start/revisions/eaa9bf50efcb4a243226f10a2537417a10a6823cf7e617af895cefd86359e560/layout.svg",
+        "alt": "Размерная схема и рабочие проходы",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 1
+    },
+    {
+      "id": "elevator",
+      "saveId": "slave",
+      "kind": "warehouse",
+      "title": "Лифт и отдельные фазовые буферы",
+      "subtitle": "Paradise Island · тир2 · Лифт и фазовые буферы",
+      "revision": "ee0e8b9216c75b935c9e754c415114829afa9f07534cd89c4f4fb14bb5a6672f",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "preview": {
+        "src": "/atlas/slave/elevator/revisions/ee0e8b9216c75b935c9e754c415114829afa9f07534cd89c4f4fb14bb5a6672f/layout.svg",
+        "alt": "Размерная схема и рабочие проходы",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 1
+    },
+    {
+      "id": "coal-start",
+      "saveId": "slave",
+      "kind": "warehouse",
+      "title": "Ранняя угольная станция ·2→4→6",
+      "subtitle": "Paradise Island · тир2 · Береговая угольная станция",
+      "revision": "8aaaa943292c07999d09ec6a0f5fce7fb5348cfbd1a55a428b71004d82de878f",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "preview": {
+        "src": "/atlas/slave/coal-start/revisions/8aaaa943292c07999d09ec6a0f5fce7fb5348cfbd1a55a428b71004d82de878f/layout.svg",
+        "alt": "Размерная схема и рабочие проходы",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 1
+    },
+    {
+      "id": "warehouse-expanded",
+      "saveId": "slave",
+      "kind": "warehouse",
+      "title": "Склад ·24адреса и связи районов",
+      "subtitle": "Paradise Island · тир3 · Склад стройматериалов",
+      "revision": "f8e3b85d44381f5d3584dc675d2bcb2193a24b6cbaf2820f7a0ddb76f37efb05",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "preview": {
+        "src": "/atlas/slave/warehouse-expanded/revisions/f8e3b85d44381f5d3584dc675d2bcb2193a24b6cbaf2820f7a0ddb76f37efb05/layout.svg",
+        "alt": "Размерная схема и рабочие проходы",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 1
+    },
+    {
+      "id": "power-expanded",
+      "saveId": "slave",
+      "kind": "warehouse",
+      "title": "Энергетика · восемь модулей",
+      "subtitle": "Paradise Island · тир3 · Береговая угольная станция",
+      "revision": "3535102afe4810e6a51d09c0db27ba868b6cd384c7de8cbce88a7154670a35b5",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "preview": {
+        "src": "/atlas/slave/power-expanded/revisions/3535102afe4810e6a51d09c0db27ba868b6cd384c7de8cbce88a7154670a35b5/layout.svg",
+        "alt": "Размерная схема и рабочие проходы",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 1
+    },
+    {
+      "id": "power-annex",
+      "saveId": "slave",
+      "kind": "warehouse",
+      "title": "Батарейный аннекс и распределение",
+      "subtitle": "Paradise Island · тир4 · Энергоаннекс · резерв",
+      "revision": "6063769b3db6ce880725911adacce6e5872a57d9a3e569db71e772d6649a5dd1",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "preview": {
+        "src": "/atlas/slave/power-annex/revisions/6063769b3db6ce880725911adacce6e5872a57d9a3e569db71e772d6649a5dd1/layout.svg",
+        "alt": "Размерная схема и рабочие проходы",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 1
+    },
+    {
+      "id": "departure",
+      "saveId": "slave",
+      "kind": "road",
+      "title": "Первый выход на материк · техническое задание",
+      "subtitle": "Paradise Island · тир4 · Склад стройматериалов",
+      "revision": "1485d483f3d0c1e54524671b1fe6d71e4fc129a72d9a595216d7514956edd03c",
+      "updatedAt": "2026-10-30T10:55:59.913Z",
+      "status": "blocked",
+      "preview": {
+        "src": "/atlas/slave/departure/revisions/1485d483f3d0c1e54524671b1fe6d71e4fc129a72d9a595216d7514956edd03c/layout.svg",
+        "alt": "Размерная схема и рабочие проходы",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      },
+      "drawingCount": 1
     }
   ]
 }
