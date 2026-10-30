@@ -45,6 +45,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--seconds', type=int, default=480)
     parser.add_argument('--static-root', type=Path, help='Serve an existing generated public directory instead of Nuxt dev.')
+    parser.add_argument('--software-webgl', action='store_true', help='Render WebGL with SwiftShader in the owned headless profile, without using the hardware GPU.')
+    parser.add_argument('--fine-pointer', action='store_true', help='Expose a virtual fine pointer and hover capability in the owned headless browser.')
     args = parser.parse_args()
     if not 60 <= args.seconds <= 540:
         parser.error('duration must be60..540seconds')
@@ -74,6 +76,8 @@ def main():
     source_files += [ROOT / 'factory.py', *sorted((ROOT / 'satisfactory').glob('*.py'))]
     source_hashes = {str(file.relative_to(ROOT)): hashlib.sha256(file.read_bytes()).hexdigest() for file in source_files}
     manifest = {'url': url, 'artifacts': str(artifacts), 'stop_file': str(stop_file), 'cgroup': Path('/proc/self/cgroup').read_text().strip(), 'deadline_seconds': args.seconds, 'source_hashes': source_hashes}
+    manifest['renderer_profile'] = 'software-webgl' if args.software_webgl else 'default-headless'
+    manifest['pointer_profile'] = 'fine-hover' if args.fine_pointer else 'platform-default'
     if static_root:
         manifest['static_root'] = str(static_root)
         manifest['output_hashes'] = {str(file.relative_to(static_root)): hashlib.sha256(file.read_bytes()).hexdigest()
@@ -109,7 +113,11 @@ def main():
                     except (URLError, TimeoutError):
                         pass
                     time.sleep(.2)
-                browser = subprocess.Popen([private_bus, '--config-file=' + str(bus_config), '--', chromium, '--headless=new', '--disable-gpu', '--remote-debugging-address=127.0.0.1', '--remote-debugging-port=0', '--user-data-dir=' + str(directories['browser']), '--no-first-run', '--no-default-browser-check', '--disable-background-networking', '--disable-sync', '--disable-extensions', '--password-store=basic', url], cwd=ROOT, env=environment, stdout=browser_log, stderr=subprocess.STDOUT, start_new_session=True)
+                render_flags = (['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader']
+                                if args.software_webgl else ['--disable-gpu'])
+                pointer_flags = (['--blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4']
+                                 if args.fine_pointer else [])
+                browser = subprocess.Popen([private_bus, '--config-file=' + str(bus_config), '--', chromium, '--headless=new', *render_flags, *pointer_flags, '--remote-debugging-address=127.0.0.1', '--remote-debugging-port=0', '--user-data-dir=' + str(directories['browser']), '--no-first-run', '--no-default-browser-check', '--disable-background-networking', '--disable-sync', '--disable-extensions', '--password-store=basic', url], cwd=ROOT, env=environment, stdout=browser_log, stderr=subprocess.STDOUT, start_new_session=True)
                 endpoint = directories['browser'] / 'DevToolsActivePort'
                 while not endpoint.is_file():
                     if browser.poll() is not None or time.monotonic() >= deadline:
