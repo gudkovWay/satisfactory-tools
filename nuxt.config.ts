@@ -19,7 +19,7 @@ export default defineNuxtConfig({
   components: [{ path: '~/components', pathPrefix: false, extensions: ['vue'] }],
   vite: { plugins: [tailwindcss()] },
   css: ['~/assets/css/main.css'],
-  colorMode: { preference: 'dark', fallback: 'dark', classSuffix: '' },
+  colorMode: { preference: 'light', fallback: 'light', classSuffix: '' },
   app: { head: {
     htmlAttrs: { lang: 'ru' },
     title: 'Строительный атлас Satisfactory',
