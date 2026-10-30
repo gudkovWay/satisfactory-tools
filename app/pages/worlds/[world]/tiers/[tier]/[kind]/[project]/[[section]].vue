@@ -23,6 +23,16 @@ watchEffect(() => {
 useSeoMeta({ title: () => `${sectionItem.label} / ${project.value?.title || 'Проект'} / Заводской атлас` })
 function printProject() { window.print() }
 const showingZones = computed(() => Boolean(project.value?.zoneAtlas) && route.query.view !== 'drawings' && !route.query.drawing)
+const sectionDescriptions: Record<SectionId, string> = {
+  overview: 'Объём работ, следующий этап и подготовка к строительству.',
+  build: 'Действия, чертежи и проверки для каждого этапа.',
+  drawings: 'Размерные планы, этажи и размещение оборудования.',
+  balance: 'Расчётный выпуск, сырьё и производственные группы.',
+  site: 'Район в плане мира и привязка площадки.',
+  infrastructure: 'Источники, потребители и пределы соединений.',
+  parts: 'Названия в меню, количество и доступность деталей.',
+  evidence: 'Подтверждённые данные, открытые ограничения и источники.'
+}
 </script>
 
 <template>
@@ -34,7 +44,7 @@ const showingZones = computed(() => Boolean(project.value?.zoneAtlas) && route.q
       <div class="project-content">
       <nav class="world-project-breadcrumb" aria-label="Положение в мире"><NuxtLink :to="worldUrl(world.manifest.id)">{{ world.manifest.title }}</NuxtLink><span>/</span><NuxtLink :to="`${worldUrl(world.manifest.id)}/tiers/${summary.tier}`">Тир {{ summary.tier }}</NuxtLink><span>/</span><NuxtLink :to="projectUrl(world.manifest, summary.id)">{{ summary.category === 'factories' ? 'Завод' : 'Глобальный объект' }} · {{ summary.title }}</NuxtLink></nav>
         <header class="project-content-header">
-          <div><p class="project-breadcrumb">{{ project.subtitle }}</p><h1 class="project-section-title">{{ section === 'overview' ? project.title : sectionItem.label }}</h1></div>
+          <div><p class="project-breadcrumb">{{ section === 'overview' ? `Строительный проект · тир ${summary.tier}` : project.title }}</p><h1 class="project-section-title">{{ section === 'overview' ? project.title : sectionItem.label }}</h1><p class="project-section-description">{{ sectionDescriptions[section] }}</p></div>
           <div class="project-header-tools"><ProjectSearch :project="project" /><Button variant="ghost" class="print-button" aria-label="Печать" @click="printProject"><Printer :size="17" aria-hidden="true" /><span>Печать</span></Button></div>
         </header>
         <ProjectReadiness :project="project" />

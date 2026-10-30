@@ -8,4 +8,4 @@ if (error.value) throw createError({ statusCode: error.value.statusCode || 500, 
 if (!data.value) throw createError({ statusCode: 404, statusMessage: 'Мир не найден' })
 provide(worldContextKey, computed(() => data.value!))
 </script>
-<template><div class="world-context"><NuxtPage :page-key="route => route.path" /></div></template>
+<template><div class="world-context"><WorldNavigation /><NuxtPage :page-key="route => route.path" /></div></template>

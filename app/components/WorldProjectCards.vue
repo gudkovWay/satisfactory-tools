@@ -3,4 +3,13 @@ const props = defineProps<{ ids: string[] }>()
 const world = useWorld()
 const projects = computed(() => props.ids.map(id => world.value.manifest.projects.find(project => project.id === id)).filter(item => item !== undefined))
 </script>
-<template><div class="world-project-list"><NuxtLink v-for="project in projects" :key="project.id" :to="projectUrl(world.manifest, project.id)" class="world-project-link"><div><p class="fine">Тир {{ project.tier }} · {{ project.stages }} этапов<span v-if="project.optional"> · необязательный вариант</span></p><h3>{{ project.title }}</h3><p v-if="project.outputs.length">{{ project.outputs.map(flow => `${flow.label} ${formatRate(flow.rate)} / мин`).join(' · ') }}</p><p v-else class="muted">{{ project.site }}</p></div><span aria-hidden="true">↗</span></NuxtLink></div></template>
+<template>
+  <div class="world-project-list">
+    <article v-for="project in projects" :key="project.id" class="project-register-row">
+      <div class="register-identity"><span class="project-kind">{{ project.category === 'factories' ? 'Завод' : 'Глобальный объект' }}<span v-if="project.optional"> · необязательный вариант</span></span><h3><NuxtLink :to="projectUrl(world.manifest, project.id)">{{ project.title }}</NuxtLink></h3><p>{{ project.site }}</p></div>
+      <dl class="register-outputs"><div v-for="flow in project.outputs" :key="flow.itemId"><dt>{{ flow.label }}</dt><dd>{{ formatRate(flow.rate) }} <span>/ мин</span></dd></div><div v-if="!project.outputs.length"><dt>Назначение</dt><dd class="register-purpose">Инфраструктура мира</dd></div></dl>
+      <div class="register-meta"><span>Тир {{ project.tier }}</span><span>{{ project.stages }} этапов</span></div>
+      <NuxtLink class="register-build" :to="projectUrl(world.manifest, project.id, 'build')">К стройке<span class="sr-only">: {{ project.title }}</span></NuxtLink>
+    </article>
+  </div>
+</template>

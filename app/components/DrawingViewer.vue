@@ -188,8 +188,8 @@ function downloadName(url: string) {
 
 <template>
   <section class="panel drawing-viewer" aria-labelledby="drawing-viewer-heading">
-    <header class="stack">
-      <h2 id="drawing-viewer-heading" class="section-heading">Размерные чертежи</h2>
+    <header class="drawing-intro">
+      <h2 id="drawing-viewer-heading" class="sr-only">Размерные чертежи</h2>
       <p class="muted">Выбери вид и этаж. Размеры в метрах; это инженерные схемы, не игровые скриншоты.</p>
     </header>
 
@@ -213,7 +213,7 @@ function downloadName(url: string) {
         Показано {{ visibleDrawings.length }} из {{ project.drawings.length }} чертежей.
       </p>
 
-      <ul class="drawing-list" tabindex="0" aria-label="Список чертежей, прокрутка внутри списка">
+      <ul v-if="project.drawings.length > 1" class="drawing-list" tabindex="0" aria-label="Список чертежей, прокрутка внутри списка">
         <li v-for="drawing in visibleDrawings" :key="drawing.id">
           <button
             type="button"
@@ -233,21 +233,6 @@ function downloadName(url: string) {
       </p>
 
       <template v-if="selectedDrawing">
-        <figure class="drawing-frame drawing-preview">
-          <div class="drawing-image-wrap">
-            <img
-              :src="selectedDrawing.svg"
-              :alt="imageAlt"
-              loading="lazy"
-              decoding="async"
-            >
-          </div>
-          <figcaption>
-            <strong>{{ selectedDrawing.label }}</strong>
-            <span>{{ captionText }}</span>
-          </figcaption>
-        </figure>
-
         <div class="button-row drawing-actions">
           <Button type="button" class="min-h-11" @click="openZoom">Увеличить</Button>
           <a
@@ -266,6 +251,21 @@ function downloadName(url: string) {
             Скачать PNG
           </a>
         </div>
+        <figure class="drawing-frame drawing-preview">
+          <div class="drawing-image-wrap">
+            <img
+              :src="selectedDrawing.svg"
+              :alt="imageAlt"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+          <figcaption>
+            <strong>{{ selectedDrawing.label }}</strong>
+            <span>{{ captionText }}</span>
+          </figcaption>
+        </figure>
+
 
         <section v-if="detailLevel" class="stack level-detail" aria-labelledby="drawing-level-heading">
           <h3 id="drawing-level-heading" class="eyebrow">
@@ -323,6 +323,10 @@ function downloadName(url: string) {
 </template>
 
 <style scoped>
+.drawing-intro p { margin-bottom: 1rem; font-size: .875rem; }
+@media (max-width: 649px) {
+  .drawing-controls { grid-template-columns: repeat(2,minmax(0,1fr)); gap: .75rem; }
+}
 .drawing-controls {
   align-items: end;
 }

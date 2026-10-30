@@ -11,16 +11,16 @@ const next = computed(() => props.project.build.steps.find(step => !isComplete(s
 <template>
   <div class="stack overview">
     <div class="overview-workbench">
-      <figure v-if="project.preview" class="overview-preview"><img :src="project.preview.src" :alt="project.preview.alt" width="1280" height="900"><figcaption>{{ project.preview.kind === 'concept' ? 'AI-концепт завода, не игровой скриншот.' : 'Схема проекта. Размеры смотри в чертежах.' }}</figcaption></figure>
       <section class="overview-next">
         <div class="next-heading"><ListChecks :size="20" aria-hidden="true" /><h2>{{ done === project.build.steps.length && done ? 'Этапы отмечены' : 'Продолжить проект' }}</h2></div>
         <p v-if="next" class="next-stage-name">{{ guideStageLabel(next) }}</p>
         <p class="muted next-description">{{ done === project.build.steps.length && done ? 'Вернись к любому этапу или проверь готовый завод.' : 'Чертежи, детали и порядок действий для следующего этапа.' }}</p>
         <div class="next-progress"><span>Личные отметки</span><strong>{{ done }} <span>/ {{ project.build.steps.length }}</span></strong></div><progress :value="done" :max="project.build.steps.length || 1" aria-label="Личный прогресс строительства" />
         <Button v-if="next" as-child><NuxtLink :to="{ path: projectUrl(world.manifest, project.id, 'build'), query: { stage: next.id } }">{{ done ? 'Вернуться к этапам' : 'Открыть первый этап' }}<ArrowUpRight :size="18" aria-hidden="true" /></NuxtLink></Button>
-        <NuxtLink class="next-secondary" :to="projectUrl(world.manifest, project.id, 'drawings')"><Layers :size="17" aria-hidden="true" />Этажи и чертежи</NuxtLink>
+        <NuxtLink class="next-secondary" :to="projectUrl(world.manifest, project.id, 'drawings')"><Layers :size="17" aria-hidden="true" />Открыть чертежи</NuxtLink>
         <p class="fine">Отметки хранятся в этом браузере и не подтверждают готовность в игре.</p>
       </section>
+      <figure v-if="project.preview" class="overview-preview"><img :src="project.preview.src" :alt="project.preview.alt" width="1280" height="900"><figcaption>{{ project.preview.kind === 'concept' ? 'AI-концепт завода, не игровой скриншот.' : 'Схема проекта. Размеры смотри в чертежах.' }}</figcaption></figure>
     </div>
     <dl class="project-facts"><div v-if="project.target"><dt>Расчётный выпуск</dt><dd>{{ formatRate(project.target.rate) }} <span>{{ project.target.unit }}</span></dd></div><div><dt>Машины по плану</dt><dd>{{ project.placements.length }}</dd></div><div><dt>Уровни</dt><dd>{{ project.levels.length }}</dd></div><div><dt>Размерные чертежи</dt><dd>{{ project.drawings.length }}</dd></div></dl>
     <FloorPreview :project="project" />

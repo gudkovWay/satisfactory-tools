@@ -16,16 +16,15 @@ function switchWorld(value: string | number) {
   <div class="atlas-app">
     <a class="skip-link" href="#main">К содержимому</a>
     <header class="site-header">
-      <NuxtLink class="wordmark" to="/world" aria-label="Строительный атлас: каталог миров"><Factory :size="27" :stroke-width="1.8" aria-hidden="true" /><span><span class="wordmark-title">Строительный атлас</span><span class="wordmark-sub">Satisfactory · миры и проекты</span></span></NuxtLink>
+      <NuxtLink class="wordmark" to="/world" aria-label="Строительный атлас: каталог миров"><Factory :size="27" :stroke-width="1.8" aria-hidden="true" /><span><span class="wordmark-title">Satisfactory<span class="wordmark-sub">Строительный атлас</span></span></span></NuxtLink>
       <nav class="global-nav" aria-label="Главная навигация">
-        <NuxtLink class="header-link" to="/world">Миры</NuxtLink>
-        <NuxtLink v-if="activeWorld" class="header-link" :to="worldUrl(activeWorld.id)">{{ activeWorld.title }}</NuxtLink>
+        <NuxtLink class="header-link" to="/world">Все миры</NuxtLink>
         <div v-if="worldOptions.length > 1" class="field world-switch"><label class="sr-only" for="world-switch">Переключить мир</label><TheSelect trigger-id="world-switch" :model-value="activeWorld?.id || ''" :options="worldOptions" placeholder="Выбрать мир" @update:model-value="switchWorld" /></div>
         <ClientOnly><button class="icon-button theme-toggle" type="button" :aria-label="themeLabel" :title="themeLabel" @click="toggleTheme"><Sun v-if="colorMode.value === 'dark'" :size="20" /><Moon v-else :size="20" /></button><template #fallback><span class="theme-placeholder" /></template></ClientOnly>
       </nav>
     </header>
     <NuxtLoadingIndicator color="var(--accent)" />
     <NuxtPage :transition="{ name: 'page', mode: 'out-in' }" />
-    <footer class="site-footer"><span>Строительный атлас <span class="muted">/ Satisfactory</span></span><span>Планы и личные отметки. Сохранение игры не изменяется.</span></footer>
+    <footer class="site-footer"><span>Строительный атлас <span class="muted">/ Satisfactory</span></span><span>Планы привязаны к снимку мира. Отметки личные; сохранение игры не меняется.</span></footer>
   </div>
 </template>
