@@ -71,6 +71,7 @@ def main():
     url = f'http://127.0.0.1:{port}'
     source_files = [ROOT / 'package.json', ROOT / 'package-lock.json', ROOT / 'nuxt.config.ts', ROOT / 'tsconfig.json']
     source_files += [file for directory in ('app', 'shared', 'public', 'scripts') for file in (ROOT / directory).rglob('*') if file.is_file()]
+    source_files += [ROOT / 'factory.py', *sorted((ROOT / 'satisfactory').glob('*.py'))]
     source_hashes = {str(file.relative_to(ROOT)): hashlib.sha256(file.read_bytes()).hexdigest() for file in source_files}
     manifest = {'url': url, 'artifacts': str(artifacts), 'stop_file': str(stop_file), 'cgroup': Path('/proc/self/cgroup').read_text().strip(), 'deadline_seconds': args.seconds, 'source_hashes': source_hashes}
     if static_root:

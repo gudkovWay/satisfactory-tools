@@ -89,6 +89,17 @@ def asset_path(url, project, assets_root):
     return candidate, suffix
 
 
+def construction_signature(project, assets_root):
+    fields = ('build', 'placements', 'levels', 'production', 'parts', 'drawings', 'zoneAtlas', 'infrastructure', 'sitePlan', 'extraction')
+    semantic = {key: project.get(key) for key in fields}
+    encoded = re.sub(r'/revisions/[0-9a-f]{64}/', '/revisions/', json.dumps(semantic, sort_keys=True, ensure_ascii=False))
+    assets = {}
+    for name, url in asset_references(project):
+        if name.startswith(('drawings[', 'zoneAtlas.', 'infrastructure.diagrams', 'parts.facade', 'production.recipesFile')):
+            assets[name] = digest(asset_path(url, project, assets_root)[0])
+    return hashlib.sha256(json.dumps({'semantic': encoded, 'assets': assets}, sort_keys=True).encode()).hexdigest()
+
+
 def validate_zones(project, assets):
     atlas = project.get('zoneAtlas')
     if atlas is None:
@@ -254,6 +265,10 @@ def validate_project(project, *, recipes_file=None, save_ids=None, known_project
         error('status', 'unknown readiness status')
     if not HASH_RE.fullmatch(str(project.get('revision', ''))):
         error('revision', 'expected SHA-256 source revision')
+    if 'progressRevision' in project and not HASH_RE.fullmatch(str(project['progressRevision'])):
+        error('progressRevision', 'expected SHA-256 construction revision')
+    if 'progressSignature' in project and not HASH_RE.fullmatch(str(project['progressSignature'])):
+        error('progressSignature', 'expected SHA-256 construction signature')
     try:
         datetime.fromisoformat(project.get('updatedAt', '').replace('Z', '+00:00'))
     except (ValueError, TypeError, AttributeError):
@@ -274,6 +289,28 @@ def validate_project(project, *, recipes_file=None, save_ids=None, known_project
         error('readiness', 'constructionReady and status must agree')
     if ready.get('constructionReady') and blockers:
         error('readiness', 'ready project retains blockers')
+    planning = source.get('planning')
+    forecast = planning is not None
+    forecast_profile = {}
+    if forecast:
+        if not isinstance(planning, dict):
+            error('source.planning', 'expected explicit forecast scope')
+            planning = {}
+        tier, density = planning.get('tier'), planning.get('density')
+        if planning.get('mode') != 'forecast' or not number(tier, positive=True, integer=True) or not number(density, positive=True):
+            error('source.planning', 'forecast requires a positive tier and density')
+        try:
+            authority = read_json(registry_root / project['saveId'] / 'source-evidence.json')
+            profiles = [profile for profile in authority.get('forecastProfiles', []) if profile.get('density') == density]
+            if len(profiles) != 1 or not number(tier) or not profiles[0]['minTier'] <= tier <= profiles[0]['maxTier']:
+                error('source.planning', 'density is unavailable in this save/tier profile')
+            else:
+                forecast_profile = profiles[0]
+        except (OSError, ValueError, TypeError, KeyError) as exc:
+            error('source.planning', f'cannot read save forecast profile: {exc}')
+        strings(planning, 'prerequisites', 'source.planning', nonempty=True)
+        if ready.get('constructionReady'):
+            error('readiness', 'a source forecast cannot certify current gameplay readiness')
     strings(project['overview'], 'paragraphs', 'overview', nonempty=True)
     objects(project['overview'], 'decisions', 'overview')
     stages = objects(project['build'], 'steps', 'build', nonempty=True)
@@ -379,8 +416,9 @@ def validate_project(project, *, recipes_file=None, save_ids=None, known_project
             source_registry = read_json(registry_root / project['saveId'] / 'source-evidence.json')
             if source_registry.get('saveSha256') != source['saveSha256']:
                 error('source.saveSha256', 'does not match the registered save snapshot')
-            if source_registry.get('normalizedRecipesSha256') != production.get('recipesSha256'):
-                error('production.recipesSha256', 'does not match the registered unlocked recipe inventory')
+            recipe_authority = 'forecastRecipesSha256' if forecast else 'normalizedRecipesSha256'
+            if source_registry.get(recipe_authority) != production.get('recipesSha256'):
+                error('production.recipesSha256', 'does not match the registered recipe authority')
         except (OSError, ValueError, TypeError, AttributeError) as exc:
             error('source', f'cannot read registered recipe authority: {exc}')
         recipe_data = None
@@ -393,6 +431,8 @@ def validate_project(project, *, recipes_file=None, save_ids=None, known_project
                     error('production', 'recipe unlock snapshot belongs to a different save revision')
             except (OSError, ValueError, TypeError) as exc:
                 error('production', f'cannot read normalized recipes: {exc}')
+        if forecast and isinstance(recipe_data, dict) and recipe_data.get('provenance', {}).get('scope') != 'forecast-standard-recipes':
+            error('production', 'forecast must not masquerade as a current unlock inventory')
         recipes = {recipe.get('class_name'): recipe for recipe in recipe_data.get('recipes', []) if isinstance(recipe, dict)} if isinstance(recipe_data, dict) else {}
         if not recipes:
             error('production', 'normalized unlocked recipe inventory is missing')
@@ -414,8 +454,9 @@ def validate_project(project, *, recipes_file=None, save_ids=None, known_project
             for item, value in ins.items(): net[item] -= value
             if any(not number(process.get(key), positive=True) for key in ('machines', 'clock', 'speedMultiplier', 'durationSeconds', 'cyclesPerMinute')):
                 continue
-            if process['clock'] > 1 + 1e-10:
-                error(label, 'manufacturing overclock is forbidden')
+            clock_limit = forecast_profile.get('manufacturingClockLimit', 1) if forecast else recipe_data.get('provenance', {}).get('manufacturing_clock_limit', 1)
+            if process['clock'] > clock_limit + 1e-10:
+                error(label, 'manufacturing clock exceeds the source profile')
             expected_clock = process['cyclesPerMinute'] * process['durationSeconds'] / (60 * process['machines'] * process['speedMultiplier'])
             if not close(process['clock'], expected_clock):
                 error(label, 'clock/cycle/machine formula mismatch')
@@ -423,10 +464,12 @@ def validate_project(project, *, recipes_file=None, save_ids=None, known_project
             if not recipe or recipe.get('id') != process.get('recipePath'):
                 error(label, 'recipe class/path is absent from pinned unlocked inventory')
                 continue
+            if forecast and (not number(recipe.get('availableFromTier'), positive=True, integer=True) or recipe['availableFromTier'] > planning['tier']):
+                error(label, 'recipe is unavailable at the forecast tier')
             if recipe.get('machine') != process.get('machineKind') or not close(process['durationSeconds'], recipe.get('duration', 0)):
                 error(label, 'machine kind or recipe duration differs from source')
             provenance = recipe_data.get('provenance', {})
-            expected_speed = provenance.get('machine_multipliers', {}).get(process['machineKind'], provenance.get('MkPlus_machine_multiplier', 1))
+            expected_speed = forecast_profile.get('machineMultipliers', {}).get(process['machineKind']) if forecast else provenance.get('machine_multipliers', {}).get(process['machineKind'], provenance.get('MkPlus_machine_multiplier', 1))
             if not number(expected_speed, positive=True) or not close(process['speedMultiplier'], expected_speed):
                 error(label, 'machine speed differs from source modifiers')
             for side, actual in [('inputs', ins), ('outputs', outs)]:
@@ -541,12 +584,21 @@ def publish_project(project, assets_root, *, replace=False, root=ROOT):
         index = read_json(root / 'projects.json') if (root / 'projects.json').exists() else {'schemaVersion': 1, 'projects': []}
         old_bytes = current.read_bytes() if current.exists() else None
         old_index = (root / 'projects.json').read_bytes() if (root / 'projects.json').exists() else None
+        signature = construction_signature(project, assets_root)
+        if old_bytes is not None:
+            previous = json.loads(old_bytes)
+            previous_progress = previous.get('progressRevision', previous['revision'])
+            current_progress = project.get('progressRevision', project['revision'])
+            previous_signature = previous.get('progressSignature') or construction_signature(previous, dest)
+            if previous_progress == current_progress and previous_signature != signature:
+                raise ValueError('construction changed without a new progressRevision')
         root.mkdir(parents=True, exist_ok=True)
         stage = Path(tempfile.mkdtemp(prefix='.factory-stage-', dir=root))
         created_dest = False
         promoted_revision = None
         try:
             published = json.loads(json.dumps(project))
+            published['progressSignature'] = signature
             asset_prefix = f"/atlas/{project['saveId']}/{project['id']}/"
             version_prefix = asset_prefix + 'revisions/' + project['revision'] + '/'
             assets = stage / 'revision'

@@ -12,6 +12,7 @@ import sys
 from satisfactory import paths, save
 from satisfactory.projects import ROOT, asset_path, publish_project, read_json, validate_project
 
+from satisfactory.world import project_world_url, validate_world
 
 class RequestError(ValueError):
     pass
@@ -116,6 +117,7 @@ def planning_context(args):
                 blocking.append('Installed mod manifest inventory changed; refresh the mod and recipe extraction.')
     index = read_json(ROOT / 'projects.json')['projects']
     recipe_candidates = []
+    forecast_candidates = []
     for project in index:
         if project['saveId'] != record['id']:
             continue
@@ -124,6 +126,9 @@ def planning_context(args):
         if production:
             candidate, _ = asset_path(production['recipesFile'], document, ROOT / project['saveId'] / project['id'])
             data = read_json(candidate)
+            if document.get('source', {}).get('planning', {}).get('mode') == 'forecast':
+                forecast_candidates.append({'project': project['id'], 'path': str(candidate), 'sha256': digest(candidate), 'scope': 'forecast; not currently unlocked or runtime-certified'})
+                continue
             recipe_candidates.append((candidate, data, data.get('provenance', {}).get('save_sha256') == selected_hash))
     chosen = next((candidate for candidate in recipe_candidates if candidate[2]), recipe_candidates[0] if recipe_candidates else None)
     if chosen is None:
@@ -136,6 +141,7 @@ def planning_context(args):
         'snapshot': {'path': str(snapshot_file) if snapshot else None, 'fresh': not blocking, 'fingerprints': fingerprint,
                      'mods': snapshot.get('mods', []) if snapshot else [], 'settings': snapshot.get('settings', {}) if snapshot else {}},
         'recipes': {'path': str(chosen[0]), 'sha256': digest(chosen[0]), 'unlockedCount': len(chosen[1]['recipes']), 'saveMatches': chosen[2]} if chosen else None,
+        'forecasts': forecast_candidates,
         'existingProjects': [{'id': project['id'], 'kind': project['kind'], 'path': str(ROOT / project['saveId'] / project['id'] / 'project.json')} for project in index if project['saveId'] == record['id']],
         'blocking': blocking,
         'next': 'Compare supported full recipe chains, audit existing allocations, produce a complete ProjectDocument and assets, validate and publish. Never mutate saves or label a schematic as an exact game render.'
@@ -156,29 +162,39 @@ def main(argv=None):
     prepare.add_argument('--save-file')
     prepare.add_argument('--game-dir')
     prepare.add_argument('--kind', choices=['factory', 'road', 'depot', 'warehouse'], default='factory')
+    worlds = commands.add_parser('validate-world', help='Validate all registered world contexts and their engineering profiles.')
+    worlds.add_argument('--atlas-root', type=Path, default=ROOT)
+    worlds.add_argument('--worlds-root', type=Path)
     validate = commands.add_parser('validate', help='Check full project/assets/recipe arithmetic without publishing.')
     validate.add_argument('project')
     validate.add_argument('--assets')
+    validate.add_argument('--atlas-root', type=Path, default=ROOT)
     publish = commands.add_parser('publish', help='Publish validated project and immutable asset revision.')
     publish.add_argument('project')
     publish.add_argument('--assets', required=True)
     publish.add_argument('--replace', action='store_true')
+    publish.add_argument('--atlas-root', type=Path, default=ROOT)
+    publish.add_argument('--worlds-root', type=Path)
     try:
         args = parser.parse_args(argv)
+        if args.command == 'validate-world':
+            result = validate_world(root=args.atlas_root, worlds_root=args.worlds_root)
+            emit(result, error=not result['ok'])
+            return 0 if result['ok'] else 2
         if args.command == 'prepare':
             emit(planning_context(args))
             return 0
         source, document = load_document(args.project)
         assets_root = Path(args.assets).expanduser().absolute() if args.assets else source.parent
-        errors, warnings = validate_project(document, assets_root=assets_root)
+        errors, warnings = validate_project(document, assets_root=assets_root, registry_root=args.atlas_root)
         if errors:
             emit({'ok': False, 'errors': errors, 'warnings': warnings}, error=True)
             return 2
         if args.command == 'validate':
             emit({'ok': True, 'project': f"{document['saveId']}/{document['id']}", 'revision': document['revision'], 'warnings': warnings})
         else:
-            destination = publish_project(document, assets_root, replace=args.replace)
-            emit({'ok': True, 'published': str(destination), 'url': f"/projects/{document['saveId']}/{document['id']}", 'warnings': warnings})
+            destination = publish_project(document, assets_root, replace=args.replace, root=args.atlas_root)
+            emit({'ok': True, 'published': str(destination), 'url': project_world_url(document, args.worlds_root), 'warnings': warnings})
         return 0
     except (RequestError, OSError, ValueError, TypeError, KeyError, AttributeError, IndexError) as exc:
         emit({'ok': False, 'error': str(exc)}, error=True)
