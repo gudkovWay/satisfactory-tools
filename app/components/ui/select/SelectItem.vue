@@ -14,7 +14,7 @@ const forwardedProps = useForwardProps(delegatedProps)
 
 <template>
   <RekaSelectItem v-bind="forwardedProps" data-slot="select-item" :class="cn(
-    'relative flex min-h-11 w-full min-w-0 cursor-pointer items-center rounded-sm py-2 pr-3 pl-9 text-sm font-normal text-foreground outline-none select-none data-[highlighted]:bg-selection data-[highlighted]:text-branded data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+    'relative flex min-h-11 w-full min-w-0 cursor-pointer items-center rounded-lg py-2 pr-3 pl-9 text-sm font-normal text-foreground outline-none select-none data-[highlighted]:bg-selection data-[highlighted]:text-branded data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
     props.class,
   )">
     <span class="absolute left-3 flex size-4 items-center justify-center"><SelectItemIndicator><Check aria-hidden="true" class="size-4" /></SelectItemIndicator></span>

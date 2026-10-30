@@ -49,7 +49,7 @@ function updateValue(value: unknown) {
         :aria-busy="props.isLoading || undefined"
         :class="[
           selectTriggerVariants({ variant: props.variant, wrapLabels: props.wrapLabels, borderless: props.borderless }),
-          props.error && 'border-destructive hover:border-destructive focus-visible:border-destructive focus-visible:ring-destructive',
+          props.error && 'border-destructive hover:border-destructive focus-visible:border-destructive',
         ]"
       >
         <SelectValue :placeholder="props.placeholder" class="min-w-0 flex-1 text-left">{{ selectedLabel || props.placeholder }}</SelectValue>
