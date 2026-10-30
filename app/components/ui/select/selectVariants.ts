@@ -5,14 +5,14 @@ export const selectTriggerVariants = cva('min-w-0', {
     variant: {
       default: '',
       filled: 'bg-elements-background',
-      settings: 'bg-elements-background min-h-11 px-3 py-2 text-base font-normal',
+      settings: 'bg-background min-h-12 px-4 py-3 text-base font-normal',
     },
     borderless: {
       true: 'border-transparent hover:border-transparent',
       false: '',
     },
     wrapLabels: {
-      true: 'h-auto min-h-11 whitespace-normal [&>span]:break-words',
+      true: 'h-auto min-h-12 whitespace-normal [&>span]:break-words',
       false: '[&>span]:truncate',
     },
   },

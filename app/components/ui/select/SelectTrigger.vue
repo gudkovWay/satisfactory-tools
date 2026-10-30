@@ -14,10 +14,10 @@ const forwardedProps = useForwardProps(delegatedProps)
 
 <template>
   <RekaSelectTrigger v-bind="forwardedProps" data-slot="select-trigger" :class="cn(
-    'group flex min-h-11 w-full min-w-0 items-center justify-between gap-2 rounded-md border border-elements-border bg-transparent px-3 py-2 text-base font-normal text-foreground outline-none transition-colors duration-150 hover:border-branded focus-visible:border-branded focus-visible:ring-2 focus-visible:ring-branded disabled:cursor-not-allowed disabled:opacity-50 data-placeholder:text-elements-foreground data-[state=open]:border-branded motion-reduce:transition-none',
+    'atlas-select-trigger group flex min-h-12 w-full min-w-0 items-center justify-between gap-3 rounded-lg border border-elements-border bg-transparent px-4 py-3 text-base font-normal text-foreground outline-none hover:border-foreground focus-visible:border-branded disabled:cursor-not-allowed disabled:opacity-50 data-placeholder:text-elements-foreground data-[state=open]:border-branded',
     props.class,
   )">
     <slot />
-    <SelectIcon as-child><ChevronDown aria-hidden="true" class="size-4 shrink-0 text-label-foreground transition-transform duration-150 group-data-[state=open]:rotate-180 motion-reduce:transition-none" /></SelectIcon>
+    <SelectIcon as-child><ChevronDown aria-hidden="true" class="size-4 shrink-0 text-label-foreground transition-transform duration-300 ease-[cubic-bezier(.22,1,.36,1)] group-data-[state=open]:rotate-180 motion-reduce:transition-none" /></SelectIcon>
   </RekaSelectTrigger>
 </template>
