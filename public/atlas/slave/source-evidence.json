@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "snapshotAt": "2026-10-30T10:55:59.913Z",
+  "saveSha256": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
+  "forecastRecipesSha256": "5887a644bb4b67388aed06c9c048f9ca74f15cb2cf0610c556c9c46b7556fbd5",
+  "forecastOnly": true,
+  "fingerprintScope": "Exact source save + SCIM base coefficients + WB source. Not a normalized current107-mod runtime recipe inventory.",
+  "fingerprints": [],
+  "settings": {
+    "randomization": "NRM_AdvancedRich",
+    "purity": "NPS_Increase",
+    "spacePartsMultiplier": 100,
+    "activeMods": 107,
+    "WB": "1.0.3",
+    "ParadiseIsland": "1.0.9"
+  },
+  "mods": [
+    "WorldBalance1.0.3",
+    "ParadiseIsland1.0.9",
+    "MkPlus",
+    "BuildingSkills",
+    "RefinedPower"
+  ],
+  "sourceHashes": {
+    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-paradise-world-site/.superpowers/research/paradise-analysis-20261030/slave-source.sav": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
+    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-world-balance/mods/world-balance/WorldBalance/Source/WorldBalance/Private/WorldBalanceCatalog.cpp": "7da46f426d70b8e897f415408123165cb87f7a33e9ee87209900feb073825170",
+    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-world-balance/mods/world-balance/WorldBalance/Source/WorldBalance/Public/WorldBalanceCatalog.h": "7309f65ca5258395cab56e32ed074fac0931dba350c718e1e8695f5d1bbabc49",
+    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-world-balance/mods/world-balance/WorldBalance/Source/WorldBalance/Private/WorldBalanceWorldModule.cpp": "a92f668fce2d8abe2190e8fe1d2b35acf31b0caf19a6f657229a27e39a96d08c",
+    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-world-balance/mods/world-balance/WorldBalance/Source/WorldBalanceEditor/Private/WorldBalanceGenerateCommandlet.cpp": "237a688a46a57bb88f407acc30f95017a629612ca5598d0435d9da288bc4299d"
+  },
+  "forecastProfiles": [
+    {
+      "density": 5,
+      "minTier": 1,
+      "maxTier": 8,
+      "machineMultipliers": {
+        "constructor": 5,
+        "smelter": 5,
+        "assembler": 5,
+        "foundry": 5
+      },
+      "manufacturingClockLimit": 1
+    },
+    {
+      "density": 10,
+      "minTier": 3,
+      "maxTier": 8,
+      "machineMultipliers": {
+        "constructor": 10,
+        "smelter": 10,
+        "assembler": 10,
+        "foundry": 10
+      },
+      "manufacturingClockLimit": 1
+    },
+    {
+      "density": 15,
+      "minTier": 5,
+      "maxTier": 8,
+      "machineMultipliers": {
+        "constructor": 15,
+        "smelter": 15,
+        "assembler": 15,
+        "foundry": 15
+      },
+      "manufacturingClockLimit": 1
+    }
+  ]
+}

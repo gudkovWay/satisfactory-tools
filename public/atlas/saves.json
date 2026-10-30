@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "saves": [
+    {
+      "id": "slave",
+      "name": "Paradise Island",
+      "sessionName": "slave",
+      "sourceLabel": "slave.sav · WB1.0.3 · seed1635395380 ·лифт×100",
+      "sourceSha256": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
+      "snapshotAt": "2026-10-30T10:55:59.913Z",
+      "modCount": 107
+    }
+  ]
+}

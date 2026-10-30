@@ -1,0 +1,29 @@
+{
+  "model": "openai-codex/gpt-image-2",
+  "runtimeModel": "gpt-image-2-codex",
+  "provider": "openai-codex",
+  "assets": [
+    {
+      "file": "campus-concept.webp",
+      "sha256": "ae88956cafb1a7219f64ee2c91e1b3f342939bb2196fd6073a52f7fe96805346",
+      "kind": "concept",
+      "gameCapture": false
+    },
+    {
+      "file": "warehouse-concept.webp",
+      "sha256": "261c92c04a527d6a92df5a9a1a0dfeac70dce1b8ea1f17b986a5718604514862",
+      "kind": "concept",
+      "gameCapture": false
+    }
+  ],
+  "reference": "ParadiseIsland author landscape reference; not a new game capture",
+  "blenderMCP": "not mounted; isolated Blender CLI planned",
+  "blender": {
+    "version": "5.2.3 LTS",
+    "interface": "headless CLI; MCP unavailable",
+    "scriptSha256": "85c093a108198d1b312e005502fc2c31593c764e52da78a67551895cb48c13de",
+    "sceneSha256": "6b0582b58e06fc072420575c2432556714b401917606f21fdbb1290cb2668707",
+    "outputSha256": "04a83a42606984b89d0a42b1053e6d80c0ff2db0d0711ca023ca6dc3c969bd12",
+    "terrain": "schematic flat plane; not a game mesh"
+  }
+}

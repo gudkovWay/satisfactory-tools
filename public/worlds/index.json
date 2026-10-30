@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "worlds": [
+    {
+      "id": "paradise-island",
+      "saveId": "slave",
+      "title": "Paradise Island",
+      "summary": "Домашний остров, WB1.0.3, лифт ×100. Последовательный маршрут тиров1–4 до материкового масштаба.",
+      "snapshotAt": "2026-10-30T10:55:59.913Z"
+    }
+  ]
+}

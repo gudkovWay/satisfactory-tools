@@ -1,0 +1,146 @@
+{
+  "allocations": [
+    {
+      "id": "iron-home",
+      "tier": 1,
+      "site": "iron-home",
+      "nodes": [
+        "BP_ResourceNode_Iron_1"
+      ],
+      "mode": "100% Miner I;240Fe",
+      "output": "Пластины100,стержни90"
+    },
+    {
+      "id": "copper-home",
+      "tier": 1,
+      "site": "copper-home",
+      "nodes": [
+        "BP_ResourceNode_Copper_3"
+      ],
+      "mode": "100% Miner I;480Cu",
+      "output": "Кабель240,провод480"
+    },
+    {
+      "id": "concrete",
+      "tier": 1,
+      "site": "concrete",
+      "nodes": [
+        "BP_ResourceNode_Limestone_2"
+      ],
+      "mode": "100% Miner I;480stone",
+      "output": "Бетон160"
+    },
+    {
+      "id": "copper-sheets",
+      "tier": 2,
+      "site": "copper-home",
+      "nodes": [
+        "BP_ResourceNode_Copper_3"
+      ],
+      "mode": "вместо copper-home,не вместе",
+      "output": "Кабель200,провод360,лист50"
+    },
+    {
+      "id": "frame-stock",
+      "tier": 2,
+      "site": "mechanics",
+      "nodes": [
+        "BP_ResourceNode_Iron_2"
+      ],
+      "mode": "100% Miner I;480Fe;партийный режим",
+      "output": "Каркасы20"
+    },
+    {
+      "id": "rotor-stock",
+      "tier": 2,
+      "site": "mechanics",
+      "nodes": [
+        "BP_ResourceNode_Iron_2"
+      ],
+      "mode": "вместо frame-stock;480Fe",
+      "output": "Роторы42,667"
+    },
+    {
+      "id": "phase-one",
+      "tier": 2,
+      "site": "mechanics",
+      "nodes": [
+        "BP_ResourceNode_Iron_2",
+        "BP_ResourceNode_Iron_3"
+      ],
+      "mode": "вместо обоих stock;2×480Fe",
+      "output": "SP40,RIP2,5"
+    },
+    {
+      "id": "phase-one-boost",
+      "tier": 2,
+      "site": "mechanics",
+      "nodes": [
+        "BP_ResourceNode_Iron_2",
+        "BP_ResourceNode_Iron_3"
+      ],
+      "mode": "опция вместо phase-one;2×1200Fe",
+      "output": "SP100,RIP6,25"
+    },
+    {
+      "id": "steel-start",
+      "tier": 3,
+      "site": "steel",
+      "nodes": [
+        "BP_ResourceNode_Iron_2",
+        "BP_ResourceNode_Coal_1"
+      ],
+      "mode": "после отправки фазы1;480+480",
+      "output": "Балки80,трубы106,667"
+    },
+    {
+      "id": "steel-expanded",
+      "tier": 3,
+      "site": "steel",
+      "nodes": [
+        "BP_ResourceNode_Iron_2",
+        "BP_ResourceNode_Coal_1"
+      ],
+      "mode": "вместо steel-start;2×Miner II100%;960+960",
+      "output": "Балки150,трубы240"
+    },
+    {
+      "id": "mechanics-stock",
+      "tier": 3,
+      "site": "mechanics",
+      "nodes": [
+        "BP_ResourceNode_Iron_3"
+      ],
+      "mode": "после фазы1;Miner II100%;960Fe",
+      "output": "RIP20,ротор20,каркас20,стержень15"
+    },
+    {
+      "id": "concrete-expanded",
+      "tier": 4,
+      "site": "concrete",
+      "nodes": [
+        "BP_ResourceNode_Limestone_3"
+      ],
+      "mode": "новая независимая линия480stone",
+      "output": "Бетон160:120EIB+40склад"
+    },
+    {
+      "id": "components",
+      "tier": 4,
+      "site": "components",
+      "nodes": [],
+      "mode": "входы от готовых продуктов,не новая руда",
+      "output": "EIB20,мотор10"
+    }
+  ],
+  "reserved": [
+    "BP_ResourceNode_Copper_1",
+    "BP_ResourceNode_Copper_2",
+    "BP_ResourceNode_Limestone_1",
+    "BP_ResourceNode_Oil_1",
+    "BP_ResourceNode_Quartz_1",
+    "BP_ResourceNode_Sulfur_1"
+  ],
+  "powerNode": "BP_ResourceNode_Coal_2",
+  "sourceSha256": "11db7d05cfe0134db1ee118323274cbdccad9628171b7324387a44176d2a7a0d"
+}

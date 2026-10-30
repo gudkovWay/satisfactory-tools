@@ -1,0 +1,409 @@
+{
+  "schemaVersion": 1,
+  "id": "seed",
+  "title": "01 · Сейв и остров",
+  "summary": "Фактический снимок slave: что уже открыто, где находятся ресурсы и что ещё не проверено в игре.",
+  "saveSha256": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
+  "snapshotAt": "2026-10-30T10:55:59.913Z",
+  "seed": 1635395380,
+  "settings": {
+    "randomization": "NRM_AdvancedRich",
+    "purity": "NPS_Increase",
+    "spacePartsMultiplier": 100,
+    "activeMods": 107,
+    "WB": "1.0.3",
+    "ParadiseIsland": "1.0.9"
+  },
+  "hub": [
+    -1835.3383,
+    2852.81,
+    -6.9746
+  ],
+  "nodes": [
+    {
+      "id": "BP_ResourceNode_Coal_1",
+      "resource": "Desc_Coal_C",
+      "purity": "RP_Pure",
+      "xyz_m": [
+        -2073.64,
+        3032.2,
+        13
+      ],
+      "hub_distance_m": 298.3,
+      "save_actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65138E302_1099485070",
+      "author_asset": "__ExternalActors__/EDL/F7029A84/Game/FactoryGame/Map/GameLevel01/Persistent_Level/5/BU/50P0GT6LR3P2VGDIYTQ1HG.uasset",
+      "author_blob_sha": "eb0f16413307574f0056a95d751b3e3cdb9296a5"
+    },
+    {
+      "id": "BP_ResourceNode_Coal_2",
+      "resource": "Desc_Coal_C",
+      "purity": "RP_Pure",
+      "xyz_m": [
+        -1753.91,
+        2474.49,
+        -8.35
+      ],
+      "hub_distance_m": 387,
+      "save_actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65138E302_1141775071",
+      "author_asset": "__ExternalActors__/EDL/F7029A84/Game/FactoryGame/Map/GameLevel01/Persistent_Level/A/21/89CPZM67PSA3ARITJN2MWS.uasset",
+      "author_blob_sha": "0617bd0d66db332a7f1babe05faa70ea8ced8fd6"
+    },
+    {
+      "id": "BP_ResourceNode_Copper_1",
+      "resource": "Desc_OreCopper_C",
+      "purity": "RP_Pure",
+      "xyz_m": [
+        -1553.69,
+        2991.63,
+        0.5
+      ],
+      "hub_distance_m": 314,
+      "save_actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65137E302_1889993887",
+      "author_asset": "__ExternalActors__/EDL/F7029A84/Game/FactoryGame/Map/GameLevel01/Persistent_Level/9/JG/OGLIL8FIGFCR3WLOQEHI3D.uasset",
+      "author_blob_sha": "843a7ed77813441ed4e2afe38d6c132dae7702e4"
+    },
+    {
+      "id": "BP_ResourceNode_Copper_2",
+      "resource": "Desc_OreCopper_C",
+      "purity": "RP_Pure",
+      "xyz_m": [
+        -1562.14,
+        2962.52,
+        0.9
+      ],
+      "hub_distance_m": 294.4,
+      "save_actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65137E302_1943952888",
+      "author_asset": "__ExternalActors__/EDL/F7029A84/Game/FactoryGame/Map/GameLevel01/Persistent_Level/8/P6/RZ0NS0HFPC061TT3AE0VZJ.uasset",
+      "author_blob_sha": "bdaa16b3d1619374d4f112db998cef1947e52959"
+    },
+    {
+      "id": "BP_ResourceNode_Copper_3",
+      "resource": "Desc_OreCopper_C",
+      "purity": "RP_Pure",
+      "xyz_m": [
+        -1745.9,
+        2929.59,
+        -1.85
+      ],
+      "hub_distance_m": 117.9,
+      "save_actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65137E302_1945816889",
+      "author_asset": "__ExternalActors__/EDL/F7029A84/Game/FactoryGame/Map/GameLevel01/Persistent_Level/D/L7/1RIYNKRD2RDWTB7HZ0E410.uasset",
+      "author_blob_sha": "61d676634e0972b94e5812949b12ea186026f598"
+    },
+    {
+      "id": "BP_ResourceNode_Iron_1",
+      "resource": "Desc_OreIron_C",
+      "purity": "RP_Normal",
+      "xyz_m": [
+        -1909.65,
+        2790.82,
+        -3.8
+      ],
+      "hub_distance_m": 96.8,
+      "save_actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E651DEE302_1857654279",
+      "author_asset": "__ExternalActors__/EDL/F7029A84/Game/FactoryGame/Map/GameLevel01/Persistent_Level/B/HG/ZTGPDH7B4TB9B6TTMZ45L0.uasset",
+      "author_blob_sha": "6ea699194b50c61e1de47853bc5599586433ac7e"
+    },
+    {
+      "id": "BP_ResourceNode_Iron_2",
+      "resource": "Desc_OreIron_C",
+      "purity": "RP_Pure",
+      "xyz_m": [
+        -1934.14,
+        2798.45,
+        -5.3
+      ],
+      "hub_distance_m": 112.8,
+      "save_actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E651DEE302_1930683282",
+      "author_asset": "__ExternalActors__/EDL/F7029A84/Game/FactoryGame/Map/GameLevel01/Persistent_Level/0/A3/XLWCBYZD9HAZMWHYWL5FPP.uasset",
+      "author_blob_sha": "77023ed679a59134b5d3b7b934a8fd82bf678d77"
+    },
+    {
+      "id": "BP_ResourceNode_Iron_3",
+      "resource": "Desc_OreIron_C",
+      "purity": "RP_Pure",
+      "xyz_m": [
+        -1951.92,
+        2822.84,
+        -7.1
+      ],
+      "hub_distance_m": 120.4,
+      "save_actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E651DEE302_1931058283",
+      "author_asset": "__ExternalActors__/EDL/F7029A84/Game/FactoryGame/Map/GameLevel01/Persistent_Level/9/R0/AWT7J9ICYIEBPK158YHH1Z.uasset",
+      "author_blob_sha": "dfdcdcc8863f9a96087508bad7cce4303fc40244"
+    },
+    {
+      "id": "BP_ResourceNode_Limestone_1",
+      "resource": "Desc_Stone_C",
+      "purity": "RP_Normal",
+      "xyz_m": [
+        -2006.04,
+        2613.92,
+        -16.05
+      ],
+      "hub_distance_m": 293.6,
+      "save_actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65137E302_2021563890",
+      "author_asset": "__ExternalActors__/EDL/F7029A84/Game/FactoryGame/Map/GameLevel01/Persistent_Level/7/L3/TLGQONIRRT58KBF8TDH6Q6.uasset",
+      "author_blob_sha": "ab7fae46e202053c7c08c2967493e147ef34e9be"
+    },
+    {
+      "id": "BP_ResourceNode_Limestone_2",
+      "resource": "Desc_Stone_C",
+      "purity": "RP_Pure",
+      "xyz_m": [
+        -1807.21,
+        2729.69,
+        0.95
+      ],
+      "hub_distance_m": 126.3,
+      "save_actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65137E302_2073301891",
+      "author_asset": "__ExternalActors__/EDL/F7029A84/Game/FactoryGame/Map/GameLevel01/Persistent_Level/A/FK/CFQ8ARKQM162F1T8EATH1C.uasset",
+      "author_blob_sha": "eb0d37a6b24c9fd32c467c0aeda121b0a2139dde"
+    },
+    {
+      "id": "BP_ResourceNode_Limestone_3",
+      "resource": "Desc_Stone_C",
+      "purity": "RP_Pure",
+      "xyz_m": [
+        -1769.65,
+        2756.15,
+        2.15
+      ],
+      "hub_distance_m": 116.9,
+      "save_actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65137E302_2073629892",
+      "author_asset": "__ExternalActors__/EDL/F7029A84/Game/FactoryGame/Map/GameLevel01/Persistent_Level/9/8D/WLQHHICEAM3NBNTM96KM9A.uasset",
+      "author_blob_sha": "a007c59429ef181093b9ab75819ac495c1278d49"
+    },
+    {
+      "id": "BP_ResourceNode_Oil_1",
+      "resource": "Desc_LiquidOil_C",
+      "purity": "RP_Pure",
+      "xyz_m": [
+        -2202.69,
+        2844.69,
+        -16.35
+      ],
+      "hub_distance_m": 367.4,
+      "save_actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65182F202_1564705929",
+      "author_asset": "__ExternalActors__/EDL/F7029A84/Game/FactoryGame/Map/GameLevel01/Persistent_Level/0/IP/OEX76CHB6KF31B0OZ1JULT.uasset",
+      "author_blob_sha": "cd0998d7eae451999338e0ff98e782d54a2d3c31"
+    },
+    {
+      "id": "BP_ResourceNode_Quartz_1",
+      "resource": "Desc_RawQuartz_C",
+      "purity": "RP_Pure",
+      "xyz_m": [
+        -1666.93,
+        3154.18,
+        -23.35
+      ],
+      "hub_distance_m": 345.2,
+      "save_actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65137E302_2132856893",
+      "author_asset": "__ExternalActors__/EDL/F7029A84/Game/FactoryGame/Map/GameLevel01/Persistent_Level/3/AM/JYIW4X7YAYFN2LI79ZY553.uasset",
+      "author_blob_sha": "b6c47354df557162092166b327e0ad295c42d76c"
+    },
+    {
+      "id": "BP_ResourceNode_Sulfur_1",
+      "resource": "Desc_Sulfur_C",
+      "purity": "RP_Pure",
+      "xyz_m": [
+        -2066.29,
+        2634.2,
+        49.09
+      ],
+      "hub_distance_m": 318,
+      "save_actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65138E302_1173523072",
+      "author_asset": "__ExternalActors__/EDL/F7029A84/Game/FactoryGame/Map/GameLevel01/Persistent_Level/3/KR/ILGDN0Y9P08OCKAXTUXS2M.uasset",
+      "author_blob_sha": "d4a3d095e48a725f42bcd63c188bba7ffe2472e2"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Seed — не новый рельеф",
+      "paragraphs": [
+        "Рельеф карты фиксирован. Seed 1635395380 управляет рандомизацией ресурсов. Paradise Island добавляет 14 собственных нод: их типы установлены по совпадению UAID акторов сейва с actor assets автора, а не по ближайшему ванильному маркеру SCIM.",
+        "На острове 3 железа, 3 меди, 3 известняка, 2 угля, по одной нефти, кварца и серы. Чистота: 12 pure и 2 normal. Нефть доступна географически, но технология её добычи — только после фазы 2."
+      ]
+    },
+    {
+      "title": "Начинаем с построенного, а не с нового прохождения",
+      "paragraphs": [
+        "В снимке есть HUB и его встроенные сжигатели; заводских машин, буров и лент нет. Открыты Base Building, Field Research, Obstacle Clearing, стартовые технологии, WB Extraction I и исследование слизней. Logistics и Part Assembly ещё не куплены. Фаза лифта 0 → 1.",
+        "В инвентаре: 353 пластины, 400 стержней, 108 усиленных пластин, 1976 винтов, 326 бетона, 2000 провода, 811 кабеля и 332 твёрдого биотоплива. Этот запас — разовый стартовый капитал, не постоянный поток."
+      ]
+    },
+    {
+      "title": "Что подтверждено",
+      "paragraphs": [
+        "Тот же slave.sav загружен через штатное поле файла в satisfactory-calculator. Сохранены разобранные объекты, настройки, рецепты и маркеры. Повторный SHA-256 текущего файла совпал со снимком анализа.",
+        "Исходники WB задают добычу, число портов, скорость лент, плотность машин и энергопотребление. На них основаны следующие расчётные состояния; старые потоки 150 руды/мин и сценарий ожидания 83 часа исключены из плана."
+      ]
+    },
+    {
+      "title": "Что не подтверждено",
+      "paragraphs": [
+        "Активны 107 модов, в том числе MkPlus, BuildingSkills и RefinedPower. Взаимодействие их runtime-модификаторов с WB не замерено. Арифметика WB не выдается за измерение работающего завода.",
+        "Глубина воды, коллизии площадок, доступные слизни/сферы и распределение потока между выходами требуют проверки в игре. Координаты зданий далее — предлагаемые строительные конверты; координаты нод — данные сейва.",
+        "До массового повторения модуля: поставить одну WB-машину, сверить UI 100%, рецепт, фактический минутный выпуск и MW. При расхождении остановить масштабирование, а не скрывать его заниженной частотой."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Satisfactory Calculator — снимок загружен",
+      "url": "https://satisfactory-calculator.com/en/interactive-map"
+    },
+    {
+      "label": "Paradise Island — авторский мод",
+      "url": "https://ficsit.app/mod/ParadiseIsland"
+    },
+    {
+      "label": "Paradise Island — исходные акторы",
+      "url": "https://github.com/mklierman/SatisfactoryMods/tree/main/ParadiseIsland"
+    }
+  ],
+  "evidence": {
+    "save": "verified",
+    "calculatorUpload": "verified",
+    "nodeIdentity": "verified",
+    "WBSource": "verified",
+    "gameplay": "unverified",
+    "terrainEnvelopes": "unverified"
+  },
+  "sourceHashes": {
+    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-paradise-world-site/.superpowers/research/paradise-analysis-20261030/slave-source.sav": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
+    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-world-balance/mods/world-balance/WorldBalance/Source/WorldBalance/Private/WorldBalanceCatalog.cpp": "7da46f426d70b8e897f415408123165cb87f7a33e9ee87209900feb073825170",
+    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-world-balance/mods/world-balance/WorldBalance/Source/WorldBalance/Public/WorldBalanceCatalog.h": "7309f65ca5258395cab56e32ed074fac0931dba350c718e1e8695f5d1bbabc49",
+    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-world-balance/mods/world-balance/WorldBalance/Source/WorldBalance/Private/WorldBalanceWorldModule.cpp": "a92f668fce2d8abe2190e8fe1d2b35acf31b0caf19a6f657229a27e39a96d08c",
+    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-world-balance/mods/world-balance/WorldBalance/Source/WorldBalanceEditor/Private/WorldBalanceGenerateCommandlet.cpp": "237a688a46a57bb88f407acc30f95017a629612ca5598d0435d9da288bc4299d"
+  },
+  "tables": [
+    {
+      "caption": "Координаты нод в игровых метрах; расстояние прямое, не длина трассы",
+      "columns": [
+        "Нода",
+        "Чистота",
+        "X",
+        "Y",
+        "Z",
+        "До HUB, м"
+      ],
+      "rows": [
+        [
+          "Coal_1",
+          "Pure",
+          "-2073.64",
+          "3032.2",
+          "13.0",
+          "298.3"
+        ],
+        [
+          "Coal_2",
+          "Pure",
+          "-1753.91",
+          "2474.49",
+          "-8.35",
+          "387.0"
+        ],
+        [
+          "Copper_1",
+          "Pure",
+          "-1553.69",
+          "2991.63",
+          "0.5",
+          "314.0"
+        ],
+        [
+          "Copper_2",
+          "Pure",
+          "-1562.14",
+          "2962.52",
+          "0.9",
+          "294.4"
+        ],
+        [
+          "Copper_3",
+          "Pure",
+          "-1745.9",
+          "2929.59",
+          "-1.85",
+          "117.9"
+        ],
+        [
+          "Iron_1",
+          "Normal",
+          "-1909.65",
+          "2790.82",
+          "-3.8",
+          "96.8"
+        ],
+        [
+          "Iron_2",
+          "Pure",
+          "-1934.14",
+          "2798.45",
+          "-5.3",
+          "112.8"
+        ],
+        [
+          "Iron_3",
+          "Pure",
+          "-1951.92",
+          "2822.84",
+          "-7.1",
+          "120.4"
+        ],
+        [
+          "Limestone_1",
+          "Normal",
+          "-2006.04",
+          "2613.92",
+          "-16.05",
+          "293.6"
+        ],
+        [
+          "Limestone_2",
+          "Pure",
+          "-1807.21",
+          "2729.69",
+          "0.95",
+          "126.3"
+        ],
+        [
+          "Limestone_3",
+          "Pure",
+          "-1769.65",
+          "2756.15",
+          "2.15",
+          "116.9"
+        ],
+        [
+          "Oil_1",
+          "Pure",
+          "-2202.69",
+          "2844.69",
+          "-16.35",
+          "367.4"
+        ],
+        [
+          "Quartz_1",
+          "Pure",
+          "-1666.93",
+          "3154.18",
+          "-23.35",
+          "345.2"
+        ],
+        [
+          "Sulfur_1",
+          "Pure",
+          "-2066.29",
+          "2634.2",
+          "49.09",
+          "318.0"
+        ]
+      ]
+    }
+  ],
+  "worldId": "paradise-island",
+  "saveId": "slave"
+}
