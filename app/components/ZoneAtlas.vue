@@ -12,12 +12,12 @@ const selected = computed(() => views.value.find(view => view.id === route.query
 const selectedIndex = computed(() => views.value.findIndex(view => view.id === selected.value?.id))
 const levelViews = computed(() => views.value.filter(view => view.levelId === selected.value?.levelId))
 const level = computed(() => atlas.value?.levels.find(item => item.id === selected.value?.levelId))
-const zoneLevelOptions = computed(() => (atlas.value?.levels ?? []).map(item => ({ value: item.id, label: `${item.id} · ${item.name}` })))
-const zoneViewOptions = computed(() => levelViews.value.map(view => ({ value: view.id, label: `${view.id} · ${view.title}` })))
+const zoneLevelOptions = computed(() => (atlas.value?.levels ?? []).map(item => ({ value: item.id, label: `${item.id} · ${atlasLabel(item.name)}` })))
+const zoneViewOptions = computed(() => levelViews.value.map(view => ({ value: view.id, label: atlasLabel(view.title) })))
 const processMap = computed(() => new Map((props.project.production?.processes ?? []).map(item => [item.id, item])))
 const parts = computed(() => props.project.parts.items.filter(part => selected.value?.partCodes.includes(part.code)))
 const placements = computed(() => props.project.placements.filter(item => selected.value?.placementIds.includes(item.id)))
-const placementRows = computed(() => placements.value.map(item => [item.id, item.processId, item.levelId,
+const placementRows = computed(() => placements.value.map(item => [item.id, processMap.value.has(item.processId) ? `${atlasLabel(processMap.value.get(item.processId)!.recipeName)} (${item.processId})` : item.processId, item.levelId,
   `${horizontal(item.x)} / ${horizontal(item.y)} / ${vertical(item.z)}`, `${formatRate(item.clock * 100, 6)}%`]))
 const referenceIds = computed(() => new Set([...(selected.value?.referenceIds ?? []),
   'ficsit-stairs', 'painted-beam', 'railing', 'wall-outlet']))
@@ -68,14 +68,14 @@ function openZoom(event: Event) {
   zoom.value?.showModal()
 }
 function closeZoom() { zoom.value?.close() }
-function restoreFocus() { zoomTrigger?.focus(); zoomTrigger = null }
+function restoreFocus() { if (zoomTrigger?.isConnected) zoomTrigger.focus({ preventScroll: true }); zoomTrigger = null }
 </script>
 
 <template>
   <section v-if="atlas && selected" class="panel zone-atlas" aria-labelledby="zone-atlas-title">
     <header class="zone-intro">
       <h2 id="zone-atlas-title">Виды зон</h2>
-      <p class="muted">AI-виды для ориентира. Точные размеры и координаты ниже.</p>
+      <p class="muted">Выбери этаж и зону для сборки.</p>
     </header>
     <div class="split zone-selectors">
       <div class="field">
@@ -90,17 +90,16 @@ function restoreFocus() { zoomTrigger?.focus(); zoomTrigger = null }
     <div class="zone-filmstrip" role="group" aria-label="Виды выбранного уровня">
       <button v-for="view in levelViews" :key="view.id" class="zone-thumbnail" type="button" :aria-pressed="view.id === selected.id" @click="choose(view.id)">
         <img :src="view.image.src" alt="" :width="152" :height="101" loading="lazy">
-        <span><strong>{{ view.id }}</strong> {{ view.title }}</span>
+        <span>{{ atlasLabel(view.title) }}</span>
       </button>
     </div>
-    <div class="section-heading"><h3 class="zone-title">{{ selected.id }} · {{ selected.title }}</h3><span class="fine" aria-live="polite">Вид {{ selectedIndex + 1 }} из {{ views.length }}</span></div>
+    <div class="section-heading"><h3 class="zone-title">{{ atlasLabel(selected.title) }}</h3><span class="fine" aria-live="polite">Вид {{ selectedIndex + 1 }} из {{ views.length }}</span></div>
     <figure class="zone-picture">
       <p v-if="imagePending" role="status">Загружаем вид зоны.</p>
       <p v-if="imageError" class="notice notice-warning" role="alert">Изображение не загрузилось. Инструкция и размерная привязка доступны ниже.</p>
-      <img ref="picture" :src="selected.image.src" :alt="`${selected.id}: ${selected.title}. Приближённая AI-иллюстрация.`" :width="selected.width" :height="selected.height" @load="syncImage" @error="imagePending = false; imageError = true">
-      <figcaption>{{ atlas.fidelity }}</figcaption>
+      <img ref="picture" :src="selected.image.src" :alt="atlasLabel(selected.title)" :width="selected.width" :height="selected.height" @load="syncImage" @error="imagePending = false; imageError = true">
+      <figcaption>{{ atlasLabel(level?.name ?? selected.title) }}</figcaption>
     </figure>
-    <p v-if="selected.variance" class="notice notice-warning">{{ constructionText(selected.variance) }}</p>
     <div class="button-row zone-actions">
       <Button :disabled="selectedIndex === 0" variant="outline" @click="move(-1)">Предыдущая зона</Button>
       <Button :disabled="selectedIndex === views.length - 1" variant="outline" @click="move(1)">Следующая зона</Button>
@@ -116,28 +115,28 @@ function restoreFocus() { zoomTrigger?.focus(); zoomTrigger = null }
     </div>
     <section v-if="selected.groups.length" class="zone-processes" aria-label="Точные группы этой зоны">
       <article v-for="group in selected.groups" :key="group.processId" class="zone-process">
-        <h3>{{ group.processId }} · {{ processMap.get(group.processId)?.recipeName }}</h3>
-        <p><strong>{{ group.machines }} × {{ processMap.get(group.processId)?.machineName }}</strong>, одинаковая частота {{ formatRate((processMap.get(group.processId)?.clock ?? 0) * 100, 6) }}%.</p>
+        <h3>{{ atlasLabel(processMap.get(group.processId)?.recipeName ?? group.processId) }}</h3>
+        <p><strong>{{ group.machines }} × {{ atlasLabel(processMap.get(group.processId)?.machineName ?? group.processId) }}</strong>, частота {{ processMap.has(group.processId) ? `${formatRate(processMap.get(group.processId)!.clock * 100, 6)}%` : 'не указана' }}.</p>
         <div class="split"><div><h4>Вход зоны в минуту</h4><FlowList :flows="group.inputs" /></div><div><h4>Выход зоны в минуту</h4><FlowList :flows="group.outputs" /></div></div>
-        <p class="fine">На одну машину раздели потоки на {{ group.machines }}. Рецепт: <code>{{ processMap.get(group.processId)?.recipeKey }}</code>.</p>
+        <p class="fine">На одну машину раздели потоки на {{ group.machines }}.</p><details><summary>Группа и рецепт</summary><p>Группа: <code>{{ group.processId }}</code></p><p class="recipe-path">{{ processMap.get(group.processId)?.recipeKey }}</p></details>
       </article>
     </section>
-    <p v-else class="fine">Это обзор или сервисная зона. Видимые соседние станки не прибавляются повторно к {{ project.placements.length }} производственным машинам.</p>
+    <p v-else class="fine">Обзорная или сервисная зона. Отдельных производственных групп здесь нет.</p>
     <section v-if="selected.position || placements.length" class="zone-position">
-      <h3>Точная привязка зоны</h3><p class="fine">Жёлтые ячейки на размерной сетке относятся к выбранным машинам. Числа и подключения бери отсюда, не из иллюстрации.</p>
+      <h3>Размещение</h3><p class="fine">Жёлтым выделены машины выбранной зоны.</p>
       <img v-if="selected.position" :src="selected.position.src" :alt="selected.position.alt" width="850" height="360" loading="lazy">
       <DataTable v-if="placements.length" :columns="['Машина', 'Группа', 'Этаж', coordinateLabel, 'Частота']" :rows="placementRows" :caption="`Размещения ${selected.id}`" />
     </section>
     <section class="zone-parts"><h3>Детали для этой зоны</h3>
-      <ul><li v-for="part in parts" :key="part.code"><strong>{{ part.code }}</strong> · {{ part.name }} <span class="fine">({{ part.mod }})</span><details><summary>Найти деталь {{ part.code }}</summary><p>{{ part.role }}</p><p class="recipe-path">{{ part.recipePath }}</p></details></li></ul>
+      <ul><li v-for="part in parts" :key="part.code"><strong>{{ atlasLabel(part.name) }}</strong> <span class="fine">({{ part.mod }})</span><details><summary>Найти деталь {{ part.code }}</summary><p>{{ constructionText(part.role) }}</p><p class="recipe-path">{{ part.recipePath }}</p></details></li></ul>
       <NuxtLink class="text-link" :to="projectUrl(world.manifest, project.id, 'parts')">Вся спецификация проекта</NuxtLink>
     </section>
-    <details class="zone-reference-details"><summary>Настоящие игровые референсы оборудования и деталей</summary><p class="fine">Это игровые иконки-референсы. Они не подтверждают точность модовых мешей, портов или AI-кадра.</p>
-      <div class="zone-reference-grid"><figure v-for="reference in references" :key="reference.id"><img :src="reference.image.src" :alt="reference.name" width="128" height="128" loading="lazy"><figcaption><a class="text-link" :href="reference.sourceUrl" target="_blank" rel="noopener noreferrer">{{ reference.name }}</a></figcaption></figure></div>
+    <details class="reference-disclosure zone-reference-details"><summary>Данные, ограничения и образцы деталей</summary><p>{{ constructionText(atlas.fidelity) }}</p><p>{{ constructionText(selected.scope) }}</p><p v-if="selected.variance">{{ constructionText(selected.variance) }}</p><p>{{ constructionText(selected.image.caption) }}</p><p class="fine">Идентификатор зоны: <code>{{ selected.id }}</code>. Всего в проекте {{ project.placements.length }} размещений. Соседние машины на обзорных видах повторно не учитываются.</p><p class="fine">Иконки оборудования не подтверждают геометрию модов или расположение портов. Размеры и подключения проверяй по размерному листу.</p>
+      <div class="zone-reference-grid"><figure v-for="reference in references" :key="reference.id"><img :src="reference.image.src" :alt="atlasLabel(reference.name)" width="128" height="128" loading="lazy"><figcaption><a class="text-link" :href="reference.sourceUrl" target="_blank" rel="noopener noreferrer">{{ atlasLabel(reference.name) }}<span class="sr-only"> (новая вкладка)</span></a></figcaption></figure></div>
     </details>
     <dialog ref="zoom" class="atlas-dialog zone-zoom" aria-labelledby="zone-zoom-title" @close="restoreFocus">
-      <div class="dialog-heading"><h2 id="zone-zoom-title">{{ selected.id }} · {{ selected.title }}</h2><Button variant="outline" @click="closeZoom">Закрыть вид зоны</Button></div>
-      <img :src="selected.image.src" :alt="selected.image.alt" :width="selected.width" :height="selected.height"><p class="fine">{{ atlas.fidelity }}</p>
+      <div class="dialog-heading"><h2 id="zone-zoom-title">{{ atlasLabel(selected.title) }}</h2><Button variant="outline" @click="closeZoom">Закрыть вид зоны</Button></div>
+      <img :src="selected.image.src" :alt="atlasLabel(selected.title)" :width="selected.width" :height="selected.height">
     </dialog>
   </section>
 </template>

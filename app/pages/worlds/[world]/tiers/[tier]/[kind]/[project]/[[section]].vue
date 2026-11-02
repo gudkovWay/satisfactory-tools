@@ -24,14 +24,14 @@ useSeoMeta({ title: () => `${sectionItem.label} / ${project.value?.title || 'П�
 function printProject() { window.print() }
 const showingZones = computed(() => Boolean(project.value?.zoneAtlas) && route.query.view !== 'drawings' && !route.query.drawing)
 const sectionDescriptions: Record<SectionId, string> = {
-  overview: 'Объём работ, следующий этап и подготовка к строительству.',
-  build: 'Действия, чертежи и проверки для каждого этапа.',
-  drawings: 'Размерные планы, этажи и размещение оборудования.',
-  balance: 'Расчётный выпуск, сырьё и производственные группы.',
-  site: 'Район в плане мира и привязка площадки.',
-  infrastructure: 'Источники, потребители и пределы соединений.',
-  parts: 'Названия в меню, количество и доступность деталей.',
-  evidence: 'Подтверждённые данные, открытые ограничения и источники.'
+  overview: 'Выбери следующий этап и подготовь материалы.',
+  build: 'Выполни этап и отметь результат.',
+  drawings: 'Найди нужный вид и проверь размеры.',
+  balance: 'Настрой рецепты, частоты и подачу сырья.',
+  site: 'Проверь площадку и подъезды до строительства.',
+  infrastructure: 'Соедини подачу, производство и вывоз.',
+  parts: 'Собери детали по спецификации.',
+  evidence: 'Проверь ограничения или скачай исходные данные.'
 }
 </script>
 
@@ -52,14 +52,14 @@ const sectionDescriptions: Record<SectionId, string> = {
         <BuildGuide v-else-if="section === 'build'" :project="project" />
         <div v-else-if="section === 'drawings'" class="stack">
           <RouteSegments v-if="project.zoneAtlas" :selected="showingZones ? 0 : 1" :options="[
-            { label: `Виды зон · ${project.zoneCount}`, to: { path: route.path, query: { zone: route.query.zone } } },
-            { label: `Чертежи · ${project.drawingCount}`, to: { path: route.path, query: { view: 'drawings' } } }
+            { label: `Виды зон · ${project.zoneAtlas.views.length}`, to: { path: route.path, query: { zone: route.query.zone } } },
+            { label: `Чертежи · ${project.drawings.length}`, to: { path: route.path, query: { view: 'drawings' } } }
           ]" />
           <ZoneAtlas v-if="showingZones" :project="project" />
           <DrawingViewer v-else :project="project" />
         </div>
         <ProjectBalance v-else-if="section === 'balance'" :project="project" />
-        <section v-else-if="section === 'site'" class="stack"><h2>Площадка в архитектуре мира</h2><WorldDistrictMap v-if="world.manifest.map" /><p>Район привязан к общему плану; точные позиции машин и уровни — в чертежах этого проекта.</p><DataTable v-for="table in project.infrastructure.tables" :key="table.caption" :columns="table.columns" :rows="table.rows" :caption="table.caption" /></section>
+        <section v-else-if="section === 'site'" class="stack"><h2>Площадка</h2><WorldDistrictMap v-if="world.manifest.map" /><p>Проверь район на общем плане мира. Размеры и расположение оборудования указаны в чертежах проекта.</p><details v-for="table in project.infrastructure.tables" :key="table.caption" class="reference-disclosure"><summary>{{ constructionText(table.caption) }}</summary><DataTable :columns="table.columns" :rows="table.rows" :caption="table.caption" /></details></section>
         <ProjectInfrastructure v-else-if="section === 'infrastructure'" :project="project" />
         <ProjectParts v-else-if="section === 'parts'" :project="project" />
         <ProjectEvidence v-else :project="project" />

@@ -33,13 +33,13 @@ const selectedId = ref<string>(requestedDrawing?.id ?? '')
 const availableFamilies = computed(() =>
   familyOrder.filter(family => props.project.drawings.some(drawing => drawing.family === family))
 )
-const familyOptions = computed(() => [{ value: 'all', label: 'Все семейства' }, ...availableFamilies.value.map(family => ({ value: family, label: familyLabels[family] }))])
+const familyOptions = computed(() => [{ value: 'all', label: 'Все виды' }, ...availableFamilies.value.map(family => ({ value: family, label: familyLabels[family] }))])
 
 const levelMap = computed(() => new Map(props.project.levels.map(level => [level.id, level])))
 const processNames = computed(() => new Map(
   (props.project.production?.processes ?? []).map(process => [
     process.id,
-    `${process.recipeName} (${process.machineName})`,
+    `${atlasLabel(process.recipeName)} (${atlasLabel(process.machineName)})`,
   ])
 ))
 
@@ -51,7 +51,7 @@ const levelOptions = computed(() => {
   )
   return props.project.levels.filter(level => used.has(level.id))
 })
-const levelSelectOptions = computed(() => [{ value: 'all', label: 'Все этажи' }, ...levelOptions.value.map(level => ({ value: level.id, label: `${level.id} · ${level.name}` }))])
+const levelSelectOptions = computed(() => [{ value: 'all', label: 'Все этажи' }, ...levelOptions.value.map(level => ({ value: level.id, label: `${level.id} · ${atlasLabel(level.name)}` }))])
 
 const visibleDrawings = computed(() => props.project.drawings.filter(drawing => {
   const familyMatches = familyFilter.value === 'all' || drawing.family === familyFilter.value
@@ -59,15 +59,29 @@ const visibleDrawings = computed(() => props.project.drawings.filter(drawing => 
   return familyMatches && levelMatches
 }))
 
+const drawingOptions = computed(() => visibleDrawings.value.map(drawing => ({
+  value: drawing.id,
+  label: atlasLabel(drawing.label),
+})))
+
 const selectedDrawing = computed<Drawing | null>(() => {
   const visible = visibleDrawings.value
   return visible.find(drawing => drawing.id === selectedId.value) ?? visible[0] ?? null
 })
 
+const isCampusDrawing = computed(() => /(?:^|-)campus-(freight|power)/.test(selectedDrawing.value?.id ?? ''))
+const campusLine = ref('')
+const imageStatus = ref<'loading' | 'ready' | 'error'>(isCampusDrawing.value ? 'ready' : 'loading')
+const previewImage = ref<HTMLImageElement | null>(null)
+watch(() => selectedDrawing.value?.svg, () => { imageStatus.value = isCampusDrawing.value ? 'ready' : 'loading' })
+watch(previewImage, image => {
+  if (image?.complete) imageStatus.value = image.naturalWidth ? 'ready' : 'error'
+}, { flush: 'post' })
+
 watch([familyFilter, levelFilter], () => {
   const visible = visibleDrawings.value
   if (visible.length && !visible.some(drawing => drawing.id === selectedId.value)) {
-    selectedId.value = visible[0]?.id ?? ''
+    selectDrawing(visible[0]!.id)
   }
 })
 
@@ -87,7 +101,7 @@ function selectDrawing(id: string) {
   const drawing = props.project.drawings.find(candidate => candidate.id === id)
   if (!drawing) return
   selectedId.value = drawing.id
-  void navigateTo({ path: route.path, query: { ...route.query, drawing: drawing.id } }, { replace: true })
+  void navigateTo({ path: route.path, query: { ...route.query, drawing: drawing.id }, hash: route.hash }, { replace: true })
 }
 
 const conceptAsset = computed(() => props.project.overview.concept ?? null)
@@ -96,27 +110,13 @@ const isConcept = computed(() =>
 )
 
 const disclosure = computed(() => blockGrid.value
-  ? 'X/Y в фундаментах CC Block 8x8x2, H в слоях толщины блока. Дробные центры не округлять.'
-  : 'Показана инженерная разметка. Размеры в метрах.')
+  ? 'X/Y: фундаменты CC Block 8×8×2. H: слои толщины блока. Дробные центры не округлять.'
+  : 'Размеры в метрах.')
 const conceptDisclosure = computed(() => {
   if (!isConcept.value || !conceptAsset.value) return ''
-  return `ИИ-концепт, не точная сборка: ${conceptAsset.value.caption}`
+  return `Концептуальная иллюстрация. ${conceptAsset.value.caption}`
 })
 
-const captionText = computed(() => {
-  if (!selectedDrawing.value) return ''
-  return [
-    selectedDrawing.value.caption,
-    disclosure.value,
-    conceptDisclosure.value,
-  ].filter(Boolean).join(' ')
-})
-
-const imageAlt = computed(() => {
-  if (!selectedDrawing.value) return ''
-  const base = `${selectedDrawing.value.label}: ${selectedDrawing.value.caption}. Инженерная схема.`
-  return isConcept.value ? `${base} ИИ-концепт, не точная сборка.` : base
-})
 
 const detailLevel = computed<Level | null>(() => {
   const levelId = selectedDrawing.value?.levelId
@@ -127,7 +127,12 @@ const detailLevel = computed<Level | null>(() => {
 
 const levelPlacements = computed(() => {
   if (!detailLevel.value) return []
-  return props.project.placements.filter(placement => placement.levelId === detailLevel.value?.id)
+  const stateId = selectedDrawing.value?.operatingState ?? 'steady'
+  const state = props.project.layout?.stateGeometry?.[stateId]
+  const placements = state?.placements ?? (state?.placementIds
+    ? props.project.placements.filter(placement => state.placementIds?.includes(placement.id))
+    : stateId === 'steady' ? props.project.placements : [])
+  return placements.filter(placement => placement.levelId === detailLevel.value?.id)
 })
 
 
@@ -145,27 +150,34 @@ const placementColumns = computed(() => [
   blockGrid.value ? 'Y, ф.' : 'Y, м',
   blockGrid.value ? 'H, сл.' : 'Z, м',
   blockGrid.value ? 'Ширина / глубина, ф.; высота, сл.' : 'Ширина / глубина / высота, м',
-  'Частота',
+  'Частота', 'Контур',
 ])
 const placementRows = computed(() => levelPlacements.value.map(placement => [
   placement.id,
-  processLabel(placement.processId),
+  placement.processId ? processLabel(placement.processId) : placement.componentId ?? 'Инфраструктура',
   placement.kind,
   horizontal(placement.x),
   horizontal(placement.y),
   vertical(placement.z),
   `${horizontal(placement.width)} × ${horizontal(placement.depth)} × ${vertical(placement.height)}`,
-  percent(placement.clock),
+  placement.processId ? percent(placement.clock) : '—',
+  placement.existing ? 'Сохраняется' : placement.baseline === false || placement.optionalGroup ? 'Опциональный' : 'Основной',
 ]))
 
 const zoomDialog = ref<HTMLDialogElement | null>(null)
+const zoomOpen = ref(false)
+const zoomImageStatus = ref<'loading' | 'ready' | 'error'>('loading')
 let zoomTrigger: HTMLElement | null = null
 
 function openZoom(event?: Event) {
   const target = event?.currentTarget
   zoomTrigger = target instanceof HTMLElement ? target : null
   const dialog = zoomDialog.value
-  if (dialog && !dialog.open) dialog.showModal()
+  if (dialog && !dialog.open) {
+    zoomImageStatus.value = isCampusDrawing.value ? 'ready' : 'loading'
+    zoomOpen.value = true
+    dialog.showModal()
+  }
 }
 
 function closeZoom() {
@@ -173,7 +185,8 @@ function closeZoom() {
 }
 
 function onZoomClose() {
-  if (zoomTrigger?.isConnected) zoomTrigger.focus()
+  zoomOpen.value = false
+  if (zoomTrigger?.isConnected) zoomTrigger.focus({ preventScroll: true })
   zoomTrigger = null
 }
 
@@ -184,13 +197,18 @@ function downloadName(url: string) {
   const name = slash >= 0 ? withoutHash.slice(slash + 1) : withoutHash
   return name || 'drawing'
 }
+
+function downloadFormat(url: string) {
+  const extension = downloadName(url).split('.').pop()?.toUpperCase()
+  return ['SVG', 'PNG', 'WEBP', 'JPEG', 'JPG'].includes(extension ?? '') ? extension : 'файл'
+}
 </script>
 
 <template>
   <section class="panel drawing-viewer" aria-labelledby="drawing-viewer-heading">
     <header class="drawing-intro">
       <h2 id="drawing-viewer-heading" class="sr-only">Размерные чертежи</h2>
-      <p class="muted">Выбери вид и этаж. Размеры в метрах; это инженерные схемы, не игровые скриншоты.</p>
+      <p class="muted">Выбери чертёж. Открой его крупно для монтажа или скачай нужный лист.</p>
     </header>
 
     <div v-if="!project.drawings.length" class="empty-state">
@@ -198,89 +216,114 @@ function downloadName(url: string) {
     </div>
 
     <template v-else>
-      <div class="split drawing-controls">
-        <div class="field">
-          <label for="drawing-family">Семейство</label>
-          <TheSelect trigger-id="drawing-family" :model-value="familyFilter" :options="familyOptions" @update:model-value="familyFilter = String($event)" />
-        </div>
-        <div class="field">
-          <label for="drawing-level">Этаж</label>
-          <TheSelect trigger-id="drawing-level" :model-value="levelFilter" :options="levelSelectOptions" @update:model-value="levelFilter = String($event)" />
-        </div>
-      </div>
+      <div class="drawing-workspace" :class="{ 'drawing-workspace-single': project.drawings.length === 1 }">
+        <div class="drawing-browser">
+          <div class="drawing-controls">
+            <div class="field">
+              <label for="drawing-family">Вид</label>
+              <TheSelect trigger-id="drawing-family" :model-value="familyFilter" :options="familyOptions" @update:model-value="familyFilter = String($event)" />
+            </div>
+            <div class="field">
+              <label for="drawing-level">Этаж</label>
+              <TheSelect trigger-id="drawing-level" :model-value="levelFilter" :options="levelSelectOptions" @update:model-value="levelFilter = String($event)" />
+            </div>
+          </div>
 
-      <p class="muted drawing-count" role="status">
-        Показано {{ visibleDrawings.length }} из {{ project.drawings.length }} чертежей.
-      </p>
+          <p id="drawing-count" class="muted drawing-count" role="status">
+            Показано {{ visibleDrawings.length }} из {{ project.drawings.length }} чертежей.
+          </p>
 
-      <ul v-if="project.drawings.length > 1" class="drawing-list" tabindex="0" aria-label="Список чертежей, прокрутка внутри списка">
-        <li v-for="drawing in visibleDrawings" :key="drawing.id">
-          <button
-            type="button"
-            class="drawing-choice"
-            :class="{ 'drawing-choice-current': selectedDrawing?.id === drawing.id }"
-            :aria-pressed="selectedDrawing?.id === drawing.id"
-            @click="selectDrawing(drawing.id)"
-          >
-            <span class="drawing-choice-label">{{ drawing.label }}</span>
-            <span class="fine">{{ drawing.caption }}</span>
-          </button>
-        </li>
-      </ul>
-      <p v-if="!visibleDrawings.length" class="empty-state">
-        Для выбранного семейства и этажа нет чертежей. Сбросьте фильтр этажа или выберите
-        «Все семейства».
-      </p>
+          <div v-if="project.drawings.length > 1 && visibleDrawings.length" class="field drawing-sheet-select">
+            <label for="drawing-sheet">Чертёж</label>
+            <TheSelect
+              trigger-id="drawing-sheet"
+              :model-value="selectedDrawing?.id"
+              :options="drawingOptions"
+              described-by="drawing-count"
+              @update:model-value="selectDrawing(String($event))"
+            />
+          </div>
 
-      <template v-if="selectedDrawing">
-        <div class="button-row drawing-actions">
-          <Button type="button" class="min-h-11" @click="openZoom">Увеличить</Button>
-          <a
-            class="download-link"
-            :href="selectedDrawing.svg"
-            :download="downloadName(selectedDrawing.svg)"
-          >
-            Скачать SVG
-          </a>
-          <a
-            v-if="selectedDrawing.png"
-            class="download-link"
-            :href="selectedDrawing.png"
-            :download="downloadName(selectedDrawing.png)"
-          >
-            Скачать PNG
-          </a>
+          <ul v-if="project.drawings.length > 1 && visibleDrawings.length" class="drawing-list" tabindex="0" aria-label="Чертежи, прокрутка внутри списка" aria-describedby="drawing-count">
+            <li v-for="drawing in visibleDrawings" :key="drawing.id">
+              <button
+                type="button"
+                class="drawing-choice"
+                :class="{ 'drawing-choice-current': selectedDrawing?.id === drawing.id }"
+                :data-drawing-id="drawing.id"
+                :aria-pressed="selectedDrawing?.id === drawing.id"
+                aria-controls="drawing-sheet-preview"
+                @click="selectDrawing(drawing.id)"
+              >
+                {{ atlasLabel(drawing.label) }}
+              </button>
+            </li>
+          </ul>
         </div>
-        <figure class="drawing-frame drawing-preview">
-          <div class="drawing-image-wrap">
+
+        <p v-if="!visibleDrawings.length" class="empty-state drawing-empty">
+          Для этих фильтров чертежей нет. Выбери другой этаж или «Все виды».
+        </p>
+
+        <figure v-if="selectedDrawing" id="drawing-sheet-preview" class="drawing-frame drawing-preview" aria-labelledby="drawing-sheet-heading">
+          <header class="drawing-sheet-header">
+            <h3 id="drawing-sheet-heading">{{ atlasLabel(selectedDrawing.label) }}</h3>
+            <div class="button-row drawing-actions">
+              <Button type="button" class="min-h-11" :disabled="imageStatus === 'error'" @click="openZoom">Увеличить</Button>
+              <a
+                class="download-link"
+                :href="selectedDrawing.svg"
+                :download="downloadName(selectedDrawing.svg)"
+              >
+                Скачать {{ downloadFormat(selectedDrawing.svg) }}
+              </a>
+              <a
+                v-if="selectedDrawing.png"
+                class="download-link"
+                :href="selectedDrawing.png"
+                :download="downloadName(selectedDrawing.png)"
+              >
+                Скачать PNG
+              </a>
+            </div>
+          </header>
+          <div class="drawing-image-wrap" :aria-busy="imageStatus === 'loading'">
+            <p v-if="imageStatus === 'loading'" class="drawing-image-status muted" role="status">
+              Загружаем выбранный чертёж.
+            </p>
+            <p v-if="imageStatus === 'error'" class="empty-state drawing-image-error" role="alert">
+              Не удалось загрузить чертёж. Скачайте исходный файл или выберите другой лист.
+            </p>
+            <CampusDrawing v-if="isCampusDrawing" v-model="campusLine" :project="project" :drawing="selectedDrawing" />
+            <MetricDrawing v-else-if="selectedDrawing.svg.endsWith('.svg') && imageStatus !== 'error'" :key="selectedDrawing.svg" :src="selectedDrawing.svg" :alt="atlasLabel(selectedDrawing.label)" @load="imageStatus = 'ready'" @error="imageStatus = 'error'" />
             <img
+              v-else-if="imageStatus !== 'error'"
+              :key="selectedDrawing.svg"
+              ref="previewImage"
               :src="selectedDrawing.svg"
-              :alt="imageAlt"
-              loading="lazy"
+              :alt="atlasLabel(selectedDrawing.label)"
               decoding="async"
+              @load="imageStatus = 'ready'"
+              @error="imageStatus = 'error'"
             >
           </div>
-          <figcaption>
-            <strong>{{ selectedDrawing.label }}</strong>
-            <span>{{ captionText }}</span>
-          </figcaption>
+          <figcaption>{{ disclosure }}</figcaption>
         </figure>
+      </div>
 
-
+      <template v-if="selectedDrawing">
+        <details :key="selectedDrawing.id" class="reference-disclosure drawing-source-details"><summary>Данные и ограничения чертежа</summary><p>{{ constructionText(selectedDrawing.caption) }}</p><p v-if="conceptDisclosure">{{ constructionText(conceptDisclosure) }}</p><dl><div><dt>Лист</dt><dd><code>{{ selectedDrawing.id }}</code></dd></div><div v-if="selectedDrawing.operatingState"><dt>Режим</dt><dd>{{ atlasLabel(selectedDrawing.operatingState) }}</dd></div></dl></details>
         <section v-if="detailLevel" class="stack level-detail" aria-labelledby="drawing-level-heading">
-          <h3 id="drawing-level-heading" class="eyebrow">
-            {{ detailLevel.id }} · {{ detailLevel.name }}
+          <h3 id="drawing-level-heading">
+            {{ detailLevel.id }} · {{ atlasLabel(detailLevel.name) }}
           </h3>
-          <p>Отметка пола: {{ floorHeight(detailLevel.z) }}. {{ detailLevel.purpose }}</p>
+          <p>Пол: {{ floorHeight(detailLevel.z) }}. {{ constructionText(detailLevel.purpose) }}</p>
           <DataTable
             :columns="placementColumns"
             :rows="placementRows"
             :caption="`Размещение машин: ${detailLevel.id} · ${detailLevel.name}`"
           />
         </section>
-        <p v-else class="muted">
-          Для выбранного вида этаж не указан, поэтому размещение машин не привязано.
-        </p>
       </template>
     </template>
 
@@ -290,22 +333,34 @@ function downloadName(url: string) {
       aria-labelledby="drawing-zoom-heading"
       @close="onZoomClose"
     >
-      <div v-if="selectedDrawing" class="stack">
-        <h2 id="drawing-zoom-heading">{{ selectedDrawing.label }}</h2>
-        <p class="zoom-caption">{{ captionText }}</p>
-        <img
-          class="zoom-image"
-          :src="selectedDrawing.svg"
-          :alt="imageAlt"
-          decoding="async"
-        >
+      <div v-if="selectedDrawing && zoomOpen" class="stack">
+        <h2 id="drawing-zoom-heading">{{ atlasLabel(selectedDrawing.label) }}</h2>
+        <p class="zoom-caption">{{ disclosure }}</p>
+        <p class="fine">Чертёж в полном масштабе. Прокручивай внутри области; с клавиатуры используй стрелки.</p>
+        <p v-if="zoomImageStatus === 'loading'" role="status">Загружаем выбранный чертёж.</p>
+        <p v-if="zoomImageStatus === 'error'" class="empty-state" role="alert">
+          Не удалось загрузить чертёж. Скачайте исходный файл или выберите другой лист.
+        </p>
+        <div v-else class="zoom-pan" tabindex="0" aria-label="Чертёж крупно, прокрутка по двум осям">
+          <CampusDrawing v-if="isCampusDrawing" v-model="campusLine" class="zoom-campus" :project="project" :drawing="selectedDrawing" />
+          <MetricDrawing v-else-if="selectedDrawing.svg.endsWith('.svg')" :key="selectedDrawing.svg" class="zoom-image" :src="selectedDrawing.svg" :alt="atlasLabel(selectedDrawing.label)" @load="zoomImageStatus = 'ready'" @error="zoomImageStatus = 'error'" />
+          <img v-else
+            :key="selectedDrawing.svg"
+            class="zoom-image"
+            :src="selectedDrawing.svg"
+            :alt="atlasLabel(selectedDrawing.label)"
+            decoding="async"
+            @load="zoomImageStatus = 'ready'"
+            @error="zoomImageStatus = 'error'"
+          >
+        </div>
         <div class="button-row">
           <a
             class="download-link"
             :href="selectedDrawing.svg"
             :download="downloadName(selectedDrawing.svg)"
           >
-            Скачать SVG
+            Скачать {{ downloadFormat(selectedDrawing.svg) }}
           </a>
           <a
             v-if="selectedDrawing.png"
@@ -323,56 +378,113 @@ function downloadName(url: string) {
 </template>
 
 <style scoped>
-.drawing-intro p { margin-bottom: 1rem; font-size: .875rem; }
-@media (max-width: 649px) {
-  .drawing-controls { grid-template-columns: repeat(2,minmax(0,1fr)); gap: .75rem; }
+.drawing-intro p {
+  margin-bottom: 1rem;
+  font-size: .875rem;
 }
+
+.drawing-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.drawing-browser,
+.drawing-preview,
+.drawing-empty,
+.level-detail {
+  min-width: 0;
+}
+
+.drawing-browser {
+  display: grid;
+  gap: .75rem;
+}
+
 .drawing-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem;
   align-items: end;
 }
 
 .drawing-count {
-  margin-block: 0.75rem;
+  margin: 0;
+  font-size: .8125rem;
 }
 
 .drawing-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
-  gap: 0.5rem;
-  max-height: 16rem;
-  overflow: auto;
-  padding: 0.35rem;
-  margin: 0 0 1.5rem;
+  display: none;
+  gap: .25rem;
+  max-height: min(30rem, 55dvh);
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-gutter: stable;
+  padding: .25rem;
+  margin: 0;
   list-style: none;
 }
 
+.drawing-list li {
+  min-width: 0;
+  margin: 0;
+}
+
 .drawing-choice {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  display: block;
   width: 100%;
   min-height: 44px;
-  padding: 0.6rem 0.75rem;
+  padding: .65rem .75rem;
   text-align: start;
-  border: 1px solid var(--control-border);
-  border-radius: 0.6rem;
-  background: var(--surface);
+  overflow-wrap: anywhere;
+  font-size: .8125rem;
+  line-height: 1.45;
+  border: 1px solid transparent;
+  border-radius: .35rem;
+  background: transparent;
   color: var(--ink);
   cursor: pointer;
 }
 
-.drawing-choice-current {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-  color: var(--ink);
+.drawing-choice:hover {
+  border-color: var(--control-border);
+  background: var(--surface);
 }
 
-.drawing-choice-label {
+.drawing-choice-current,
+.drawing-choice-current:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
   font-weight: 600;
+}
+
+.drawing-list:focus-visible,
+.drawing-choice:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
 }
 
 .drawing-preview {
   margin: 0;
+}
+
+.drawing-sheet-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem 1rem;
+  padding: .75rem;
+}
+
+.drawing-sheet-header h3 {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 .drawing-image-wrap {
@@ -387,22 +499,110 @@ function downloadName(url: string) {
   height: auto;
 }
 
+.drawing-image-error {
+  margin: 0;
+}
+
+.drawing-image-status {
+  margin: 0;
+  padding: .75rem;
+  font-size: .875rem;
+}
+
 .drawing-preview figcaption {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  padding-top: 0.75rem;
+  padding: .75rem;
+  overflow-wrap: anywhere;
+  font-size: .875rem;
   color: var(--ink);
 }
 
 .drawing-actions {
-  margin-block: 1rem 1.5rem;
+  gap: .5rem;
+  margin: 0;
+}
+
+@media (min-width: 650px) {
+  .drawing-browser {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    align-items: end;
+  }
+
+  .drawing-controls {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .drawing-sheet-select {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .drawing-count {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .drawing-workspace-single .drawing-browser {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .drawing-sheet-header,
+  .drawing-preview figcaption {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .drawing-workspace {
+    grid-template-columns: 13rem minmax(0, 1fr);
+  }
+
+  .drawing-browser {
+    display: block;
+  }
+
+  .drawing-controls {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .drawing-count {
+    margin-block: .75rem;
+  }
+
+  .drawing-sheet-select {
+    display: none;
+  }
+
+  .drawing-list {
+    display: grid;
+  }
+
+  .drawing-workspace-single {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .drawing-workspace-single .drawing-controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 40rem;
+  }
+}
+
+@media print {
+  .drawing-workspace {
+    display: block;
+  }
+
+  .drawing-browser,
+  .drawing-actions {
+    display: none;
+  }
 }
 
 .download-link {
   display: inline-flex;
   width: auto;
   min-height: 44px;
+  min-width: 44px;
   align-items: center;
   padding-inline: 0.9rem;
   border: 1px solid var(--control-border);
@@ -418,6 +618,7 @@ function downloadName(url: string) {
 .level-detail {
   border-top: 1px solid var(--line);
   padding-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .zoom-dialog {
@@ -434,15 +635,28 @@ function downloadName(url: string) {
   background: rgb(0 0 0 / 65%);
 }
 
-.zoom-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 70vh;
-  object-fit: contain;
+.zoom-pan {
+  overflow: auto;
+  max-height: 65dvh;
+  border: 1px solid var(--control-border);
   background: var(--surface-raised);
 }
 
+.zoom-pan:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.zoom-image {
+  display: block;
+  width: max(100%, 80rem);
+  max-width: none;
+  height: auto;
+}
+
+.zoom-campus { width: max(100%, 80rem); max-width: none; }
+.drawing-source-details { margin-top: 1.5rem; }
+.drawing-source-details dd { overflow-wrap: anywhere; }
 .zoom-caption {
   max-width: 70ch;
 }
