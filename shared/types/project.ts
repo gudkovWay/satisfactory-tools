@@ -63,6 +63,8 @@ export interface RecipeVariant {
   outputAtFullClock: number
   machineKind: string
   selected: boolean
+  availability?: string
+  notes?: string[]
 }
 export interface RecipeComparison { itemId: string; label: string; variants: RecipeVariant[] }
 export interface ProductionPlan {
@@ -84,6 +86,10 @@ export interface Level { id: string; name: string; z: number; type: string; purp
 export interface Placement {
   id: string
   processId: string
+  componentId?: string
+  baseline?: boolean
+  existing?: boolean
+  optionalGroup?: string
   levelId: string
   x: number
   y: number
@@ -100,6 +106,8 @@ export interface Drawing {
   label: string
   caption: string
   levelId?: string
+  operatingState?: string
+  networkState?: string
   svg: string
   png?: string
 }
@@ -108,11 +116,15 @@ export interface GuideStep {
   title: string
   body: string
   prerequisites: string[]
+  externalPrerequisites?: Array<{ projectId: string; stepId: string; label?: string }>
+  optionalGroup?: string
+  operatingState?: string
   actions: string[]
   materials: string[]
   checks: string[]
   levelIds: string[]
   drawingIds: string[]
+  placementIds?: string[]
   zoneIds?: string[]
 }
 export interface Stream {
@@ -201,6 +213,34 @@ export interface ZoneAtlas {
   views: ZoneView[]
   references: Array<{ id: string; name: string; image: Asset; sourceUrl: string; sha256: string }>
 }
+export interface CampusEndpoint {
+  projectId?: string
+  placementId?: string
+  interfaceId?: string
+  portId?: string
+}
+export interface CampusConnection {
+  id: string
+  kind: string
+  itemId?: string
+  rate?: number
+  unit?: string
+  capacity?: number
+  stateRates?: Record<string, number>
+  operatingStates?: string[]
+  ownerProjectId: string
+  from?: CampusEndpoint
+  to?: CampusEndpoint
+  fromProjectId?: string
+  toProjectId?: string
+  fromPlacementId?: string
+  toPlacementId?: string
+  fromInterfaceId?: string
+  toInterfaceId?: string
+  pointsWorldXYRelativeZ: [number, number, number][]
+  schematicLength_m?: number
+}
+
 export interface ProjectDocument extends ProjectSummary {
   schemaVersion: 1
   progressRevision?: string
@@ -214,9 +254,14 @@ export interface ProjectDocument extends ProjectSummary {
   zoneAtlas?: ZoneAtlas
   levels: Level[]
   placements: Placement[]
+  layout?: {
+    externalLinks?: CampusConnection[]
+    powerConnections?: CampusConnection[]
+    stateGeometry?: Record<string, { placements?: Placement[]; placementIds?: string[] }>
+  }
   production?: ProductionPlan
   map?: ProjectMap
   infrastructure: { notes: ContentNote[]; tables: TableData[]; diagrams: Asset[]; streams: Stream[] }
-  parts: { items: Part[]; notes: ContentNote[]; facade?: Asset }
+  parts: { items: Part[]; notes: ContentNote[]; tables?: TableData[]; facade?: Asset }
   evidence: { items: Evidence[]; notes: string[]; sources: Array<{ label: string; url: string }>; downloads: Array<{ label: string; path: string }> }
 }

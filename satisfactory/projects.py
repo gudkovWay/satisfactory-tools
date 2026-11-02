@@ -90,7 +90,7 @@ def asset_path(url, project, assets_root):
 
 
 def construction_signature(project, assets_root):
-    fields = ('build', 'placements', 'levels', 'production', 'parts', 'drawings', 'zoneAtlas', 'infrastructure', 'sitePlan', 'extraction')
+    fields = ('build', 'placements', 'levels', 'production', 'parts', 'drawings', 'zoneAtlas', 'infrastructure', 'sitePlan', 'extraction', 'layout')
     semantic = {key: project.get(key) for key in fields}
     encoded = re.sub(r'/revisions/[0-9a-f]{64}/', '/revisions/', json.dumps(semantic, sort_keys=True, ensure_ascii=False))
     assets = {}
@@ -325,6 +325,17 @@ def validate_project(project, *, recipes_file=None, save_ids=None, known_project
         objects(project['infrastructure'], key, 'infrastructure')
     objects(project['parts'], 'items', 'parts', nonempty=True)
     objects(project['parts'], 'notes', 'parts')
+    if 'tables' in project['parts']:
+        for index, table in enumerate(objects(project['parts'], 'tables', 'parts')):
+            label = f'parts.tables[{index}]'
+            string(table, 'caption', label)
+            columns = strings(table, 'columns', label, nonempty=True)
+            rows = table.get('rows')
+            if not isinstance(rows, list) or any(
+                not isinstance(row, list) or len(row) != len(columns) or not all(isinstance(cell, str) for cell in row)
+                for row in rows
+            ):
+                error(label + '.rows', 'expected text rows matching the declared columns')
     evidence = objects(project['evidence'], 'items', 'evidence', nonempty=True)
     strings(project['evidence'], 'notes', 'evidence')
     objects(project['evidence'], 'sources', 'evidence')
@@ -334,7 +345,89 @@ def validate_project(project, *, recipes_file=None, save_ids=None, known_project
     if project.get('drawingCount') != len(drawings):
         error('drawingCount', 'does not match drawing inventory')
     drawing_ids = {drawing.get('id') for drawing in drawings}
+    drawing_by_id = {drawing.get('id'): drawing for drawing in drawings}
+    layout_states = project.get('layout', {}).get('stateGeometry', {}) if isinstance(project.get('layout', {}), dict) else {}
+    if not isinstance(layout_states, dict):
+        error('layout.stateGeometry', 'expected named operating-state geometry objects')
+        layout_states = {}
     level_ids = {level.get('id') for level in levels}
+    placement_ids = {placement.get('id') for placement in placements}
+    for index, level in enumerate(levels):
+        if not number(level.get('z')):
+            error(f'levels[{index}]', 'invalid floor elevation')
+    def placement_geometry(values, path):
+        for index, placement in enumerate(values):
+            label = f'{path}[{index}]'
+            if not isinstance(placement.get('levelId'), str) or placement['levelId'] not in level_ids:
+                error(label, 'unknown placement level')
+            for key in ('x', 'y', 'z', 'width', 'depth', 'height'):
+                if not number(placement.get(key), positive=key in {'width', 'depth', 'height'}):
+                    error(label, f'invalid {key}')
+
+    placement_geometry(placements, 'placements')
+    external_placements = objects(project['layout'], 'externalPlacements', 'layout') if isinstance(project.get('layout'), dict) and 'externalPlacements' in project['layout'] else []
+    unique(external_placements, 'layout.externalPlacements')
+    external_ids = {placement['id'] for placement in external_placements if isinstance(placement.get('id'), str)}
+    if external_ids & placement_ids:
+        error('layout.externalPlacements', 'external IDs overlap local placements')
+    for index, placement in enumerate(external_placements):
+        label = f'layout.externalPlacements[{index}]'
+        string(placement, 'componentId', label)
+        string(placement, 'levelId', label)
+        for key in ('x', 'y', 'z', 'width', 'depth', 'height'):
+            if not number(placement.get(key), positive=key in {'width', 'depth', 'height'}):
+                error(label, f'invalid {key}')
+    root_production = project.get('production')
+    root_processes = root_production.get('processes', []) if isinstance(root_production, dict) else []
+    root_process_ids = {process['id'] for process in root_processes
+                        if isinstance(process, dict) and isinstance(process.get('id'), str)} if isinstance(root_processes, list) else set()
+    state_placements = {'steady': placements}
+    for state_id, state in layout_states.items():
+        label = 'layout.stateGeometry.' + state_id
+        if not KEY_RE.fullmatch(state_id) or not isinstance(state, dict):
+            error(label, 'expected a safe named geometry object')
+            continue
+        selected = None
+        if 'placements' in state:
+            selected = objects(state, 'placements', label)
+            unique(selected, label + '.placements')
+            if any(isinstance(placement.get('id'), str) and placement['id'] in external_ids for placement in selected):
+                error(label, 'external IDs overlap local state placements')
+        if 'placementIds' in state:
+            refs = [ident for ident in strings(state, 'placementIds', label) if isinstance(ident, str)]
+            available = {placement.get('id') for placement in selected if isinstance(placement.get('id'), str)} if selected is not None else placement_ids
+            if len(refs) != len(set(refs)) or any(ident not in available and ident not in external_ids for ident in refs):
+                error(label, 'unknown or duplicate state placement reference')
+            if selected is None:
+                selected = [placement for placement in placements if placement.get('id') in refs]
+            elif set(refs) - external_ids != available:
+                error(label, 'state placement representations differ')
+        if selected is None:
+            if state_id != 'steady':
+                error(label, 'state requires placements or placementIds')
+                continue
+            selected = placements
+        placement_geometry(selected, label + '.placements')
+        for index, placement in enumerate(selected):
+            location = f'{label}.placements[{index}]'
+            process_id, component_id = placement.get('processId'), placement.get('componentId')
+            if not isinstance(process_id, str) or (process_id not in root_process_ids and not (process_id == '' and isinstance(component_id, str) and component_id.strip())):
+                error(location, 'unknown state process or component identity')
+            if not number(placement.get('clock')) or placement['clock'] < 0:
+                error(location, 'invalid state clock')
+            elif isinstance(process_id, str) and process_id in root_process_ids and (placement['clock'] <= 0 or (forecast and placement['clock'] > forecast_profile.get('manufacturingClockLimit', 1) + 1e-10)):
+                error(location, 'state manufacturing clock exceeds source profile')
+            site = project.get('sitePlan')
+            if isinstance(site, dict) and all(number(site.get(key), positive=True) for key in ('width', 'depth')) and all(number(placement.get(key)) for key in ('x', 'y', 'width', 'depth')):
+                if any(placement[axis] - placement[extent] / 2 < 0 or placement[axis] + placement[extent] / 2 > site[extent]
+                       for axis, extent in (('x', 'width'), ('y', 'depth'))):
+                    error(location, 'state body extends outside the site')
+        state_placements[state_id] = selected
+    for drawing in drawings:
+        state_id = drawing.get('operatingState', 'steady')
+        if not isinstance(state_id, str) or state_id not in state_placements:
+            error('drawings.' + str(drawing.get('id')), 'unknown drawing operating state')
+    preceding_stages = set()
     for index, stage in enumerate(stages):
         label = f'build.steps[{index}]'
         string(stage, 'title', label)
@@ -346,6 +439,39 @@ def validate_project(project, *, recipes_file=None, save_ids=None, known_project
             error(label, 'unknown drawing reference')
         if any(ident not in level_ids for ident in stage.get('levelIds', [])):
             error(label, 'unknown level reference')
+        if any(ident not in preceding_stages for ident in stage.get('prerequisites', [])):
+            error(label, 'prerequisites must precede this construction stage')
+        preceding_stages.add(stage['id'])
+        if 'externalPrerequisites' in stage:
+            seen = set()
+            for ref in objects(stage, 'externalPrerequisites', label):
+                target_project, target_step = ref.get('projectId'), ref.get('stepId')
+                if not isinstance(target_project, str) or not ID_RE.fullmatch(target_project) or not isinstance(target_step, str) or not KEY_RE.fullmatch(target_step):
+                    error(label, 'invalid external construction prerequisite')
+                    continue
+                pair = (target_project, target_step)
+                if pair in seen or target_project == project['id']:
+                    error(label, 'duplicate or local prerequisite in external list')
+                seen.add(pair)
+                if 'label' in ref:
+                    string(ref, 'label', label + '.externalPrerequisites')
+        state_id = stage.get('operatingState', 'steady')
+        if not isinstance(state_id, str) or not KEY_RE.fullmatch(state_id):
+            error(label, 'invalid operating state')
+        elif state_id not in state_placements:
+            error(label, 'operating state has no literal geometry')
+        if any(drawing_by_id.get(ident, {}).get('operatingState', 'steady') != state_id for ident in stage.get('drawingIds', [])):
+            error(label, 'drawing belongs to a different operating state')
+        if 'placementIds' in stage:
+            selected = [ident for ident in strings(stage, 'placementIds', label) if isinstance(ident, str)]
+            state_id = stage.get('operatingState', 'steady')
+            stage_values = state_placements.get(state_id, []) if isinstance(state_id, str) else []
+            available = {placement.get('id') for placement in stage_values if isinstance(placement.get('id'), str)}
+            if len(selected) != len(set(selected)) or any(ident not in available for ident in selected):
+                error(label, 'unknown or duplicate stage placement')
+            selected_levels = {ident for ident in stage.get('levelIds', []) if isinstance(ident, str)}
+            if any(not isinstance(placement.get('levelId'), str) or placement['levelId'] not in selected_levels for placement in stage_values if placement.get('id') in selected):
+                error(label, 'stage placements must belong to its selected levels')
     for item in evidence:
         for key in ('label', 'detail'):
             string(item, key, 'evidence.items')
@@ -368,6 +494,10 @@ def validate_project(project, *, recipes_file=None, save_ids=None, known_project
     if project['saveId'] not in (set(save_ids) if save_ids is not None else registered):
         error('saveId', 'unknown registered save')
     known = set(known_projects) if known_projects is not None else known
+    for stage in stages:
+        for ref in stage.get('externalPrerequisites', []):
+            if (project['saveId'], ref['projectId']) not in known:
+                error('build.externalPrerequisites', 'unknown target project')
     seen_dependencies = set()
     for dep in dependencies:
         pair = (dep.get('saveId'), dep.get('projectId'))
@@ -389,8 +519,8 @@ def validate_project(project, *, recipes_file=None, save_ids=None, known_project
     production = project.get('production')
     if project['kind'] == 'factory' and not isinstance(production, dict):
         error('production', 'factory requires full production evidence')
-    if project['kind'] != 'factory' and project.get('target') is not None:
-        error('target', 'shared infrastructure must not invent a production target')
+    if project['kind'] != 'factory' and project.get('target') is not None and not isinstance(production, dict):
+        error('target', 'shared infrastructure target requires full production evidence')
     if isinstance(production, dict):
         target = project.get('target', {})
         target_rate = target.get('rate')
@@ -416,9 +546,10 @@ def validate_project(project, *, recipes_file=None, save_ids=None, known_project
             source_registry = read_json(registry_root / project['saveId'] / 'source-evidence.json')
             if source_registry.get('saveSha256') != source['saveSha256']:
                 error('source.saveSha256', 'does not match the registered save snapshot')
-            recipe_authority = 'forecastRecipesSha256' if forecast else 'normalizedRecipesSha256'
-            if source_registry.get(recipe_authority) != production.get('recipesSha256'):
-                error('production.recipesSha256', 'does not match the registered recipe authority')
+            registered_recipes = (source_registry.get('forecastRecipeAuthorities', {}).get(project['id'])
+                                  if forecast else source_registry.get('normalizedRecipesSha256'))
+            if registered_recipes != production.get('recipesSha256'):
+                error('production.recipesSha256', 'does not match this project’s registered recipe authority')
         except (OSError, ValueError, TypeError, AttributeError) as exc:
             error('source', f'cannot read registered recipe authority: {exc}')
         recipe_data = None
@@ -487,16 +618,17 @@ def validate_project(project, *, recipes_file=None, save_ids=None, known_project
                 error('production.conservation', f'{item} has unbalanced flow {value:.9g}/min')
         placement_counts = Counter()
         for index, placement in enumerate(placements):
-            process = process_by_id.get(placement.get('processId'))
-            if not process:
-                error(f'placements[{index}]', 'unknown process')
+            process_id = placement.get('processId')
+            process = process_by_id.get(process_id)
+            component = not process_id and isinstance(placement.get('componentId'), str) and bool(placement['componentId'].strip())
+            if not process and not component:
+                error(f'placements[{index}]', 'unknown process or missing component identity')
+                continue
+            if component:
                 continue
             placement_counts[process['id']] += 1
             if placement.get('levelId') not in level_ids or not number(placement.get('clock')) or not close(placement['clock'], process['clock']):
                 error(f'placements[{index}]', 'unknown level or inconsistent machine clock')
-            for key in ('x', 'y', 'z', 'width', 'depth', 'height'):
-                if not number(placement.get(key), positive=key in {'width', 'depth', 'height'}):
-                    error(f'placements[{index}]', f'invalid {key}')
         for process in processes:
             if placement_counts[process['id']] != process.get('machines'):
                 error('placements', f"count differs from machines for {process['id']}")
@@ -510,7 +642,10 @@ def validate_project(project, *, recipes_file=None, save_ids=None, known_project
                 continue
             if rate > capacity * lanes + 1e-6:
                 error(label, 'stream exceeds lane capacity')
-            if item not in inputs_by_process.get(to, {}):
+            if to == 'STOCK':
+                if item not in target_flows:
+                    error(label, 'stock stream is not a declared net output')
+            elif item not in inputs_by_process.get(to, {}):
                 error(label, 'stream consumer/input does not exist')
             sources = stream.get('from')
             if not isinstance(sources, list) or not sources:
@@ -525,6 +660,94 @@ def validate_project(project, *, recipes_file=None, save_ids=None, known_project
             for item, rate in inputs.items():
                 if not close(routed[(process_id, item)], rate):
                     error('infrastructure.streams', f'consumer flow differs for {process_id}/{item}')
+        if project.get('layout') is not None or any(stream.get('to') == 'STOCK' for stream in streams):
+            for item, rate in target_flows.items():
+                if not close(routed[('STOCK', item)], rate):
+                    error('infrastructure.streams', f'stock flow differs from net output for {item}')
+    if 'layout' in project:
+        layout = project['layout']
+        if not isinstance(layout, dict):
+            error('layout', 'expected engineering geometry object')
+        else:
+            routes = objects(layout, 'routes', 'layout')
+            unique(routes, 'layout.routes')
+            stream_map = {}
+            for stream in streams:
+                if not number(stream.get('lanes'), positive=True, integer=True) or not all(
+                    number(stream.get(key), positive=True) for key in ('rate', 'capacity')
+                ):
+                    error('layout.routes', 'stream requires positive finite rate/capacity and integer lanes')
+                    continue
+                stream_map[stream['id']] = stream
+            allocations = defaultdict(dict)
+            for route in routes:
+                label = 'layout.routes.' + str(route.get('id'))
+                stream = stream_map.get(route.get('streamId'))
+                lane, rate = route.get('lane'), route.get('rate')
+                if not stream or not number(lane, positive=True, integer=True) or not number(rate, positive=True):
+                    error(label, 'requires a known stream, positive lane and rate')
+                    continue
+                if lane > stream['lanes'] or rate > stream['capacity'] + 1e-6:
+                    error(label, 'route exceeds its stream lane capacity')
+                if lane in allocations[stream['id']]:
+                    error(label, 'stream lane has multiple primary routes')
+                allocations[stream['id']][lane] = rate
+                points = route.get('points')
+                if not isinstance(points, list) or len(points) < 2 or any(
+                    not isinstance(point, list) or len(point) != 3 or not all(number(value) for value in point)
+                    for point in points
+                ):
+                    error(label, 'route requires at least two finite XYZ points')
+                elif all(left == right for left, right in zip(points, points[1:])):
+                    error(label, 'route has zero length')
+                for key in ('fromPlacementId', 'toPlacementId'):
+                    if key in route and route[key] not in placement_ids:
+                        error(label, 'route refers to an unknown machine')
+            for ident, stream in stream_map.items():
+                lanes = allocations[ident]
+                if set(lanes) != set(range(1, int(stream['lanes']) + 1)) or not close(sum(lanes.values()), stream['rate']):
+                    error('layout.routes', 'physical lane allocation differs from stream ' + ident)
+            if 'physicalEdges' in layout:
+                edges = objects(layout, 'physicalEdges', 'layout')
+                unique(edges, 'layout.physicalEdges')
+                edge_map = {edge['id']: edge for edge in edges if isinstance(edge.get('id'), str)}
+                edge_use = defaultdict(float)
+                edge_routes = defaultdict(set)
+                for route in routes:
+                    refs = route.get('sharedPhysicalEdgeIds')
+                    if not isinstance(refs, list) or not refs or any(not isinstance(ref, str) for ref in refs):
+                        error('layout.routes', 'route requires explicit sharedPhysicalEdgeIds')
+                        continue
+                    if len(refs) != len(set(refs)):
+                        error('layout.routes', 'physical edge counted twice in one route')
+                    stream = stream_map.get(route.get('streamId'), {})
+                    for ref in refs:
+                        edge = edge_map.get(ref)
+                        if edge is None:
+                            error('layout.routes', 'unknown physical edge ' + ref)
+                            continue
+                        if edge.get('itemId') != stream.get('itemId'):
+                            error('layout.physicalEdges.' + ref, 'edge item differs from its logical stream')
+                        if number(route.get('rate'), positive=True):
+                            edge_use[ref] += route['rate']
+                        edge_routes[ref].add(route['id'])
+                for ident, edge in edge_map.items():
+                    label = 'layout.physicalEdges.' + ident
+                    if not number(edge.get('rate'), positive=True) or not number(edge.get('capacity'), positive=True):
+                        error(label, 'requires positive finite rate and capacity')
+                    elif edge['rate'] > edge['capacity'] + 1e-6 or not close(edge['rate'], edge_use[ident]):
+                        error(label, 'physical capacity or shared flow allocation mismatch')
+                    points = edge.get('points')
+                    if not isinstance(points, list) or len(points) < 2 or any(
+                        not isinstance(point, list) or len(point) != 3 or not all(number(value) for value in point)
+                        for point in points
+                    ):
+                        error(label, 'requires at least two finite XYZ points')
+                    elif all(left == right for left, right in zip(points, points[1:])):
+                        error(label, 'physical edge has zero length')
+                    declared = edge.get('logicalRouteIds')
+                    if not isinstance(declared, list) or any(not isinstance(ref, str) for ref in declared) or set(declared) != edge_routes[ident]:
+                        error(label, 'logicalRouteIds differ from actual shared route membership')
     world = project.get('map')
     if isinstance(world, dict):
         extractors = world.get('protectedExtractors', [])

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from collections import Counter
+from graphlib import CycleError, TopologicalSorter
 import hashlib
 from pathlib import Path
 
@@ -136,6 +137,25 @@ def validate_world(root=ROOT, worlds_root=None):
             for step in project['build']['steps']:
                 if any(item not in stage_ids for item in step['prerequisites']):
                     errors.append(prefix + project_id + ': missing predecessor stage')
+        construction = {(project_id, step['id']): set()
+                        for project_id, project in documents.items() for step in project['build']['steps']}
+        for project_id, project in documents.items():
+            for step in project['build']['steps']:
+                key = (project_id, step['id'])
+                refs = [(project_id, prerequisite) for prerequisite in step['prerequisites']]
+                external = step.get('externalPrerequisites', [])
+                if isinstance(external, list):
+                    refs += [(ref['projectId'], ref['stepId']) for ref in external
+                             if isinstance(ref, dict) and isinstance(ref.get('projectId'), str) and isinstance(ref.get('stepId'), str)]
+                for prerequisite in refs:
+                    if prerequisite not in construction:
+                        errors.append(prefix + project_id + ': unknown cross-project predecessor ' + '/'.join(prerequisite))
+                    else:
+                        construction[key].add(prerequisite)
+        try:
+            TopologicalSorter(construction).prepare()
+        except CycleError:
+            errors.append(prefix + 'construction stages contain a cross-project dependency cycle')
         tier_ids = {tier['id'] for tier in manifest['tiers']}
         if len(tier_ids) != len(manifest['tiers']):
             errors.append(prefix + 'duplicate tier IDs')
@@ -143,6 +163,18 @@ def validate_world(root=ROOT, worlds_root=None):
             for project_id in tier['globals'] + tier['factories'] + [step['project'] for step in tier['sequence']]:
                 if project_id not in project_ids:
                     errors.append(prefix + f"tier{tier['id']}: unknown project {project_id}")
+            sequence_refs = set()
+            for step in tier['sequence']:
+                stage_id = step.get('stageId')
+                if stage_id is not None and (not isinstance(stage_id, str) or stage_id not in {
+                    entry['id'] for entry in documents.get(step['project'], {}).get('build', {}).get('steps', [])
+                }):
+                    errors.append(prefix + f"tier{tier['id']}: unknown sequence stage")
+                if isinstance(stage_id, (str, type(None))):
+                    ref = (step['project'], stage_id)
+                    if ref in sequence_refs:
+                        errors.append(prefix + f"tier{tier['id']}: duplicate sequence entry")
+                    sequence_refs.add(ref)
         for summary in summaries:
             if summary['tier'] not in tier_ids:
                 errors.append(prefix + 'project points to an unknown tier')
