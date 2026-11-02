@@ -27,10 +27,12 @@ export interface WorldAnalysis {
 export interface WorldTier {
   id: number; title: string; goal: string; gate: string
   milestones: Array<{ id: string; name: string; cost: Array<{ item: string; amount: number }>; purchased: boolean; optional: boolean }>
-  sequence: Array<{ project: string; action: string }>; globals: string[]; factories: string[]; exitChecks: string[]
+  sequence: Array<{ project: string; stageId?: string; action: string }>; globals: string[]; factories: string[]; exitChecks: string[]
 }
 export interface WorldProjectSummary {
   id: string; title: string; tier: number; category: string; stages: number; site: string; powerMW?: number | null; outputs: Flow[]; optional: boolean; revision: string
+  preview?: Asset
+  integrationStatus?: 'current-selected' | 'preserved-previous'
 }
 export interface WorldManifest {
   schemaVersion: 1; id: string; saveId: string; title: string; summary: string; saveSha256: string; snapshotAt: string; sourceAnalysisId: string

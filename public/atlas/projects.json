@@ -2,75 +2,6 @@
   "schemaVersion": 1,
   "projects": [
     {
-      "id": "iron-home",
-      "saveId": "slave",
-      "kind": "factory",
-      "title": "Домашнее железо",
-      "subtitle": "Paradise Island · тир1 · Домашнее железо",
-      "revision": "500ded861d03834de2ad511ccb1de3ed1a0d262bf659473c736797b350c21129",
-      "updatedAt": "2026-10-30T10:55:59.913Z",
-      "status": "blocked",
-      "target": {
-        "itemId": "Desc_IronPlate_C",
-        "label": "Пластины",
-        "rate": 100,
-        "unit": "/мин"
-      },
-      "preview": {
-        "src": "/atlas/slave/iron-home/revisions/500ded861d03834de2ad511ccb1de3ed1a0d262bf659473c736797b350c21129/layout.svg",
-        "alt": "Производственный уровень1 · сетка и машины",
-        "caption": "Размерная схема; не игровой скриншот.",
-        "kind": "schematic"
-      },
-      "drawingCount": 1
-    },
-    {
-      "id": "copper-home",
-      "saveId": "slave",
-      "kind": "factory",
-      "title": "Провод и кабель",
-      "subtitle": "Paradise Island · тир1 · Медный цех",
-      "revision": "a92a7964e1a43d1dc88de2e37d77e3a927577688999fbda400517acd15b4aec6",
-      "updatedAt": "2026-10-30T10:55:59.913Z",
-      "status": "blocked",
-      "target": {
-        "itemId": "Desc_Cable_C",
-        "label": "Кабель",
-        "rate": 240,
-        "unit": "/мин"
-      },
-      "preview": {
-        "src": "/atlas/slave/copper-home/revisions/a92a7964e1a43d1dc88de2e37d77e3a927577688999fbda400517acd15b4aec6/layout.svg",
-        "alt": "Производственный уровень1 · сетка и машины",
-        "caption": "Размерная схема; не игровой скриншот.",
-        "kind": "schematic"
-      },
-      "drawingCount": 2
-    },
-    {
-      "id": "concrete",
-      "saveId": "slave",
-      "kind": "factory",
-      "title": "Бетонный двор",
-      "subtitle": "Paradise Island · тир1 · Бетонный двор",
-      "revision": "e0ae6c1aa93c621f3fec8fad902e3352f1e5dc73f71d0f1e4a72d78be5df92af",
-      "updatedAt": "2026-10-30T10:55:59.913Z",
-      "status": "blocked",
-      "target": {
-        "itemId": "Desc_Cement_C",
-        "label": "Бетон",
-        "rate": 160,
-        "unit": "/мин"
-      },
-      "preview": {
-        "src": "/atlas/slave/concrete/revisions/e0ae6c1aa93c621f3fec8fad902e3352f1e5dc73f71d0f1e4a72d78be5df92af/layout.svg",
-        "alt": "Производственный уровень1 · сетка и машины",
-        "caption": "Размерная схема; не игровой скриншот.",
-        "kind": "schematic"
-      },
-      "drawingCount": 1
-    },
-    {
       "id": "copper-sheets",
       "saveId": "slave",
       "kind": "factory",
@@ -301,57 +232,6 @@
       "drawingCount": 1
     },
     {
-      "id": "hub",
-      "saveId": "slave",
-      "kind": "warehouse",
-      "title": "HUB и исследовательский двор",
-      "subtitle": "Paradise Island · тир1 · HUB · существующий",
-      "revision": "821df5187e42a80744e97859e022712d96c9cb5de8ee3d4d0fed6a6691571d9f",
-      "updatedAt": "2026-10-30T10:55:59.913Z",
-      "status": "blocked",
-      "preview": {
-        "src": "/atlas/slave/hub/revisions/821df5187e42a80744e97859e022712d96c9cb5de8ee3d4d0fed6a6691571d9f/layout.svg",
-        "alt": "Размерная схема и рабочие проходы",
-        "caption": "Размерная схема; не игровой скриншот.",
-        "kind": "schematic"
-      },
-      "drawingCount": 1
-    },
-    {
-      "id": "warehouse",
-      "saveId": "slave",
-      "kind": "warehouse",
-      "title": "Склад · первые восемь ячеек",
-      "subtitle": "Paradise Island · тир1 · Склад стройматериалов",
-      "revision": "d37703dad01705cacecdefd465c647c2474b7ab3c09c08b55df01d7a983ed730",
-      "updatedAt": "2026-10-30T10:55:59.913Z",
-      "status": "blocked",
-      "preview": {
-        "src": "/atlas/slave/warehouse/revisions/d37703dad01705cacecdefd465c647c2474b7ab3c09c08b55df01d7a983ed730/layout.svg",
-        "alt": "Размерная схема и рабочие проходы",
-        "caption": "Размерная схема; не игровой скриншот.",
-        "kind": "schematic"
-      },
-      "drawingCount": 1
-    },
-    {
-      "id": "bio-start",
-      "saveId": "slave",
-      "kind": "warehouse",
-      "title": "Биостарт и независимый перезапуск",
-      "subtitle": "Paradise Island · тир1 · Временный биостарт",
-      "revision": "eaa9bf50efcb4a243226f10a2537417a10a6823cf7e617af895cefd86359e560",
-      "updatedAt": "2026-10-30T10:55:59.913Z",
-      "status": "blocked",
-      "preview": {
-        "src": "/atlas/slave/bio-start/revisions/eaa9bf50efcb4a243226f10a2537417a10a6823cf7e617af895cefd86359e560/layout.svg",
-        "alt": "Размерная схема и рабочие проходы",
-        "caption": "Размерная схема; не игровой скриншот.",
-        "kind": "schematic"
-      },
-      "drawingCount": 1
-    },
-    {
       "id": "elevator",
       "saveId": "slave",
       "kind": "warehouse",
@@ -452,6 +332,136 @@
         "kind": "schematic"
       },
       "drawingCount": 1
+    },
+    {
+      "id": "bio-start",
+      "saveId": "slave",
+      "kind": "warehouse",
+      "title": "Пуск на биотопливе",
+      "subtitle": "Исходниковый прогноз; строительство и запуск не подтверждены",
+      "revision": "614796122f2e5c13f79b0a16d8182f2d962c2e8f4273ea98612157b8801c550a",
+      "updatedAt": "2026-10-30T10:55:59.913000+00:00",
+      "status": "blocked",
+      "target": {
+        "exact": "40",
+        "itemId": "Desc_Biofuel_C",
+        "label": "Solid Biofuel",
+        "rate": 40,
+        "unit": "шт/мин"
+      },
+      "preview": {
+        "alt": "Инженерная сборка",
+        "caption": "Исходниковая схема, не игровые меши и не доказательство коллизий.",
+        "kind": "schematic",
+        "src": "/atlas/slave/bio-start/revisions/614796122f2e5c13f79b0a16d8182f2d962c2e8f4273ea98612157b8801c550a/assets/render.png"
+      },
+      "drawingCount": 31
+    },
+    {
+      "id": "concrete",
+      "saveId": "slave",
+      "kind": "factory",
+      "title": "Бетон для строительства",
+      "subtitle": "Исходниковый прогноз; строительство и запуск не подтверждены",
+      "revision": "edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb",
+      "updatedAt": "2026-10-30T10:55:59.913000+00:00",
+      "status": "blocked",
+      "target": {
+        "exact": "80",
+        "itemId": "Desc_Cement_C",
+        "label": "Concrete",
+        "rate": 80,
+        "unit": "шт/мин"
+      },
+      "preview": {
+        "alt": "Инженерная сборка",
+        "caption": "Исходниковая схема, не игровые меши и не доказательство коллизий.",
+        "kind": "schematic",
+        "src": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/render.png"
+      },
+      "drawingCount": 33
+    },
+    {
+      "id": "copper-home",
+      "saveId": "slave",
+      "kind": "factory",
+      "title": "Ранняя медь",
+      "subtitle": "Исходниковый прогноз; строительство и запуск не подтверждены",
+      "revision": "2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670",
+      "updatedAt": "2026-10-30T10:55:59.913000+00:00",
+      "status": "blocked",
+      "target": {
+        "exact": "60",
+        "itemId": "Desc_Cable_C",
+        "label": "Cable",
+        "rate": 60,
+        "unit": "шт/мин"
+      },
+      "preview": {
+        "alt": "Инженерная сборка",
+        "caption": "Исходниковая схема, не игровые меши и не доказательство коллизий.",
+        "kind": "schematic",
+        "src": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/render.png"
+      },
+      "drawingCount": 26
+    },
+    {
+      "id": "hub",
+      "saveId": "slave",
+      "kind": "warehouse",
+      "title": "HUB и покупки технологий",
+      "subtitle": "Исходниковый прогноз; строительство и запуск не подтверждены",
+      "revision": "190f8a103abcdb025c84c4b6e3096d4df4357bc4af104e1c6d430bf9ad987ed5",
+      "updatedAt": "2026-10-30T10:55:59.913000+00:00",
+      "status": "blocked",
+      "preview": {
+        "alt": "Инженерная сборка",
+        "caption": "Исходниковая схема, не игровые меши и не доказательство коллизий.",
+        "kind": "schematic",
+        "src": "/atlas/slave/hub/revisions/190f8a103abcdb025c84c4b6e3096d4df4357bc4af104e1c6d430bf9ad987ed5/assets/render.png"
+      },
+      "drawingCount": 6
+    },
+    {
+      "id": "iron-home",
+      "saveId": "slave",
+      "kind": "factory",
+      "title": "Домашнее железо",
+      "subtitle": "Исходниковый прогноз; строительство и запуск не подтверждены",
+      "revision": "a7c0718cac501ca6ad8d9f1fec281267c78670b9e4e4670a52f361ed463995f4",
+      "updatedAt": "2026-10-30T10:55:59.913000+00:00",
+      "status": "blocked",
+      "target": {
+        "exact": "80",
+        "itemId": "Desc_IronPlate_C",
+        "label": "Iron Plate",
+        "rate": 80,
+        "unit": "шт/мин"
+      },
+      "preview": {
+        "alt": "Инженерная сборка",
+        "caption": "Исходниковая схема, не игровые меши и не доказательство коллизий.",
+        "kind": "schematic",
+        "src": "/atlas/slave/iron-home/revisions/a7c0718cac501ca6ad8d9f1fec281267c78670b9e4e4670a52f361ed463995f4/assets/render.png"
+      },
+      "drawingCount": 40
+    },
+    {
+      "id": "warehouse",
+      "saveId": "slave",
+      "kind": "warehouse",
+      "title": "Адресный склад",
+      "subtitle": "Исходниковый прогноз; строительство и запуск не подтверждены",
+      "revision": "c78755998eb4a26c676c3c9596348b8f2c5b736065f8453e20a1293df94c2956",
+      "updatedAt": "2026-10-30T10:55:59.913000+00:00",
+      "status": "blocked",
+      "preview": {
+        "alt": "Инженерная сборка",
+        "caption": "Исходниковая схема, не игровые меши и не доказательство коллизий.",
+        "kind": "schematic",
+        "src": "/atlas/slave/warehouse/revisions/c78755998eb4a26c676c3c9596348b8f2c5b736065f8453e20a1293df94c2956/assets/render.png"
+      },
+      "drawingCount": 33
     }
   ]
 }

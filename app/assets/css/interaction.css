@@ -1,5 +1,5 @@
 .atlas-input,.atlas-select-trigger { transition: border-color 240ms ease,background-color 240ms ease,color 240ms ease; box-shadow: none; }
-.atlas-input:focus-visible,.atlas-select-trigger:focus-visible { outline: none; box-shadow: none; }
+.atlas-input:focus-visible,.atlas-select-trigger:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; box-shadow: none; }
 .atlas-input[aria-invalid=true]:focus-visible,.atlas-select-trigger[aria-invalid=true]:focus-visible { outline: 1px solid var(--warning); outline-offset: 3px; }
 .atlas-button { position: relative; min-height: 48px; border-radius: 9px; transition: background-color 240ms ease,color 240ms ease,border-color 240ms ease,box-shadow 300ms ease,transform 180ms var(--ease-out); }
 .atlas-button-primary:not(:disabled):hover { background: color-mix(in srgb,var(--accent),var(--ink) 18%); box-shadow: 0 6px 18px color-mix(in srgb,var(--accent),transparent 82%); transform: translateY(-2px); }

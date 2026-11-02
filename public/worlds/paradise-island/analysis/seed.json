@@ -2,18 +2,9 @@
   "schemaVersion": 1,
   "id": "seed",
   "title": "01 · Сейв и остров",
-  "summary": "Фактический снимок slave: что уже открыто, где находятся ресурсы и что ещё не проверено в игре.",
   "saveSha256": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
   "snapshotAt": "2026-10-30T10:55:59.913Z",
   "seed": 1635395380,
-  "settings": {
-    "randomization": "NRM_AdvancedRich",
-    "purity": "NPS_Increase",
-    "spacePartsMultiplier": 100,
-    "activeMods": 107,
-    "WB": "1.0.3",
-    "ParadiseIsland": "1.0.9"
-  },
   "hub": [
     -1835.3383,
     2852.81,
@@ -217,37 +208,6 @@
       "author_blob_sha": "d4a3d095e48a725f42bcd63c188bba7ffe2472e2"
     }
   ],
-  "sections": [
-    {
-      "title": "Seed — не новый рельеф",
-      "paragraphs": [
-        "Рельеф карты фиксирован. Seed 1635395380 управляет рандомизацией ресурсов. Paradise Island добавляет 14 собственных нод: их типы установлены по совпадению UAID акторов сейва с actor assets автора, а не по ближайшему ванильному маркеру SCIM.",
-        "На острове 3 железа, 3 меди, 3 известняка, 2 угля, по одной нефти, кварца и серы. Чистота: 12 pure и 2 normal. Нефть доступна географически, но технология её добычи — только после фазы 2."
-      ]
-    },
-    {
-      "title": "Начинаем с построенного, а не с нового прохождения",
-      "paragraphs": [
-        "В снимке есть HUB и его встроенные сжигатели; заводских машин, буров и лент нет. Открыты Base Building, Field Research, Obstacle Clearing, стартовые технологии, WB Extraction I и исследование слизней. Logistics и Part Assembly ещё не куплены. Фаза лифта 0 → 1.",
-        "В инвентаре: 353 пластины, 400 стержней, 108 усиленных пластин, 1976 винтов, 326 бетона, 2000 провода, 811 кабеля и 332 твёрдого биотоплива. Этот запас — разовый стартовый капитал, не постоянный поток."
-      ]
-    },
-    {
-      "title": "Что подтверждено",
-      "paragraphs": [
-        "Тот же slave.sav загружен через штатное поле файла в satisfactory-calculator. Сохранены разобранные объекты, настройки, рецепты и маркеры. Повторный SHA-256 текущего файла совпал со снимком анализа.",
-        "Исходники WB задают добычу, число портов, скорость лент, плотность машин и энергопотребление. На них основаны следующие расчётные состояния; старые потоки 150 руды/мин и сценарий ожидания 83 часа исключены из плана."
-      ]
-    },
-    {
-      "title": "Что не подтверждено",
-      "paragraphs": [
-        "Активны 107 модов, в том числе MkPlus, BuildingSkills и RefinedPower. Взаимодействие их runtime-модификаторов с WB не замерено. Арифметика WB не выдается за измерение работающего завода.",
-        "Глубина воды, коллизии площадок, доступные слизни/сферы и распределение потока между выходами требуют проверки в игре. Координаты зданий далее — предлагаемые строительные конверты; координаты нод — данные сейва.",
-        "До массового повторения модуля: поставить одну WB-машину, сверить UI 100%, рецепт, фактический минутный выпуск и MW. При расхождении остановить масштабирование, а не скрывать его заниженной частотой."
-      ]
-    }
-  ],
   "sources": [
     {
       "label": "Satisfactory Calculator — снимок загружен",
@@ -260,150 +220,670 @@
     {
       "label": "Paradise Island — исходные акторы",
       "url": "https://github.com/mklierman/SatisfactoryMods/tree/main/ParadiseIsland"
+    },
+    {
+      "label": "Heavy Fluid Overhaul: описание автора",
+      "url": "https://ficsit.app/mod/HeavyFluids"
+    },
+    {
+      "label": "EasyAlt Rebalance: описание автора",
+      "url": "https://ficsit.app/mod/EasyAltRecipes"
+    },
+    {
+      "label": "Старый SCIM-каталог EasyAlt1.2.3",
+      "url": "https://satisfactory-calculator.com/en/mods/index/details/id/88/name/EasyAlt+Recipes"
+    },
+    {
+      "label": "BetterOverclocking: описание автора; локальная формула восстановлена отдельно",
+      "url": "https://ficsit.app/mod/BetterOverclocking"
     }
   ],
+  "worldId": "paradise-island",
+  "saveId": "slave",
+  "settings": {
+    "randomization": "NRM_AdvancedRich",
+    "purity": "NPS_Increase",
+    "spacePartsMultiplier": 100,
+    "savedModMetadataCount": 107,
+    "activationVerified": false,
+    "WB": "1.0.3",
+    "BetterOverclocking": "1.2.0",
+    "modOptions": {
+      "EasyAltRecipes.RemoveOriginalRecipes": false,
+      "EasyAltRecipes.ReplaceRecipes": false,
+      "HeavyFluids.Divider.Main": 2,
+      "HeavyFluids.Divider.Extractor": 2,
+      "HeavyFluids.Divider.WaterPump": 2,
+      "HeavyFluids.Energy.Fluid": 1,
+      "HeavyFluids.Energy.Solid": 1,
+      "HeavyFluids.Pipeline.Cost": 2.0,
+      "HeavyFluids.Pipeline.Limit": true
+    }
+  },
+  "sourceFilename": "slave.sav",
+  "sourceFingerprints": {
+    "save": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
+    "private-audit-input": "4efbcf1316d304b78ccf04ae9e58cf169808f494c2191d05cadad5872d58b9ac",
+    "final-demand-input": "d49f8224b5002ae96abe20abb8da8a4ede77ac76f5cc4c84b7c17bef2b239dbc",
+    "game-data": "104a31f096660de25dc17b3921840f4f330c473469e34becc3e7a23c3a08453b",
+    "state": "faf4a94a157a7b34d9d5e45cbae4657ed7041d82e1f426c1b649bb838e73d454",
+    "wb-catalog": "7da46f426d70b8e897f415408123165cb87f7a33e9ee87209900feb073825170",
+    "wb-generation": "237a688a46a57bb88f407acc30f95017a629612ca5598d0435d9da288bc4299d",
+    "wb-runtime": "a92f668fce2d8abe2190e8fe1d2b35acf31b0caf19a6f657229a27e39a96d08c",
+    "wb-outlets-variable-power": "8a33cf96719f26ebf3bf495458427b2a4cb2dc84d4513621f538d0ad990bad58",
+    "wb-exponent": "7309f65ca5258395cab56e32ed074fac0931dba350c718e1e8695f5d1bbabc49",
+    "wb-source-WorldBalance.Build.cs": "d8bc4063fe80c77d26d0511579adf629cab6e3fb57cf92ee20de24e5cd75a8db",
+    "wb-source-WorldBalanceEditor.Build.cs": "a8e5ef64fa0d83ed9dfb7c71c2402b62ba77de3ff00c8cfe35d0896dc7c0f86e",
+    "wb-source-WorldBalanceGenerateCommandlet.cpp": "237a688a46a57bb88f407acc30f95017a629612ca5598d0435d9da288bc4299d",
+    "wb-source-WorldBalanceGenerateCommandlet.h": "5cf742e4c80a9e0d3121259c9996be8540abf064529c77eeb88f2c19ca409e8a",
+    "wb-source-WorldBalanceAssetTests.cpp": "738f6a08f7268cda8345072fd54fedae329d4ca5f412e3cf40614d36ac94d340",
+    "wb-source-WorldBalanceModule.cpp": "8a33cf96719f26ebf3bf495458427b2a4cb2dc84d4513621f538d0ad990bad58",
+    "wb-source-WorldBalanceCatalog.cpp": "7da46f426d70b8e897f415408123165cb87f7a33e9ee87209900feb073825170",
+    "wb-source-WorldBalanceWorldModule.cpp": "a92f668fce2d8abe2190e8fe1d2b35acf31b0caf19a6f657229a27e39a96d08c",
+    "wb-source-WorldBalanceWorldModule.h": "857d304bcebd5abfa3b6f112bb4817ba7704d69227e759cd86ee88562d0bb628",
+    "wb-source-WorldBalanceCatalog.h": "7309f65ca5258395cab56e32ed074fac0931dba350c718e1e8695f5d1bbabc49",
+    "mainland-candidates": "55d2b95326ea255712789afa71972ad53f3185efb66ef5cb2c5f5963505e9c98",
+    "hfo-native-functions": "269e8c18935b001b01247a4680eba7cd76d6da198968bb6ef13eecf7b523a0bc",
+    "hfo-evidence-index": "aad732c2d4dbf2192872b51dfd906ca3630c9c747e260dc984ee05ce7dce9c78",
+    "installed-hfo-steam": "ead3983a617fed53c561c496df0ea82a2d4d7dc688d18af540f7f551497bb855",
+    "installed-hfo-plugin": "639fcfc6c51c68d47dffcfdf4dec99a38ffdadc4cac406ef7631409ae4d06804",
+    "installed-easyalt-plugin": "d87d708affae756c83c64ddcb8246d7277347415adb96351a0b69241182816a6",
+    "mod-stack-static-report": "b02839d0369ed6a473ed6b42db81c496b66ba80dfa39104ad652cd35f2fbae32",
+    "installed-bo-steam": "c938105c2b704f2d0b5a8e1995c24dbb84d9adee06ce2a70d7d37caa3e849af2",
+    "installed-bo-pdb": "b3618626e12f80582387727f483091b4adb42892c980cf356f96d3e3431fdfb0",
+    "installed-bo-config": "3eaf3c6a54098485a031c1bffb790180573099693b47f501a862dcea652bda26",
+    "bo-native_functions": "33403e32b556a2b3b78d7bb16d126a5624b3561364593ea2131458ce1fd4e09f",
+    "bo-type_excerpts": "7142746c13b34b1568a49816ba9dc9cd3193e87c3b562b2ff6d371344c0590ff",
+    "bo-byte_authority": "a2ef4310651eb16de6a49d34a19cd7dbe241d0be655f9fa2fe2a7a1ca63b22b3",
+    "better-overclock-static-report": "0f75b1cfba09454d8845541dc034a797d697753ea619af5445c6d853a0927586"
+  },
+  "integration": {
+    "version": 1,
+    "stage": "tier1",
+    "demandSha256": "d49f8224b5002ae96abe20abb8da8a4ede77ac76f5cc4c84b7c17bef2b239dbc",
+    "currentProjectIds": [
+      "bio-start",
+      "concrete",
+      "copper-home",
+      "hub",
+      "iron-home",
+      "warehouse"
+    ],
+    "preservedProjectIds": [
+      "coal-start",
+      "components",
+      "concrete-expanded",
+      "copper-sheets",
+      "departure",
+      "elevator",
+      "frame-stock",
+      "mechanics-stock",
+      "phase-one",
+      "phase-one-boost",
+      "power-annex",
+      "power-expanded",
+      "rotor-stock",
+      "steel-expanded",
+      "steel-start",
+      "warehouse-expanded"
+    ],
+    "display": "Обновлены только шесть проектов тира1. Тиры2–4 и старые сети сохранены как прежние редакции; их числа не описывают совместную работу с новым домом."
+  },
+  "summary": "Текущий сейв и безопасные факты аудита; установка модов не доказывает их активацию.",
   "evidence": {
-    "save": "verified",
-    "calculatorUpload": "verified",
-    "nodeIdentity": "verified",
-    "WBSource": "verified",
+    "save": "hash-pinned",
+    "WBSource": "source-forecast",
     "gameplay": "unverified",
-    "terrainEnvelopes": "unverified"
+    "effectiveModStack": "unverified",
+    "terrainEnvelopes": "unverified",
+    "HFOStaticCode": "installed-byte-pinned; runtime ordering unverified",
+    "BetterOverclockingStatic": "installed-byte-pinned replacement arithmetic; activation and full-stack order unverified"
   },
-  "sourceHashes": {
-    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-paradise-world-site/.superpowers/research/paradise-analysis-20261030/slave-source.sav": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
-    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-world-balance/mods/world-balance/WorldBalance/Source/WorldBalance/Private/WorldBalanceCatalog.cpp": "7da46f426d70b8e897f415408123165cb87f7a33e9ee87209900feb073825170",
-    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-world-balance/mods/world-balance/WorldBalance/Source/WorldBalance/Public/WorldBalanceCatalog.h": "7309f65ca5258395cab56e32ed074fac0931dba350c718e1e8695f5d1bbabc49",
-    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-world-balance/mods/world-balance/WorldBalance/Source/WorldBalance/Private/WorldBalanceWorldModule.cpp": "a92f668fce2d8abe2190e8fe1d2b35acf31b0caf19a6f657229a27e39a96d08c",
-    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-world-balance/mods/world-balance/WorldBalance/Source/WorldBalanceEditor/Private/WorldBalanceGenerateCommandlet.cpp": "237a688a46a57bb88f407acc30f95017a629612ca5598d0435d9da288bc4299d"
-  },
+  "sections": [
+    {
+      "title": "Снимок и граница публикации",
+      "paragraphs": [
+        "Источник: slave.sav; SHA-256 3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6. Идентичность сейва не изменена.",
+        "Обновлены только шесть проектов тира1. Тиры2–4 и старые сети сохранены как прежние редакции; их числа не описывают совместную работу с новым домом."
+      ]
+    },
+    {
+      "title": "629 путей не означают 629 производственных рецептов",
+      "paragraphs": [
+        "В сейве 629 доступных recipe paths, включая постройки, оборудование и модовые записи. Публичный расчётный каталог содержит 22 нормализованных стандартных рецептов выбранных цепочек; это модель планирования, а не полный список открытых рецептов.",
+        "Открытых альтернативных рецептов: 0. Будущие альтернативы нельзя считать доступными до исследования."
+      ]
+    },
+    {
+      "title": "Ресурсы и существующие постройки",
+      "paragraphs": [
+        "Paradise Island добавляет 14 нод: 3 железа, 3 меди, 3 известняка, 2 угля, нефть, кварц и сера. Seed задаёт рандомизацию ресурсов, а не новый рельеф.",
+        "В мире 14 переносных шахтёров. Их можно забрать и переиспользовать; это не 14 подключённых автоматических буров. Накопленную руду не считать готовыми пластинами."
+      ]
+    },
+    {
+      "title": "Установка, исходник и работа игры различаются",
+      "paragraphs": [
+        "В сейве записаны метаданные 107 модов; это не подсчёт установленных или активных плагинов. Это не доказательство активации всех модов в текущем процессе.",
+        "Расчёт по авторскому исходному профилю WB, не измерение игры. Для BetterOverclocking 1.2.0 восстановлена заменяющая формула мощности; эффективные значения, доступность разгона и порядок модовых обработчиков не наблюдались. Жидкости HeavyFluids1.4.5 не сведены к единому коэффициенту: фактический состав кэша рецептов неизвестен.",
+        "Координаты нод сопоставлены с авторскими actor assets. Рельеф, вода, напор, коллизии, доступность рецептов и работа модов требуют отдельной проверки в игре."
+      ]
+    },
+    {
+      "title": "Настройки Heavy Fluid Overhaul из этого сейва",
+      "paragraphs": [
+        "HeavyFluids1.4.5: делители рецептов, жидкостной добычи и воды равны2. Это арифметические делители, а не номера вариантов меню. Индексы энергии1 выбирают1×: энергия твёрдого топлива не меняется, энергия жидкости дополнительно умножается на делитель2.",
+        "Pipeline.Limit включён: собственные пути vanilla-труб ограничены150/300м³/мин. Pipeline.Cost=2 удваивает ингредиенты настроенного списка рецептов труб. Это не утверждение о каждом стороннем насосе, опоре или классе трубы."
+      ]
+    },
+    {
+      "title": "Почему жидкостный расчёт пока не является эффективным профилем игры",
+      "paragraphs": [
+        "В установленном коде HFO рецепт добавляется в кэш отдельно для каждого подходящего производителя. WB добавляет D5/D10/D15. Если все четыре производителя присутствуют до первого кэширования, возможны четыре деления с целочисленным округлением, примерно1/16 вместо1/2. Фактическое число записей и порядок загрузки не наблюдались; ни один из этих коэффициентов не выбран как факт.",
+        "Сухие рецепты и твёрдое биотопливо450МДж не меняются этими путями HFO. Это сохраняет отдельные300стартовых и332защищённых предмета топлива в условном плане Tier1, но не доказывает достаточность холодного запуска, эффективную мощность или совместимость остальных модов."
+      ]
+    },
+    {
+      "title": "EasyAlt: актуальный плагин и старый каталог различаются",
+      "paragraphs": [
+        "В сейве ReplaceRecipes=false и RemoveOriginalRecipes=false. Установлен EasyAlt Rebalance2.7.2; модовые записи refMod88 в старом SCIM-каталоге описывают1.2.3 и не заменяют vanilla-записи по совпавшему className.",
+        "Открытых альтернатив по-прежнему0. Будущая альтернатива требует своего исследования, производителя и сырья; старые HUB-цены и модовые коэффициенты не считаются доказательством поведения2.7.2."
+      ]
+    },
+    {
+      "title": "BetterOverclocking заменяет расчёт мощности",
+      "paragraphs": [
+        "В установленном Steam DLL1.2.0 восстановлена формула: P=max(0.1,0.5×B×b²×(c+c²×(1−n/3))) МВт. c обозначает долю частоты, b текущий производственный буст, n число силовых осколков. B для обычной машины берётся из её текущего поля мощности, а для переменной нагрузки из рецепта и кривой. Формула условна: обработчик должен применяться к машине, а настройки0.5/2 уже должны загрузиться.",
+        "Обработчик возвращает новое значение и прекращает передачу исходному расчёту. Нельзя перемножать эту формулу с WB c^1.321928 или повторно добавлять плотность D5. Таблицы мощности сайта пока сохраняют явно помеченный авторский профиль WB, а не выдают его за измеренный профиль игры."
+      ]
+    },
+    {
+      "title": "250% и экономия от осколков требуют отдельных условий",
+      "paragraphs": [
+        "Локальный обработчик предела возвращает2.5 для не-генераторов, не читая число слотов или осколков. Это не доказательство доступности ползунка до исследования или фактической скорости всей модовой сборки. При100%, бусте1 и загруженной конфигурации0/1/2/3осколка дают примерно1/⅚/⅔/½ от B, с нижним пределом0.1МВт.",
+        "До первого таймера конфигурации нативный модификатор равен1, а не0.5. Пусковой скачок не наблюдался и не исключён. Переменная мощность может обходить хук плотности WB; порядок обработчиков и фактические поля машин не проверены в игре. Ни одна из двух кривых не является консервативной для всех значений пониженной частоты."
+      ]
+    },
+    {
+      "title": "Материковые кандидаты из известных записей сейва",
+      "paragraphs": [
+        "За пределами острова уже известны actor IDs с сохранёнными ресурсом и чистотой. Их координаты являются кандидатами разведки, не найденной в игре безопасной площадкой. Отсутствие построек у актора не доказывает свободный рельеф или доступную трассу.",
+        "Ещё 282 ресурсных записей не имеют достаточного разрешения. Им не приписаны ни ресурс, ни чистота, ни добыча. Предел известного набора не является доказательством отсутствия других ресурсов на всей карте."
+      ]
+    }
+  ],
   "tables": [
     {
-      "caption": "Координаты нод в игровых метрах; расстояние прямое, не длина трассы",
+      "caption": "Публичные факты аудита, без локальных путей и аккаунтных данных",
+      "columns": [
+        "Показатель",
+        "Значение",
+        "Смысл"
+      ],
+      "rows": [
+        [
+          "Seed ресурсов",
+          "1635395380",
+          "Сохранённый seed рандомизации нод, не генерация рельефа"
+        ],
+        [
+          "Рандомизация нод",
+          "NRM_AdvancedRich",
+          "Режим из сейва"
+        ],
+        [
+          "Чистота нод",
+          "NPS_Increase",
+          "Режим из сейва; чистота каждой ноды указана отдельно"
+        ],
+        [
+          "Множитель частей лифта",
+          "×100",
+          "Применён к фазовым требованиям, не к обычной стоимости HUB"
+        ],
+        [
+          "Recipe paths сейва",
+          "629",
+          "Не число выбранных производственных рецептов"
+        ],
+        [
+          "Стандартная модель цепочек",
+          "22",
+          "Публичный нормализованный каталог"
+        ],
+        [
+          "Открытые альтернативы",
+          "0",
+          "Никаких неявных alt-рецептов"
+        ],
+        [
+          "Переносные шахтёры",
+          "14",
+          "Предметы/ручной сбор, не сеть добычи"
+        ],
+        [
+          "Метаданные модов",
+          "107",
+          "Не доказательство runtime-активации"
+        ]
+      ]
+    },
+    {
+      "caption": "Авторские координаты нод, м; прямая дистанция не равна трассе",
       "columns": [
         "Нода",
         "Чистота",
         "X",
         "Y",
         "Z",
-        "До HUB, м"
+        "До HUB"
       ],
       "rows": [
         [
-          "Coal_1",
-          "Pure",
+          "BP_ResourceNode_Coal_1",
+          "RP_Pure",
           "-2073.64",
           "3032.2",
-          "13.0",
+          "13",
           "298.3"
         ],
         [
-          "Coal_2",
-          "Pure",
+          "BP_ResourceNode_Coal_2",
+          "RP_Pure",
           "-1753.91",
           "2474.49",
           "-8.35",
-          "387.0"
+          "387"
         ],
         [
-          "Copper_1",
-          "Pure",
+          "BP_ResourceNode_Copper_1",
+          "RP_Pure",
           "-1553.69",
           "2991.63",
           "0.5",
-          "314.0"
+          "314"
         ],
         [
-          "Copper_2",
-          "Pure",
+          "BP_ResourceNode_Copper_2",
+          "RP_Pure",
           "-1562.14",
           "2962.52",
           "0.9",
           "294.4"
         ],
         [
-          "Copper_3",
-          "Pure",
+          "BP_ResourceNode_Copper_3",
+          "RP_Pure",
           "-1745.9",
           "2929.59",
           "-1.85",
           "117.9"
         ],
         [
-          "Iron_1",
-          "Normal",
+          "BP_ResourceNode_Iron_1",
+          "RP_Normal",
           "-1909.65",
           "2790.82",
           "-3.8",
           "96.8"
         ],
         [
-          "Iron_2",
-          "Pure",
+          "BP_ResourceNode_Iron_2",
+          "RP_Pure",
           "-1934.14",
           "2798.45",
           "-5.3",
           "112.8"
         ],
         [
-          "Iron_3",
-          "Pure",
+          "BP_ResourceNode_Iron_3",
+          "RP_Pure",
           "-1951.92",
           "2822.84",
           "-7.1",
           "120.4"
         ],
         [
-          "Limestone_1",
-          "Normal",
+          "BP_ResourceNode_Limestone_1",
+          "RP_Normal",
           "-2006.04",
           "2613.92",
           "-16.05",
           "293.6"
         ],
         [
-          "Limestone_2",
-          "Pure",
+          "BP_ResourceNode_Limestone_2",
+          "RP_Pure",
           "-1807.21",
           "2729.69",
           "0.95",
           "126.3"
         ],
         [
-          "Limestone_3",
-          "Pure",
+          "BP_ResourceNode_Limestone_3",
+          "RP_Pure",
           "-1769.65",
           "2756.15",
           "2.15",
           "116.9"
         ],
         [
-          "Oil_1",
-          "Pure",
+          "BP_ResourceNode_Oil_1",
+          "RP_Pure",
           "-2202.69",
           "2844.69",
           "-16.35",
           "367.4"
         ],
         [
-          "Quartz_1",
-          "Pure",
+          "BP_ResourceNode_Quartz_1",
+          "RP_Pure",
           "-1666.93",
           "3154.18",
           "-23.35",
           "345.2"
         ],
         [
-          "Sulfur_1",
-          "Pure",
+          "BP_ResourceNode_Sulfur_1",
+          "RP_Pure",
           "-2066.29",
           "2634.2",
           "49.09",
-          "318.0"
+          "318"
+        ]
+      ]
+    },
+    {
+      "caption": "Сохранённые параметры модов; без аккаунтов и сериализованного заголовка",
+      "columns": [
+        "Параметр",
+        "Значение",
+        "Граница вывода"
+      ],
+      "rows": [
+        [
+          "HFO: рецепты / добыча / вода",
+          "2 / 2 / 2",
+          "Рецепты: фактическая кратность обработки неизвестна"
+        ],
+        [
+          "HFO: энергия твёрдого топлива",
+          "Индекс1 =1×",
+          "450МДж сохраняется только относительно исходного значения"
+        ],
+        [
+          "HFO: энергия жидкостей",
+          "Индекс1 × делитель2",
+          "2× исходного значения по проверенному коду"
+        ],
+        [
+          "HFO: vanilla-трубы Mk1 / Mk2",
+          "150 / 300м³/мин",
+          "Нативные специальные пути HFO; не все сторонние классы"
+        ],
+        [
+          "HFO: стоимость труб",
+          "2×",
+          "Только настроенный список рецептов"
+        ],
+        [
+          "EasyAlt: замена / удаление",
+          "Нет / нет",
+          "Не открывает альтернативы автоматически"
+        ]
+      ]
+    },
+    {
+      "caption": "Только известные кандидатные ноды; номинальная оценка MinerII100%, не эффективный предел игры",
+      "columns": [
+        "Ресурс",
+        "Известно на карте",
+        "Известно вне острова",
+        "Карта /мин",
+        "Вне острова /мин"
+      ],
+      "rows": [
+        [
+          "iron",
+          "36",
+          "33",
+          "28320",
+          "25920"
+        ],
+        [
+          "coal",
+          "16",
+          "14",
+          "12480",
+          "10560"
+        ],
+        [
+          "copper",
+          "17",
+          "14",
+          "14400",
+          "11520"
+        ],
+        [
+          "limestone",
+          "30",
+          "27",
+          "26880",
+          "24480"
+        ],
+        [
+          "bauxite",
+          "57",
+          "57",
+          "45120",
+          "45120"
+        ],
+        [
+          "caterium",
+          "56",
+          "56",
+          "47520",
+          "47520"
+        ],
+        [
+          "quartz",
+          "49",
+          "48",
+          "42720",
+          "41760"
+        ],
+        [
+          "sulfur",
+          "69",
+          "68",
+          "58560",
+          "57600"
+        ],
+        [
+          "sam",
+          "64",
+          "64",
+          "53760",
+          "53760"
+        ]
+      ]
+    },
+    {
+      "caption": "iron: пять ближайших известных материковых кандидатов; дистанция XY не равна длине трассы",
+      "columns": [
+        "Безопасный ID",
+        "Чистота",
+        "X м",
+        "Y м",
+        "Z м",
+        "До HUB м",
+        "MinerII100 /мин"
+      ],
+      "rows": [
+        [
+          "mainland-iron-001",
+          "RP_Pure",
+          "-971.784",
+          "2642.321",
+          "-46.257",
+          "888.837",
+          "960"
+        ],
+        [
+          "mainland-iron-002",
+          "RP_Normal",
+          "-923.721",
+          "2660.818",
+          "-31.25",
+          "931.615",
+          "480"
+        ],
+        [
+          "mainland-iron-003",
+          "RP_Pure",
+          "-367.714",
+          "2967.79",
+          "-23.66",
+          "1472.122",
+          "960"
+        ],
+        [
+          "mainland-iron-004",
+          "RP_Pure",
+          "-1843.406",
+          "1042.625",
+          "2.222",
+          "1810.203",
+          "960"
+        ],
+        [
+          "mainland-iron-005",
+          "RP_Normal",
+          "-1505.748",
+          "-0.226",
+          "195.056",
+          "2872.01",
+          "480"
+        ]
+      ]
+    },
+    {
+      "caption": "coal: пять ближайших известных материковых кандидатов; дистанция XY не равна длине трассы",
+      "columns": [
+        "Безопасный ID",
+        "Чистота",
+        "X м",
+        "Y м",
+        "Z м",
+        "До HUB м",
+        "MinerII100 /мин"
+      ],
+      "rows": [
+        [
+          "mainland-coal-001",
+          "RP_Pure",
+          "-625.368",
+          "2280.426",
+          "-32.791",
+          "1338.526",
+          "960"
+        ],
+        [
+          "mainland-coal-002",
+          "RP_Pure",
+          "-961.007",
+          "1637.529",
+          "-37.345",
+          "1497.119",
+          "960"
+        ],
+        [
+          "mainland-coal-003",
+          "RP_Normal",
+          "41.278",
+          "2732.418",
+          "-41.08",
+          "1880.474",
+          "480"
+        ],
+        [
+          "mainland-coal-004",
+          "RP_Pure",
+          "-2450.486",
+          "905.882",
+          "-16.524",
+          "2041.797",
+          "960"
+        ],
+        [
+          "mainland-coal-005",
+          "RP_Pure",
+          "-2324.688",
+          "628.383",
+          "-16.765",
+          "2277.617",
+          "960"
+        ]
+      ]
+    },
+    {
+      "caption": "copper: пять ближайших известных материковых кандидатов; дистанция XY не равна длине трассы",
+      "columns": [
+        "Безопасный ID",
+        "Чистота",
+        "X м",
+        "Y м",
+        "Z м",
+        "До HUB м",
+        "MinerII100 /мин"
+      ],
+      "rows": [
+        [
+          "mainland-copper-001",
+          "RP_Normal",
+          "-1676.031",
+          "1795.572",
+          "15.896",
+          "1069.173",
+          "480"
+        ],
+        [
+          "mainland-copper-002",
+          "RP_Pure",
+          "-800.892",
+          "2047.465",
+          "15.445",
+          "1310.977",
+          "960"
+        ],
+        [
+          "mainland-copper-003",
+          "RP_Pure",
+          "948.472",
+          "2245.372",
+          "-0.858",
+          "2849.313",
+          "960"
+        ],
+        [
+          "mainland-copper-004",
+          "RP_Pure",
+          "937.303",
+          "1602.639",
+          "21.111",
+          "3041.458",
+          "960"
+        ],
+        [
+          "mainland-copper-005",
+          "RP_Pure",
+          "525.887",
+          "-88.593",
+          "135.935",
+          "3771.901",
+          "960"
         ]
       ]
     }
-  ],
-  "worldId": "paradise-island",
-  "saveId": "slave"
+  ]
 }

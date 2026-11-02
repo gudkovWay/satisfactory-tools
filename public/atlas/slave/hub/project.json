@@ -1,300 +1,894 @@
 {
-  "schemaVersion": 1,
-  "id": "hub",
-  "saveId": "slave",
-  "kind": "warehouse",
-  "title": "HUB и исследовательский двор",
-  "subtitle": "Paradise Island · тир1 · HUB · существующий",
-  "revision": "821df5187e42a80744e97859e022712d96c9cb5de8ee3d4d0fed6a6691571d9f",
-  "updatedAt": "2026-10-30T10:55:59.913Z",
-  "status": "blocked",
-  "drawingCount": 1,
-  "source": {
-    "saveSha256": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
-    "snapshotLabel": "slave ·30.10.2026 · WB1.0.3 ·107модов",
-    "snapshotAt": "2026-10-30T10:55:59.913Z",
-    "planning": {
-      "mode": "forecast",
-      "tier": 1,
-      "density": 5,
-      "prerequisites": [
-        "HUB уже существует; Field Research уже куплен",
-        "Игровая сверка WB100%, рецепта, стоимости и MW перед тиражированием"
-      ]
-    }
-  },
-  "dependencies": [],
-  "readiness": {
-    "constructionReady": false,
-    "blockers": [
-      "Проверить конверт на рельефе, не перекрыть ноды и установить фактический уровень пола.",
-      "HUB уже существует; Field Research уже куплен",
-      "107модов: расчёт WB не заменяет измерение первой машины."
-    ]
-  },
-  "overview": {
-    "paragraphs": [
-      "Центр конверта X=-1835.3383м,Y=2852.81м; 32×32м. Это предлагаемое место, не установленная постройка.",
-      "Чертёж задаёт локальную сетку: X вправо,+Y к задней грузовой стороне; начало в юго-западном углу конверта. Z — метры над выбранным полом, не абсолютная высота мира.",
-      "Сначала открытый технологический каркас и проверка потоков, затем стены/фасад. Производительность указана для непрерывной подачи и свободного выхода."
-    ],
-    "decisions": [
-      {
-        "choice": "Отдельный контур снабжения",
-        "instead": "Смешать домашнюю стройку с фазовыми потоками",
-        "reason": "Фазовая отправка не должна обесточивать или оставлять без материалов дом.",
-        "tradeoff": "Дополнительные подписанные ленты и буферы."
-      }
-    ]
-  },
   "build": {
+    "commissioning": [
+      "Рельеф, абсолютные высоты, береговая глубина и игровые коллизии не проверены.",
+      "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки.",
+      "Порты заданы явно как условные точки у корпуса, не как извлечённые игровые коннекторы. Одноуровневая схема использует поверхностные ленты и только явно показанные короткие переходы. Нативные изгибы, опоры и привязки проверяются перед строительством."
+    ],
+    "notes": [
+      "Отметки в браузере не являются состоянием построек в сейве."
+    ],
     "steps": [
       {
-        "id": "survey",
-        "title": "Сохранить HUB и свободный двор",
-        "body": "Не переставлять существующий HUB(-1835,34;2852,81;-6,97). От его дверей проложить пеший подход8м к будущему складу. Проверить доступ к двум встроенным сжигателям и верстаку; не подключать к ним будущие заводы целиком.",
+        "actions": [
+          "Внести150пластин,150стержней и300провода из исходного инвентаря ровно один раз.",
+          "Дождаться240с отправки. Mining1уже куплен; повторно его не оплачивать."
+        ],
+        "baseline": true,
+        "bill": {},
+        "body": "ОткрытьLogistics и дождаться отправки240с",
+        "checks": [
+          "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме."
+        ],
+        "constructionBOM": {},
+        "drawingIds": [
+          "layout",
+          "logistics-G0-unassigned-01",
+          "assembly-G0-row-01",
+          "layout-requirements",
+          "blender-assembly",
+          "blender-plan"
+        ],
+        "edgeIds": [],
+        "externalLinkIds": [],
+        "externalPlacementIds": [],
+        "externalPrerequisites": [],
+        "id": "logistics",
+        "levelIds": [
+          "G0"
+        ],
+        "materials": [],
+        "operatingState": "steady",
+        "placementIds": [],
+        "powerConnectionIds": [],
         "prerequisites": [],
-        "actions": [
-          "Не переставлять существующий HUB(-1835,34;2852,81;-6,97). От его дверей проложить пеший подход8м к будущему складу.",
-          "Проверить доступ к двум встроенным сжигателям и верстаку; не подключать к ним будущие заводы целиком."
-        ],
-        "materials": [
-          "Новый HUB не нужен.",
-          "4–8 фундаментов для подхода, не полный декоративный двор."
-        ],
-        "checks": [
-          "HUB не снесён, двери и терминал открываются."
-        ],
-        "levelIds": [
-          "L0"
-        ],
-        "drawingIds": [
-          "layout"
-        ]
+        "russianInstructions": {
+          "actions": [
+            "Внести150пластин,150стержней и300провода из исходного инвентаря ровно один раз.",
+            "Дождаться240с отправки. Mining1уже куплен; повторно его не оплачивать."
+          ],
+          "body": "ОткрытьLogistics и дождаться отправки240с",
+          "checks": [
+            "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме."
+          ],
+          "title": "ОткрытьLogistics и дождаться отправки240с"
+        },
+        "sourceContractPhase": {
+          "actions": [
+            "Внести150пластин,150стержней и300провода из исходного инвентаря ровно один раз.",
+            "Дождаться240с отправки. Mining1уже куплен; повторно его не оплачивать."
+          ],
+          "baseline": true,
+          "bill": {},
+          "body": "ОткрытьLogistics и дождаться отправки240с",
+          "checks": [
+            "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме."
+          ],
+          "edgeIds": [],
+          "externalLinkIds": [],
+          "externalPrerequisites": [],
+          "id": "logistics",
+          "placementIds": [],
+          "powerConnectionIds": [],
+          "prerequisites": [],
+          "russianInstructions": {
+            "actions": [
+              "Внести150пластин,150стержней и300провода из исходного инвентаря ровно один раз.",
+              "Дождаться240с отправки. Mining1уже куплен; повторно его не оплачивать."
+            ],
+            "body": "ОткрытьLogistics и дождаться отправки240с",
+            "checks": [
+              "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме."
+            ],
+            "title": "ОткрытьLogistics и дождаться отправки240с"
+          },
+          "stepId": "logistics",
+          "supportIds": [],
+          "title": "ОткрытьLogistics и дождаться отправки240с"
+        },
+        "stepId": "logistics",
+        "supportIds": [],
+        "title": "ОткрытьLogistics и дождаться отправки240с"
       },
       {
-        "id": "research",
-        "title": "Поставить MAM и разделить ручные запасы",
-        "body": "Field Research открыт: разместить MAM сбоку от HUB, не на заднем грузовом вводе склада. Рядом ручной сейф: осколки, слизни, сферы, билеты, экипировка и экспедиционные предметы; это не автоматический склад.",
-        "prerequisites": [
-          "survey"
-        ],
         "actions": [
-          "Field Research открыт: разместить MAM сбоку от HUB, не на заднем грузовом вводе склада.",
-          "Рядом ручной сейф: осколки, слизни, сферы, билеты, экипировка и экспедиционные предметы; это не автоматический склад."
+          "До демонтажа собрать500медной руды и425известняка из пяти переносных шахтёровCu3 и пятиLime2.",
+          "Получить10самих переносных шахтёров;3будут потрачены наMiner1. Четыре шахтёраFe3и их400руды не трогать и не кредитовать."
         ],
-        "materials": [
-          "1MAM,1личный ящик; сверить стоимость в меню."
-        ],
+        "baseline": true,
+        "bill": {},
+        "body": "Собрать содержимое и10переносных шахтёровCu3/Lime2",
         "checks": [
-          "Ручной сейф не смешан с продуктовой лентой."
+          "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме."
         ],
-        "levelIds": [
-          "L0"
-        ],
+        "constructionBOM": {},
         "drawingIds": [
-          "layout"
-        ]
+          "layout",
+          "logistics-G0-unassigned-01",
+          "assembly-G0-row-01",
+          "layout-requirements",
+          "blender-assembly",
+          "blender-plan"
+        ],
+        "edgeIds": [],
+        "externalLinkIds": [],
+        "externalPlacementIds": [],
+        "externalPrerequisites": [],
+        "id": "recover-portables",
+        "levelIds": [
+          "G0"
+        ],
+        "materials": [],
+        "operatingState": "steady",
+        "placementIds": [],
+        "powerConnectionIds": [],
+        "prerequisites": [
+          "logistics"
+        ],
+        "russianInstructions": {
+          "actions": [
+            "До демонтажа собрать500медной руды и425известняка из пяти переносных шахтёровCu3 и пятиLime2.",
+            "Получить10самих переносных шахтёров;3будут потрачены наMiner1. Четыре шахтёраFe3и их400руды не трогать и не кредитовать."
+          ],
+          "body": "Собрать содержимое и10переносных шахтёровCu3/Lime2",
+          "checks": [
+            "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме."
+          ],
+          "title": "Собрать содержимое и10переносных шахтёровCu3/Lime2"
+        },
+        "sourceContractPhase": {
+          "actions": [
+            "До демонтажа собрать500медной руды и425известняка из пяти переносных шахтёровCu3 и пятиLime2.",
+            "Получить10самих переносных шахтёров;3будут потрачены наMiner1. Четыре шахтёраFe3и их400руды не трогать и не кредитовать."
+          ],
+          "baseline": true,
+          "bill": {},
+          "body": "Собрать содержимое и10переносных шахтёровCu3/Lime2",
+          "checks": [
+            "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме."
+          ],
+          "edgeIds": [],
+          "externalLinkIds": [],
+          "externalPrerequisites": [],
+          "id": "recover-portables",
+          "placementIds": [],
+          "powerConnectionIds": [],
+          "prerequisites": [
+            "logistics"
+          ],
+          "russianInstructions": {
+            "actions": [
+              "До демонтажа собрать500медной руды и425известняка из пяти переносных шахтёровCu3 и пятиLime2.",
+              "Получить10самих переносных шахтёров;3будут потрачены наMiner1. Четыре шахтёраFe3и их400руды не трогать и не кредитовать."
+            ],
+            "body": "Собрать содержимое и10переносных шахтёровCu3/Lime2",
+            "checks": [
+              "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме."
+            ],
+            "title": "Собрать содержимое и10переносных шахтёровCu3/Lime2"
+          },
+          "stepId": "recover-portables",
+          "supportIds": [],
+          "title": "Собрать содержимое и10переносных шахтёровCu3/Lime2"
+        },
+        "stepId": "recover-portables",
+        "supportIds": [],
+        "title": "Собрать содержимое и10переносных шахтёровCu3/Lime2"
       },
       {
-        "id": "milestone",
-        "title": "Купить Logistics до разветвления линий",
-        "body": "Отдать150пластин+150стержней+300провода в HUB. Имеющийся запас это позволяет. После открытия проверить сплиттер/мержер/лифты; WB Belt I750 уже открыт через Extraction I.",
-        "prerequisites": [
-          "research"
-        ],
         "actions": [
-          "Отдать150пластин+150стержней+300провода в HUB. Имеющийся запас это позволяет.",
-          "После открытия проверить сплиттер/мержер/лифты; WB Belt I750 уже открыт через Extraction I."
+          "Только послеwarehouse/core-receiptsвнести300пластин,200стержней,500винтов и200кабеля один раз. До этого сохранять500винтов и200кабеля.",
+          "Номинальные8мин производства не заменяют фактическую приёмку. Все дополнительные затраты подготовки/хвоста должны быть отдельно профинансированы,не за счёт320+12.",
+          "Дождаться360с отправки с отключёнными нагрузками,если их энергия не оплачена отдельным явным лимитом."
         ],
-        "materials": [
-          "150пластин,150стержней,300провода."
-        ],
+        "baseline": true,
+        "bill": {},
+        "body": "КупитьPartAssemblyтолько после6фактических приёмок",
         "checks": [
-          "Logistics отмечен купленным; не покупать заново Base Building/Field Research."
+          "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме.",
+          "Фактические приёмки и отдельные топливные выделения должны быть подтверждены до зависящих действий. Условные расчётные остатки не являются доказательством доставки или оплаты прогрева."
         ],
-        "levelIds": [
-          "L0"
-        ],
+        "constructionBOM": {},
         "drawingIds": [
-          "layout"
-        ]
-      },
-      {
-        "id": "slug",
-        "title": "Проверить исследование разгона и запас осколков",
-        "body": "Исследование слизней присутствует в сейве. Сверить в UI доступность разгона WB-бура и количество реальных осколков. Не назначать250% ни одной обязательной стартовой ноде. Отмечать найденные слизни отдельно от готовых осколков.",
+          "layout",
+          "logistics-G0-unassigned-01",
+          "assembly-G0-row-01",
+          "layout-requirements",
+          "blender-assembly",
+          "blender-plan"
+        ],
+        "edgeIds": [],
+        "externalLinkIds": [],
+        "externalPlacementIds": [],
+        "externalPrerequisites": [
+          {
+            "projectId": "warehouse",
+            "stepId": "core-receipts"
+          }
+        ],
+        "id": "part-assembly",
+        "levelIds": [
+          "G0"
+        ],
+        "materials": [],
+        "operatingState": "steady",
+        "placementIds": [],
+        "powerConnectionIds": [],
         "prerequisites": [
-          "milestone"
+          "logistics"
         ],
-        "actions": [
-          "Исследование слизней присутствует в сейве. Сверить в UI доступность разгона WB-бура и количество реальных осколков.",
-          "Не назначать250% ни одной обязательной стартовой ноде. Отмечать найденные слизни отдельно от готовых осколков."
-        ],
-        "materials": [
-          "Для базового плана0осколков."
-        ],
-        "checks": [
-          "Стартовая стройка не зависит от недоказанного запаса осколков."
-        ],
-        "levelIds": [
-          "L0"
-        ],
-        "drawingIds": [
-          "layout"
-        ]
+        "receiptGate": {
+          "noCreditFromColdNominalTimer": true,
+          "requiresActualAllSixCoreReceipts": true
+        },
+        "russianInstructions": {
+          "actions": [
+            "Только послеwarehouse/core-receiptsвнести300пластин,200стержней,500винтов и200кабеля один раз. До этого сохранять500винтов и200кабеля.",
+            "Номинальные8мин производства не заменяют фактическую приёмку. Все дополнительные затраты подготовки/хвоста должны быть отдельно профинансированы,не за счёт320+12.",
+            "Дождаться360с отправки с отключёнными нагрузками,если их энергия не оплачена отдельным явным лимитом."
+          ],
+          "body": "КупитьPartAssemblyтолько после6фактических приёмок",
+          "checks": [
+            "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме.",
+            "Фактические приёмки и отдельные топливные выделения должны быть подтверждены до зависящих действий. Условные расчётные остатки не являются доказательством доставки или оплаты прогрева."
+          ],
+          "title": "КупитьPartAssemblyтолько после6фактических приёмок"
+        },
+        "sourceContractPhase": {
+          "actions": [
+            "Только послеwarehouse/core-receiptsвнести300пластин,200стержней,500винтов и200кабеля один раз. До этого сохранять500винтов и200кабеля.",
+            "Номинальные8мин производства не заменяют фактическую приёмку. Все дополнительные затраты подготовки/хвоста должны быть отдельно профинансированы,не за счёт320+12.",
+            "Дождаться360с отправки с отключёнными нагрузками,если их энергия не оплачена отдельным явным лимитом."
+          ],
+          "baseline": true,
+          "bill": {},
+          "body": "КупитьPartAssemblyтолько после6фактических приёмок",
+          "checks": [
+            "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме.",
+            "Фактические приёмки и отдельные топливные выделения должны быть подтверждены до зависящих действий. Условные расчётные остатки не являются доказательством доставки или оплаты прогрева."
+          ],
+          "edgeIds": [],
+          "externalLinkIds": [],
+          "externalPrerequisites": [
+            {
+              "projectId": "warehouse",
+              "stepId": "core-receipts"
+            }
+          ],
+          "id": "part-assembly",
+          "placementIds": [],
+          "powerConnectionIds": [],
+          "prerequisites": [
+            "logistics"
+          ],
+          "receiptGate": {
+            "noCreditFromColdNominalTimer": true,
+            "requiresActualAllSixCoreReceipts": true
+          },
+          "russianInstructions": {
+            "actions": [
+              "Только послеwarehouse/core-receiptsвнести300пластин,200стержней,500винтов и200кабеля один раз. До этого сохранять500винтов и200кабеля.",
+              "Номинальные8мин производства не заменяют фактическую приёмку. Все дополнительные затраты подготовки/хвоста должны быть отдельно профинансированы,не за счёт320+12.",
+              "Дождаться360с отправки с отключёнными нагрузками,если их энергия не оплачена отдельным явным лимитом."
+            ],
+            "body": "КупитьPartAssemblyтолько после6фактических приёмок",
+            "checks": [
+              "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме.",
+              "Фактические приёмки и отдельные топливные выделения должны быть подтверждены до зависящих действий. Условные расчётные остатки не являются доказательством доставки или оплаты прогрева."
+            ],
+            "title": "КупитьPartAssemblyтолько после6фактических приёмок"
+          },
+          "stepId": "part-assembly",
+          "supportIds": [],
+          "title": "КупитьPartAssemblyтолько после6фактических приёмок"
+        },
+        "stepId": "part-assembly",
+        "supportIds": [],
+        "title": "КупитьPartAssemblyтолько после6фактических приёмок"
       }
-    ],
-    "commissioning": [
-      "HUB не снесён, двери и терминал открываются.",
-      "Ручной сейф не смешан с продуктовой лентой.",
-      "Logistics отмечен купленным; не покупать заново Base Building/Field Research.",
-      "Стартовая стройка не зависит от недоказанного запаса осколков."
-    ],
-    "notes": [
-      "Отметка в браузере — личный прогресс, не факт постройки в сейве.",
-      "Стоимость машин — по WB-наследованию базовых рецептов; влияние других модов проверить до заказа всей партии. Трассовые длины и фасад не выдаются за точную смету."
     ]
   },
+  "composition": {
+    "assetHashes": {
+      "assets/assembly-G0-row-01.svg": "805bc320cd342ab2f4f4d52ce5cea70b2c083a05cb0b643e025f158b8307826c",
+      "assets/blender-plan.png": "46749518765ae0c00c971cd80d831c51266c58bd89b9d3fed81657bf6a28bfd3",
+      "assets/concept.webp": "d9ed2800ab4fd4cbcb98bb0ebe55fc64a019e84405f2a53846f2f0946b59b3ed",
+      "assets/engineering.blend": "5c7bf563b5111c91ba3bae3ed9c440259e4d2bf6a61dcd306972fc2513c5bda5",
+      "assets/layout-requirements.svg": "e5e4a6ea67706760c809f75d32389fac9682621d431e4e3470f2c0a7ad721bea",
+      "assets/layout.svg": "bed3dcf1bb60b96a8582a26d1a04551ea17b50a77bc79810b2e572bf6073cd9b",
+      "assets/logistics-G0-unassigned-01.svg": "b4a2e07e19186fca3de07cc5f1357e97bb00f57da53185b194c3491e90b36bd5",
+      "assets/render-provenance.json": "abd4aeb3d192f52a110ee4b886586fccf8a49b149a7836615091f5815b67486d",
+      "assets/render.png": "4541edf8559e073ec5999fdb53e5bb8376fc4692dd115c4576a6b91948b02331"
+    },
+    "availableDemandModes": [],
+    "baselineFixedBOM": {},
+    "enumeratedBaselineBOM": {},
+    "enumeratedOptionalBOM": {},
+    "familyId": "hub",
+    "forecastOnly": true,
+    "futureIncrementIncluded": false,
+    "literalPolicies": {
+      "baselineFixedBOM": {},
+      "baselineOwnership": {
+        "conveyorPosts": [],
+        "fixedBOM": {},
+        "foundationTiles": [],
+        "placements": []
+      },
+      "campusPowerRefs": [],
+      "coordinateConvention": "Metres; sitePlan x/y are world XY centres. Placement x/y are centres from local lower-left. RelativeZ shares schematic datum only, not surveyed absolute terrain.",
+      "futureAuxiliary": [],
+      "geometryOrigin": "literal-surface-contract",
+      "optionalIncrementBOM": {},
+      "sourceCentreXYZ_m": [
+        -1835.33828125,
+        2852.81,
+        -6.9745635986328125
+      ],
+      "sourceGeometryStatus": "v6 authored source correction; fresh independent approval pending",
+      "terrainAndNativePorts": "unknown; no runtime, native spline, terrain or effective mod-stack certification"
+    },
+    "mode": "hub",
+    "modeContracts": {},
+    "mutuallyExclusiveFamily": "hub",
+    "optionalIncrementBOM": {},
+    "phase": "assets-finalized",
+    "phaseOptionalBOM": {},
+    "powerNetworkScenarios": [
+      {
+        "Biomass5_count": 2,
+        "Coal5_count": 0,
+        "Water2_count": 0,
+        "coal_per_min": 0,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_early",
+          "concrete_home"
+        ],
+        "explicit_exclusions": [
+          "fuel-fabricator constructors",
+          "storage charging",
+          "future assemblers",
+          "HUB backup power",
+          "unmeasured modded consumers"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 265.8614240306407,
+        "gross_generation_MW": 300,
+        "headroom_after_25pct_margin_MW": 34.138575969359295,
+        "id": "tier1_home",
+        "miners_MW": 60,
+        "nominal_load_MW": 212.68913922451256,
+        "optional_fuel_fabrication_MW": 1.8091557004267784,
+        "optional_fuel_total_load_MW": 214.49829492493933,
+        "optional_fuel_with25pct_MW": 268.12286865617415,
+        "other_consumers_allowance_MW": 0,
+        "process_MW": 152.68913922451256,
+        "production_process_MW": 152.68913922451256,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 0,
+        "water_demand_m3_per_min": 0,
+        "water_extractor_capacity_m3_per_min": 0
+      },
+      {
+        "Biomass5_count": 2,
+        "Coal5_count": 0,
+        "Water2_count": 0,
+        "coal_per_min": 0,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_home",
+          "concrete_home"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 285.4239984675788,
+        "gross_generation_MW": 300,
+        "headroom_after_25pct_margin_MW": 14.576001532421174,
+        "id": "tier2_sheets",
+        "miners_MW": 60,
+        "nominal_load_MW": 228.33919877406308,
+        "other_consumers_allowance_MW": 0,
+        "process_MW": 168.33919877406308,
+        "production_process_MW": 168.33919877406308,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 0,
+        "water_demand_m3_per_min": 0,
+        "water_extractor_capacity_m3_per_min": 0
+      },
+      {
+        "Biomass5_count": 0,
+        "Coal5_count": 4,
+        "Water2_count": 4,
+        "coal_per_min": 300,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_home",
+          "concrete_home",
+          "mechanics_stock"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 982.4085407993949,
+        "gross_generation_MW": 1500,
+        "headroom_after_25pct_margin_MW": 517.5914592006051,
+        "id": "stock",
+        "miners_MW": 100,
+        "nominal_load_MW": 785.926832639516,
+        "other_consumers_allowance_MW": 50,
+        "process_MW": 475.92683263951596,
+        "production_process_MW": 475.92683263951596,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 160,
+        "water_demand_m3_per_min": 900,
+        "water_extractor_capacity_m3_per_min": 960
+      },
+      {
+        "Biomass5_count": 0,
+        "Coal5_count": 3,
+        "Water2_count": 3,
+        "coal_per_min": 225,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_home",
+          "concrete_home",
+          "phase1_pilot"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 847.3429144738454,
+        "gross_generation_MW": 1125,
+        "headroom_after_25pct_margin_MW": 277.65708552615456,
+        "id": "phase1_pilot",
+        "miners_MW": 100,
+        "nominal_load_MW": 677.8743315790764,
+        "other_consumers_allowance_MW": 50,
+        "process_MW": 407.8743315790764,
+        "production_process_MW": 407.8743315790764,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 120,
+        "water_demand_m3_per_min": 675,
+        "water_extractor_capacity_m3_per_min": 720
+      },
+      {
+        "Biomass5_count": 0,
+        "Coal5_count": 6,
+        "Water2_count": 6,
+        "coal_per_min": 450,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_home",
+          "concrete_home",
+          "phase1_comfort"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 2028.0361263569048,
+        "gross_generation_MW": 2250,
+        "headroom_after_25pct_margin_MW": 221.9638736430952,
+        "id": "phase1_comfort",
+        "miners_MW": 120,
+        "nominal_load_MW": 1622.4289010855239,
+        "other_consumers_allowance_MW": 50,
+        "process_MW": 1212.4289010855239,
+        "production_process_MW": 1212.4289010855239,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 240,
+        "water_demand_m3_per_min": 1350,
+        "water_extractor_capacity_m3_per_min": 1440
+      },
+      {
+        "Biomass5_count": 0,
+        "Coal5_count": 6,
+        "Water2_count": 6,
+        "allocation_override": {
+          "mechanics_stock": "After phase1 use Iron3 MkI100480; stock mode historical allocation Iron2 before phase1 is not concurrent with steel."
+        },
+        "coal_per_min": 450,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_home",
+          "concrete_home",
+          "mechanics_stock",
+          "steel_start"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 1379.4078724340804,
+        "gross_generation_MW": 2250,
+        "headroom_after_25pct_margin_MW": 870.5921275659196,
+        "id": "steel_start",
+        "miners_MW": 140,
+        "nominal_load_MW": 1103.5262979472643,
+        "other_consumers_allowance_MW": 50,
+        "process_MW": 673.5262979472643,
+        "production_process_MW": 673.5262979472643,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 240,
+        "water_demand_m3_per_min": 1350,
+        "water_extractor_capacity_m3_per_min": 1440
+      },
+      {
+        "Biomass5_count": 0,
+        "Coal5_count": 7,
+        "Water2_count": 7,
+        "coal_per_min": 525,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_tier4",
+          "concrete_tier4",
+          "mechanics_tier4_reuse_D5",
+          "steel_tier4_comfort_D5",
+          "components_tier4"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 2307.2501320655892,
+        "gross_generation_MW": 2625,
+        "headroom_after_25pct_margin_MW": 317.74986793441076,
+        "id": "tier4_selected",
+        "max_extra_continuous_load_preserving_25pct_MW": 254.19989434752847,
+        "miners_MW": 220,
+        "nominal_load_MW": 1845.8001056524715,
+        "other_consumers_allowance_MW": 50,
+        "process_MW": 1295.8001056524715,
+        "production_process_MW": 1295.8001056524715,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 280,
+        "water_demand_m3_per_min": 1575,
+        "water_extractor_capacity_m3_per_min": 1680
+      }
+    ],
+    "recipeChassis": {},
+    "routeQuantitySchedule": [],
+    "sourceGeometryAnalysis": {
+      "bodyClearanceModel": {
+        "beltHeight_m": 0.4,
+        "beltWidth_m": 1,
+        "bodyFaceAnchorOffset_m": 0.2,
+        "planarMargin_m": 1,
+        "terminalPolicy": "Own connected terminal may occupy only its contiguous body-exterior service approach under fullribbon+1x1vertex/lift first-complete-exit policy. Physical body intersection, foreign service/stem intersection and later actual reentry remain strictly forbidden; centreline-only exit is insufficient. Exact boundarytouch atX18.5 has0authoringmargin, notnativelegality."
+      },
+      "nativePhysics": "unverified",
+      "sourceContractSha256": "41aa7f58515eed075f90f4aac11ffda921fa57fd793699c68801bd212556e5c0",
+      "terminalApproachModel": "Declared intended material endpoint with matching input/output face and exact anchor; outward nearest leg; Only the contiguous terminal ribbon prefix/suffix up to its first full-width exit from the own service envelope is eligible; a centreline vertex outside the envelope is not by itself a full-width exit. The whole clipped ribbon remains outside the declared body face, not an offset socket plane. Lateral travel in that own body-exterior margin is allowed, without a transverse one-belt-width restriction. Physical body volumes, every foreign service envelope and every foreign support stem remain blocked; later service re-entry is not exempt. This is a source-envelope interpretation, not native socket/spline physics."
+    },
+    "sourceRevision": "c67bdb79bd825a0fc682712aa483be43240dba18e0a5a232448a8a887fabc13f"
+  },
+  "dependencies": [],
+  "drawingCount": 6,
   "drawings": [
     {
-      "id": "layout",
+      "caption": "Схема инженерных конвертов, не игровые меши. Сетка 8 м, габариты, координаты, обслуживание и явно заданный резерв.",
       "family": "floors",
-      "label": "Размерная схема и рабочие проходы",
-      "caption": "Предлагаемые конверты и базовые габариты; уровни и берег проверить в игре.",
-      "levelId": "L0",
-      "svg": "/atlas/slave/hub/revisions/821df5187e42a80744e97859e022712d96c9cb5de8ee3d4d0fed6a6691571d9f/layout.svg"
-    }
-  ],
-  "levels": [
+      "id": "layout",
+      "label": "G0 · размерный план",
+      "levelId": "G0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/hub/revisions/190f8a103abcdb025c84c4b6e3096d4df4357bc4af104e1c6d430bf9ad987ed5/assets/layout.svg"
+    },
     {
-      "id": "L0",
-      "name": "Основная площадка",
-      "z": 0,
-      "type": "infrastructure",
-      "purpose": "Локальный ноль после реального обмера; схема не подтверждает коллизии."
+      "caption": "Схема инженерных конвертов, не игровые меши. Не более шести физических участков на лист; общие участки учтены один раз.",
+      "family": "technical",
+      "id": "logistics-G0-unassigned-01",
+      "label": "G0 · unassigned · трассы 1",
+      "levelId": "G0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/hub/revisions/190f8a103abcdb025c84c4b6e3096d4df4357bc4af104e1c6d430bf9ad987ed5/assets/logistics-G0-unassigned-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Проекция XZ одного ряда; исходные основания и высоты без придуманных опор.",
+      "family": "assembly",
+      "id": "assembly-G0-row-01",
+      "label": "G0 · сборка ряда Y 28 м",
+      "levelId": "G0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/hub/revisions/190f8a103abcdb025c84c4b6e3096d4df4357bc4af104e1c6d430bf9ad987ed5/assets/assembly-G0-row-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Отсутствующие данные названы явно; геометрия и расход не подменены предположениями.",
+      "family": "technical",
+      "id": "layout-requirements",
+      "label": "Поля и ограничения выпуска",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/hub/revisions/190f8a103abcdb025c84c4b6e3096d4df4357bc4af104e1c6d430bf9ad987ed5/assets/layout-requirements.svg"
+    },
+    {
+      "caption": "Исходниковая схема, не игровые меши и не доказательство коллизий.",
+      "family": "volumes",
+      "id": "blender-assembly",
+      "label": "Объёмная сборка",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/hub/revisions/190f8a103abcdb025c84c4b6e3096d4df4357bc4af104e1c6d430bf9ad987ed5/assets/render.png"
+    },
+    {
+      "caption": "Blender: верхняя проекция всех отметок / инженерные конверты, не игровые меши.",
+      "family": "floors",
+      "id": "blender-plan",
+      "label": "Blender: верхняя проекция",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/hub/revisions/190f8a103abcdb025c84c4b6e3096d4df4357bc4af104e1c6d430bf9ad987ed5/assets/blender-plan.png"
     }
   ],
-  "placements": [],
+  "evidence": {
+    "downloads": [
+      {
+        "label": "engineering.blend",
+        "path": "/atlas/slave/hub/revisions/190f8a103abcdb025c84c4b6e3096d4df4357bc4af104e1c6d430bf9ad987ed5/assets/engineering.blend"
+      },
+      {
+        "label": "render-provenance.json",
+        "path": "/atlas/slave/hub/revisions/190f8a103abcdb025c84c4b6e3096d4df4357bc4af104e1c6d430bf9ad987ed5/assets/render-provenance.json"
+      }
+    ],
+    "items": [
+      {
+        "detail": "Хеши входов и стандартных коэффициентов закреплены в инженерном плане.",
+        "id": "source",
+        "label": "Исходники",
+        "status": "verified"
+      },
+      {
+        "detail": "Рельеф, абсолютные высоты, береговая глубина и игровые коллизии не проверены.",
+        "id": "terrain",
+        "label": "Обмер",
+        "status": "unverified"
+      },
+      {
+        "detail": "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки.",
+        "id": "runtime",
+        "label": "Работа модов",
+        "status": "unverified"
+      }
+    ],
+    "notes": [
+      "Ассеты закреплены за исходниковым проектом; игровые ограничения не сняты."
+    ],
+    "sources": [
+      {
+        "label": "Текущий анализ прогрессии",
+        "url": "/worlds/paradise-island/analysis/progression"
+      }
+    ]
+  },
+  "extraction": [],
+  "id": "hub",
   "infrastructure": {
+    "diagrams": [],
     "notes": [
       {
-        "title": "Координаты и питание",
-        "body": "Конверт 32×32м, центр(-1835.3383;2852.81). Вход питания на задней стороне, отдельная подписанная ветвь от распределителя. Ленты не перекрывают8м пешеходный доступ."
-      }
-    ],
-    "tables": [
+        "body": "Каждому потребителю выделена параллельная ветвь. Обычный разветвитель не приоритетный: расход устанавливается при разгоне и обратном давлении. Конечный контейнер не стоит в транзите другой детали. Настроенная добыча и непрерывно принимаемый расход различаются; полный буфер вызывает простой.",
+        "title": "Приём выходов"
+      },
       {
-        "caption": "Интерфейсы глобального объекта",
-        "columns": [
-          "Назначение",
-          "Правило"
-        ],
-        "rows": [
-          [
-            "Входы",
-            "Каждый товар отдельной линией; никакой смешанной шины без сортировки."
-          ],
-          [
-            "Энергия",
-            "Отдельная подписанная ветвь; зарядMWhнеприбавляетгенерациюMW."
-          ],
-          [
-            "Следующийэтап",
-            "HUB уже существует; Field Research уже куплен"
-          ]
-        ]
+        "body": "Порты заданы явно как условные точки у корпуса, не как извлечённые игровые коннекторы. Одноуровневая схема использует поверхностные ленты и только явно показанные короткие переходы. Нативные изгибы, опоры и привязки проверяются перед строительством.",
+        "title": "Порты и коридоры"
       }
     ],
-    "diagrams": [],
-    "streams": []
+    "streams": [],
+    "tables": []
+  },
+  "kind": "warehouse",
+  "layout": {
+    "allPhysicalEdges": [],
+    "campusLinkRefs": [],
+    "campusPowerRefs": [],
+    "coordinateConvention": "Metres; sitePlan x/y are world XY centres. Placement x/y are centres from local lower-left. RelativeZ shares schematic datum only, not surveyed absolute terrain.",
+    "externalLinks": [],
+    "externalPlacements": [],
+    "floorTiles": [],
+    "futureAuxiliary": [],
+    "futureFoundationTiles": [],
+    "futurePlacements": [],
+    "geometryOrigin": "literal-surface-contract",
+    "interfaces": [],
+    "localToWorld": {
+      "absoluteFloorZ": "unknown; schematic common construction datum",
+      "gamePortTransforms": "unknown",
+      "placementXY": "centres",
+      "xyOrigin_m": [
+        -1851.33828125,
+        2824.81
+      ]
+    },
+    "operatingState": "steady",
+    "physicalEdges": [],
+    "powerConnections": [],
+    "reservations": [],
+    "routes": [],
+    "stateGeometry": {},
+    "supports": {
+      "conveyorPoles": [],
+      "foundationTileIds": [],
+      "groundMountedPlacementIds": []
+    }
+  },
+  "levels": [
+    {
+      "id": "G0",
+      "name": "Ground / existing datum",
+      "purpose": "No new foundation or raised floor",
+      "type": "ground",
+      "z": 0
+    }
+  ],
+  "overview": {
+    "concept": {
+      "alt": "Концепция облика",
+      "caption": "Материалы и облик; количества и координаты берутся из инженерных листов.",
+      "kind": "concept",
+      "src": "/atlas/slave/hub/revisions/190f8a103abcdb025c84c4b6e3096d4df4357bc4af104e1c6d430bf9ad987ed5/assets/concept.webp"
+    },
+    "decisions": [],
+    "paragraphs": [
+      "Каждому потребителю выделена параллельная ветвь. Обычный разветвитель не приоритетный: расход устанавливается при разгоне и обратном давлении. Конечный контейнер не стоит в транзите другой детали. Настроенная добыча и непрерывно принимаемый расход различаются; полный буфер вызывает простой.",
+      "Порты заданы явно как условные точки у корпуса, не как извлечённые игровые коннекторы. Одноуровневая схема использует поверхностные ленты и только явно показанные короткие переходы. Нативные изгибы, опоры и привязки проверяются перед строительством."
+    ]
   },
   "parts": {
     "items": [
       {
-        "code": "stage-bills",
-        "name": "Поэтапные ведомости",
-        "recipeKey": "site-survey",
-        "recipePath": "Не рецепт: резерв/обмер трассы",
-        "mod": "WorldBalance/vanilla",
-        "role": "Количество фиксированных машин/контейнеров в материалах этапа; трассы после обмера",
-        "quantity": "См. каждый этап",
-        "availability": "По указанной технологии; проверить игровую стоимость при107модах"
+        "availability": "По аудиту; фактическую стоимость и настройку сверить в UI",
+        "code": "Build_TradingPost_C",
+        "mod": "source catalog",
+        "name": "The HUB",
+        "quantity": "1",
+        "recipeKey": "Recipe_TradingPost_C",
+        "recipePath": "/Game/FactoryGame/Recipes/Buildings/Recipe_TradingPost.Recipe_TradingPost_C",
+        "role": "Точные размещения и принадлежность к очереди показаны в этапах"
       }
     ],
     "notes": [
       {
-        "title": "Что не входит в точное количество",
-        "body": "Фасад, подпорки, длины лент/проводов/труб и дополнительные насосы требуют обмера фактической площадки. Сначала построить технологическое ядро; не закупать условную длину как точную."
+        "body": "Фиксированные компоненты отделены от опциональных. Длины заданы полилиниями; нативное округление лент и регулировка опор ещё не измерены.",
+        "title": "Граница сметы"
+      },
+      {
+        "body": "Ведомость корпусов ниже показывает только позиции основного плана и его плитки, а не полный список закупки. Полная фиксированная смета, отдельный опциональный заказ и распределение по этапам находятся в таблицах закупки материалов. Внешние буры и оплаченные опоры входят в фиксированную смету; общий резерв трасс Tier1 указан один раз в проекте склада. Длины и фактическое округление нативных трасс пока не измерены.",
+        "title": "Где находится полный заказ материалов"
+      }
+    ],
+    "tables": [
+      {
+        "caption": "Полная фиксированная базовая смета: корпуса, внешние буры, оплаченные плитки и опоры. Резерв трасс не включён.",
+        "columns": [
+          "Материал",
+          "Количество, шт"
+        ],
+        "rows": [
+          [
+            "Новая закупка фиксированных компонентов",
+            "0"
+          ]
+        ]
+      },
+      {
+        "caption": "Опциональный прирост: отдельный заказ, не добавляемый к обязательной базе автоматически. Резерв в последнем столбце уже входит в количество заказа.",
+        "columns": [
+          "Материал",
+          "Количество заказа, шт",
+          "В том числе резерв трасс, шт"
+        ],
+        "rows": [
+          [
+            "Нет опционального заказа",
+            "0",
+            "0"
+          ]
+        ]
+      },
+      {
+        "caption": "Распределение сметы по этапам — не повторная закупка. Отдельно оговорённые опциональные резервы входят только в свой этап.",
+        "columns": [
+          "Код этапа",
+          "Этап",
+          "Группа",
+          "Материал",
+          "Количество, шт"
+        ],
+        "rows": [
+          [
+            "logistics",
+            "ОткрытьLogistics и дождаться отправки240с",
+            "Обязательная база",
+            "Без новой закупки",
+            "—"
+          ],
+          [
+            "recover-portables",
+            "Собрать содержимое и10переносных шахтёровCu3/Lime2",
+            "Обязательная база",
+            "Без новой закупки",
+            "—"
+          ],
+          [
+            "part-assembly",
+            "КупитьPartAssemblyтолько после6фактических приёмок",
+            "Обязательная база",
+            "Без новой закупки",
+            "—"
+          ]
+        ]
       }
     ]
   },
-  "evidence": {
-    "items": [
-      {
-        "id": "save",
-        "label": "Исходный сейв",
-        "status": "verified",
-        "detail": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6"
-      },
-      {
-        "id": "forecast",
-        "label": "Технология и игровой замер",
-        "status": "unverified",
-        "detail": "HUB уже существует; Field Research уже куплен. Сверить WB UI100% и работу в текущем107модовом профиле."
-      },
-      {
-        "id": "terrain",
-        "label": "Рельеф и высоты",
-        "status": "unverified",
-        "detail": "Обойти весь конверт и места входов, проверить коллизии и абсолютную отметку пола."
-      }
-    ],
-    "notes": [
-      "Рецепты будущих тиров помечены forecast: они не объявлены уже открытыми в снимке."
-    ],
-    "sources": [
-      {
-        "label": "Последовательный анализ мира",
-        "url": "/worlds/paradise-island/analysis/seed"
-      },
-      {
-        "label": "WB-состояния",
-        "url": "/worlds/paradise-island/analysis/states"
-      },
-      {
-        "label": "Архитектура и общий склад",
-        "url": "/worlds/paradise-island/analysis/architecture"
-      }
-    ],
-    "downloads": []
-  },
-  "sitePlan": {
-    "id": "hub",
-    "label": "HUB · существующий",
-    "x": -1835.3383,
-    "y": 2852.81,
-    "width": 32,
-    "depth": 32,
-    "tier": 1,
-    "role": "Дом, верстак, MAM; не сносить ради симметрии.",
-    "verified": true
-  },
-  "planObjects": [
+  "placements": [
     {
-      "label": "Existing HUB envelope",
+      "baseline": false,
+      "clearance": {
+        "depth": 28.0,
+        "height": 29.0,
+        "width": 16.0
+      },
+      "clock": 0,
+      "componentId": "Build_TradingPost_C",
+      "depth": 26.0,
+      "existing": true,
+      "height": 28.0,
+      "id": "HUB-EXISTING",
+      "kind": "Build_TradingPost_C",
+      "levelId": "G0",
+      "ports": [],
+      "processId": "",
+      "rotationDeg": null,
+      "rotationStatus": "existing save rotation not reconstructed",
+      "width": 14.0,
       "x": 16,
-      "y": 16,
-      "width": 24,
-      "depth": 16
+      "y": 28,
+      "z": 0
     }
   ],
   "preview": {
-    "src": "/atlas/slave/hub/revisions/821df5187e42a80744e97859e022712d96c9cb5de8ee3d4d0fed6a6691571d9f/layout.svg",
-    "alt": "Размерная схема и рабочие проходы",
-    "caption": "Размерная схема; не игровой скриншот.",
-    "kind": "schematic"
+    "alt": "Инженерная сборка",
+    "caption": "Исходниковая схема, не игровые меши и не доказательство коллизий.",
+    "kind": "schematic",
+    "src": "/atlas/slave/hub/revisions/190f8a103abcdb025c84c4b6e3096d4df4357bc4af104e1c6d430bf9ad987ed5/assets/render.png"
   },
-  "progressRevision": "a696b7925205fcc68aa4a0e6a69eb9f14275bdf00750df3f56e9552f7db3844e",
-  "progressSignature": "d157653d9fd397ec2bdf7fcd0b59d1fdd45d0df04a296dced7a52b458b7e790f"
+  "progressRevision": "190f8a103abcdb025c84c4b6e3096d4df4357bc4af104e1c6d430bf9ad987ed5",
+  "readiness": {
+    "blockers": [
+      "Рельеф, абсолютные высоты, береговая глубина и игровые коллизии не проверены.",
+      "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки."
+    ],
+    "constructionReady": false
+  },
+  "revision": "190f8a103abcdb025c84c4b6e3096d4df4357bc4af104e1c6d430bf9ad987ed5",
+  "saveId": "slave",
+  "schemaVersion": 1,
+  "sitePlan": {
+    "depth": 56,
+    "id": "hub",
+    "label": "hub",
+    "projectId": "hub",
+    "role": "Existing HUB retained",
+    "tier": 1,
+    "verified": false,
+    "width": 32,
+    "x": -1835.33828125,
+    "y": 2852.81
+  },
+  "source": {
+    "planSha256": "0a19a6ff4d4ba3754cc6cc36c438ed5eedea0c09e310594bb096bff9e8d44321",
+    "planning": {
+      "demandMode": "hub",
+      "demandSha256": "d49f8224b5002ae96abe20abb8da8a4ede77ac76f5cc4c84b7c17bef2b239dbc",
+      "density": 5,
+      "mode": "forecast",
+      "prerequisites": [
+        "Указанные рецепты и технологии",
+        "Обмер поверхности и проверка установленной сборки"
+      ],
+      "tier": 1
+    },
+    "recipeSha256": "8c07079f64f7858390d01718e4b1c0c60b65dc04802f7212e204f9dd31673697",
+    "saveSha256": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
+    "snapshotAt": "2026-10-30T10:55:59.913000+00:00",
+    "snapshotLabel": "slave · WB 1.0.3 · исходниковый прогноз"
+  },
+  "status": "blocked",
+  "subtitle": "Исходниковый прогноз; строительство и запуск не подтверждены",
+  "title": "HUB и покупки технологий",
+  "updatedAt": "2026-10-30T10:55:59.913000+00:00",
+  "progressSignature": "0ec26d23a496dce64bf86a7315950d8e824133a1688d60482bc917d2ee6fb9d0"
 }

@@ -1,0 +1,80 @@
+{
+  "schema": "factory-blender-render/1",
+  "projectId": "iron-home",
+  "projectSha256": "a4dbe0aca046b4335afd165e1535d63a1e871de0264e43b9b660ad1f060b68af",
+  "authorScriptSha256": "d3c64aa0314738ce73824baa6b060f2a9b02c4878f152072e6c67da7a5f4f322",
+  "blenderVersion": "5.2.3 LTS",
+  "interface": "guarded owned headless Blender CLI",
+  "units": "metres",
+  "guardVerification": "Fresh nested shared-launcher cap readback in a read-only control subprocess; same cgroup, no expanded reservation",
+  "ipcPolicy": "Private HOME/XDG and no display or desktop bus in Blender; original user-manager address supplied only to the read-only guard subprocess",
+  "geometry": "explicit axis-aligned body envelopes and declared ports only; not extracted game meshes",
+  "coordinateConvention": {
+    "absoluteZ": "unknown",
+    "bodyRotation": "axis-aligned envelope already supplied; rotationDeg metadata only, never applied twice",
+    "localToWorld": {
+      "absoluteFloorZ": "unknown",
+      "gamePortTransforms": "unknown",
+      "placementXY": "centres",
+      "xyOrigin_m": [
+        -1894.0,
+        2704.0
+      ]
+    },
+    "placementXY": "project-local centres",
+    "placementZ": "relative base",
+    "ports": "explicit project-local coordinates, not body offsets"
+  },
+  "assetProjection": {
+    "sourceContractSha256": "41aa7f58515eed075f90f4aac11ffda921fa57fd793699c68801bd212556e5c0",
+    "adapterSha256": "1ce3444d03e00d9e50fbbbe7da0f877865f45c0af59efbf08152eae4ca1d949d",
+    "policy": "Source bytes unchanged; omit only explicitly unauthored normalizer fallbacks from art",
+    "omittedFallbacks": [],
+    "annotations": []
+  },
+  "rotationHandling": "prefer footprint / rotatedEnvelope / supplied width-depth; preserve source rotation metadata without rotating axis-aligned envelopes twice",
+  "campusGraph": "exact owned externalLinks/powerConnections retained as scene JSON metadata; this renderer does not draw campus routes; author-factory-sheets emits the separate paginated SVGs",
+  "campusGraphCounts": {
+    "externalLinks": 1,
+    "powerConnections": 0
+  },
+  "operatingState": "steady",
+  "renderedConveyorSupportIds": [
+    "BELT-SUPPORT-01",
+    "BELT-SUPPORT-02",
+    "BELT-SUPPORT-03",
+    "BELT-SUPPORT-09"
+  ],
+  "excludedInactiveConveyorSupportIds": [
+    "BELT-SUPPORT-04",
+    "BELT-SUPPORT-08"
+  ],
+  "omittedOffsiteConveyorSupportIds": [
+    "BELT-SUPPORT-10"
+  ],
+  "supportScope": "Local active supports only in the rendered view; all source records retained in supportsJSON; exact campus support coordinates are on the SVG support schedules",
+  "portPolicy": "explicit ports array only; point is project-local absolute; direction and face preserved; containers need no electrical anchor",
+  "unverified": [
+    "terrain",
+    "absoluteZ",
+    "native ports and electrical faces",
+    "native body transforms",
+    "collision",
+    "native conveyor spline legality",
+    "effective mod runtime"
+  ],
+  "assets": {
+    "blender-assembly.png": "d9e438f4c2799c83b1531fa32af41689d68718ded82f49a88f88a1e3fe89b94b",
+    "blender-plan.png": "ff37ee003dabee56ef1902c7e62f9058913c91bac7cb3e7fe34c6ad82c2fbd19",
+    "iron-home.blend": "7cae5399ff5693008e60da8908582042a0c9695e92358814e47f1e39e9b62bcf",
+    "iron-home-uncompressed.blend": "2e7b02a851337aa80fc66f44158ca870be42e33f8d6f5031e934c19a1e6b6846"
+  },
+  "blendConversion": {
+    "operation": "lossless native zstd decompression; original render and compressed file unchanged",
+    "sourceSha256": "7cae5399ff5693008e60da8908582042a0c9695e92358814e47f1e39e9b62bcf",
+    "outputSha256": "2e7b02a851337aa80fc66f44158ca870be42e33f8d6f5031e934c19a1e6b6846",
+    "converterBinarySha256": "416fe8c3624588f798c5141b69f603920eedb96495df9529ded27dd6f5714815",
+    "converterScriptSha256": "b1ea88a6cc367803e823a51c7c300c96ade468d5004283e82367cb49ef3cdcba",
+    "imagesRerendered": false
+  }
+}

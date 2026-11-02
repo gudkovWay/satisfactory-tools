@@ -1,23 +1,83 @@
 {
+  "schemaVersion": 1,
+  "integration": {
+    "version": 1,
+    "stage": "tier1",
+    "demandSha256": "d49f8224b5002ae96abe20abb8da8a4ede77ac76f5cc4c84b7c17bef2b239dbc",
+    "currentProjectIds": [
+      "bio-start",
+      "concrete",
+      "copper-home",
+      "hub",
+      "iron-home",
+      "warehouse"
+    ],
+    "preservedProjectIds": [
+      "coal-start",
+      "components",
+      "concrete-expanded",
+      "copper-sheets",
+      "departure",
+      "elevator",
+      "frame-stock",
+      "mechanics-stock",
+      "phase-one",
+      "phase-one-boost",
+      "power-annex",
+      "power-expanded",
+      "rotor-stock",
+      "steel-expanded",
+      "steel-start",
+      "warehouse-expanded"
+    ],
+    "display": "Обновлены только шесть проектов тира1. Тиры2–4 и старые сети сохранены как прежние редакции; их числа не описывают совместную работу с новым домом."
+  },
   "states": [
     {
-      "id": "home",
+      "id": "tier1_home",
       "projects": [
-        "iron-home",
+        "concrete",
         "copper-home",
-        "concrete"
+        "iron-home"
       ],
-      "processMW": 322.0799222057731,
+      "modeProjects": {
+        "iron_home": [
+          "iron-home"
+        ],
+        "copper_early": [
+          "copper-home"
+        ],
+        "concrete_home": [
+          "concrete"
+        ]
+      },
+      "concurrentModes": [
+        "iron_home",
+        "copper_early",
+        "concrete_home"
+      ],
+      "productionProcessMW": 152.68913922451256,
+      "fuelProcessMW": 0,
+      "optionalFuelProcessMW": 1.8091557004267784,
+      "allocationOverrides": {},
+      "otherAllowanceMW": 0,
+      "processMW": 152.68913922451256,
       "extractorsMW": 60,
       "waterMW": 0,
-      "totalMW": 382.0799222057731,
-      "generationMW": 600,
-      "requiredWithReserveMW": 477.59990275721634,
-      "headroomMW": 217.92007779422693,
+      "totalMW": 212.68913922451256,
+      "generationMW": 300,
+      "requiredWithReserveMW": 265.8614240306407,
+      "headroomMW": 87.31086077548744,
+      "headroomAfterReserveMW": 34.138575969359295,
       "coalDemand": 0,
       "waterDemand": 0,
       "modules": 0,
-      "unbudgeted": "Насосы по фактическому напору, транспорт и посторонние107модовых потребителя не включены. Перед вводом удержать25% над измеренной нагрузкой."
+      "biomassUnits": 2,
+      "waterExtractors": 0,
+      "waterCapacity": 0,
+      "integrationStatus": "current-selected",
+      "accounting": "totalMW = productionProcessMW + fuelProcessMW + otherAllowanceMW + extractorsMW + waterMW; processMW contains production, fuel and allowance ONCE for native validation. optionalFuelProcessMW is not included unless explicitly enabled and recalculated.",
+      "unbudgeted": "Расчёт по авторскому исходному профилю WB, не измерение игры. Для BetterOverclocking 1.2.0 восстановлена заменяющая формула мощности; эффективные значения, доступность разгона и порядок модовых обработчиков не наблюдались. Жидкости HeavyFluids1.4.5 не сведены к единому коэффициенту: фактический состав кэша рецептов неизвестен. Допуск прочих потребителей указан отдельно; фактические насосы/напор и измеренную нагрузку сверить перед запуском."
     },
     {
       "id": "coal-bootstrap",
@@ -38,7 +98,8 @@
       "waterDemand": 450,
       "modules": 2,
       "biomassUnits": 4,
-      "unbudgeted": "Временный гибрид750MWугля+600MWбиомассы. Топливо заготавливается вручную; насосы сверить отдельно."
+      "unbudgeted": "ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. Временный гибрид750MWугля+600MWбиомассы. Топливо заготавливается вручную; насосы сверить отдельно.",
+      "integrationStatus": "preserved-previous-not-current-network"
     },
     {
       "id": "stock",
@@ -58,7 +119,8 @@
       "coalDemand": 300,
       "waterDemand": 900,
       "modules": 4,
-      "unbudgeted": "Насосы по фактическому напору, транспорт и посторонние107модовых потребителя не включены. Перед вводом удержать25% над измеренной нагрузкой."
+      "unbudgeted": "ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. Насосы по фактическому напору, транспорт и посторонние107модовых потребителя не включены. Перед вводом удержать25% над измеренной нагрузкой.",
+      "integrationStatus": "preserved-previous-not-current-network"
     },
     {
       "id": "phase1",
@@ -78,7 +140,8 @@
       "coalDemand": 450,
       "waterDemand": 1350,
       "modules": 6,
-      "unbudgeted": "Насосы по фактическому напору, транспорт и посторонние107модовых потребителя не включены. Перед вводом удержать25% над измеренной нагрузкой."
+      "unbudgeted": "ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. Насосы по фактическому напору, транспорт и посторонние107модовых потребителя не включены. Перед вводом удержать25% над измеренной нагрузкой.",
+      "integrationStatus": "preserved-previous-not-current-network"
     },
     {
       "id": "phase1-boost",
@@ -98,7 +161,8 @@
       "coalDemand": 1050,
       "waterDemand": 3150,
       "modules": 14,
-      "unbudgeted": "Насосы по фактическому напору, транспорт и посторонние107модовых потребителя не включены. Перед вводом удержать25% над измеренной нагрузкой."
+      "unbudgeted": "ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. Насосы по фактическому напору, транспорт и посторонние107модовых потребителя не включены. Перед вводом удержать25% над измеренной нагрузкой.",
+      "integrationStatus": "preserved-previous-not-current-network"
     },
     {
       "id": "tier3",
@@ -119,7 +183,8 @@
       "coalDemand": 450,
       "waterDemand": 1350,
       "modules": 6,
-      "unbudgeted": "Насосы по фактическому напору, транспорт и посторонние107модовых потребителя не включены. Перед вводом удержать25% над измеренной нагрузкой."
+      "unbudgeted": "ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. Насосы по фактическому напору, транспорт и посторонние107модовых потребителя не включены. Перед вводом удержать25% над измеренной нагрузкой.",
+      "integrationStatus": "preserved-previous-not-current-network"
     },
     {
       "id": "tier4",
@@ -142,7 +207,60 @@
       "coalDemand": 600,
       "waterDemand": 1800,
       "modules": 8,
-      "unbudgeted": "Насосы по фактическому напору, транспорт и посторонние107модовых потребителя не включены. Перед вводом удержать25% над измеренной нагрузкой."
+      "unbudgeted": "ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. ПРЕЖНЯЯ РЕДАКЦИЯ: не суммировать с новым тиром1. Насосы по фактическому напору, транспорт и посторонние107модовых потребителя не включены. Перед вводом удержать25% над измеренной нагрузкой.",
+      "integrationStatus": "preserved-previous-not-current-network"
     }
-  ]
+  ],
+  "currentStateIds": [
+    "tier1_home"
+  ],
+  "legacyStateIds": [
+    "coal-bootstrap",
+    "stock",
+    "phase1",
+    "phase1-boost",
+    "tier3",
+    "tier4"
+  ],
+  "powerModel": "Расчёт по авторскому исходному профилю WB, не измерение игры. Для BetterOverclocking 1.2.0 восстановлена заменяющая формула мощности; эффективные значения, доступность разгона и порядок модовых обработчиков не наблюдались. Жидкости HeavyFluids1.4.5 не сведены к единому коэффициенту: фактический состав кэша рецептов неизвестен.",
+  "sourceSha256": "a31051e64047aa3c70fe0956a67e432fca5d430a4763373f87b2fd694654caff",
+  "saveSha256": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
+  "worldId": "paradise-island",
+  "saveId": "slave",
+  "sourceFingerprints": {
+    "save": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
+    "private-audit-input": "4efbcf1316d304b78ccf04ae9e58cf169808f494c2191d05cadad5872d58b9ac",
+    "final-demand-input": "d49f8224b5002ae96abe20abb8da8a4ede77ac76f5cc4c84b7c17bef2b239dbc",
+    "game-data": "104a31f096660de25dc17b3921840f4f330c473469e34becc3e7a23c3a08453b",
+    "state": "faf4a94a157a7b34d9d5e45cbae4657ed7041d82e1f426c1b649bb838e73d454",
+    "wb-catalog": "7da46f426d70b8e897f415408123165cb87f7a33e9ee87209900feb073825170",
+    "wb-generation": "237a688a46a57bb88f407acc30f95017a629612ca5598d0435d9da288bc4299d",
+    "wb-runtime": "a92f668fce2d8abe2190e8fe1d2b35acf31b0caf19a6f657229a27e39a96d08c",
+    "wb-outlets-variable-power": "8a33cf96719f26ebf3bf495458427b2a4cb2dc84d4513621f538d0ad990bad58",
+    "wb-exponent": "7309f65ca5258395cab56e32ed074fac0931dba350c718e1e8695f5d1bbabc49",
+    "wb-source-WorldBalance.Build.cs": "d8bc4063fe80c77d26d0511579adf629cab6e3fb57cf92ee20de24e5cd75a8db",
+    "wb-source-WorldBalanceEditor.Build.cs": "a8e5ef64fa0d83ed9dfb7c71c2402b62ba77de3ff00c8cfe35d0896dc7c0f86e",
+    "wb-source-WorldBalanceGenerateCommandlet.cpp": "237a688a46a57bb88f407acc30f95017a629612ca5598d0435d9da288bc4299d",
+    "wb-source-WorldBalanceGenerateCommandlet.h": "5cf742e4c80a9e0d3121259c9996be8540abf064529c77eeb88f2c19ca409e8a",
+    "wb-source-WorldBalanceAssetTests.cpp": "738f6a08f7268cda8345072fd54fedae329d4ca5f412e3cf40614d36ac94d340",
+    "wb-source-WorldBalanceModule.cpp": "8a33cf96719f26ebf3bf495458427b2a4cb2dc84d4513621f538d0ad990bad58",
+    "wb-source-WorldBalanceCatalog.cpp": "7da46f426d70b8e897f415408123165cb87f7a33e9ee87209900feb073825170",
+    "wb-source-WorldBalanceWorldModule.cpp": "a92f668fce2d8abe2190e8fe1d2b35acf31b0caf19a6f657229a27e39a96d08c",
+    "wb-source-WorldBalanceWorldModule.h": "857d304bcebd5abfa3b6f112bb4817ba7704d69227e759cd86ee88562d0bb628",
+    "wb-source-WorldBalanceCatalog.h": "7309f65ca5258395cab56e32ed074fac0931dba350c718e1e8695f5d1bbabc49",
+    "mainland-candidates": "55d2b95326ea255712789afa71972ad53f3185efb66ef5cb2c5f5963505e9c98",
+    "hfo-native-functions": "269e8c18935b001b01247a4680eba7cd76d6da198968bb6ef13eecf7b523a0bc",
+    "hfo-evidence-index": "aad732c2d4dbf2192872b51dfd906ca3630c9c747e260dc984ee05ce7dce9c78",
+    "installed-hfo-steam": "ead3983a617fed53c561c496df0ea82a2d4d7dc688d18af540f7f551497bb855",
+    "installed-hfo-plugin": "639fcfc6c51c68d47dffcfdf4dec99a38ffdadc4cac406ef7631409ae4d06804",
+    "installed-easyalt-plugin": "d87d708affae756c83c64ddcb8246d7277347415adb96351a0b69241182816a6",
+    "mod-stack-static-report": "b02839d0369ed6a473ed6b42db81c496b66ba80dfa39104ad652cd35f2fbae32",
+    "installed-bo-steam": "c938105c2b704f2d0b5a8e1995c24dbb84d9adee06ce2a70d7d37caa3e849af2",
+    "installed-bo-pdb": "b3618626e12f80582387727f483091b4adb42892c980cf356f96d3e3431fdfb0",
+    "installed-bo-config": "3eaf3c6a54098485a031c1bffb790180573099693b47f501a862dcea652bda26",
+    "bo-native_functions": "33403e32b556a2b3b78d7bb16d126a5624b3561364593ea2131458ce1fd4e09f",
+    "bo-type_excerpts": "7142746c13b34b1568a49816ba9dc9cd3193e87c3b562b2ff6d371344c0590ff",
+    "bo-byte_authority": "a2ef4310651eb16de6a49d34a19cd7dbe241d0be655f9fa2fe2a7a1ca63b22b3",
+    "better-overclock-static-report": "0f75b1cfba09454d8845541dc034a797d697753ea619af5445c6d853a0927586"
+  }
 }

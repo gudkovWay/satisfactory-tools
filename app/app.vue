@@ -3,7 +3,6 @@ import { Factory, Moon, Sun } from '@lucide/vue'
 import type { WorldRegistry } from '~~/shared/types/world'
 const colorMode = useColorMode()
 const route = useRoute()
-useAtlasMotion()
 const { data: registry } = await useFetch<WorldRegistry>('/worlds/index.json', { key: 'atlas-world-registry' })
 const activeWorld = computed(() => registry.value?.worlds.find(world => world.id === route.params.world))
 const worldOptions = computed(() => registry.value?.worlds.map(world => ({ value: world.id, label: world.title })) ?? [])
@@ -25,7 +24,7 @@ function switchWorld(value: string | number) {
       </nav>
     </header>
     <NuxtLoadingIndicator color="var(--accent)" />
-    <NuxtPage :transition="{ name: 'page', mode: 'out-in' }" />
-    <footer class="site-footer"><span>Строительный атлас <span class="muted">/ Satisfactory</span></span><span>Планы привязаны к снимку мира. Отметки личные; сохранение игры не меняется.</span></footer>
+    <NuxtPage />
+    <footer class="site-footer"><span>Строительный атлас <span class="muted">/ Satisfactory</span></span><span>Личные отметки сохраняются в этом браузере.</span></footer>
   </div>
 </template>

@@ -12,14 +12,14 @@ let trigger: HTMLElement | null = null
 const entries = computed(() => {
   const base = projectUrl(world.value.manifest, props.project.id)
   return [
-    ...projectSections.map(section => ({ id: section.id, title: section.label, group: 'Разделы', to: projectUrl(world.value.manifest, props.project.id, section.id) })),
-    ...props.project.build.steps.map((step, i) => ({ id: step.id, title: `${i + 1}. ${guideStageLabel(step)}`, group: 'Этапы стройки', to: `${base}/build?stage=${encodeURIComponent(step.id)}` })),
-    ...props.project.drawings.map(drawing => ({ id: drawing.id, title: drawing.label, group: 'Чертежи', to: `${base}/drawings?drawing=${encodeURIComponent(drawing.id)}` }))
+    ...projectSections.map(section => ({ id: section.id, title: section.label, keywords: section.label, group: 'Разделы', to: projectUrl(world.value.manifest, props.project.id, section.id) })),
+    ...props.project.build.steps.map((step, i) => ({ id: step.id, title: `${i + 1}. ${guideStageLabel(step)}`, keywords: step.title, group: 'Этапы стройки', to: `${base}/build?stage=${encodeURIComponent(step.id)}` })),
+    ...props.project.drawings.map(drawing => ({ id: drawing.id, title: atlasLabel(drawing.label), keywords: drawing.label, group: 'Чертежи', to: `${base}/drawings?drawing=${encodeURIComponent(drawing.id)}` }))
   ]
 })
 const results = computed(() => {
   const words = query.value.toLocaleLowerCase('ru').trim().split(/\s+/).filter(Boolean)
-  return entries.value.filter(entry => words.every(word => `${entry.title} ${entry.id} ${entry.group}`.toLocaleLowerCase('ru').includes(word)))
+  return entries.value.filter(entry => words.every(word => `${entry.title} ${entry.id} ${entry.group} ${entry.keywords}`.toLocaleLowerCase('ru').includes(word)))
 })
 watch(query, () => { selected.value = 0 })
 async function open() {

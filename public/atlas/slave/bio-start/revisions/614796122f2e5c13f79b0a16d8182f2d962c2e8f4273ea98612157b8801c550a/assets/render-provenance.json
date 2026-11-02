@@ -1,0 +1,73 @@
+{
+  "schema": "factory-blender-render/1",
+  "projectId": "bio-start",
+  "projectSha256": "702a59d16c54876eba387c748f365a7b5970fec2e3eb25e373f5ec1a3ecf2544",
+  "authorScriptSha256": "d3c64aa0314738ce73824baa6b060f2a9b02c4878f152072e6c67da7a5f4f322",
+  "blenderVersion": "5.2.3 LTS",
+  "interface": "guarded owned headless Blender CLI",
+  "units": "metres",
+  "guardVerification": "Fresh nested shared-launcher cap readback in a read-only control subprocess; same cgroup, no expanded reservation",
+  "ipcPolicy": "Private HOME/XDG and no display or desktop bus in Blender; original user-manager address supplied only to the read-only guard subprocess",
+  "geometry": "explicit axis-aligned body envelopes and declared ports only; not extracted game meshes",
+  "coordinateConvention": {
+    "absoluteZ": "unknown",
+    "bodyRotation": "axis-aligned envelope already supplied; rotationDeg metadata only, never applied twice",
+    "localToWorld": {
+      "absoluteFloorZ": "unknown; schematic common construction datum",
+      "gamePortTransforms": "unknown",
+      "placementXY": "centres",
+      "xyOrigin_m": [
+        -1840.0,
+        2772.0
+      ]
+    },
+    "placementXY": "project-local centres",
+    "placementZ": "relative base",
+    "ports": "explicit project-local coordinates, not body offsets"
+  },
+  "assetProjection": {
+    "sourceContractSha256": "41aa7f58515eed075f90f4aac11ffda921fa57fd793699c68801bd212556e5c0",
+    "adapterSha256": "1ce3444d03e00d9e50fbbbe7da0f877865f45c0af59efbf08152eae4ca1d949d",
+    "policy": "Source bytes unchanged; omit only explicitly unauthored normalizer fallbacks from art",
+    "omittedFallbacks": [],
+    "annotations": []
+  },
+  "rotationHandling": "prefer footprint / rotatedEnvelope / supplied width-depth; preserve source rotation metadata without rotating axis-aligned envelopes twice",
+  "campusGraph": "exact owned externalLinks/powerConnections retained as scene JSON metadata; this renderer does not draw campus routes; author-factory-sheets emits the separate paginated SVGs",
+  "campusGraphCounts": {
+    "externalLinks": 0,
+    "powerConnections": 0
+  },
+  "operatingState": "optional-fuel",
+  "renderedConveyorSupportIds": [
+    "BELT-SUPPORT-01",
+    "BELT-SUPPORT-02"
+  ],
+  "excludedInactiveConveyorSupportIds": [],
+  "omittedOffsiteConveyorSupportIds": [],
+  "supportScope": "Local active supports only in the rendered view; all source records retained in supportsJSON; exact campus support coordinates are on the SVG support schedules",
+  "portPolicy": "explicit ports array only; point is project-local absolute; direction and face preserved; containers need no electrical anchor",
+  "unverified": [
+    "terrain",
+    "absoluteZ",
+    "native ports and electrical faces",
+    "native body transforms",
+    "collision",
+    "native conveyor spline legality",
+    "effective mod runtime"
+  ],
+  "assets": {
+    "bio-start.blend": "b047e2866f74e97598f35b73b6353cfb08589b7c1dcd848063ac8363ca6088e8",
+    "blender-assembly.png": "0da3aa07f755942b05fafcb9001b48bb9e10194da0b6c015b3acf11f55eb6cfe",
+    "blender-plan.png": "9e0666fc220ecf13fac238d1ef0eef2d4ee0fd8611a6beef669858265ba7f232",
+    "bio-start-uncompressed.blend": "06a95a05ea7fe8317608ed3ae9824416366afd8f6a20633c7f1369535f197cf0"
+  },
+  "blendConversion": {
+    "operation": "lossless native zstd decompression; original render and compressed file unchanged",
+    "sourceSha256": "b047e2866f74e97598f35b73b6353cfb08589b7c1dcd848063ac8363ca6088e8",
+    "outputSha256": "06a95a05ea7fe8317608ed3ae9824416366afd8f6a20633c7f1369535f197cf0",
+    "converterBinarySha256": "416fe8c3624588f798c5141b69f603920eedb96495df9529ded27dd6f5714815",
+    "converterScriptSha256": "b1ea88a6cc367803e823a51c7c300c96ade468d5004283e82367cb49ef3cdcba",
+    "imagesRerendered": false
+  }
+}

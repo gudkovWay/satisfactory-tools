@@ -1,0 +1,92 @@
+{
+  "schema": "factory-blender-render/1",
+  "projectId": "warehouse",
+  "projectSha256": "87ac0bbc09fb72ff97511bcd2d7652925abeb1e4e7ea8801749dfb6ca1f9d923",
+  "authorScriptSha256": "d3c64aa0314738ce73824baa6b060f2a9b02c4878f152072e6c67da7a5f4f322",
+  "blenderVersion": "5.2.3 LTS",
+  "interface": "guarded owned headless Blender CLI",
+  "units": "metres",
+  "guardVerification": "Fresh nested shared-launcher cap readback in a read-only control subprocess; same cgroup, no expanded reservation",
+  "ipcPolicy": "Private HOME/XDG and no display or desktop bus in Blender; original user-manager address supplied only to the read-only guard subprocess",
+  "geometry": "explicit axis-aligned body envelopes and declared ports only; not extracted game meshes",
+  "coordinateConvention": {
+    "absoluteZ": "unknown",
+    "bodyRotation": "axis-aligned envelope already supplied; rotationDeg metadata only, never applied twice",
+    "localToWorld": {
+      "absoluteFloorZ": "unknown; schematic common construction datum",
+      "gamePortTransforms": "unknown",
+      "placementXY": "centres",
+      "xyOrigin_m": [
+        -1800.0,
+        2816.0
+      ]
+    },
+    "placementXY": "project-local centres",
+    "placementZ": "relative base",
+    "ports": "explicit project-local coordinates, not body offsets"
+  },
+  "assetProjection": {
+    "sourceContractSha256": "41aa7f58515eed075f90f4aac11ffda921fa57fd793699c68801bd212556e5c0",
+    "adapterSha256": "1ce3444d03e00d9e50fbbbe7da0f877865f45c0af59efbf08152eae4ca1d949d",
+    "policy": "Source bytes unchanged; omit only explicitly unauthored normalizer fallbacks from art",
+    "omittedFallbacks": [],
+    "annotations": []
+  },
+  "rotationHandling": "prefer footprint / rotatedEnvelope / supplied width-depth; preserve source rotation metadata without rotating axis-aligned envelopes twice",
+  "campusGraph": "exact owned externalLinks/powerConnections retained as scene JSON metadata; this renderer does not draw campus routes; author-factory-sheets emits the separate paginated SVGs",
+  "campusGraphCounts": {
+    "externalLinks": 7,
+    "powerConnections": 33
+  },
+  "operatingState": "steady",
+  "renderedConveyorSupportIds": [],
+  "excludedInactiveConveyorSupportIds": [
+    "BELT-SUPPORT-19",
+    "BELT-SUPPORT-20"
+  ],
+  "omittedOffsiteConveyorSupportIds": [
+    "BELT-SUPPORT-01",
+    "BELT-SUPPORT-02",
+    "BELT-SUPPORT-03",
+    "BELT-SUPPORT-04",
+    "BELT-SUPPORT-05",
+    "BELT-SUPPORT-06",
+    "BELT-SUPPORT-07",
+    "BELT-SUPPORT-08",
+    "BELT-SUPPORT-09",
+    "BELT-SUPPORT-10",
+    "BELT-SUPPORT-11",
+    "BELT-SUPPORT-12",
+    "BELT-SUPPORT-16",
+    "BELT-SUPPORT-17",
+    "BELT-SUPPORT-18",
+    "BELT-SUPPORT-21",
+    "BELT-SUPPORT-22",
+    "BELT-SUPPORT-23"
+  ],
+  "supportScope": "Local active supports only in the rendered view; all source records retained in supportsJSON; exact campus support coordinates are on the SVG support schedules",
+  "portPolicy": "explicit ports array only; point is project-local absolute; direction and face preserved; containers need no electrical anchor",
+  "unverified": [
+    "terrain",
+    "absoluteZ",
+    "native ports and electrical faces",
+    "native body transforms",
+    "collision",
+    "native conveyor spline legality",
+    "effective mod runtime"
+  ],
+  "assets": {
+    "warehouse.blend": "4147a1b3c3db45e17393b4fbd6695d6760953f59cbc313bd70c91293a0f5c10c",
+    "blender-assembly.png": "6aefcf2586eb1f95e68bd6f77944bf67e0af12c3e58d6192cc3683b87e0bb3ae",
+    "blender-plan.png": "2db78cf4a267cd1b8fcf7f9caf8dd786b14c2cb98923c15d01a5bf6794f3185e",
+    "warehouse-uncompressed.blend": "c33996dfffed85f5fdf9f0c75bf23110cabfa4c6c38caf1772e939bfce8cd455"
+  },
+  "blendConversion": {
+    "operation": "lossless native zstd decompression; original render and compressed file unchanged",
+    "sourceSha256": "4147a1b3c3db45e17393b4fbd6695d6760953f59cbc313bd70c91293a0f5c10c",
+    "outputSha256": "c33996dfffed85f5fdf9f0c75bf23110cabfa4c6c38caf1772e939bfce8cd455",
+    "converterBinarySha256": "416fe8c3624588f798c5141b69f603920eedb96495df9529ded27dd6f5714815",
+    "converterScriptSha256": "b1ea88a6cc367803e823a51c7c300c96ade468d5004283e82367cb49ef3cdcba",
+    "imagesRerendered": false
+  }
+}

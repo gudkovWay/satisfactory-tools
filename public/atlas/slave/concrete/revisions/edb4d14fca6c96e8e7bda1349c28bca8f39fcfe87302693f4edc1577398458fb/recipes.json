@@ -1,0 +1,593 @@
+{
+  "provenance": {
+    "audit_sha256": "4efbcf1316d304b78ccf04ae9e58cf169808f494c2191d05cadad5872d58b9ac",
+    "game_runtime_verified": false,
+    "save_sha256": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
+    "scope": "forecast-standard-recipes",
+    "source": "Audited SCIM coefficients and WB source baseline; effective runtime unknown",
+    "source_sha256": "104a31f096660de25dc17b3921840f4f330c473469e34becc3e7a23c3a08453b"
+  },
+  "recipes": [
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 1,
+      "catalogUnlockTier": 2,
+      "class_name": "Recipe_Biofuel_C",
+      "currentlyAvailable": true,
+      "currentlyUnlocked": true,
+      "duration": 4,
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_Biofuel.Recipe_Biofuel_C",
+      "inputs": {
+        "Desc_GenericBiomass_C": 8
+      },
+      "machine": "constructor",
+      "name": "Solid Biofuel",
+      "outputs": {
+        "Desc_Biofuel_C": 4
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_2-2_C",
+          "name": "Obstacle Clearing",
+          "purchased": true,
+          "tier": 2
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 1,
+      "catalogUnlockTier": 0,
+      "class_name": "Recipe_Biomass_Leaves_C",
+      "currentlyAvailable": true,
+      "currentlyUnlocked": true,
+      "duration": 5,
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_Biomass_Leaves.Recipe_Biomass_Leaves_C",
+      "inputs": {
+        "Desc_Leaves_C": 10
+      },
+      "machine": "constructor",
+      "name": "Biomass (Leaves)",
+      "outputs": {
+        "Desc_GenericBiomass_C": 5
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_Tutorial5_C",
+          "name": "HUB Upgrade 6",
+          "purchased": true,
+          "tier": 0
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 1,
+      "catalogUnlockTier": 0,
+      "class_name": "Recipe_Biomass_Wood_C",
+      "currentlyAvailable": true,
+      "currentlyUnlocked": true,
+      "duration": 4,
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_Biomass_Wood.Recipe_Biomass_Wood_C",
+      "inputs": {
+        "Desc_Wood_C": 4
+      },
+      "machine": "constructor",
+      "name": "Biomass (Wood)",
+      "outputs": {
+        "Desc_GenericBiomass_C": 20
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_Tutorial5_C",
+          "name": "HUB Upgrade 6",
+          "purchased": true,
+          "tier": 0
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 1,
+      "catalogUnlockTier": 0,
+      "class_name": "Recipe_Cable_C",
+      "currentlyAvailable": true,
+      "currentlyUnlocked": true,
+      "duration": 2,
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_Cable.Recipe_Cable_C",
+      "inputs": {
+        "Desc_Wire_C": 2
+      },
+      "machine": "constructor",
+      "name": "Cable",
+      "outputs": {
+        "Desc_Cable_C": 1
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_Tutorial1_5_C",
+          "name": "HUB Upgrade 2",
+          "purchased": true,
+          "tier": 0
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 1,
+      "catalogUnlockTier": 0,
+      "class_name": "Recipe_Concrete_C",
+      "currentlyAvailable": true,
+      "currentlyUnlocked": true,
+      "duration": 4,
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_Concrete.Recipe_Concrete_C",
+      "inputs": {
+        "Desc_Stone_C": 3
+      },
+      "machine": "constructor",
+      "name": "Concrete",
+      "outputs": {
+        "Desc_Cement_C": 1
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_Tutorial2_C",
+          "name": "HUB Upgrade 3",
+          "purchased": true,
+          "tier": 0
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 2,
+      "catalogUnlockTier": 2,
+      "class_name": "Recipe_CopperSheet_C",
+      "currentlyAvailable": false,
+      "currentlyUnlocked": false,
+      "duration": 6,
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_CopperSheet.Recipe_CopperSheet_C",
+      "inputs": {
+        "Desc_CopperIngot_C": 2
+      },
+      "machine": "constructor",
+      "name": "Copper Sheet",
+      "outputs": {
+        "Desc_CopperSheet_C": 1
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_2-1_C",
+          "name": "Part Assembly",
+          "purchased": false,
+          "tier": 2
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 4,
+      "catalogUnlockTier": 4,
+      "class_name": "Recipe_EncasedIndustrialBeam_C",
+      "currentlyAvailable": false,
+      "currentlyUnlocked": false,
+      "duration": 10,
+      "id": "/Game/FactoryGame/Recipes/Assembler/Recipe_EncasedIndustrialBeam.Recipe_EncasedIndustrialBeam_C",
+      "inputs": {
+        "Desc_Cement_C": 6,
+        "Desc_SteelPlate_C": 3
+      },
+      "machine": "assembler",
+      "name": "Encased Industrial Beam",
+      "outputs": {
+        "Desc_SteelPlateReinforced_C": 1
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_4-1_C",
+          "name": "Advanced Steel Production",
+          "purchased": false,
+          "tier": 4
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 1,
+      "catalogUnlockTier": 0,
+      "class_name": "Recipe_IngotCopper_C",
+      "currentlyAvailable": true,
+      "currentlyUnlocked": true,
+      "duration": 2,
+      "id": "/Game/FactoryGame/Recipes/Smelter/Recipe_IngotCopper.Recipe_IngotCopper_C",
+      "inputs": {
+        "Desc_OreCopper_C": 1
+      },
+      "machine": "smelter",
+      "name": "Copper Ingot",
+      "outputs": {
+        "Desc_CopperIngot_C": 1
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_Tutorial1_5_C",
+          "name": "HUB Upgrade 2",
+          "purchased": true,
+          "tier": 0
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 1,
+      "catalogUnlockTier": 0,
+      "class_name": "Recipe_IngotIron_C",
+      "currentlyAvailable": true,
+      "currentlyUnlocked": true,
+      "duration": 2,
+      "id": "/Game/FactoryGame/Recipes/Smelter/Recipe_IngotIron.Recipe_IngotIron_C",
+      "inputs": {
+        "Desc_OreIron_C": 1
+      },
+      "machine": "smelter",
+      "name": "Iron Ingot",
+      "outputs": {
+        "Desc_IronIngot_C": 1
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_StartingRecipes_C",
+          "name": "Starting Blueprints",
+          "purchased": true,
+          "tier": 0
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 3,
+      "catalogUnlockTier": 3,
+      "class_name": "Recipe_IngotSteel_C",
+      "currentlyAvailable": false,
+      "currentlyUnlocked": false,
+      "duration": 4,
+      "id": "/Game/FactoryGame/Recipes/Smelter/Recipe_IngotSteel.Recipe_IngotSteel_C",
+      "inputs": {
+        "Desc_Coal_C": 3,
+        "Desc_OreIron_C": 3
+      },
+      "machine": "foundry",
+      "name": "Steel Ingot",
+      "outputs": {
+        "Desc_SteelIngot_C": 3
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_3-4_C",
+          "name": "Basic Steel Production",
+          "purchased": false,
+          "tier": 3
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 1,
+      "catalogUnlockTier": 0,
+      "class_name": "Recipe_IronPlateReinforced_C",
+      "currentlyAvailable": true,
+      "currentlyUnlocked": true,
+      "duration": 12,
+      "id": "/Game/FactoryGame/Recipes/Assembler/Recipe_IronPlateReinforced.Recipe_IronPlateReinforced_C",
+      "inputs": {
+        "Desc_IronPlate_C": 6,
+        "Desc_IronScrew_C": 12
+      },
+      "machine": "assembler",
+      "name": "Reinforced Iron Plate",
+      "outputs": {
+        "Desc_IronPlateReinforced_C": 1
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_Tutorial2_C",
+          "name": "HUB Upgrade 3",
+          "purchased": true,
+          "tier": 0
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 1,
+      "catalogUnlockTier": 0,
+      "class_name": "Recipe_IronPlate_C",
+      "currentlyAvailable": true,
+      "currentlyUnlocked": true,
+      "duration": 6,
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_IronPlate.Recipe_IronPlate_C",
+      "inputs": {
+        "Desc_IronIngot_C": 3
+      },
+      "machine": "constructor",
+      "name": "Iron Plate",
+      "outputs": {
+        "Desc_IronPlate_C": 2
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_StartingRecipes_C",
+          "name": "Starting Blueprints",
+          "purchased": true,
+          "tier": 0
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 1,
+      "catalogUnlockTier": 0,
+      "class_name": "Recipe_IronRod_C",
+      "currentlyAvailable": true,
+      "currentlyUnlocked": true,
+      "duration": 4,
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_IronRod.Recipe_IronRod_C",
+      "inputs": {
+        "Desc_IronIngot_C": 1
+      },
+      "machine": "constructor",
+      "name": "Iron Rod",
+      "outputs": {
+        "Desc_IronRod_C": 1
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_StartingRecipes_C",
+          "name": "Starting Blueprints",
+          "purchased": true,
+          "tier": 0
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 2,
+      "catalogUnlockTier": 2,
+      "class_name": "Recipe_ModularFrame_C",
+      "currentlyAvailable": false,
+      "currentlyUnlocked": false,
+      "duration": 60,
+      "id": "/Game/FactoryGame/Recipes/Assembler/Recipe_ModularFrame.Recipe_ModularFrame_C",
+      "inputs": {
+        "Desc_IronPlateReinforced_C": 3,
+        "Desc_IronRod_C": 12
+      },
+      "machine": "assembler",
+      "name": "Modular Frame",
+      "outputs": {
+        "Desc_ModularFrame_C": 2
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_2-1_C",
+          "name": "Part Assembly",
+          "purchased": false,
+          "tier": 2
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 4,
+      "catalogUnlockTier": 4,
+      "class_name": "Recipe_Motor_C",
+      "currentlyAvailable": false,
+      "currentlyUnlocked": false,
+      "duration": 12,
+      "id": "/Game/FactoryGame/Recipes/Assembler/Recipe_Motor.Recipe_Motor_C",
+      "inputs": {
+        "Desc_Rotor_C": 2,
+        "Desc_Stator_C": 2
+      },
+      "machine": "assembler",
+      "name": "Motor",
+      "outputs": {
+        "Desc_Motor_C": 1
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_4-1_C",
+          "name": "Advanced Steel Production",
+          "purchased": false,
+          "tier": 4
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 2,
+      "catalogUnlockTier": 2,
+      "class_name": "Recipe_Rotor_C",
+      "currentlyAvailable": false,
+      "currentlyUnlocked": false,
+      "duration": 15,
+      "id": "/Game/FactoryGame/Recipes/Assembler/Recipe_Rotor.Recipe_Rotor_C",
+      "inputs": {
+        "Desc_IronRod_C": 5,
+        "Desc_IronScrew_C": 25
+      },
+      "machine": "assembler",
+      "name": "Rotor",
+      "outputs": {
+        "Desc_Rotor_C": 1
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_2-1_C",
+          "name": "Part Assembly",
+          "purchased": false,
+          "tier": 2
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 1,
+      "catalogUnlockTier": 0,
+      "class_name": "Recipe_Screw_C",
+      "currentlyAvailable": true,
+      "currentlyUnlocked": true,
+      "duration": 6,
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_Screw.Recipe_Screw_C",
+      "inputs": {
+        "Desc_IronRod_C": 1
+      },
+      "machine": "constructor",
+      "name": "Screws",
+      "outputs": {
+        "Desc_IronScrew_C": 4
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_Tutorial2_C",
+          "name": "HUB Upgrade 3",
+          "purchased": true,
+          "tier": 0
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 2,
+      "catalogUnlockTier": 2,
+      "class_name": "Recipe_SpaceElevatorPart_1_C",
+      "currentlyAvailable": false,
+      "currentlyUnlocked": false,
+      "duration": 30,
+      "id": "/Game/FactoryGame/Recipes/SpaceElevatorParts/Recipe_SpaceElevatorPart_1.Recipe_SpaceElevatorPart_1_C",
+      "inputs": {
+        "Desc_IronPlateReinforced_C": 1,
+        "Desc_Rotor_C": 1
+      },
+      "machine": "assembler",
+      "name": "Smart Plating",
+      "outputs": {
+        "Desc_SpaceElevatorPart_1_C": 1
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_2-1_C",
+          "name": "Part Assembly",
+          "purchased": false,
+          "tier": 2
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 4,
+      "catalogUnlockTier": 4,
+      "class_name": "Recipe_Stator_C",
+      "currentlyAvailable": false,
+      "currentlyUnlocked": false,
+      "duration": 12,
+      "id": "/Game/FactoryGame/Recipes/Assembler/Recipe_Stator.Recipe_Stator_C",
+      "inputs": {
+        "Desc_SteelPipe_C": 3,
+        "Desc_Wire_C": 8
+      },
+      "machine": "assembler",
+      "name": "Stator",
+      "outputs": {
+        "Desc_Stator_C": 1
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_4-1_C",
+          "name": "Advanced Steel Production",
+          "purchased": false,
+          "tier": 4
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 3,
+      "catalogUnlockTier": 3,
+      "class_name": "Recipe_SteelBeam_C",
+      "currentlyAvailable": false,
+      "currentlyUnlocked": false,
+      "duration": 4,
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_SteelBeam.Recipe_SteelBeam_C",
+      "inputs": {
+        "Desc_SteelIngot_C": 4
+      },
+      "machine": "constructor",
+      "name": "Steel Beam",
+      "outputs": {
+        "Desc_SteelPlate_C": 1
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_3-4_C",
+          "name": "Basic Steel Production",
+          "purchased": false,
+          "tier": 3
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 3,
+      "catalogUnlockTier": 3,
+      "class_name": "Recipe_SteelPipe_C",
+      "currentlyAvailable": false,
+      "currentlyUnlocked": false,
+      "duration": 6,
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_SteelPipe.Recipe_SteelPipe_C",
+      "inputs": {
+        "Desc_SteelIngot_C": 3
+      },
+      "machine": "constructor",
+      "name": "Steel Pipe",
+      "outputs": {
+        "Desc_SteelPipe_C": 2
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_3-4_C",
+          "name": "Basic Steel Production",
+          "purchased": false,
+          "tier": 3
+        }
+      ]
+    },
+    {
+      "availabilityScope": "This audited save, including already purchased higher-tier schematics",
+      "availableFromTier": 1,
+      "catalogUnlockTier": 0,
+      "class_name": "Recipe_Wire_C",
+      "currentlyAvailable": true,
+      "currentlyUnlocked": true,
+      "duration": 4,
+      "id": "/Game/FactoryGame/Recipes/Constructor/Recipe_Wire.Recipe_Wire_C",
+      "inputs": {
+        "Desc_CopperIngot_C": 1
+      },
+      "machine": "constructor",
+      "name": "Wire",
+      "outputs": {
+        "Desc_Wire_C": 2
+      },
+      "unlockSchematics": [
+        {
+          "id": "Schematic_Tutorial1_5_C",
+          "name": "HUB Upgrade 2",
+          "purchased": true,
+          "tier": 0
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 1
+}
