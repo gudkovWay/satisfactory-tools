@@ -1,0 +1,76 @@
+{
+  "schema": "factory-blender-render/1",
+  "projectId": "copper-home",
+  "projectSha256": "77c9de325103f9f16c13b461044fc57d08dd36d637e984e0da7c432041716eb5",
+  "authorScriptSha256": "d3c64aa0314738ce73824baa6b060f2a9b02c4878f152072e6c67da7a5f4f322",
+  "blenderVersion": "5.2.3 LTS",
+  "interface": "guarded owned headless Blender CLI",
+  "units": "metres",
+  "guardVerification": "Fresh nested shared-launcher cap readback in a read-only control subprocess; same cgroup, no expanded reservation",
+  "ipcPolicy": "Private HOME/XDG and no display or desktop bus in Blender; original user-manager address supplied only to the read-only guard subprocess",
+  "geometry": "explicit axis-aligned body envelopes and declared ports only; not extracted game meshes",
+  "coordinateConvention": {
+    "absoluteZ": "unknown",
+    "bodyRotation": "axis-aligned envelope already supplied; rotationDeg metadata only, never applied twice",
+    "localToWorld": {
+      "absoluteFloorZ": "unknown",
+      "gamePortTransforms": "unknown",
+      "placementXY": "centres",
+      "xyOrigin_m": [
+        -1717.0,
+        2884.0
+      ]
+    },
+    "placementXY": "project-local centres",
+    "placementZ": "relative base",
+    "ports": "explicit project-local coordinates, not body offsets"
+  },
+  "assetProjection": {
+    "sourceContractSha256": "41aa7f58515eed075f90f4aac11ffda921fa57fd793699c68801bd212556e5c0",
+    "adapterSha256": "1ce3444d03e00d9e50fbbbe7da0f877865f45c0af59efbf08152eae4ca1d949d",
+    "policy": "Source bytes unchanged; omit only explicitly unauthored normalizer fallbacks from art",
+    "omittedFallbacks": [],
+    "annotations": []
+  },
+  "rotationHandling": "prefer footprint / rotatedEnvelope / supplied width-depth; preserve source rotation metadata without rotating axis-aligned envelopes twice",
+  "campusGraph": "exact owned externalLinks/powerConnections retained as scene JSON metadata; this renderer does not draw campus routes; author-factory-sheets emits the separate paginated SVGs",
+  "campusGraphCounts": {
+    "externalLinks": 1,
+    "powerConnections": 0
+  },
+  "operatingState": "steady",
+  "renderedConveyorSupportIds": [
+    "BELT-SUPPORT-01",
+    "BELT-SUPPORT-02"
+  ],
+  "excludedInactiveConveyorSupportIds": [],
+  "omittedOffsiteConveyorSupportIds": [
+    "BELT-SUPPORT-03",
+    "BELT-SUPPORT-04"
+  ],
+  "supportScope": "Local active supports only in the rendered view; all source records retained in supportsJSON; exact campus support coordinates are on the SVG support schedules",
+  "portPolicy": "explicit ports array only; point is project-local absolute; direction and face preserved; containers need no electrical anchor",
+  "unverified": [
+    "terrain",
+    "absoluteZ",
+    "native ports and electrical faces",
+    "native body transforms",
+    "collision",
+    "native conveyor spline legality",
+    "effective mod runtime"
+  ],
+  "assets": {
+    "copper-home.blend": "002f90855334b16246a3e9b245d6703c57e0bfa3ff01d7f9fb4e4f849350240b",
+    "blender-assembly.png": "d1d795482d7855399c260ad87473a04aa241a1a58e0a8e1f0f4b823ed94ff802",
+    "blender-plan.png": "c083d1e7622bfaf842dd4bf4c69b0f550f2006911e31ecf6b4fb666f52b4fa58",
+    "copper-home-uncompressed.blend": "97ed61b4392012062d5c21a36e2b4f50bd787dbd818c232f64354572fb34df12"
+  },
+  "blendConversion": {
+    "operation": "lossless native zstd decompression; original render and compressed file unchanged",
+    "sourceSha256": "002f90855334b16246a3e9b245d6703c57e0bfa3ff01d7f9fb4e4f849350240b",
+    "outputSha256": "97ed61b4392012062d5c21a36e2b4f50bd787dbd818c232f64354572fb34df12",
+    "converterBinarySha256": "416fe8c3624588f798c5141b69f603920eedb96495df9529ded27dd6f5714815",
+    "converterScriptSha256": "b1ea88a6cc367803e823a51c7c300c96ade468d5004283e82367cb49ef3cdcba",
+    "imagesRerendered": false
+  }
+}

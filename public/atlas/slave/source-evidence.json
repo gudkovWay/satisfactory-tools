@@ -2,15 +2,30 @@
   "schemaVersion": 1,
   "snapshotAt": "2026-10-30T10:55:59.913Z",
   "saveSha256": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
-  "forecastRecipesSha256": "5887a644bb4b67388aed06c9c048f9ca74f15cb2cf0610c556c9c46b7556fbd5",
+  "forecastRecipeAuthorities": {
+    "components": "5887a644bb4b67388aed06c9c048f9ca74f15cb2cf0610c556c9c46b7556fbd5",
+    "concrete-expanded": "5887a644bb4b67388aed06c9c048f9ca74f15cb2cf0610c556c9c46b7556fbd5",
+    "concrete": "8c07079f64f7858390d01718e4b1c0c60b65dc04802f7212e204f9dd31673697",
+    "copper-home": "8c07079f64f7858390d01718e4b1c0c60b65dc04802f7212e204f9dd31673697",
+    "copper-sheets": "5887a644bb4b67388aed06c9c048f9ca74f15cb2cf0610c556c9c46b7556fbd5",
+    "frame-stock": "5887a644bb4b67388aed06c9c048f9ca74f15cb2cf0610c556c9c46b7556fbd5",
+    "iron-home": "8c07079f64f7858390d01718e4b1c0c60b65dc04802f7212e204f9dd31673697",
+    "mechanics-stock": "5887a644bb4b67388aed06c9c048f9ca74f15cb2cf0610c556c9c46b7556fbd5",
+    "phase-one-boost": "5887a644bb4b67388aed06c9c048f9ca74f15cb2cf0610c556c9c46b7556fbd5",
+    "phase-one": "5887a644bb4b67388aed06c9c048f9ca74f15cb2cf0610c556c9c46b7556fbd5",
+    "rotor-stock": "5887a644bb4b67388aed06c9c048f9ca74f15cb2cf0610c556c9c46b7556fbd5",
+    "steel-expanded": "5887a644bb4b67388aed06c9c048f9ca74f15cb2cf0610c556c9c46b7556fbd5",
+    "steel-start": "5887a644bb4b67388aed06c9c048f9ca74f15cb2cf0610c556c9c46b7556fbd5",
+    "bio-start": "8c07079f64f7858390d01718e4b1c0c60b65dc04802f7212e204f9dd31673697"
+  },
   "forecastOnly": true,
-  "fingerprintScope": "Exact source save + SCIM base coefficients + WB source. Not a normalized current107-mod runtime recipe inventory.",
+  "fingerprintScope": "Exact source save + SCIM base coefficients + WB source. The save lists 107 mod metadata records; installation, activation and effective recipe/power behavior are separate unverified facets.",
   "fingerprints": [],
   "settings": {
     "randomization": "NRM_AdvancedRich",
     "purity": "NPS_Increase",
     "spacePartsMultiplier": 100,
-    "activeMods": 107,
+    "savedModMetadataCount": 107,
     "WB": "1.0.3",
     "ParadiseIsland": "1.0.9"
   },
@@ -22,11 +37,11 @@
     "RefinedPower"
   ],
   "sourceHashes": {
-    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-paradise-world-site/.superpowers/research/paradise-analysis-20261030/slave-source.sav": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
-    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-world-balance/mods/world-balance/WorldBalance/Source/WorldBalance/Private/WorldBalanceCatalog.cpp": "7da46f426d70b8e897f415408123165cb87f7a33e9ee87209900feb073825170",
-    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-world-balance/mods/world-balance/WorldBalance/Source/WorldBalance/Public/WorldBalanceCatalog.h": "7309f65ca5258395cab56e32ed074fac0931dba350c718e1e8695f5d1bbabc49",
-    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-world-balance/mods/world-balance/WorldBalance/Source/WorldBalance/Private/WorldBalanceWorldModule.cpp": "a92f668fce2d8abe2190e8fe1d2b35acf31b0caf19a6f657229a27e39a96d08c",
-    "/home/q/dev/games/.worktrees/satisfactory-tools/DEV-capitalism-slave-world-balance/mods/world-balance/WorldBalance/Source/WorldBalanceEditor/Private/WorldBalanceGenerateCommandlet.cpp": "237a688a46a57bb88f407acc30f95017a629612ca5598d0435d9da288bc4299d"
+    "save": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
+    "WorldBalanceCatalog.cpp": "7da46f426d70b8e897f415408123165cb87f7a33e9ee87209900feb073825170",
+    "WorldBalanceCatalog.h": "7309f65ca5258395cab56e32ed074fac0931dba350c718e1e8695f5d1bbabc49",
+    "WorldBalanceWorldModule.cpp": "a92f668fce2d8abe2190e8fe1d2b35acf31b0caf19a6f657229a27e39a96d08c",
+    "WorldBalanceGenerateCommandlet.cpp": "237a688a46a57bb88f407acc30f95017a629612ca5598d0435d9da288bc4299d"
   },
   "forecastProfiles": [
     {

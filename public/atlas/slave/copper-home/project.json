@@ -1,832 +1,4516 @@
 {
-  "schemaVersion": 1,
-  "id": "copper-home",
-  "saveId": "slave",
-  "kind": "factory",
-  "title": "Провод и кабель",
-  "subtitle": "Paradise Island · тир1 · Медный цех",
-  "revision": "a92a7964e1a43d1dc88de2e37d77e3a927577688999fbda400517acd15b4aec6",
-  "updatedAt": "2026-10-30T10:55:59.913Z",
-  "status": "blocked",
-  "drawingCount": 2,
-  "source": {
-    "saveSha256": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
-    "snapshotLabel": "slave ·30.10.2026 · WB1.0.3 ·107модов",
-    "snapshotAt": "2026-10-30T10:55:59.913Z",
-    "planning": {
-      "mode": "forecast",
-      "tier": 1,
-      "density": 5,
-      "prerequisites": [
-        "Logistics; WB Extraction I",
-        "Игровая сверка WB100%, рецепта, стоимости и MW перед тиражированием"
-      ]
-    }
-  },
-  "dependencies": [
-    {
-      "saveId": "slave",
-      "projectId": "iron-home",
-      "role": "Предыдущий этап: iron-home"
-    }
-  ],
-  "readiness": {
-    "constructionReady": false,
-    "blockers": [
-      "Проверить конверт на рельефе, не перекрыть ноды и установить фактический уровень пола.",
-      "Logistics; WB Extraction I",
-      "107модов: расчёт WB не заменяет измерение первой машины."
-    ]
-  },
-  "overview": {
-    "paragraphs": [
-      "Центр конверта X=-1685м,Y=2920м; 64×48м. Это предлагаемое место, не установленная постройка.",
-      "Чертёж задаёт локальную сетку: X вправо,+Y к задней грузовой стороне; начало в юго-западном углу конверта. Z — метры над выбранным полом, не абсолютная высота мира.",
-      "Сначала открытый технологический каркас и проверка потоков, затем стены/фасад. Производительность указана для непрерывной подачи и свободного выхода."
-    ],
-    "decisions": [
-      {
-        "choice": "Отдельный контур снабжения",
-        "instead": "Смешать домашнюю стройку с фазовыми потоками",
-        "reason": "Фазовая отправка не должна обесточивать или оставлять без материалов дом.",
-        "tradeoff": "Дополнительные подписанные ленты и буферы."
-      }
-    ]
-  },
   "build": {
+    "commissioning": [
+      "Рельеф, абсолютные высоты, береговая глубина и игровые коллизии не проверены.",
+      "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки.",
+      "Порты заданы явно как условные точки у корпуса, не как извлечённые игровые коннекторы. Одноуровневая схема использует поверхностные ленты и только явно показанные короткие переходы. Нативные изгибы, опоры и привязки проверяются перед строительством."
+    ],
+    "notes": [
+      "Отметки в браузере не являются состоянием построек в сейве."
+    ],
     "steps": [
       {
-        "id": "survey",
-        "title": "Разметить площадку и входы",
-        "body": "Обойти конверт64×48м у(-1685;2920). Оставить16×24м вокруг каждой закреплённой ноды. Поставить четыре угловых маркера; выбрать реальный уровень пола выше препятствий. Локальный ноль — юго-западный угол, задняя сторона к+Y. До подачи питания выполнить: Logistics; WB Extraction I. Не заказывать всю партию до пробного WB-здания.",
-        "prerequisites": [],
         "actions": [
-          "Обойти конверт64×48м у(-1685;2920). Оставить16×24м вокруг каждой закреплённой ноды.",
-          "Поставить четыре угловых маркера; выбрать реальный уровень пола выше препятствий. Локальный ноль — юго-западный угол, задняя сторона к+Y.",
-          "До подачи питания выполнить: Logistics; WB Extraction I. Не заказывать всю партию до пробного WB-здания."
+          "Построить26оплаченных плит,SM-01,WR-01/02,CB-01,Cu3Minerи3медных электростолба. Точные позиции,часы и порты брать из буквального контракта.",
+          "WR-01подаёт провод только наCB-01,WR-02подаёт провод только на склад;приёмки независимы,обычный делитель не изображать приоритетным.",
+          "БудущиеSM-02,SH-01,WR-03и их11дополнительных плит пока не строить. Не выдавать последующее расширение или его маршруты за оплаченный базовый контур."
         ],
-        "materials": [
-          "4 угловых маркера/фундамента; инструмент обмера"
-        ],
+        "baseline": true,
+        "bill": {
+          "BP_ItemDescriptorPortableMiner_C": 1,
+          "Desc_Cable_C": 26,
+          "Desc_Cement_C": 147,
+          "Desc_IronPlateReinforced_C": 6,
+          "Desc_IronPlate_C": 68,
+          "Desc_IronRod_C": 12,
+          "Desc_Wire_C": 17
+        },
+        "body": "Построить26плит и4машинный медный контур",
         "checks": [
-          "Входы нод, дорога и будущие лифты доступны."
+          "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме."
         ],
-        "levelIds": [],
-        "drawingIds": [
-          "layout"
-        ]
-      },
-      {
-        "id": "floor",
-        "title": "Собрать технологический каркас",
-        "body": "Разложить пол по сетке8м; конечный конверт64×48м. Сначала только занятые машинные ячейки и проходы, не фасад целиком. Производственных полов2: L0 Z+4, L1 Z+16. Между ними12м; нижние4м оставить под логистику. Добавить доступ на каждый этаж и задний стояк лифтов; не ставить опоры в габариты машин.",
-        "prerequisites": [
-          "survey"
-        ],
-        "actions": [
-          "Разложить пол по сетке8м; конечный конверт64×48м. Сначала только занятые машинные ячейки и проходы, не фасад целиком.",
-          "Производственных полов2: L0 Z+4, L1 Z+16. Между ними12м; нижние4м оставить под логистику.",
-          "Добавить доступ на каждый этаж и задний стояк лифтов; не ставить опоры в габариты машин."
-        ],
-        "materials": [
-          "Фундамент8×8: полное покрытие одного уровня 48шт; ядро вводить частями.",
-          "Базовый бетон/пластины и опоры — по фактическому покрытию, не условной полной смете."
-        ],
-        "checks": [
-          "Проход8м не занят входными лентами."
-        ],
-        "levelIds": [
-          "L0",
-          "L1"
-        ],
+        "constructionBOM": {
+          "BP_ItemDescriptorPortableMiner_C": 1,
+          "Desc_Cable_C": 26,
+          "Desc_Cement_C": 147,
+          "Desc_IronPlateReinforced_C": 6,
+          "Desc_IronPlate_C": 68,
+          "Desc_IronRod_C": 12,
+          "Desc_Wire_C": 17
+        },
         "drawingIds": [
           "layout",
-          "layout-L1"
-        ]
-      },
-      {
-        "id": "install-p03",
-        "title": "P03 · поставить плавильня: Copper Ingot",
-        "body": "Поставить4 WB плавильняD5 в отмеченные ячейки P03-01, P03-02, P03-03, P03-04. Положение каждой машины — в таблице координат этапа. Ориентировать вход к своей подающей линии, выход к заднему коллектору. Выбрать Copper Ingot; каждой машине установить80%. Осколки/усилители не требуются. Вход группы: Медная руда 480/мин. Выход группы: Медные слитки 480/мин. Не путать с нетто-складским выпуском. Интерфейс P03-Desc_OreCopper_C: RAW → P03 ·Медная руда 480/мин; 1 отдельных WB-линий ≤750 каждая. Разделить по потребителям до узкого входа машины.",
-        "prerequisites": [
-          "floor"
+          "logistics-L0-Desc_Cable_C-01",
+          "logistics-L0-Desc_CopperIngot_C-01",
+          "logistics-L0-Desc_OreCopper_C-01",
+          "logistics-L0-Desc_Wire_C-01",
+          "assembly-L0-row-01",
+          "assembly-L0-row-02",
+          "assembly-L0-row-03",
+          "assembly-L0-row-04",
+          "layout-G0",
+          "logistics-G0-Desc_Cable_C-01",
+          "logistics-G0-Desc_CopperIngot_C-01",
+          "logistics-G0-Desc_OreCopper_C-01",
+          "logistics-G0-Desc_Wire_C-01",
+          "assembly-G0-row-01",
+          "assembly-G0-row-02",
+          "assembly-G0-row-03",
+          "expansion-reservation-01",
+          "expansion-reservation-02",
+          "expansion-reservation-03",
+          "conveyor-supports-01",
+          "campus-freight-01",
+          "material-flow",
+          "layout-requirements",
+          "blender-assembly",
+          "blender-plan"
         ],
-        "actions": [
-          "Поставить4 WB плавильняD5 в отмеченные ячейки P03-01, P03-02, P03-03, P03-04. Положение каждой машины — в таблице координат этапа.",
-          "Ориентировать вход к своей подающей линии, выход к заднему коллектору. Выбрать Copper Ingot; каждой машине установить80%. Осколки/усилители не требуются.",
-          "Вход группы: Медная руда 480/мин. Выход группы: Медные слитки 480/мин. Не путать с нетто-складским выпуском.",
-          "Интерфейс P03-Desc_OreCopper_C: RAW → P03 ·Медная руда 480/мин; 1 отдельных WB-линий ≤750 каждая. Разделить по потребителям до узкого входа машины."
+        "edgeIds": [
+          "copper-home-E01",
+          "copper-home-E02",
+          "copper-home-E03",
+          "copper-home-E04",
+          "copper-home-E05",
+          "copper-home-E06",
+          "copper-home-E07"
         ],
-        "materials": [
-          "4×WB плавильняD5: Стержни 20, Провод 32"
+        "externalLinkIds": [
+          "copper-home-RAW-WORLD"
         ],
-        "checks": [
-          "UI-рецепт и частота совпадают. При временном тесте выходной буфер получает расчётный поток группы."
+        "externalPlacementIds": [
+          "MINER-01"
         ],
+        "externalPrerequisites": [
+          {
+            "projectId": "warehouse",
+            "stepId": "retire-commissioning"
+          }
+        ],
+        "id": "finish-core",
         "levelIds": [
-          "L1"
-        ],
-        "drawingIds": [
-          "layout-L1"
-        ]
-      },
-      {
-        "id": "install-p02",
-        "title": "P02 · поставить конструктор: Wire",
-        "body": "Поставить7 WB конструкторD5 в отмеченные ячейки P02-01, P02-02, P02-03, P02-04, P02-05, P02-06, P02-07. Положение каждой машины — в таблице координат этапа. Ориентировать вход к своей подающей линии, выход к заднему коллектору. Выбрать Wire; каждой машине установить91.4286%. Осколки/усилители не требуются. Вход группы: Медные слитки 480/мин. Выход группы: Провод 960/мин. Не путать с нетто-складским выпуском. Интерфейс P02-Desc_CopperIngot_C: P03 → P02 ·Медные слитки 480/мин; 1 отдельных WB-линий ≤750 каждая. Разделить по потребителям до узкого входа машины.",
-        "prerequisites": [
-          "floor"
-        ],
-        "actions": [
-          "Поставить7 WB конструкторD5 в отмеченные ячейки P02-01, P02-02, P02-03, P02-04, P02-05, P02-06, P02-07. Положение каждой машины — в таблице координат этапа.",
-          "Ориентировать вход к своей подающей линии, выход к заднему коллектору. Выбрать Wire; каждой машине установить91.4286%. Осколки/усилители не требуются.",
-          "Вход группы: Медные слитки 480/мин. Выход группы: Провод 960/мин. Не путать с нетто-складским выпуском.",
-          "Интерфейс P02-Desc_CopperIngot_C: P03 → P02 ·Медные слитки 480/мин; 1 отдельных WB-линий ≤750 каждая. Разделить по потребителям до узкого входа машины."
-        ],
-        "materials": [
-          "9×WB конструкторD5: Усиленные пластины 18, Кабель 72"
-        ],
-        "checks": [
-          "UI-рецепт и частота совпадают. При временном тесте выходной буфер получает расчётный поток группы."
-        ],
-        "levelIds": [
-          "L0",
-          "L1"
-        ],
-        "drawingIds": [
-          "layout",
-          "layout-L1"
-        ]
-      },
-      {
-        "id": "install-p01",
-        "title": "P01 · поставить конструктор: Cable",
-        "body": "Поставить2 WB конструкторD5 в отмеченные ячейки P01-01, P01-02. Положение каждой машины — в таблице координат этапа. Ориентировать вход к своей подающей линии, выход к заднему коллектору. Выбрать Cable; каждой машине установить80%. Осколки/усилители не требуются. Вход группы: Провод 480/мин. Выход группы: Кабель 240/мин. Не путать с нетто-складским выпуском. Интерфейс P01-Desc_Wire_C: P02 → P01 ·Провод 480/мин; 1 отдельных WB-линий ≤750 каждая. Разделить по потребителям до узкого входа машины.",
-        "prerequisites": [
-          "floor"
-        ],
-        "actions": [
-          "Поставить2 WB конструкторD5 в отмеченные ячейки P01-01, P01-02. Положение каждой машины — в таблице координат этапа.",
-          "Ориентировать вход к своей подающей линии, выход к заднему коллектору. Выбрать Cable; каждой машине установить80%. Осколки/усилители не требуются.",
-          "Вход группы: Провод 480/мин. Выход группы: Кабель 240/мин. Не путать с нетто-складским выпуском.",
-          "Интерфейс P01-Desc_Wire_C: P02 → P01 ·Провод 480/мин; 1 отдельных WB-линий ≤750 каждая. Разделить по потребителям до узкого входа машины."
-        ],
-        "materials": [
-          "9×WB конструкторD5: Усиленные пластины 18, Кабель 72"
-        ],
-        "checks": [
-          "UI-рецепт и частота совпадают. При временном тесте выходной буфер получает расчётный поток группы."
-        ],
-        "levelIds": [
+          "G0",
           "L0"
         ],
-        "drawingIds": [
-          "layout"
-        ]
-      },
-      {
-        "id": "feed",
-        "title": "Подключить ноды и межцеховые входы",
-        "body": "BP_ResourceNode_Copper_3([-1745.9, 2929.59, -1.85]): WB Miner1 100%, всего480/мин. Вывести1 линий по480; скорость каждой≤750. Не объединять назад в один ограниченный выход. Подключить подписанную ветвь питания. Производство213.71MW; добыча20.00MW отдельно. Сначала сверить общий сценарий станции и25% запаса над измеренным потреблением. Наполнить входы и проверить каждую ветвь с открытым выходом. Заполненный склад не использовать как последовательный транзит к другому заводу.",
-        "prerequisites": [
-          "install-p03",
-          "install-p02",
-          "install-p01"
-        ],
-        "actions": [
-          "BP_ResourceNode_Copper_3([-1745.9, 2929.59, -1.85]): WB Miner1 100%, всего480/мин. Вывести1 линий по480; скорость каждой≤750. Не объединять назад в один ограниченный выход.",
-          "Подключить подписанную ветвь питания. Производство213.71MW; добыча20.00MW отдельно. Сначала сверить общий сценарий станции и25% запаса над измеренным потреблением.",
-          "Наполнить входы и проверить каждую ветвь с открытым выходом. Заполненный склад не использовать как последовательный транзит к другому заводу."
-        ],
         "materials": [
-          "Буры по таблице выше; Miner II:10каркасов+10роторов+40труб каждый.",
-          "WB ленты/лифты, сплиттеры и провода — по обмеренной трассе; учесть все параллельные линии."
+          "BP_ItemDescriptorPortableMiner_C: 1",
+          "Cable: 26",
+          "Concrete: 147",
+          "Reinforced Iron Plate: 6",
+          "Iron Plate: 68",
+          "Iron Rod: 12",
+          "Wire: 17"
         ],
-        "checks": [
-          "Добыча не занижена, обе нужные линии реально вывозят поток; сеть не перегружена."
+        "operatingState": "steady",
+        "placementIds": [
+          "SM-01",
+          "WR-01",
+          "WR-02",
+          "CB-01",
+          "S-INGOT",
+          "POLE-01",
+          "POLE-02",
+          "POLE-03"
         ],
-        "levelIds": [
-          "L0",
-          "L1"
+        "powerConnectionIds": [],
+        "prerequisites": [],
+        "russianInstructions": {
+          "actions": [
+            "Построить26оплаченных плит,SM-01,WR-01/02,CB-01,Cu3Minerи3медных электростолба. Точные позиции,часы и порты брать из буквального контракта.",
+            "WR-01подаёт провод только наCB-01,WR-02подаёт провод только на склад;приёмки независимы,обычный делитель не изображать приоритетным.",
+            "БудущиеSM-02,SH-01,WR-03и их11дополнительных плит пока не строить. Не выдавать последующее расширение или его маршруты за оплаченный базовый контур."
+          ],
+          "body": "Построить26плит и4машинный медный контур",
+          "checks": [
+            "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме."
+          ],
+          "title": "Построить26плит и4машинный медный контур"
+        },
+        "sourceContractPhase": {
+          "actions": [
+            "Построить26оплаченных плит,SM-01,WR-01/02,CB-01,Cu3Minerи3медных электростолба. Точные позиции,часы и порты брать из буквального контракта.",
+            "WR-01подаёт провод только наCB-01,WR-02подаёт провод только на склад;приёмки независимы,обычный делитель не изображать приоритетным.",
+            "БудущиеSM-02,SH-01,WR-03и их11дополнительных плит пока не строить. Не выдавать последующее расширение или его маршруты за оплаченный базовый контур."
+          ],
+          "baseline": true,
+          "bill": {
+            "BP_ItemDescriptorPortableMiner_C": 1,
+            "Desc_Cable_C": 26,
+            "Desc_Cement_C": 147,
+            "Desc_IronPlateReinforced_C": 6,
+            "Desc_IronPlate_C": 68,
+            "Desc_IronRod_C": 12,
+            "Desc_Wire_C": 17
+          },
+          "body": "Построить26плит и4машинный медный контур",
+          "checks": [
+            "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме."
+          ],
+          "edgeIds": [
+            "copper-home-E01",
+            "copper-home-E02",
+            "copper-home-E03",
+            "copper-home-E04",
+            "copper-home-E05",
+            "copper-home-E06",
+            "copper-home-E07"
+          ],
+          "externalLinkIds": [
+            "copper-home-RAW-WORLD"
+          ],
+          "externalPrerequisites": [
+            {
+              "projectId": "warehouse",
+              "stepId": "retire-commissioning"
+            }
+          ],
+          "id": "finish-core",
+          "operatingState": "steady",
+          "placementIds": [
+            "SM-01",
+            "WR-01",
+            "WR-02",
+            "CB-01",
+            "S-INGOT",
+            "POLE-01",
+            "POLE-02",
+            "POLE-03",
+            "MINER-01"
+          ],
+          "powerConnectionIds": [],
+          "prerequisites": [],
+          "russianInstructions": {
+            "actions": [
+              "Построить26оплаченных плит,SM-01,WR-01/02,CB-01,Cu3Minerи3медных электростолба. Точные позиции,часы и порты брать из буквального контракта.",
+              "WR-01подаёт провод только наCB-01,WR-02подаёт провод только на склад;приёмки независимы,обычный делитель не изображать приоритетным.",
+              "БудущиеSM-02,SH-01,WR-03и их11дополнительных плит пока не строить. Не выдавать последующее расширение или его маршруты за оплаченный базовый контур."
+            ],
+            "body": "Построить26плит и4машинный медный контур",
+            "checks": [
+              "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме."
+            ],
+            "title": "Построить26плит и4машинный медный контур"
+          },
+          "stepId": "finish-core",
+          "supportIds": [
+            "T-0-0",
+            "T-0-1",
+            "T-0-2",
+            "T-0-4",
+            "T-0-5",
+            "T-0-6",
+            "T-0-7",
+            "T-1-0",
+            "T-1-1",
+            "T-1-2",
+            "T-1-3",
+            "T-1-4",
+            "T-1-5",
+            "T-1-6",
+            "T-1-7",
+            "T-2-0",
+            "T-2-2",
+            "T-2-3",
+            "T-2-4",
+            "T-2-5",
+            "T-3-0",
+            "T-3-4",
+            "T-3-5",
+            "T-4-0",
+            "T-5-0",
+            "T-6-0",
+            "BELT-SUPPORT-01",
+            "BELT-SUPPORT-02",
+            "BELT-SUPPORT-03",
+            "BELT-SUPPORT-04"
+          ],
+          "title": "Построить26плит и4машинный медный контур"
+        },
+        "stepId": "finish-core",
+        "supportIds": [
+          "T-0-0",
+          "T-0-1",
+          "T-0-2",
+          "T-0-4",
+          "T-0-5",
+          "T-0-6",
+          "T-0-7",
+          "T-1-0",
+          "T-1-1",
+          "T-1-2",
+          "T-1-3",
+          "T-1-4",
+          "T-1-5",
+          "T-1-6",
+          "T-1-7",
+          "T-2-0",
+          "T-2-2",
+          "T-2-3",
+          "T-2-4",
+          "T-2-5",
+          "T-3-0",
+          "T-3-4",
+          "T-3-5",
+          "T-4-0",
+          "T-5-0",
+          "T-6-0",
+          "BELT-SUPPORT-01",
+          "BELT-SUPPORT-02",
+          "BELT-SUPPORT-03",
+          "BELT-SUPPORT-04"
         ],
-        "drawingIds": [
-          "layout"
-        ]
-      },
-      {
-        "id": "commission",
-        "title": "Запустить и проверить нетто-выпуск",
-        "body": "Включать от сырья к последнему сборщику; дать заполниться магистралям и каждому потребительскому буферу. Отделить конечные выходы: Кабель 240/мин, Провод 480/мин. Подписать назначение склад/лифт/соседний цех. Снять показания за5мин установившегося режима с незаполненными выходами. При отклонении сначала проверить коэффициенты107модов, рецепт, ленты и энергию; не компенсировать ошибку произвольным underclock бура.",
-        "prerequisites": [
-          "feed"
-        ],
-        "actions": [
-          "Включать от сырья к последнему сборщику; дать заполниться магистралям и каждому потребительскому буферу.",
-          "Отделить конечные выходы: Кабель 240/мин, Провод 480/мин. Подписать назначение склад/лифт/соседний цех.",
-          "Снять показания за5мин установившегося режима с незаполненными выходами. При отклонении сначала проверить коэффициенты107модов, рецепт, ленты и энергию; не компенсировать ошибку произвольным underclock бура."
-        ],
-        "materials": [
-          "По одному раздельному приёмному буферу на конечный продукт."
-        ],
-        "checks": [
-          "За5мин: Кабель ≈1200шт после стабилизации.",
-          "За5мин: Провод ≈2400шт после стабилизации."
-        ],
-        "levelIds": [
-          "L0",
-          "L1"
-        ],
-        "drawingIds": [
-          "layout"
-        ]
+        "title": "Построить26плит и4машинный медный контур"
       }
-    ],
-    "commissioning": [
-      "Все входы обеспечены одновременно, источник не учтён вторично в другом режиме.",
-      "Пять минут устойчивого выпуска совпали с нетто-таблицей.",
-      "Рабочая сеть имеет25% резерва над измеренной нагрузкой; буферы не мешают перезапуску."
-    ],
-    "notes": [
-      "Отметка в браузере — личный прогресс, не факт постройки в сейве.",
-      "Стоимость машин — по WB-наследованию базовых рецептов; влияние других модов проверить до заказа всей партии. Трассовые длины и фасад не выдаются за точную смету."
     ]
   },
+  "composition": {
+    "assetHashes": {
+      "assets/assembly-G0-row-01.svg": "16c843af8fc96d6fbd1219d1d96c7eb3e3660e0fd55eefbfdca7eb33071191fc",
+      "assets/assembly-G0-row-02.svg": "594775d75a092df9eb9f556283026a0bb411bd97e72200789358dcfcefe2c17a",
+      "assets/assembly-G0-row-03.svg": "542ec8df096db17389523bed9674f8706b6fc4644621dc798397ad295dc414e1",
+      "assets/assembly-L0-row-01.svg": "9e77b002077bf2c1fea80ca509777e0c20aecfdfa439f3f40db48c506406e185",
+      "assets/assembly-L0-row-02.svg": "7d452c2270a3cec0b875db258e26b40265c113a2c273df1d3a71bb6a2128acb4",
+      "assets/assembly-L0-row-03.svg": "6a56849a4f3a347d12aaf346b57cbccd4c8d1e10f70315b7e1cbe083218a0bad",
+      "assets/assembly-L0-row-04.svg": "db713553f1607ffdf08e1d58ddedd9836d53dbba13d414874319f9bf21399edf",
+      "assets/blender-plan.png": "c083d1e7622bfaf842dd4bf4c69b0f550f2006911e31ecf6b4fb666f52b4fa58",
+      "assets/campus-freight-01.svg": "6c19a5f6990029c6047f2e1ca82d6e2fedd683aae1d48f6ffb508f68ce08acd0",
+      "assets/concept.webp": "7b4cf6f2354428c76781778f7bcc404629d330a520484b1115d9dc31ac30fc4b",
+      "assets/conveyor-supports-01.svg": "195d1cc6d15d5db59aecfe10c6f5e034f5053daf4a408e5764ad3858f0ca6944",
+      "assets/engineering.blend": "97ed61b4392012062d5c21a36e2b4f50bd787dbd818c232f64354572fb34df12",
+      "assets/expansion-reservation-01.svg": "bfe621b95e9fc53556c2620433c01cf7ef342464ccd810a176b2f314f49a93ab",
+      "assets/expansion-reservation-02.svg": "20da78ca87dbace392a27670083019c9dccf8b4f03119b574a39fcfa075be23d",
+      "assets/expansion-reservation-03.svg": "2b3b5009d5da2762634e51a60e3f6b6ebd58dd8468339912e7a33f636b061ed6",
+      "assets/layout-G0.svg": "5487d9f32f1b506330e370a2baa7a6257a82f6e0cfa05b78257800b4a568a701",
+      "assets/layout-requirements.svg": "77b480d657714daa503ca1fd6a6eeaa02636a72839227b133c0ff6df5151b7cb",
+      "assets/layout.svg": "35520a1130eec05fa1df3962c3aaaa7a5ae42ff844fb7fbece7aa4cda26235b6",
+      "assets/logistics-G0-Desc_Cable_C-01.svg": "1215aff4d6b82db678c083caa0af0a15a62020257fceeda9699380f5a1752560",
+      "assets/logistics-G0-Desc_CopperIngot_C-01.svg": "9582e0e573e61465a5b2635698fe83ffb6d697d2fe87a102ca88d61fab59e71f",
+      "assets/logistics-G0-Desc_OreCopper_C-01.svg": "3642063efdbcc0dc9517d2e0ea46ee3dc07ae017d331f86ab0565044b2f0f27c",
+      "assets/logistics-G0-Desc_Wire_C-01.svg": "cf7fe2e7d7d08e4d12115ac73de8f64c77adf06f4b5ac29386061db51a8d2040",
+      "assets/logistics-L0-Desc_Cable_C-01.svg": "1e94fc51212a27b32a0519f7dfe41965e148cd816c046f2348e3ee06a4154a32",
+      "assets/logistics-L0-Desc_CopperIngot_C-01.svg": "5761a4f8ec48aecbb104eac32f0bd8378e7cc440946a5d14639b529826d1679d",
+      "assets/logistics-L0-Desc_OreCopper_C-01.svg": "d9746c185ffb0493e1cedffda2c39c152bce8874911aa842e688c8cb79e81597",
+      "assets/logistics-L0-Desc_Wire_C-01.svg": "53e6a3a98560bf060825383c982be0481bd8d3fd9b055cfc73099dcc7d06d84d",
+      "assets/material-flow.svg": "263e6788c4ef992b509fea7e01add780b2ab2332c32e398555f831bfd41417f9",
+      "assets/render-provenance.json": "7a085f21c0d92ba78a580e4746c93faf2f1a848091b6ac26f47c64a0ca31c063",
+      "assets/render.png": "d1d795482d7855399c260ad87473a04aa241a1a58e0a8e1f0f4b823ed94ff802"
+    },
+    "availableDemandModes": [
+      "copper_early",
+      "copper_home",
+      "copper_tier4"
+    ],
+    "baselineFixedBOM": {
+      "BP_ItemDescriptorPortableMiner_C": 1,
+      "Desc_Cable_C": 26,
+      "Desc_Cement_C": 147,
+      "Desc_IronPlateReinforced_C": 6,
+      "Desc_IronPlate_C": 68,
+      "Desc_IronRod_C": 12,
+      "Desc_Wire_C": 17
+    },
+    "enumeratedBaselineBOM": {
+      "BP_ItemDescriptorPortableMiner_C": 1,
+      "Desc_Cable_C": 26,
+      "Desc_Cement_C": 147,
+      "Desc_IronPlateReinforced_C": 6,
+      "Desc_IronPlate_C": 68,
+      "Desc_IronRod_C": 12,
+      "Desc_Wire_C": 17
+    },
+    "enumeratedOptionalBOM": {},
+    "familyId": "copper-home",
+    "forecastOnly": true,
+    "futureIncrementIncluded": false,
+    "literalPolicies": {
+      "baselineFixedBOM": {
+        "BP_ItemDescriptorPortableMiner_C": 1,
+        "Desc_Cable_C": 26,
+        "Desc_Cement_C": 147,
+        "Desc_IronPlateReinforced_C": 6,
+        "Desc_IronPlate_C": 68,
+        "Desc_IronRod_C": 12,
+        "Desc_Wire_C": 17
+      },
+      "baselineOwnership": {
+        "conveyorPosts": [
+          "BELT-SUPPORT-01",
+          "BELT-SUPPORT-02",
+          "BELT-SUPPORT-03",
+          "BELT-SUPPORT-04"
+        ],
+        "fixedBOM": {
+          "BP_ItemDescriptorPortableMiner_C": 1,
+          "Desc_Cable_C": 26,
+          "Desc_Cement_C": 147,
+          "Desc_IronPlateReinforced_C": 6,
+          "Desc_IronPlate_C": 68,
+          "Desc_IronRod_C": 12,
+          "Desc_Wire_C": 17
+        },
+        "foundationTiles": [
+          "T-0-0",
+          "T-0-1",
+          "T-0-2",
+          "T-0-4",
+          "T-0-5",
+          "T-0-6",
+          "T-0-7",
+          "T-1-0",
+          "T-1-1",
+          "T-1-2",
+          "T-1-3",
+          "T-1-4",
+          "T-1-5",
+          "T-1-6",
+          "T-1-7",
+          "T-2-0",
+          "T-2-2",
+          "T-2-3",
+          "T-2-4",
+          "T-2-5",
+          "T-3-0",
+          "T-3-4",
+          "T-3-5",
+          "T-4-0",
+          "T-5-0",
+          "T-6-0"
+        ],
+        "placements": [
+          "SM-01",
+          "WR-01",
+          "WR-02",
+          "CB-01",
+          "S-INGOT",
+          "POLE-01",
+          "POLE-02",
+          "POLE-03",
+          "MINER-01"
+        ]
+      },
+      "campusLinkRefs": [
+        "FREIGHT-WIRE",
+        "FREIGHT-CABLE"
+      ],
+      "campusPowerRefs": [
+        "PW-WAREHOUSE-CU",
+        "PW-CU12",
+        "PW-CU23",
+        "PW-CU-SM",
+        "PW-CU-MINER",
+        "PW-WIRE1",
+        "PW-WIRE2",
+        "PW-CABLE"
+      ],
+      "coordinateConvention": "Metres; sitePlan x/y are world XY centres. Placement x/y are centres from local lower-left. RelativeZ shares schematic datum only, not surveyed absolute terrain.",
+      "futureAuxiliary": [],
+      "futureIncrementBreakdown": {
+        "auxiliaryBOM": {},
+        "excluded": "Later routing/power/support graph is a separately owned T2-T4 design; this reservation bill does not certify/fund unknown native splines.",
+        "machineBOM": {
+          "Desc_Cable_C": 16,
+          "Desc_IronPlateReinforced_C": 4,
+          "Desc_IronRod_C": 5,
+          "Desc_Wire_C": 8
+        },
+        "newTileBOM": {
+          "Desc_Cement_C": 55,
+          "Desc_IronPlate_C": 22
+        },
+        "newTileCount": 11
+      },
+      "geometryOrigin": "literal-surface-contract",
+      "optionalIncrementBOM": {
+        "Desc_Cable_C": 16,
+        "Desc_Cement_C": 55,
+        "Desc_IronPlateReinforced_C": 4,
+        "Desc_IronPlate_C": 22,
+        "Desc_IronRod_C": 5,
+        "Desc_Wire_C": 8
+      },
+      "routeProcurementAllocation": {
+        "concretePlate150Included": false,
+        "includesRelatedCampusFreightOwnedOnceByWarehouse": true,
+        "initialPlate140Included": false,
+        "itemId": "Desc_IronPlate_C",
+        "nativeConsumedCost": false,
+        "notAdditionalBOM": true,
+        "partOfGlobal851": true,
+        "quantity": 274
+      },
+      "sourceGeometryStatus": "v6 authored source correction; fresh independent approval pending",
+      "terrainAndNativePorts": "unknown; no runtime, native spline, terrain or effective mod-stack certification"
+    },
+    "mode": "copper_early",
+    "modeContracts": {
+      "copper_early": {
+        "available_tier": 1,
+        "external_input_per_min": {
+          "Desc_OreCopper_C": 120.0
+        },
+        "lanes": [
+          {
+            "aggregate_max_flow_per_min": 60.0,
+            "balanced_flow_each_per_min": 60.0,
+            "belt_capacity_each": 750,
+            "item": "Desc_Cable_C",
+            "parallel_lanes": 1
+          },
+          {
+            "aggregate_max_flow_per_min": 120.0,
+            "balanced_flow_each_per_min": 120.0,
+            "belt_capacity_each": 750,
+            "item": "Desc_CopperIngot_C",
+            "parallel_lanes": 1
+          },
+          {
+            "aggregate_max_flow_per_min": 120.0,
+            "balanced_flow_each_per_min": 120.0,
+            "belt_capacity_each": 750,
+            "item": "Desc_OreCopper_C",
+            "parallel_lanes": 1
+          },
+          {
+            "aggregate_max_flow_per_min": 240.0,
+            "balanced_flow_each_per_min": 240.0,
+            "belt_capacity_each": 750,
+            "item": "Desc_Wire_C",
+            "parallel_lanes": 1
+          }
+        ],
+        "lines": [
+          {
+            "clock_percent_each": 80.0,
+            "count": 2,
+            "density": 5,
+            "input_per_min": {
+              "Desc_CopperIngot_C": 120.0
+            },
+            "machine_family": "constructor",
+            "output_per_min": {
+              "Desc_Wire_C": 240.0
+            },
+            "per_machine_ports": {
+              "inputs": {
+                "Desc_CopperIngot_C": 60.0
+              },
+              "outputs": {
+                "Desc_Wire_C": 120.0
+              },
+              "receiving_belt_capacity": 750
+            },
+            "power_MW": 29.781867180621504,
+            "recipe": "Recipe_Wire_C"
+          },
+          {
+            "clock_percent_each": 80.0,
+            "count": 1,
+            "density": 5,
+            "input_per_min": {
+              "Desc_OreCopper_C": 120.0
+            },
+            "machine_family": "smelter",
+            "output_per_min": {
+              "Desc_CopperIngot_C": 120.0
+            },
+            "per_machine_ports": {
+              "inputs": {
+                "Desc_OreCopper_C": 120.0
+              },
+              "outputs": {
+                "Desc_CopperIngot_C": 120.0
+              },
+              "receiving_belt_capacity": 750
+            },
+            "power_MW": 14.890933590310752,
+            "recipe": "Recipe_IngotCopper_C"
+          },
+          {
+            "clock_percent_each": 40.0,
+            "count": 1,
+            "density": 5,
+            "input_per_min": {
+              "Desc_Wire_C": 120.0
+            },
+            "machine_family": "constructor",
+            "output_per_min": {
+              "Desc_Cable_C": 60.0
+            },
+            "per_machine_ports": {
+              "inputs": {
+                "Desc_Wire_C": 120.0
+              },
+              "outputs": {
+                "Desc_Cable_C": 60.0
+              },
+              "receiving_belt_capacity": 750
+            },
+            "power_MW": 5.95637343611341,
+            "recipe": "Recipe_Cable_C"
+          }
+        ],
+        "machine_count": 4,
+        "machine_material_bill": {
+          "Desc_Cable_C": 24,
+          "Desc_IronPlateReinforced_C": 6,
+          "Desc_IronRod_C": 5,
+          "Desc_Wire_C": 8
+        },
+        "material_balance": [
+          {
+            "external_input_per_min": 0,
+            "gross_internal_demand_per_min": 0,
+            "gross_produced_per_min": 60.0,
+            "internal_consumed_per_min": 0,
+            "item": "Desc_Cable_C",
+            "net_output_per_min": 60.0
+          },
+          {
+            "external_input_per_min": 0,
+            "gross_internal_demand_per_min": 120.0,
+            "gross_produced_per_min": 120.0,
+            "internal_consumed_per_min": 120.0,
+            "item": "Desc_CopperIngot_C",
+            "net_output_per_min": 0
+          },
+          {
+            "external_input_per_min": 120.0,
+            "gross_internal_demand_per_min": 120.0,
+            "gross_produced_per_min": 0,
+            "internal_consumed_per_min": 0,
+            "item": "Desc_OreCopper_C",
+            "net_output_per_min": 0
+          },
+          {
+            "external_input_per_min": 0,
+            "gross_internal_demand_per_min": 120.0,
+            "gross_produced_per_min": 240.0,
+            "internal_consumed_per_min": 120.0,
+            "item": "Desc_Wire_C",
+            "net_output_per_min": 120.0
+          }
+        ],
+        "node_allocations": [
+          {
+            "active_WB_Belt1_lanes": 1,
+            "capacity_each": 750,
+            "clock_percent": 100,
+            "flow_per_active_lane": 120.0,
+            "miner_family": "WB Miner1",
+            "node_id": "BP_ResourceNode_Copper_3",
+            "nominal_capacity_per_min": 480,
+            "ports": 2,
+            "required_delivered_per_min": 120.0,
+            "save_actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65137E302_1945816889",
+            "unused_capacity_per_min": 360.0,
+            "unused_capacity_policy": "unprocessed expansion capacity; finite buffers then backpressure, not a second useful material stream"
+          }
+        ],
+        "power_with_25pct_process_margin_MW": 63.28646775880708,
+        "process_MW": 50.629174207045665,
+        "target_net_output_per_min": {
+          "Desc_Cable_C": 60,
+          "Desc_Wire_C": 120
+        }
+      },
+      "copper_home": {
+        "available_tier": 2,
+        "external_input_per_min": {
+          "Desc_OreCopper_C": 180.0
+        },
+        "lanes": [
+          {
+            "aggregate_max_flow_per_min": 60.0,
+            "balanced_flow_each_per_min": 60.0,
+            "belt_capacity_each": 750,
+            "item": "Desc_Cable_C",
+            "parallel_lanes": 1
+          },
+          {
+            "aggregate_max_flow_per_min": 180.0,
+            "balanced_flow_each_per_min": 180.0,
+            "belt_capacity_each": 750,
+            "item": "Desc_CopperIngot_C",
+            "parallel_lanes": 1
+          },
+          {
+            "aggregate_max_flow_per_min": 30.0,
+            "balanced_flow_each_per_min": 30.0,
+            "belt_capacity_each": 750,
+            "item": "Desc_CopperSheet_C",
+            "parallel_lanes": 1
+          },
+          {
+            "aggregate_max_flow_per_min": 180.0,
+            "balanced_flow_each_per_min": 180.0,
+            "belt_capacity_each": 750,
+            "item": "Desc_OreCopper_C",
+            "parallel_lanes": 1
+          },
+          {
+            "aggregate_max_flow_per_min": 240.0,
+            "balanced_flow_each_per_min": 240.0,
+            "belt_capacity_each": 750,
+            "item": "Desc_Wire_C",
+            "parallel_lanes": 1
+          }
+        ],
+        "lines": [
+          {
+            "clock_percent_each": 80.0,
+            "count": 2,
+            "density": 5,
+            "input_per_min": {
+              "Desc_CopperIngot_C": 120.0
+            },
+            "machine_family": "constructor",
+            "output_per_min": {
+              "Desc_Wire_C": 240.0
+            },
+            "per_machine_ports": {
+              "inputs": {
+                "Desc_CopperIngot_C": 60.0
+              },
+              "outputs": {
+                "Desc_Wire_C": 120.0
+              },
+              "receiving_belt_capacity": 750
+            },
+            "power_MW": 29.781867180621504,
+            "recipe": "Recipe_Wire_C"
+          },
+          {
+            "clock_percent_each": 60.0,
+            "count": 2,
+            "density": 5,
+            "input_per_min": {
+              "Desc_OreCopper_C": 180.0
+            },
+            "machine_family": "smelter",
+            "output_per_min": {
+              "Desc_CopperIngot_C": 180.0
+            },
+            "per_machine_ports": {
+              "inputs": {
+                "Desc_OreCopper_C": 90.0
+              },
+              "outputs": {
+                "Desc_CopperIngot_C": 90.0
+              },
+              "receiving_belt_capacity": 750
+            },
+            "power_MW": 20.36066209324085,
+            "recipe": "Recipe_IngotCopper_C"
+          },
+          {
+            "clock_percent_each": 40.0,
+            "count": 1,
+            "density": 5,
+            "input_per_min": {
+              "Desc_Wire_C": 120.0
+            },
+            "machine_family": "constructor",
+            "output_per_min": {
+              "Desc_Cable_C": 60.0
+            },
+            "per_machine_ports": {
+              "inputs": {
+                "Desc_Wire_C": 120.0
+              },
+              "outputs": {
+                "Desc_Cable_C": 60.0
+              },
+              "receiving_belt_capacity": 750
+            },
+            "power_MW": 5.95637343611341,
+            "recipe": "Recipe_Cable_C"
+          },
+          {
+            "clock_percent_each": 60.0,
+            "count": 1,
+            "density": 5,
+            "input_per_min": {
+              "Desc_CopperIngot_C": 60.0
+            },
+            "machine_family": "constructor",
+            "output_per_min": {
+              "Desc_CopperSheet_C": 30.0
+            },
+            "per_machine_ports": {
+              "inputs": {
+                "Desc_CopperIngot_C": 60.0
+              },
+              "outputs": {
+                "Desc_CopperSheet_C": 30.0
+              },
+              "receiving_belt_capacity": 750
+            },
+            "power_MW": 10.180331046620426,
+            "recipe": "Recipe_CopperSheet_C"
+          }
+        ],
+        "machine_count": 6,
+        "machine_material_bill": {
+          "Desc_Cable_C": 32,
+          "Desc_IronPlateReinforced_C": 8,
+          "Desc_IronRod_C": 10,
+          "Desc_Wire_C": 16
+        },
+        "material_balance": [
+          {
+            "external_input_per_min": 0,
+            "gross_internal_demand_per_min": 0,
+            "gross_produced_per_min": 60.0,
+            "internal_consumed_per_min": 0,
+            "item": "Desc_Cable_C",
+            "net_output_per_min": 60.0
+          },
+          {
+            "external_input_per_min": 0,
+            "gross_internal_demand_per_min": 180.0,
+            "gross_produced_per_min": 180.0,
+            "internal_consumed_per_min": 180.0,
+            "item": "Desc_CopperIngot_C",
+            "net_output_per_min": 0
+          },
+          {
+            "external_input_per_min": 0,
+            "gross_internal_demand_per_min": 0,
+            "gross_produced_per_min": 30.0,
+            "internal_consumed_per_min": 0,
+            "item": "Desc_CopperSheet_C",
+            "net_output_per_min": 30.0
+          },
+          {
+            "external_input_per_min": 180.0,
+            "gross_internal_demand_per_min": 180.0,
+            "gross_produced_per_min": 0,
+            "internal_consumed_per_min": 0,
+            "item": "Desc_OreCopper_C",
+            "net_output_per_min": 0
+          },
+          {
+            "external_input_per_min": 0,
+            "gross_internal_demand_per_min": 120.0,
+            "gross_produced_per_min": 240.0,
+            "internal_consumed_per_min": 120.0,
+            "item": "Desc_Wire_C",
+            "net_output_per_min": 120.0
+          }
+        ],
+        "node_allocations": [
+          {
+            "active_WB_Belt1_lanes": 1,
+            "capacity_each": 750,
+            "clock_percent": 100,
+            "flow_per_active_lane": 180.0,
+            "miner_family": "WB Miner1",
+            "node_id": "BP_ResourceNode_Copper_3",
+            "nominal_capacity_per_min": 480,
+            "ports": 2,
+            "required_delivered_per_min": 180.0,
+            "save_actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65137E302_1945816889",
+            "unused_capacity_per_min": 300.0,
+            "unused_capacity_policy": "unprocessed expansion capacity; finite buffers then backpressure, not a second useful material stream"
+          }
+        ],
+        "power_with_25pct_process_margin_MW": 82.84904219574523,
+        "process_MW": 66.27923375659618,
+        "target_net_output_per_min": {
+          "Desc_Cable_C": 60,
+          "Desc_CopperSheet_C": 30,
+          "Desc_Wire_C": 120
+        }
+      },
+      "copper_tier4": {
+        "available_tier": 4,
+        "external_input_per_min": {
+          "Desc_OreCopper_C": 260.0
+        },
+        "lanes": [
+          {
+            "aggregate_max_flow_per_min": 60.0,
+            "balanced_flow_each_per_min": 60.0,
+            "belt_capacity_each": 750,
+            "item": "Desc_Cable_C",
+            "parallel_lanes": 1
+          },
+          {
+            "aggregate_max_flow_per_min": 260.0,
+            "balanced_flow_each_per_min": 260.0,
+            "belt_capacity_each": 750,
+            "item": "Desc_CopperIngot_C",
+            "parallel_lanes": 1
+          },
+          {
+            "aggregate_max_flow_per_min": 30.0,
+            "balanced_flow_each_per_min": 30.0,
+            "belt_capacity_each": 750,
+            "item": "Desc_CopperSheet_C",
+            "parallel_lanes": 1
+          },
+          {
+            "aggregate_max_flow_per_min": 260.0,
+            "balanced_flow_each_per_min": 260.0,
+            "belt_capacity_each": 750,
+            "item": "Desc_OreCopper_C",
+            "parallel_lanes": 1
+          },
+          {
+            "aggregate_max_flow_per_min": 400.0,
+            "balanced_flow_each_per_min": 400.0,
+            "belt_capacity_each": 750,
+            "item": "Desc_Wire_C",
+            "parallel_lanes": 1
+          }
+        ],
+        "lines": [
+          {
+            "clock_percent_each": 88.88888888888889,
+            "count": 3,
+            "density": 5,
+            "input_per_min": {
+              "Desc_CopperIngot_C": 200.0
+            },
+            "machine_family": "constructor",
+            "output_per_min": {
+              "Desc_Wire_C": 400.0
+            },
+            "per_machine_ports": {
+              "inputs": {
+                "Desc_CopperIngot_C": 66.66666666666667
+              },
+              "outputs": {
+                "Desc_Wire_C": 133.33333333333334
+              },
+              "receiving_belt_capacity": 750
+            },
+            "power_MW": 51.348917651584536,
+            "recipe": "Recipe_Wire_C"
+          },
+          {
+            "clock_percent_each": 86.66666666666667,
+            "count": 2,
+            "density": 5,
+            "input_per_min": {
+              "Desc_OreCopper_C": 260.0
+            },
+            "machine_family": "smelter",
+            "output_per_min": {
+              "Desc_CopperIngot_C": 260.0
+            },
+            "per_machine_ports": {
+              "inputs": {
+                "Desc_OreCopper_C": 130.0
+              },
+              "outputs": {
+                "Desc_CopperIngot_C": 130.0
+              },
+              "receiving_belt_capacity": 750
+            },
+            "power_MW": 33.10586405594915,
+            "recipe": "Recipe_IngotCopper_C"
+          },
+          {
+            "clock_percent_each": 40.0,
+            "count": 1,
+            "density": 5,
+            "input_per_min": {
+              "Desc_Wire_C": 120.0
+            },
+            "machine_family": "constructor",
+            "output_per_min": {
+              "Desc_Cable_C": 60.0
+            },
+            "per_machine_ports": {
+              "inputs": {
+                "Desc_Wire_C": 120.0
+              },
+              "outputs": {
+                "Desc_Cable_C": 60.0
+              },
+              "receiving_belt_capacity": 750
+            },
+            "power_MW": 5.95637343611341,
+            "recipe": "Recipe_Cable_C"
+          },
+          {
+            "clock_percent_each": 60.0,
+            "count": 1,
+            "density": 5,
+            "input_per_min": {
+              "Desc_CopperIngot_C": 60.0
+            },
+            "machine_family": "constructor",
+            "output_per_min": {
+              "Desc_CopperSheet_C": 30.0
+            },
+            "per_machine_ports": {
+              "inputs": {
+                "Desc_CopperIngot_C": 60.0
+              },
+              "outputs": {
+                "Desc_CopperSheet_C": 30.0
+              },
+              "receiving_belt_capacity": 750
+            },
+            "power_MW": 10.180331046620426,
+            "recipe": "Recipe_CopperSheet_C"
+          }
+        ],
+        "machine_count": 7,
+        "machine_material_bill": {
+          "Desc_Cable_C": 40,
+          "Desc_IronPlateReinforced_C": 10,
+          "Desc_IronRod_C": 10,
+          "Desc_Wire_C": 16
+        },
+        "material_balance": [
+          {
+            "external_input_per_min": 0,
+            "gross_internal_demand_per_min": 0,
+            "gross_produced_per_min": 60.0,
+            "internal_consumed_per_min": 0,
+            "item": "Desc_Cable_C",
+            "net_output_per_min": 60.0
+          },
+          {
+            "external_input_per_min": 0,
+            "gross_internal_demand_per_min": 260.0,
+            "gross_produced_per_min": 260.0,
+            "internal_consumed_per_min": 260.0,
+            "item": "Desc_CopperIngot_C",
+            "net_output_per_min": 0
+          },
+          {
+            "external_input_per_min": 0,
+            "gross_internal_demand_per_min": 0,
+            "gross_produced_per_min": 30.0,
+            "internal_consumed_per_min": 0,
+            "item": "Desc_CopperSheet_C",
+            "net_output_per_min": 30.0
+          },
+          {
+            "external_input_per_min": 260.0,
+            "gross_internal_demand_per_min": 260.0,
+            "gross_produced_per_min": 0,
+            "internal_consumed_per_min": 0,
+            "item": "Desc_OreCopper_C",
+            "net_output_per_min": 0
+          },
+          {
+            "external_input_per_min": 0,
+            "gross_internal_demand_per_min": 120.0,
+            "gross_produced_per_min": 400.0,
+            "internal_consumed_per_min": 120.0,
+            "item": "Desc_Wire_C",
+            "net_output_per_min": 280.0
+          }
+        ],
+        "node_allocations": [
+          {
+            "active_WB_Belt1_lanes": 1,
+            "capacity_each": 750,
+            "clock_percent": 100,
+            "flow_per_active_lane": 260.0,
+            "miner_family": "WB Miner1",
+            "node_id": "BP_ResourceNode_Copper_3",
+            "nominal_capacity_per_min": 480,
+            "ports": 2,
+            "required_delivered_per_min": 260.0,
+            "save_actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65137E302_1945816889",
+            "unused_capacity_per_min": 220.0,
+            "unused_capacity_policy": "unprocessed expansion capacity; finite buffers then backpressure, not a second useful material stream"
+          }
+        ],
+        "power_with_25pct_process_margin_MW": 125.7393577378344,
+        "process_MW": 100.59148619026752,
+        "target_net_output_per_min": {
+          "Desc_Cable_C": 60,
+          "Desc_CopperSheet_C": 30,
+          "Desc_Wire_C": 280
+        }
+      }
+    },
+    "mutuallyExclusiveFamily": "copper-home",
+    "optionalIncrementBOM": {
+      "Desc_Cable_C": 16,
+      "Desc_Cement_C": 55,
+      "Desc_IronPlateReinforced_C": 4,
+      "Desc_IronPlate_C": 22,
+      "Desc_IronRod_C": 5,
+      "Desc_Wire_C": 8
+    },
+    "phase": "assets-finalized",
+    "phaseOptionalBOM": {},
+    "powerNetworkScenarios": [
+      {
+        "Biomass5_count": 2,
+        "Coal5_count": 0,
+        "Water2_count": 0,
+        "coal_per_min": 0,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_early",
+          "concrete_home"
+        ],
+        "explicit_exclusions": [
+          "fuel-fabricator constructors",
+          "storage charging",
+          "future assemblers",
+          "HUB backup power",
+          "unmeasured modded consumers"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 265.8614240306407,
+        "gross_generation_MW": 300,
+        "headroom_after_25pct_margin_MW": 34.138575969359295,
+        "id": "tier1_home",
+        "miners_MW": 60,
+        "nominal_load_MW": 212.68913922451256,
+        "optional_fuel_fabrication_MW": 1.8091557004267784,
+        "optional_fuel_total_load_MW": 214.49829492493933,
+        "optional_fuel_with25pct_MW": 268.12286865617415,
+        "other_consumers_allowance_MW": 0,
+        "process_MW": 152.68913922451256,
+        "production_process_MW": 152.68913922451256,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 0,
+        "water_demand_m3_per_min": 0,
+        "water_extractor_capacity_m3_per_min": 0
+      },
+      {
+        "Biomass5_count": 2,
+        "Coal5_count": 0,
+        "Water2_count": 0,
+        "coal_per_min": 0,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_home",
+          "concrete_home"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 285.4239984675788,
+        "gross_generation_MW": 300,
+        "headroom_after_25pct_margin_MW": 14.576001532421174,
+        "id": "tier2_sheets",
+        "miners_MW": 60,
+        "nominal_load_MW": 228.33919877406308,
+        "other_consumers_allowance_MW": 0,
+        "process_MW": 168.33919877406308,
+        "production_process_MW": 168.33919877406308,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 0,
+        "water_demand_m3_per_min": 0,
+        "water_extractor_capacity_m3_per_min": 0
+      },
+      {
+        "Biomass5_count": 0,
+        "Coal5_count": 4,
+        "Water2_count": 4,
+        "coal_per_min": 300,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_home",
+          "concrete_home",
+          "mechanics_stock"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 982.4085407993949,
+        "gross_generation_MW": 1500,
+        "headroom_after_25pct_margin_MW": 517.5914592006051,
+        "id": "stock",
+        "miners_MW": 100,
+        "nominal_load_MW": 785.926832639516,
+        "other_consumers_allowance_MW": 50,
+        "process_MW": 475.92683263951596,
+        "production_process_MW": 475.92683263951596,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 160,
+        "water_demand_m3_per_min": 900,
+        "water_extractor_capacity_m3_per_min": 960
+      },
+      {
+        "Biomass5_count": 0,
+        "Coal5_count": 3,
+        "Water2_count": 3,
+        "coal_per_min": 225,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_home",
+          "concrete_home",
+          "phase1_pilot"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 847.3429144738454,
+        "gross_generation_MW": 1125,
+        "headroom_after_25pct_margin_MW": 277.65708552615456,
+        "id": "phase1_pilot",
+        "miners_MW": 100,
+        "nominal_load_MW": 677.8743315790764,
+        "other_consumers_allowance_MW": 50,
+        "process_MW": 407.8743315790764,
+        "production_process_MW": 407.8743315790764,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 120,
+        "water_demand_m3_per_min": 675,
+        "water_extractor_capacity_m3_per_min": 720
+      },
+      {
+        "Biomass5_count": 0,
+        "Coal5_count": 6,
+        "Water2_count": 6,
+        "coal_per_min": 450,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_home",
+          "concrete_home",
+          "phase1_comfort"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 2028.0361263569048,
+        "gross_generation_MW": 2250,
+        "headroom_after_25pct_margin_MW": 221.9638736430952,
+        "id": "phase1_comfort",
+        "miners_MW": 120,
+        "nominal_load_MW": 1622.4289010855239,
+        "other_consumers_allowance_MW": 50,
+        "process_MW": 1212.4289010855239,
+        "production_process_MW": 1212.4289010855239,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 240,
+        "water_demand_m3_per_min": 1350,
+        "water_extractor_capacity_m3_per_min": 1440
+      },
+      {
+        "Biomass5_count": 0,
+        "Coal5_count": 6,
+        "Water2_count": 6,
+        "allocation_override": {
+          "mechanics_stock": "After phase1 use Iron3 MkI100480; stock mode historical allocation Iron2 before phase1 is not concurrent with steel."
+        },
+        "coal_per_min": 450,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_home",
+          "concrete_home",
+          "mechanics_stock",
+          "steel_start"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 1379.4078724340804,
+        "gross_generation_MW": 2250,
+        "headroom_after_25pct_margin_MW": 870.5921275659196,
+        "id": "steel_start",
+        "miners_MW": 140,
+        "nominal_load_MW": 1103.5262979472643,
+        "other_consumers_allowance_MW": 50,
+        "process_MW": 673.5262979472643,
+        "production_process_MW": 673.5262979472643,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 240,
+        "water_demand_m3_per_min": 1350,
+        "water_extractor_capacity_m3_per_min": 1440
+      },
+      {
+        "Biomass5_count": 0,
+        "Coal5_count": 7,
+        "Water2_count": 7,
+        "coal_per_min": 525,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_tier4",
+          "concrete_tier4",
+          "mechanics_tier4_reuse_D5",
+          "steel_tier4_comfort_D5",
+          "components_tier4"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 2307.2501320655892,
+        "gross_generation_MW": 2625,
+        "headroom_after_25pct_margin_MW": 317.74986793441076,
+        "id": "tier4_selected",
+        "max_extra_continuous_load_preserving_25pct_MW": 254.19989434752847,
+        "miners_MW": 220,
+        "nominal_load_MW": 1845.8001056524715,
+        "other_consumers_allowance_MW": 50,
+        "process_MW": 1295.8001056524715,
+        "production_process_MW": 1295.8001056524715,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 280,
+        "water_demand_m3_per_min": 1575,
+        "water_extractor_capacity_m3_per_min": 1680
+      }
+    ],
+    "recipeChassis": {},
+    "routeQuantitySchedule": [
+      {
+        "capacity": 750,
+        "id": "copper-home-E01",
+        "length_m": 11.600000000000001,
+        "rate": 120
+      },
+      {
+        "capacity": 750,
+        "id": "copper-home-E02",
+        "length_m": 11.100000000000001,
+        "rate": 120
+      },
+      {
+        "capacity": 750,
+        "id": "copper-home-E03",
+        "length_m": 14.599999999999998,
+        "rate": 60
+      },
+      {
+        "capacity": 750,
+        "id": "copper-home-E04",
+        "length_m": 14.599999999999998,
+        "rate": 60
+      },
+      {
+        "capacity": 750,
+        "id": "copper-home-E05",
+        "length_m": 5.599999999999994,
+        "rate": 120
+      },
+      {
+        "capacity": 750,
+        "id": "copper-home-E06",
+        "length_m": 24.799999999999997,
+        "rate": 120
+      },
+      {
+        "capacity": 750,
+        "id": "copper-home-E07",
+        "length_m": 8.799999999999997,
+        "rate": 60
+      }
+    ],
+    "sourceGeometryAnalysis": {
+      "bodyClearanceModel": {
+        "beltHeight_m": 0.4,
+        "beltWidth_m": 1,
+        "bodyFaceAnchorOffset_m": 0.2,
+        "planarMargin_m": 1,
+        "terminalPolicy": "Own connected terminal may occupy only its contiguous body-exterior service approach under fullribbon+1x1vertex/lift first-complete-exit policy. Physical body intersection, foreign service/stem intersection and later actual reentry remain strictly forbidden; centreline-only exit is insufficient. Exact boundarytouch atX18.5 has0authoringmargin, notnativelegality."
+      },
+      "nativePhysics": "unverified",
+      "sourceContractSha256": "41aa7f58515eed075f90f4aac11ffda921fa57fd793699c68801bd212556e5c0",
+      "terminalApproachModel": "Declared intended material endpoint with matching input/output face and exact anchor; outward nearest leg; Only the contiguous terminal ribbon prefix/suffix up to its first full-width exit from the own service envelope is eligible; a centreline vertex outside the envelope is not by itself a full-width exit. The whole clipped ribbon remains outside the declared body face, not an offset socket plane. Lateral travel in that own body-exterior margin is allowed, without a transverse one-belt-width restriction. Physical body volumes, every foreign service envelope and every foreign support stem remain blocked; later service re-entry is not exempt. This is a source-envelope interpretation, not native socket/spline physics."
+    },
+    "sourceRevision": "c91c6e22ca72110a0164e2f862176ab98c869f28d67dacce28781d4f90d25606"
+  },
+  "dependencies": [],
+  "drawingCount": 26,
   "drawings": [
     {
+      "caption": "Схема инженерных конвертов, не игровые меши. Сетка 8 м, габариты, координаты, обслуживание и явно заданный резерв.",
+      "family": "floors",
       "id": "layout",
+      "label": "L0 · размерный план",
+      "levelId": "L0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/layout.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Не более шести физических участков на лист; общие участки учтены один раз.",
+      "family": "technical",
+      "id": "logistics-L0-Desc_Cable_C-01",
+      "label": "L0 · Desc_Cable_C · трассы 1",
+      "levelId": "L0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/logistics-L0-Desc_Cable_C-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Не более шести физических участков на лист; общие участки учтены один раз.",
+      "family": "technical",
+      "id": "logistics-L0-Desc_CopperIngot_C-01",
+      "label": "L0 · Desc_CopperIngot_C · трассы 1",
+      "levelId": "L0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/logistics-L0-Desc_CopperIngot_C-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Не более шести физических участков на лист; общие участки учтены один раз.",
+      "family": "technical",
+      "id": "logistics-L0-Desc_OreCopper_C-01",
+      "label": "L0 · Desc_OreCopper_C · трассы 1",
+      "levelId": "L0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/logistics-L0-Desc_OreCopper_C-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Не более шести физических участков на лист; общие участки учтены один раз.",
+      "family": "technical",
+      "id": "logistics-L0-Desc_Wire_C-01",
+      "label": "L0 · Desc_Wire_C · трассы 1",
+      "levelId": "L0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/logistics-L0-Desc_Wire_C-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Проекция XZ одного ряда; исходные основания и высоты без придуманных опор.",
+      "family": "assembly",
+      "id": "assembly-L0-row-01",
+      "label": "L0 · сборка ряда Y 16 м",
+      "levelId": "L0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/assembly-L0-row-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Проекция XZ одного ряда; исходные основания и высоты без придуманных опор.",
+      "family": "assembly",
+      "id": "assembly-L0-row-02",
+      "label": "L0 · сборка ряда Y 26 м",
+      "levelId": "L0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/assembly-L0-row-02.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Проекция XZ одного ряда; исходные основания и высоты без придуманных опор.",
+      "family": "assembly",
+      "id": "assembly-L0-row-03",
+      "label": "L0 · сборка ряда Y 40 м",
+      "levelId": "L0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/assembly-L0-row-03.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Проекция XZ одного ряда; исходные основания и высоты без придуманных опор.",
+      "family": "assembly",
+      "id": "assembly-L0-row-04",
+      "label": "L0 · сборка ряда Y 56 м",
+      "levelId": "L0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/assembly-L0-row-04.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Сетка 8 м, габариты, координаты, обслуживание и явно заданный резерв.",
       "family": "floors",
-      "label": "Производственный уровень1 · сетка и машины",
-      "caption": "Локальные метры; габариты базовых WB-мешей из SCIM. Направление входов/выходов сверить по голограмме.",
-      "levelId": "L0",
-      "svg": "/atlas/slave/copper-home/revisions/a92a7964e1a43d1dc88de2e37d77e3a927577688999fbda400517acd15b4aec6/layout.svg"
+      "id": "layout-G0",
+      "label": "G0 · размерный план",
+      "levelId": "G0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/layout-G0.svg"
     },
     {
-      "id": "layout-L1",
+      "caption": "Схема инженерных конвертов, не игровые меши. Не более шести физических участков на лист; общие участки учтены один раз.",
+      "family": "technical",
+      "id": "logistics-G0-Desc_Cable_C-01",
+      "label": "G0 · Desc_Cable_C · трассы 1",
+      "levelId": "G0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/logistics-G0-Desc_Cable_C-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Не более шести физических участков на лист; общие участки учтены один раз.",
+      "family": "technical",
+      "id": "logistics-G0-Desc_CopperIngot_C-01",
+      "label": "G0 · Desc_CopperIngot_C · трассы 1",
+      "levelId": "G0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/logistics-G0-Desc_CopperIngot_C-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Не более шести физических участков на лист; общие участки учтены один раз.",
+      "family": "technical",
+      "id": "logistics-G0-Desc_OreCopper_C-01",
+      "label": "G0 · Desc_OreCopper_C · трассы 1",
+      "levelId": "G0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/logistics-G0-Desc_OreCopper_C-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Не более шести физических участков на лист; общие участки учтены один раз.",
+      "family": "technical",
+      "id": "logistics-G0-Desc_Wire_C-01",
+      "label": "G0 · Desc_Wire_C · трассы 1",
+      "levelId": "G0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/logistics-G0-Desc_Wire_C-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Проекция XZ одного ряда; исходные основания и высоты без придуманных опор.",
+      "family": "assembly",
+      "id": "assembly-G0-row-01",
+      "label": "G0 · сборка ряда Y 28 м",
+      "levelId": "G0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/assembly-G0-row-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Проекция XZ одного ряда; исходные основания и высоты без придуманных опор.",
+      "family": "assembly",
+      "id": "assembly-G0-row-02",
+      "label": "G0 · сборка ряда Y 30 м",
+      "levelId": "G0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/assembly-G0-row-02.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Проекция XZ одного ряда; исходные основания и высоты без придуманных опор.",
+      "family": "assembly",
+      "id": "assembly-G0-row-03",
+      "label": "G0 · сборка ряда Y 62 м",
+      "levelId": "G0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/assembly-G0-row-03.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Резерв расширения — не построено, отдельная смета. Только явные будущие конверты, вспомогательные компоненты и плиты; без портов, трасс, питания и обещаний выпуска.",
+      "family": "technical",
+      "id": "expansion-reservation-01",
+      "label": "Резерв расширения — не построено, отдельная смета · 1/3",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/expansion-reservation-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Резерв расширения — не построено, отдельная смета. Только явные будущие конверты, вспомогательные компоненты и плиты; без портов, трасс, питания и обещаний выпуска.",
+      "family": "technical",
+      "id": "expansion-reservation-02",
+      "label": "Резерв расширения — не построено, отдельная смета · 2/3",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/expansion-reservation-02.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Резерв расширения — не построено, отдельная смета. Только явные будущие конверты, вспомогательные компоненты и плиты; без портов, трасс, питания и обещаний выпуска.",
+      "family": "technical",
+      "id": "expansion-reservation-03",
+      "label": "Резерв расширения — не построено, отдельная смета · 3/3",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/expansion-reservation-03.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Точные координаты, высоты, монтаж/демонтаж и принадлежность к линиям. Активное состояние отделено от закупки.",
+      "family": "technical",
+      "id": "conveyor-supports-01",
+      "label": "Опоры конвейеров · 1/1",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/conveyor-supports-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Точные world XY / relative Z; только связи указанного состояния, не более шести на лист.",
+      "family": "technical",
+      "id": "campus-freight-01",
+      "label": "Кампус · freight · steady · 1",
+      "networkState": "steady",
+      "operatingState": "steady",
+      "operatingStates": [
+        "steady"
+      ],
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/campus-freight-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Направленные соединения, групповые расходы, количество линий и машин из документа.",
+      "family": "technical",
+      "id": "material-flow",
+      "label": "Материальные потоки",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/material-flow.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Отсутствующие данные названы явно; геометрия и расход не подменены предположениями.",
+      "family": "technical",
+      "id": "layout-requirements",
+      "label": "Поля и ограничения выпуска",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/layout-requirements.svg"
+    },
+    {
+      "caption": "Исходниковая схема, не игровые меши и не доказательство коллизий.",
+      "family": "volumes",
+      "id": "blender-assembly",
+      "label": "Объёмная сборка",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/render.png"
+    },
+    {
+      "caption": "Blender: верхняя проекция всех отметок / инженерные конверты, не игровые меши.",
       "family": "floors",
-      "label": "Производственный уровень2 · сетка и машины",
-      "caption": "Локальные метры; габариты базовых WB-мешей из SCIM. Направление входов/выходов сверить по голограмме.",
-      "levelId": "L1",
-      "svg": "/atlas/slave/copper-home/revisions/a92a7964e1a43d1dc88de2e37d77e3a927577688999fbda400517acd15b4aec6/layout-L1.svg"
+      "id": "blender-plan",
+      "label": "Blender: верхняя проекция",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/blender-plan.png"
     }
   ],
-  "levels": [
+  "evidence": {
+    "downloads": [
+      {
+        "label": "engineering.blend",
+        "path": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/engineering.blend"
+      },
+      {
+        "label": "render-provenance.json",
+        "path": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/render-provenance.json"
+      }
+    ],
+    "items": [
+      {
+        "detail": "Хеши входов и стандартных коэффициентов закреплены в инженерном плане.",
+        "id": "source",
+        "label": "Исходники",
+        "status": "verified"
+      },
+      {
+        "detail": "Рельеф, абсолютные высоты, береговая глубина и игровые коллизии не проверены.",
+        "id": "terrain",
+        "label": "Обмер",
+        "status": "unverified"
+      },
+      {
+        "detail": "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки.",
+        "id": "runtime",
+        "label": "Работа модов",
+        "status": "unverified"
+      }
+    ],
+    "notes": [
+      "Ассеты закреплены за исходниковым проектом; игровые ограничения не сняты."
+    ],
+    "sources": [
+      {
+        "label": "Текущий анализ прогрессии",
+        "url": "/worlds/paradise-island/analysis/progression"
+      }
+    ]
+  },
+  "extraction": [
     {
-      "id": "L0",
-      "name": "Производственный уровень1",
-      "z": 4,
-      "type": "production",
-      "purpose": "12м между производственными полами; нижние4м — логистика,8м передний проход."
-    },
-    {
-      "id": "L1",
-      "name": "Производственный уровень2",
-      "z": 16,
-      "type": "production",
-      "purpose": "12м между производственными полами; нижние4м — логистика,8м передний проход."
+      "actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65137E302_1945816889",
+      "belt": 750,
+      "clock": 1,
+      "configuredCapacity": 480,
+      "deliveredRate": 120,
+      "lanes": 1,
+      "miner": 1,
+      "nodeId": "BP_ResourceNode_Copper_3",
+      "perLane": 480.0,
+      "placementId": "MINER-01",
+      "ports": 2,
+      "powerMW": 20,
+      "raw": 480,
+      "status": "Настроенная добыча, не постоянная доставка: при заполнении буфера бур простаивает.",
+      "xyz": [
+        -1745.9,
+        2929.59,
+        -1.85
+      ]
     }
   ],
-  "placements": [
-    {
-      "id": "P01-01",
-      "processId": "P01",
-      "levelId": "L0",
-      "x": 8,
-      "y": 16,
-      "z": 4,
-      "kind": "constructor",
-      "clock": 0.8,
-      "width": 8,
-      "depth": 10,
-      "height": 8
-    },
-    {
-      "id": "P01-02",
-      "processId": "P01",
-      "levelId": "L0",
-      "x": 20,
-      "y": 16,
-      "z": 4,
-      "kind": "constructor",
-      "clock": 0.8,
-      "width": 8,
-      "depth": 10,
-      "height": 8
-    },
-    {
-      "id": "P02-01",
-      "processId": "P02",
-      "levelId": "L0",
-      "x": 32,
-      "y": 16,
-      "z": 4,
-      "kind": "constructor",
-      "clock": 0.9142857142857143,
-      "width": 8,
-      "depth": 10,
-      "height": 8
-    },
-    {
-      "id": "P02-02",
-      "processId": "P02",
-      "levelId": "L0",
-      "x": 44,
-      "y": 16,
-      "z": 4,
-      "kind": "constructor",
-      "clock": 0.9142857142857143,
-      "width": 8,
-      "depth": 10,
-      "height": 8
-    },
-    {
-      "id": "P02-03",
-      "processId": "P02",
-      "levelId": "L0",
-      "x": 8,
-      "y": 32,
-      "z": 4,
-      "kind": "constructor",
-      "clock": 0.9142857142857143,
-      "width": 8,
-      "depth": 10,
-      "height": 8
-    },
-    {
-      "id": "P02-04",
-      "processId": "P02",
-      "levelId": "L0",
-      "x": 20,
-      "y": 32,
-      "z": 4,
-      "kind": "constructor",
-      "clock": 0.9142857142857143,
-      "width": 8,
-      "depth": 10,
-      "height": 8
-    },
-    {
-      "id": "P02-05",
-      "processId": "P02",
-      "levelId": "L0",
-      "x": 32,
-      "y": 32,
-      "z": 4,
-      "kind": "constructor",
-      "clock": 0.9142857142857143,
-      "width": 8,
-      "depth": 10,
-      "height": 8
-    },
-    {
-      "id": "P02-06",
-      "processId": "P02",
-      "levelId": "L0",
-      "x": 44,
-      "y": 32,
-      "z": 4,
-      "kind": "constructor",
-      "clock": 0.9142857142857143,
-      "width": 8,
-      "depth": 10,
-      "height": 8
-    },
-    {
-      "id": "P02-07",
-      "processId": "P02",
-      "levelId": "L1",
-      "x": 8,
-      "y": 16,
-      "z": 16,
-      "kind": "constructor",
-      "clock": 0.9142857142857143,
-      "width": 8,
-      "depth": 10,
-      "height": 8
-    },
-    {
-      "id": "P03-01",
-      "processId": "P03",
-      "levelId": "L1",
-      "x": 20,
-      "y": 16,
-      "z": 16,
-      "kind": "smelter",
-      "clock": 0.8,
-      "width": 6,
-      "depth": 9,
-      "height": 10
-    },
-    {
-      "id": "P03-02",
-      "processId": "P03",
-      "levelId": "L1",
-      "x": 32,
-      "y": 16,
-      "z": 16,
-      "kind": "smelter",
-      "clock": 0.8,
-      "width": 6,
-      "depth": 9,
-      "height": 10
-    },
-    {
-      "id": "P03-03",
-      "processId": "P03",
-      "levelId": "L1",
-      "x": 44,
-      "y": 16,
-      "z": 16,
-      "kind": "smelter",
-      "clock": 0.8,
-      "width": 6,
-      "depth": 9,
-      "height": 10
-    },
-    {
-      "id": "P03-04",
-      "processId": "P03",
-      "levelId": "L1",
-      "x": 8,
-      "y": 32,
-      "z": 16,
-      "kind": "smelter",
-      "clock": 0.8,
-      "width": 6,
-      "depth": 9,
-      "height": 10
-    }
-  ],
+  "id": "copper-home",
   "infrastructure": {
+    "diagrams": [],
     "notes": [
       {
-        "title": "Координаты и питание",
-        "body": "Конверт 64×48м, центр(-1685;2920). Вход питания на задней стороне, отдельная подписанная ветвь от распределителя. Ленты не перекрывают8м пешеходный доступ."
+        "body": "Каждому потребителю выделена параллельная ветвь. Обычный разветвитель не приоритетный: расход устанавливается при разгоне и обратном давлении. Конечный контейнер не стоит в транзите другой детали. Настроенная добыча и непрерывно принимаемый расход различаются; полный буфер вызывает простой.",
+        "title": "Приём выходов"
+      },
+      {
+        "body": "Порты заданы явно как условные точки у корпуса, не как извлечённые игровые коннекторы. Одноуровневая схема использует поверхностные ленты и только явно показанные короткие переходы. Нативные изгибы, опоры и привязки проверяются перед строительством.",
+        "title": "Порты и коридоры"
+      }
+    ],
+    "streams": [
+      {
+        "capacity": 750,
+        "fluid": false,
+        "from": [
+          "Cable"
+        ],
+        "id": "steady-stream-0001",
+        "itemId": "Desc_Cable_C",
+        "label": "Cable",
+        "lanes": 1,
+        "rate": 60,
+        "to": "STOCK"
+      },
+      {
+        "capacity": 750,
+        "fluid": false,
+        "from": [
+          "IngotCopper"
+        ],
+        "id": "steady-stream-0002",
+        "itemId": "Desc_CopperIngot_C",
+        "label": "Copper Ingot",
+        "lanes": 1,
+        "rate": 60,
+        "to": "Wire"
+      },
+      {
+        "capacity": 750,
+        "fluid": false,
+        "from": [
+          "IngotCopper"
+        ],
+        "id": "steady-stream-0003",
+        "itemId": "Desc_CopperIngot_C",
+        "label": "Copper Ingot",
+        "lanes": 1,
+        "rate": 60,
+        "to": "Wire"
+      },
+      {
+        "capacity": 750,
+        "fluid": false,
+        "from": [
+          "RAW"
+        ],
+        "id": "steady-stream-0004",
+        "itemId": "Desc_OreCopper_C",
+        "label": "Copper Ore",
+        "lanes": 1,
+        "rate": 120,
+        "to": "IngotCopper"
+      },
+      {
+        "capacity": 750,
+        "fluid": false,
+        "from": [
+          "Wire"
+        ],
+        "id": "steady-stream-0005",
+        "itemId": "Desc_Wire_C",
+        "label": "Wire",
+        "lanes": 1,
+        "rate": 120,
+        "to": "Cable"
+      },
+      {
+        "capacity": 750,
+        "fluid": false,
+        "from": [
+          "Wire"
+        ],
+        "id": "steady-stream-0006",
+        "itemId": "Desc_Wire_C",
+        "label": "Wire",
+        "lanes": 1,
+        "rate": 120,
+        "to": "STOCK"
       }
     ],
     "tables": [
       {
-        "caption": "Ноды и реальные выходы",
+        "caption": "Выбранный режим copper_early: одновременные потоки и активное оборудование",
         "columns": [
-          "Нода / координаты,м",
-          "Бур",
-          "Общая добыча/мин",
-          "Вывоз"
+          "Показатель",
+          "Предмет / процесс",
+          "Количество",
+          "Единица / настройка"
         ],
         "rows": [
           [
-            "BP_ResourceNode_Copper_3 · [-1745.9, 2929.59, -1.85]",
-            "Miner1 100%",
-            "480",
-            "1×480 ≤750; портов2"
+            "Нетто-выход",
+            "Кабель",
+            "60",
+            "шт/мин"
+          ],
+          [
+            "Нетто-выход",
+            "Провод",
+            "120",
+            "шт/мин"
+          ],
+          [
+            "Внешний вход",
+            "Copper Ore",
+            "120",
+            "шт/мин"
+          ],
+          [
+            "Активные машины",
+            "Wire",
+            "2",
+            "шт; каждая 80%"
+          ],
+          [
+            "Активные машины",
+            "Copper Ingot",
+            "1",
+            "шт; каждая 80%"
+          ],
+          [
+            "Активные машины",
+            "Cable",
+            "1",
+            "шт; каждая 40%"
+          ],
+          [
+            "Номинальная нагрузка производства",
+            "Без добычи и внешних потребителей",
+            "50.629174",
+            "МВт"
           ]
         ]
       },
       {
-        "caption": "Мощность без воды станции и трассовых насосов",
+        "caption": "Выбранный выпуск и ресурсные границы — разные сценарии, не обещание одновременного максимума",
         "columns": [
-          "Контур",
-          "MW"
+          "Сценарий",
+          "Продукт",
+          "Выпуск, шт/мин",
+          "Ограничение"
         ],
         "rows": [
           [
-            "Производство",
-            "213.706"
+            "Выбранный одновременный режим",
+            "Кабель",
+            "60",
+            "Нетто при свободном приёме; выбранные потребители учитываются общей сетью."
           ],
           [
-            "Добыча",
-            "20.000"
+            "Выбранный одновременный режим",
+            "Провод",
+            "120",
+            "Нетто при свободном приёме; выбранные потребители учитываются общей сетью."
           ],
           [
-            "Итого",
-            "233.706"
+            "Ресурсный предел одного продукта",
+            "Кабель",
+            "480",
+            "Взаимоисключающие максимумы: нужны иные количества машин и транспорт; не суммировать."
+          ],
+          [
+            "Ресурсный предел одного продукта",
+            "Медные листы",
+            "240",
+            "Взаимоисключающие максимумы: нужны иные количества машин и транспорт; не суммировать."
+          ],
+          [
+            "Ресурсный предел одного продукта",
+            "Провод",
+            "960",
+            "Взаимоисключающие максимумы: нужны иные количества машин и транспорт; не суммировать."
+          ],
+          [
+            "Эффективный предел установленной сборки",
+            "Все продукты",
+            "Неизвестен",
+            "Стандартные коэффициенты не заменяют измерение модов, питания и приёма."
           ]
         ]
+      }
+    ]
+  },
+  "kind": "factory",
+  "layout": {
+    "allPhysicalEdges": [
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "capacity": 750,
+        "from": {
+          "interfaceId": "RAW"
+        },
+        "id": "copper-home-E01",
+        "itemId": "Desc_OreCopper_C",
+        "kind": "belt",
+        "operatingStates": [
+          "steady"
+        ],
+        "points": [
+          [
+            13.8,
+            9.5,
+            9.5
+          ],
+          [
+            13.8,
+            9.5,
+            5.5
+          ],
+          [
+            8,
+            9.5,
+            5.5
+          ],
+          [
+            8,
+            11.3,
+            5.5
+          ]
+        ],
+        "rate": 120,
+        "schematic": true,
+        "stageIds": [
+          "finish-core"
+        ],
+        "to": {
+          "placementId": "SM-01",
+          "portId": "in"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "capacity": 750,
+        "from": {
+          "placementId": "SM-01",
+          "portId": "out"
+        },
+        "id": "copper-home-E02",
+        "itemId": "Desc_CopperIngot_C",
+        "kind": "belt",
+        "operatingStates": [
+          "steady"
+        ],
+        "points": [
+          [
+            8,
+            20.7,
+            5.5
+          ],
+          [
+            8,
+            22,
+            5.5
+          ],
+          [
+            16,
+            22,
+            5.5
+          ],
+          [
+            16,
+            23.8,
+            5.5
+          ]
+        ],
+        "rate": 120,
+        "schematic": true,
+        "stageIds": [
+          "finish-core"
+        ],
+        "to": {
+          "placementId": "S-INGOT",
+          "portId": "input-front"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "capacity": 750,
+        "from": {
+          "placementId": "S-INGOT",
+          "portId": "output-left"
+        },
+        "id": "copper-home-E03",
+        "itemId": "Desc_CopperIngot_C",
+        "kind": "belt",
+        "operatingStates": [
+          "steady"
+        ],
+        "points": [
+          [
+            13.8,
+            26,
+            5.5
+          ],
+          [
+            8,
+            26,
+            5.5
+          ],
+          [
+            8,
+            34.8,
+            5.5
+          ]
+        ],
+        "rate": 60,
+        "schematic": true,
+        "stageIds": [
+          "finish-core"
+        ],
+        "to": {
+          "placementId": "WR-01",
+          "portId": "in"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "capacity": 750,
+        "from": {
+          "placementId": "S-INGOT",
+          "portId": "output-right"
+        },
+        "id": "copper-home-E04",
+        "itemId": "Desc_CopperIngot_C",
+        "kind": "belt",
+        "operatingStates": [
+          "steady"
+        ],
+        "points": [
+          [
+            18.2,
+            26,
+            5.5
+          ],
+          [
+            24,
+            26,
+            5.5
+          ],
+          [
+            24,
+            34.8,
+            5.5
+          ]
+        ],
+        "rate": 60,
+        "schematic": true,
+        "stageIds": [
+          "finish-core"
+        ],
+        "to": {
+          "placementId": "WR-02",
+          "portId": "in"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "capacity": 750,
+        "from": {
+          "placementId": "WR-01",
+          "portId": "out"
+        },
+        "id": "copper-home-E05",
+        "itemId": "Desc_Wire_C",
+        "kind": "belt",
+        "operatingStates": [
+          "steady"
+        ],
+        "points": [
+          [
+            8,
+            45.2,
+            5.5
+          ],
+          [
+            8,
+            50.8,
+            5.5
+          ]
+        ],
+        "rate": 120,
+        "schematic": true,
+        "stageIds": [
+          "finish-core"
+        ],
+        "to": {
+          "placementId": "CB-01",
+          "portId": "in"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "capacity": 750,
+        "from": {
+          "placementId": "WR-02",
+          "portId": "out"
+        },
+        "id": "copper-home-E06",
+        "itemId": "Desc_Wire_C",
+        "kind": "belt",
+        "operatingStates": [
+          "steady"
+        ],
+        "points": [
+          [
+            24,
+            45.2,
+            5.5
+          ],
+          [
+            24,
+            70,
+            5.5
+          ]
+        ],
+        "rate": 120,
+        "schematic": true,
+        "stageIds": [
+          "finish-core"
+        ],
+        "to": {
+          "interfaceId": "STOCK-WIRE"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "capacity": 750,
+        "from": {
+          "placementId": "CB-01",
+          "portId": "out"
+        },
+        "id": "copper-home-E07",
+        "itemId": "Desc_Cable_C",
+        "kind": "belt",
+        "operatingStates": [
+          "steady"
+        ],
+        "points": [
+          [
+            8,
+            61.2,
+            5.5
+          ],
+          [
+            8,
+            70,
+            5.5
+          ]
+        ],
+        "rate": 60,
+        "schematic": true,
+        "stageIds": [
+          "finish-core"
+        ],
+        "to": {
+          "interfaceId": "STOCK-CABLE"
+        }
       }
     ],
-    "diagrams": [],
-    "streams": [
+    "campusLinkRefs": [
+      "FREIGHT-WIRE",
+      "FREIGHT-CABLE"
+    ],
+    "campusPowerRefs": [
+      "PW-WAREHOUSE-CU",
+      "PW-CU12",
+      "PW-CU23",
+      "PW-CU-SM",
+      "PW-CU-MINER",
+      "PW-WIRE1",
+      "PW-WIRE2",
+      "PW-CABLE"
+    ],
+    "coordinateConvention": "Metres; sitePlan x/y are world XY centres. Placement x/y are centres from local lower-left. RelativeZ shares schematic datum only, not surveyed absolute terrain.",
+    "externalLinks": [
       {
-        "id": "P01-Desc_Wire_C",
-        "itemId": "Desc_Wire_C",
-        "label": "Провод",
-        "from": [
-          "P02"
-        ],
-        "to": "P01",
-        "rate": 480.0,
-        "fluid": false,
+        "absoluteZStatus": "All relative Z uses a proposed common construction datum; source node absolute Z retained separately. Terrain and native connector reconciliation unknown.",
+        "baseline": true,
+        "buildPhaseId": "finish-core",
         "capacity": 750,
-        "lanes": 1
-      },
-      {
-        "id": "P02-Desc_CopperIngot_C",
-        "itemId": "Desc_CopperIngot_C",
-        "label": "Медные слитки",
-        "from": [
-          "P03"
-        ],
-        "to": "P02",
-        "rate": 480.0,
-        "fluid": false,
-        "capacity": 750,
-        "lanes": 1
-      },
-      {
-        "id": "P03-Desc_OreCopper_C",
+        "coordinateSpace": "worldXY-relativeZ",
+        "from": {
+          "placementId": "MINER-01",
+          "portId": "out-0",
+          "projectId": "copper-home"
+        },
+        "fromPlacementId": "MINER-01",
+        "fromPortId": "out-0",
+        "fromProjectId": "copper-home",
+        "id": "copper-home-RAW-WORLD",
         "itemId": "Desc_OreCopper_C",
-        "label": "Медная руда",
-        "from": [
-          "RAW"
+        "kind": "belt",
+        "operatingStates": [
+          "steady"
         ],
-        "to": "P03",
-        "rate": 480.0,
-        "fluid": false,
-        "capacity": 750,
-        "lanes": 1
+        "ownerProjectId": "copper-home",
+        "pointsWorldXYRelativeZ": [
+          [
+            -1745.9,
+            2922.3900000000003,
+            1.5
+          ],
+          [
+            -1745.9,
+            2921.5,
+            1.5
+          ],
+          [
+            -1745.9,
+            2921.5,
+            9.5
+          ],
+          [
+            -1722,
+            2921.5,
+            9.5
+          ],
+          [
+            -1722,
+            2893.5,
+            9.5
+          ],
+          [
+            -1703.2,
+            2893.5,
+            9.5
+          ]
+        ],
+        "rate": 120,
+        "schematic": true,
+        "stageIds": [
+          "finish-core"
+        ],
+        "to": {
+          "interfaceId": "RAW",
+          "projectId": "copper-home"
+        },
+        "toInterfaceId": "RAW",
+        "toProjectId": "copper-home"
       }
+    ],
+    "externalPlacements": [
+      {
+        "absoluteZStatus": "All relative Z uses a proposed common construction datum; source node absolute Z retained separately. Terrain and native connector reconciliation unknown.",
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "clearance": {
+          "depth": 16,
+          "height": 19,
+          "width": 10
+        },
+        "clock": 1,
+        "componentId": "Miner1",
+        "depth": 14.0,
+        "height": 18.0,
+        "id": "MINER-01",
+        "kind": "miner",
+        "levelId": "external-node",
+        "nominalCapacity": 480,
+        "ports": [
+          {
+            "capacity": 750,
+            "direction": "output",
+            "face": "front",
+            "id": "out-0",
+            "itemId": "Desc_OreCopper_C",
+            "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+            "point": [
+              -28.90000000000009,
+              38.39000000000033,
+              1.5
+            ],
+            "schematic": true,
+            "type": "output"
+          },
+          {
+            "direction": "bidirectional",
+            "face": "unknown",
+            "id": "power",
+            "nativeTransformStatus": "unknown; schematic electrical anchor only",
+            "point": [
+              -28.90000000000009,
+              45.590000000000146,
+              7
+            ],
+            "schematic": true,
+            "type": "power"
+          }
+        ],
+        "processId": "",
+        "reservedOutlets": 1,
+        "rotatedEnvelope": {
+          "depth": 14,
+          "width": 8
+        },
+        "rotationDeg": 180,
+        "sourceNode": {
+          "id": "BP_ResourceNode_Copper_3",
+          "purity": "RP_Pure",
+          "saveActor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65137E302_1945816889",
+          "sourceAssetSha256": "3a632d6b8556ad7a7ddcedf78ea5322eebdda25daa31370c523253d11d9e7d6a",
+          "xyz_m": [
+            -1745.9,
+            2929.59,
+            -1.85
+          ]
+        },
+        "usefulDraw": 120,
+        "width": 8.0,
+        "x": -28.90000000000009,
+        "y": 45.590000000000146,
+        "z": 0
+      }
+    ],
+    "floorTiles": [
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-0-0",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 0,
+        "y": 0,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-0-1",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 0,
+        "y": 8,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-0-2",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 0,
+        "y": 16,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-0-4",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 0,
+        "y": 32,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-0-5",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 0,
+        "y": 40,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-0-6",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 0,
+        "y": 48,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-0-7",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 0,
+        "y": 56,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-1-0",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 8,
+        "y": 0,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-1-1",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 8,
+        "y": 8,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-1-2",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 8,
+        "y": 16,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-1-3",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 8,
+        "y": 24,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-1-4",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 8,
+        "y": 32,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-1-5",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 8,
+        "y": 40,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-1-6",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 8,
+        "y": 48,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-1-7",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 8,
+        "y": 56,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-2-0",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 16,
+        "y": 0,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-2-2",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 16,
+        "y": 16,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-2-3",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 16,
+        "y": 24,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-2-4",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 16,
+        "y": 32,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-2-5",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 16,
+        "y": 40,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-3-0",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 24,
+        "y": 0,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-3-4",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 24,
+        "y": 32,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-3-5",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 24,
+        "y": 40,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-4-0",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 32,
+        "y": 0,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-5-0",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 40,
+        "y": 0,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "depth": 8,
+        "height": 1,
+        "id": "T-6-0",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 48,
+        "y": 0,
+        "z": 3
+      }
+    ],
+    "futureAuxiliary": [],
+    "futureFoundationTiles": [
+      {
+        "baseline": false,
+        "depth": 8,
+        "height": 1,
+        "id": "FUTURE-T-2-1",
+        "optionalGroup": "copper-home-expansion",
+        "width": 8,
+        "x": 16,
+        "y": 8,
+        "z": 3
+      },
+      {
+        "baseline": false,
+        "depth": 8,
+        "height": 1,
+        "id": "FUTURE-T-3-1",
+        "optionalGroup": "copper-home-expansion",
+        "width": 8,
+        "x": 24,
+        "y": 8,
+        "z": 3
+      },
+      {
+        "baseline": false,
+        "depth": 8,
+        "height": 1,
+        "id": "FUTURE-T-3-2",
+        "optionalGroup": "copper-home-expansion",
+        "width": 8,
+        "x": 24,
+        "y": 16,
+        "z": 3
+      },
+      {
+        "baseline": false,
+        "depth": 8,
+        "height": 1,
+        "id": "FUTURE-T-4-1",
+        "optionalGroup": "copper-home-expansion",
+        "width": 8,
+        "x": 32,
+        "y": 8,
+        "z": 3
+      },
+      {
+        "baseline": false,
+        "depth": 8,
+        "height": 1,
+        "id": "FUTURE-T-4-2",
+        "optionalGroup": "copper-home-expansion",
+        "width": 8,
+        "x": 32,
+        "y": 16,
+        "z": 3
+      },
+      {
+        "baseline": false,
+        "depth": 8,
+        "height": 1,
+        "id": "FUTURE-T-4-4",
+        "optionalGroup": "copper-home-expansion",
+        "width": 8,
+        "x": 32,
+        "y": 32,
+        "z": 3
+      },
+      {
+        "baseline": false,
+        "depth": 8,
+        "height": 1,
+        "id": "FUTURE-T-4-5",
+        "optionalGroup": "copper-home-expansion",
+        "width": 8,
+        "x": 32,
+        "y": 40,
+        "z": 3
+      },
+      {
+        "baseline": false,
+        "depth": 8,
+        "height": 1,
+        "id": "FUTURE-T-5-1",
+        "optionalGroup": "copper-home-expansion",
+        "width": 8,
+        "x": 40,
+        "y": 8,
+        "z": 3
+      },
+      {
+        "baseline": false,
+        "depth": 8,
+        "height": 1,
+        "id": "FUTURE-T-5-2",
+        "optionalGroup": "copper-home-expansion",
+        "width": 8,
+        "x": 40,
+        "y": 16,
+        "z": 3
+      },
+      {
+        "baseline": false,
+        "depth": 8,
+        "height": 1,
+        "id": "FUTURE-T-5-4",
+        "optionalGroup": "copper-home-expansion",
+        "width": 8,
+        "x": 40,
+        "y": 32,
+        "z": 3
+      },
+      {
+        "baseline": false,
+        "depth": 8,
+        "height": 1,
+        "id": "FUTURE-T-5-5",
+        "optionalGroup": "copper-home-expansion",
+        "width": 8,
+        "x": 40,
+        "y": 40,
+        "z": 3
+      }
+    ],
+    "futurePlacements": [
+      {
+        "baseline": false,
+        "clearance": {
+          "depth": 11,
+          "height": 11,
+          "width": 8
+        },
+        "depth": 9,
+        "future": true,
+        "height": 10,
+        "id": "SM-02",
+        "levelId": "L0",
+        "portBoundary": "Unwired oriented reservation only; no already-routed material/native ports asserted",
+        "recipe": "Recipe_IngotCopper_C",
+        "recipeKey": "Recipe_IngotCopper_C",
+        "rotationDeg": 0,
+        "width": 6,
+        "x": 24,
+        "y": 16,
+        "z": 4
+      },
+      {
+        "baseline": false,
+        "clearance": {
+          "depth": 12,
+          "height": 9,
+          "width": 10
+        },
+        "depth": 10,
+        "future": true,
+        "height": 8,
+        "id": "SH-01",
+        "levelId": "L0",
+        "portBoundary": "Unwired oriented reservation only; no already-routed material/native ports asserted",
+        "recipe": "Recipe_CopperSheet_C",
+        "recipeKey": "Recipe_CopperSheet_C",
+        "rotationDeg": 0,
+        "width": 8,
+        "x": 40,
+        "y": 40,
+        "z": 4
+      },
+      {
+        "baseline": false,
+        "clearance": {
+          "depth": 12,
+          "height": 9,
+          "width": 10
+        },
+        "depth": 10,
+        "future": true,
+        "height": 8,
+        "id": "WR-03",
+        "levelId": "L0",
+        "portBoundary": "Unwired oriented reservation only; no already-routed material/native ports asserted",
+        "recipe": "Recipe_Wire_C",
+        "recipeKey": "Recipe_Wire_C",
+        "rotationDeg": 0,
+        "width": 8,
+        "x": 40,
+        "y": 16,
+        "z": 4
+      }
+    ],
+    "geometryOrigin": "literal-surface-contract",
+    "interfaces": [
+      {
+        "capacity": 750,
+        "direction": "input",
+        "id": "RAW",
+        "itemId": "Desc_OreCopper_C",
+        "point": [
+          13.8,
+          9.5,
+          9.5
+        ],
+        "rate": 120,
+        "schematic": true
+      },
+      {
+        "capacity": 750,
+        "direction": "output",
+        "externalLinkId": "FREIGHT-WIRE",
+        "id": "STOCK-WIRE",
+        "itemId": "Desc_Wire_C",
+        "point": [
+          24,
+          70,
+          5.5
+        ],
+        "rate": 120,
+        "schematic": true
+      },
+      {
+        "capacity": 750,
+        "direction": "output",
+        "externalLinkId": "FREIGHT-CABLE",
+        "id": "STOCK-CABLE",
+        "itemId": "Desc_Cable_C",
+        "point": [
+          8,
+          70,
+          5.5
+        ],
+        "rate": 60,
+        "schematic": true
+      }
+    ],
+    "localToWorld": {
+      "absoluteFloorZ": "unknown",
+      "gamePortTransforms": "unknown",
+      "placementXY": "centres",
+      "xyOrigin_m": [
+        -1717.0,
+        2884.0
+      ]
+    },
+    "operatingState": "steady",
+    "physicalEdges": [
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "capacity": 750,
+        "from": {
+          "interfaceId": "RAW"
+        },
+        "id": "copper-home-E01",
+        "itemId": "Desc_OreCopper_C",
+        "kind": "belt",
+        "logicalRouteIds": [
+          "steady-stream-0004-lane-1"
+        ],
+        "operatingStates": [
+          "steady"
+        ],
+        "points": [
+          [
+            13.8,
+            9.5,
+            9.5
+          ],
+          [
+            13.8,
+            9.5,
+            5.5
+          ],
+          [
+            8,
+            9.5,
+            5.5
+          ],
+          [
+            8,
+            11.3,
+            5.5
+          ]
+        ],
+        "rate": 120,
+        "schematic": true,
+        "schematicLength_m": 11.600000000000001,
+        "stageIds": [
+          "finish-core"
+        ],
+        "to": {
+          "placementId": "SM-01",
+          "portId": "in"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "capacity": 750,
+        "from": {
+          "placementId": "SM-01",
+          "portId": "out"
+        },
+        "id": "copper-home-E02",
+        "itemId": "Desc_CopperIngot_C",
+        "kind": "belt",
+        "logicalRouteIds": [
+          "steady-stream-0002-lane-1",
+          "steady-stream-0003-lane-1"
+        ],
+        "operatingStates": [
+          "steady"
+        ],
+        "points": [
+          [
+            8,
+            20.7,
+            5.5
+          ],
+          [
+            8,
+            22,
+            5.5
+          ],
+          [
+            16,
+            22,
+            5.5
+          ],
+          [
+            16,
+            23.8,
+            5.5
+          ]
+        ],
+        "rate": 120,
+        "schematic": true,
+        "schematicLength_m": 11.100000000000001,
+        "stageIds": [
+          "finish-core"
+        ],
+        "to": {
+          "placementId": "S-INGOT",
+          "portId": "input-front"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "capacity": 750,
+        "from": {
+          "placementId": "S-INGOT",
+          "portId": "output-left"
+        },
+        "id": "copper-home-E03",
+        "itemId": "Desc_CopperIngot_C",
+        "kind": "belt",
+        "logicalRouteIds": [
+          "steady-stream-0002-lane-1"
+        ],
+        "operatingStates": [
+          "steady"
+        ],
+        "points": [
+          [
+            13.8,
+            26,
+            5.5
+          ],
+          [
+            8,
+            26,
+            5.5
+          ],
+          [
+            8,
+            34.8,
+            5.5
+          ]
+        ],
+        "rate": 60,
+        "schematic": true,
+        "schematicLength_m": 14.599999999999998,
+        "stageIds": [
+          "finish-core"
+        ],
+        "to": {
+          "placementId": "WR-01",
+          "portId": "in"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "capacity": 750,
+        "from": {
+          "placementId": "S-INGOT",
+          "portId": "output-right"
+        },
+        "id": "copper-home-E04",
+        "itemId": "Desc_CopperIngot_C",
+        "kind": "belt",
+        "logicalRouteIds": [
+          "steady-stream-0003-lane-1"
+        ],
+        "operatingStates": [
+          "steady"
+        ],
+        "points": [
+          [
+            18.2,
+            26,
+            5.5
+          ],
+          [
+            24,
+            26,
+            5.5
+          ],
+          [
+            24,
+            34.8,
+            5.5
+          ]
+        ],
+        "rate": 60,
+        "schematic": true,
+        "schematicLength_m": 14.599999999999998,
+        "stageIds": [
+          "finish-core"
+        ],
+        "to": {
+          "placementId": "WR-02",
+          "portId": "in"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "capacity": 750,
+        "from": {
+          "placementId": "WR-01",
+          "portId": "out"
+        },
+        "id": "copper-home-E05",
+        "itemId": "Desc_Wire_C",
+        "kind": "belt",
+        "logicalRouteIds": [
+          "steady-stream-0005-lane-1"
+        ],
+        "operatingStates": [
+          "steady"
+        ],
+        "points": [
+          [
+            8,
+            45.2,
+            5.5
+          ],
+          [
+            8,
+            50.8,
+            5.5
+          ]
+        ],
+        "rate": 120,
+        "schematic": true,
+        "schematicLength_m": 5.599999999999994,
+        "stageIds": [
+          "finish-core"
+        ],
+        "to": {
+          "placementId": "CB-01",
+          "portId": "in"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "capacity": 750,
+        "from": {
+          "placementId": "WR-02",
+          "portId": "out"
+        },
+        "id": "copper-home-E06",
+        "itemId": "Desc_Wire_C",
+        "kind": "belt",
+        "logicalRouteIds": [
+          "steady-stream-0006-lane-1"
+        ],
+        "operatingStates": [
+          "steady"
+        ],
+        "points": [
+          [
+            24,
+            45.2,
+            5.5
+          ],
+          [
+            24,
+            70,
+            5.5
+          ]
+        ],
+        "rate": 120,
+        "schematic": true,
+        "schematicLength_m": 24.799999999999997,
+        "stageIds": [
+          "finish-core"
+        ],
+        "to": {
+          "interfaceId": "STOCK-WIRE"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "finish-core",
+        "capacity": 750,
+        "from": {
+          "placementId": "CB-01",
+          "portId": "out"
+        },
+        "id": "copper-home-E07",
+        "itemId": "Desc_Cable_C",
+        "kind": "belt",
+        "logicalRouteIds": [
+          "steady-stream-0001-lane-1"
+        ],
+        "operatingStates": [
+          "steady"
+        ],
+        "points": [
+          [
+            8,
+            61.2,
+            5.5
+          ],
+          [
+            8,
+            70,
+            5.5
+          ]
+        ],
+        "rate": 60,
+        "schematic": true,
+        "schematicLength_m": 8.799999999999997,
+        "stageIds": [
+          "finish-core"
+        ],
+        "to": {
+          "interfaceId": "STOCK-CABLE"
+        }
+      }
+    ],
+    "powerConnections": [],
+    "reservations": [
+      {
+        "accessStatus": "Final front walkway funded; early eight-tile access is terrain-relative, no elevated stair certification",
+        "clearOfBodies": true,
+        "depth": 8,
+        "id": "FRONT-8M",
+        "kind": "service-aisle",
+        "width": 56,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "clearOfBodies": true,
+        "depth": 72,
+        "id": "SIDE-8M",
+        "kind": "expansion",
+        "width": 8,
+        "x": 56,
+        "y": 0
+      }
+    ],
+    "routes": [
+      {
+        "fromPlacementId": "CB-01",
+        "id": "steady-stream-0001-lane-1",
+        "kind": "belt",
+        "lane": 1,
+        "note": "Распределение по явно заданным физическим рёбрам; внутренний переход узла не является отдельной лентой.",
+        "operatingState": "steady",
+        "points": [
+          [
+            8,
+            61.2,
+            5.5
+          ],
+          [
+            8,
+            70,
+            5.5
+          ]
+        ],
+        "rate": 60,
+        "sharedPhysicalEdgeIds": [
+          "copper-home-E07"
+        ],
+        "streamId": "steady-stream-0001"
+      },
+      {
+        "fromPlacementId": "SM-01",
+        "id": "steady-stream-0002-lane-1",
+        "kind": "belt",
+        "lane": 1,
+        "note": "Распределение по явно заданным физическим рёбрам; внутренний переход узла не является отдельной лентой.",
+        "operatingState": "steady",
+        "points": [
+          [
+            8,
+            20.7,
+            5.5
+          ],
+          [
+            8,
+            22,
+            5.5
+          ],
+          [
+            16,
+            22,
+            5.5
+          ],
+          [
+            16,
+            23.8,
+            5.5
+          ],
+          [
+            13.8,
+            26,
+            5.5
+          ],
+          [
+            8,
+            26,
+            5.5
+          ],
+          [
+            8,
+            34.8,
+            5.5
+          ]
+        ],
+        "rate": 60,
+        "sharedPhysicalEdgeIds": [
+          "copper-home-E02",
+          "copper-home-E03"
+        ],
+        "streamId": "steady-stream-0002",
+        "toPlacementId": "WR-01"
+      },
+      {
+        "fromPlacementId": "SM-01",
+        "id": "steady-stream-0003-lane-1",
+        "kind": "belt",
+        "lane": 1,
+        "note": "Распределение по явно заданным физическим рёбрам; внутренний переход узла не является отдельной лентой.",
+        "operatingState": "steady",
+        "points": [
+          [
+            8,
+            20.7,
+            5.5
+          ],
+          [
+            8,
+            22,
+            5.5
+          ],
+          [
+            16,
+            22,
+            5.5
+          ],
+          [
+            16,
+            23.8,
+            5.5
+          ],
+          [
+            18.2,
+            26,
+            5.5
+          ],
+          [
+            24,
+            26,
+            5.5
+          ],
+          [
+            24,
+            34.8,
+            5.5
+          ]
+        ],
+        "rate": 60,
+        "sharedPhysicalEdgeIds": [
+          "copper-home-E02",
+          "copper-home-E04"
+        ],
+        "streamId": "steady-stream-0003",
+        "toPlacementId": "WR-02"
+      },
+      {
+        "id": "steady-stream-0004-lane-1",
+        "kind": "belt",
+        "lane": 1,
+        "note": "Распределение по явно заданным физическим рёбрам; внутренний переход узла не является отдельной лентой.",
+        "operatingState": "steady",
+        "points": [
+          [
+            13.8,
+            9.5,
+            9.5
+          ],
+          [
+            13.8,
+            9.5,
+            5.5
+          ],
+          [
+            8,
+            9.5,
+            5.5
+          ],
+          [
+            8,
+            11.3,
+            5.5
+          ]
+        ],
+        "rate": 120,
+        "sharedPhysicalEdgeIds": [
+          "copper-home-E01"
+        ],
+        "streamId": "steady-stream-0004",
+        "toPlacementId": "SM-01"
+      },
+      {
+        "fromPlacementId": "WR-01",
+        "id": "steady-stream-0005-lane-1",
+        "kind": "belt",
+        "lane": 1,
+        "note": "Распределение по явно заданным физическим рёбрам; внутренний переход узла не является отдельной лентой.",
+        "operatingState": "steady",
+        "points": [
+          [
+            8,
+            45.2,
+            5.5
+          ],
+          [
+            8,
+            50.8,
+            5.5
+          ]
+        ],
+        "rate": 120,
+        "sharedPhysicalEdgeIds": [
+          "copper-home-E05"
+        ],
+        "streamId": "steady-stream-0005",
+        "toPlacementId": "CB-01"
+      },
+      {
+        "fromPlacementId": "WR-02",
+        "id": "steady-stream-0006-lane-1",
+        "kind": "belt",
+        "lane": 1,
+        "note": "Распределение по явно заданным физическим рёбрам; внутренний переход узла не является отдельной лентой.",
+        "operatingState": "steady",
+        "points": [
+          [
+            24,
+            45.2,
+            5.5
+          ],
+          [
+            24,
+            70,
+            5.5
+          ]
+        ],
+        "rate": 120,
+        "sharedPhysicalEdgeIds": [
+          "copper-home-E06"
+        ],
+        "streamId": "steady-stream-0006"
+      }
+    ],
+    "stateGeometry": {},
+    "supports": {
+      "conveyorPoles": [
+        {
+          "adjustableStemHeight_m": 5.5,
+          "baseline": true,
+          "bill": {
+            "Desc_Cement_C": 1,
+            "Desc_IronPlate_C": 1,
+            "Desc_IronRod_C": 1
+          },
+          "buildPhaseId": "finish-core",
+          "componentId": "Build_ConveyorPole_C",
+          "coordinateSpace": "project-local metres",
+          "depth": 2,
+          "edgeIds": [
+            "interface-STOCK-WIRE"
+          ],
+          "height": 1,
+          "heightStatus": "Source says adjustable; native allowable height and attachment legality unverified",
+          "id": "BELT-SUPPORT-01",
+          "supportTopZ": 5.5,
+          "width": 1,
+          "x": 24,
+          "y": 70,
+          "z": 0
+        },
+        {
+          "adjustableStemHeight_m": 5.5,
+          "baseline": true,
+          "bill": {
+            "Desc_Cement_C": 1,
+            "Desc_IronPlate_C": 1,
+            "Desc_IronRod_C": 1
+          },
+          "buildPhaseId": "finish-core",
+          "componentId": "Build_ConveyorPole_C",
+          "coordinateSpace": "project-local metres",
+          "depth": 2,
+          "edgeIds": [
+            "interface-STOCK-CABLE"
+          ],
+          "height": 1,
+          "heightStatus": "Source says adjustable; native allowable height and attachment legality unverified",
+          "id": "BELT-SUPPORT-02",
+          "supportTopZ": 5.5,
+          "width": 1,
+          "x": 8,
+          "y": 70,
+          "z": 0
+        },
+        {
+          "adjustableStemHeight_m": 9.5,
+          "baseline": true,
+          "bill": {
+            "Desc_Cement_C": 1,
+            "Desc_IronPlate_C": 1,
+            "Desc_IronRod_C": 1
+          },
+          "buildPhaseId": "finish-core",
+          "componentId": "Build_ConveyorPole_C",
+          "coordinateSpace": "project-local metres",
+          "depth": 2,
+          "edgeIds": [
+            "copper-home-RAW-WORLD"
+          ],
+          "height": 1,
+          "heightStatus": "Source says adjustable; native allowable height and attachment legality unverified",
+          "id": "BELT-SUPPORT-03",
+          "supportTopZ": 9.5,
+          "width": 1,
+          "x": -5.0,
+          "y": 37.5,
+          "z": 0
+        },
+        {
+          "adjustableStemHeight_m": 9.5,
+          "baseline": true,
+          "bill": {
+            "Desc_Cement_C": 1,
+            "Desc_IronPlate_C": 1,
+            "Desc_IronRod_C": 1
+          },
+          "buildPhaseId": "finish-core",
+          "componentId": "Build_ConveyorPole_C",
+          "coordinateSpace": "project-local metres",
+          "depth": 2,
+          "edgeIds": [
+            "copper-home-RAW-WORLD"
+          ],
+          "height": 1,
+          "heightStatus": "Source says adjustable; native allowable height and attachment legality unverified",
+          "id": "BELT-SUPPORT-04",
+          "supportTopZ": 9.5,
+          "width": 1,
+          "x": -5.0,
+          "y": 9.5,
+          "z": 0
+        }
+      ],
+      "foundationTileIds": [
+        "T-0-0",
+        "T-0-1",
+        "T-0-2",
+        "T-0-4",
+        "T-0-5",
+        "T-0-6",
+        "T-0-7",
+        "T-1-0",
+        "T-1-1",
+        "T-1-2",
+        "T-1-3",
+        "T-1-4",
+        "T-1-5",
+        "T-1-6",
+        "T-1-7",
+        "T-2-0",
+        "T-2-2",
+        "T-2-3",
+        "T-2-4",
+        "T-2-5",
+        "T-3-0",
+        "T-3-4",
+        "T-3-5",
+        "T-4-0",
+        "T-5-0",
+        "T-6-0"
+      ],
+      "groundMountedPlacementIds": [
+        "POLE-01",
+        "POLE-02",
+        "POLE-03"
+      ]
+    }
+  },
+  "levels": [
+    {
+      "id": "L0",
+      "name": "Surface production deck",
+      "purpose": "1m foundations top4; belts5.5",
+      "type": "production",
+      "z": 4
+    },
+    {
+      "id": "G0",
+      "name": "Ground / existing datum",
+      "purpose": "Ground-mounted paid power poles; no raised floor, added tiles or native terrain certification",
+      "type": "ground",
+      "z": 0
+    }
+  ],
+  "overview": {
+    "concept": {
+      "alt": "Концепция облика",
+      "caption": "Материалы и облик; количества и координаты берутся из инженерных листов.",
+      "kind": "concept",
+      "src": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/concept.webp"
+    },
+    "decisions": [
+      {
+        "choice": "Ресурсная группа с раздельными конечными ветвями",
+        "instead": "Независимые максимумы всех продуктов и общая неограниченная шина",
+        "reason": "Общая плавка питает параллельные ветви провода и листов; кабель использует собственную ветвь провода. Буфер одного продукта не перекрывает транзит другого.",
+        "tradeoff": "Сохраняются ранние корпуса и зарезервированные медные позиции. Дополнительный проволочный конструктор нужен для моторов; загрузка всей ноды не является целью выбранного режима."
+      }
+    ],
+    "paragraphs": [
+      "Общая плавка питает параллельные ветви провода и листов; кабель использует собственную ветвь провода. Буфер одного продукта не перекрывает транзит другого.",
+      "Сохраняются ранние корпуса и зарезервированные медные позиции. Дополнительный проволочный конструктор нужен для моторов; загрузка всей ноды не является целью выбранного режима.",
+      "Каждому потребителю выделена параллельная ветвь. Обычный разветвитель не приоритетный: расход устанавливается при разгоне и обратном давлении. Конечный контейнер не стоит в транзите другой детали. Настроенная добыча и непрерывно принимаемый расход различаются; полный буфер вызывает простой.",
+      "Порты заданы явно как условные точки у корпуса, не как извлечённые игровые коннекторы. Одноуровневая схема использует поверхностные ленты и только явно показанные короткие переходы. Нативные изгибы, опоры и привязки проверяются перед строительством."
     ]
   },
   "parts": {
     "items": [
       {
-        "code": "constructor",
-        "name": "WB конструкторD5",
-        "recipeKey": "Recipe_ConstructorMk1_C",
-        "recipePath": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConstructorMk1.Recipe_ConstructorMk1_C",
-        "mod": "WorldBalance/vanilla",
-        "role": "Производственная группа",
-        "quantity": "9",
-        "availability": "По указанной технологии; проверить игровую стоимость при107модах"
-      },
-      {
-        "code": "smelter",
-        "name": "WB плавильняD5",
-        "recipeKey": "Recipe_SmelterBasicMk1_C",
-        "recipePath": "/Game/FactoryGame/Recipes/Buildings/Recipe_SmelterBasicMk1.Recipe_SmelterBasicMk1_C",
-        "mod": "WorldBalance/vanilla",
-        "role": "Производственная группа",
-        "quantity": "4",
-        "availability": "По указанной технологии; проверить игровую стоимость при107модах"
-      },
-      {
-        "code": "BP_ResourceNode_Copper_3",
-        "name": "WB Miner1",
-        "recipeKey": "Recipe_MinerMk1_C",
-        "recipePath": "/Game/FactoryGame/Recipes/Buildings/Recipe_MinerMk1.Recipe_MinerMk1_C",
-        "mod": "WorldBalance/vanilla",
-        "role": "100% · 480/мин",
+        "availability": "По аудиту; фактическую стоимость и настройку сверить в UI",
+        "code": "Build_ConveyorAttachmentSplitter_C",
+        "mod": "source catalog",
+        "name": "Conveyor Splitter",
         "quantity": "1",
-        "availability": "По указанной технологии; проверить игровую стоимость при107модах"
+        "recipeKey": "Recipe_ConveyorAttachmentSplitter_C",
+        "recipePath": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorAttachmentSplitter.Recipe_ConveyorAttachmentSplitter_C",
+        "role": "Точные размещения и принадлежность к очереди показаны в этапах"
+      },
+      {
+        "availability": "По аудиту; фактическую стоимость и настройку сверить в UI",
+        "code": "ConstructorMk1_D5",
+        "mod": "WorldBalance",
+        "name": "Constructor",
+        "quantity": "3",
+        "recipeKey": "Recipe_WB_ConstructorMk1_D5_C",
+        "recipePath": "/WorldBalance/Generated/Recipe_WB_ConstructorMk1_D5.Recipe_WB_ConstructorMk1_D5_C",
+        "role": "Точные размещения и принадлежность к очереди показаны в этапах"
+      },
+      {
+        "availability": "По аудиту; фактическую стоимость и настройку сверить в UI",
+        "code": "PowerPoleMk1",
+        "mod": "source catalog",
+        "name": "Power Pole Mk.1",
+        "quantity": "3",
+        "recipeKey": "Recipe_PowerPoleMk1_C",
+        "recipePath": "/Game/FactoryGame/Recipes/Buildings/Recipe_PowerPoleMk1.Recipe_PowerPoleMk1_C",
+        "role": "Точные размещения и принадлежность к очереди показаны в этапах"
+      },
+      {
+        "availability": "По аудиту; фактическую стоимость и настройку сверить в UI",
+        "code": "SmelterMk1_D5",
+        "mod": "WorldBalance",
+        "name": "Smelter",
+        "quantity": "1",
+        "recipeKey": "Recipe_WB_SmelterMk1_D5_C",
+        "recipePath": "/WorldBalance/Generated/Recipe_WB_SmelterMk1_D5.Recipe_WB_SmelterMk1_D5_C",
+        "role": "Точные размещения и принадлежность к очереди показаны в этапах"
+      },
+      {
+        "availability": "Исходниковая стоимость, не измерение рельефа",
+        "code": "foundation",
+        "mod": "source catalog",
+        "name": "Foundation (1 m)",
+        "quantity": "26",
+        "recipeKey": "Recipe_Foundation_8x1_01_C",
+        "recipePath": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_Foundation_8x1_01.Recipe_Foundation_8x1_01_C",
+        "role": "Только явные плитки пола"
       }
     ],
     "notes": [
       {
-        "title": "Что не входит в точное количество",
-        "body": "Фасад, подпорки, длины лент/проводов/труб и дополнительные насосы требуют обмера фактической площадки. Сначала построить технологическое ядро; не закупать условную длину как точную."
+        "body": "Фиксированные компоненты отделены от опциональных. Длины заданы полилиниями; нативное округление лент и регулировка опор ещё не измерены.",
+        "title": "Граница сметы"
       },
       {
-        "title": "Материалы всех машин",
-        "body": "9×WB конструкторD5: Усиленные пластины 18, Кабель 72; 4×WB плавильняD5: Стержни 20, Провод 32; Буры: BP_ResourceNode_Copper_3 →1×WB Miner1 на100%"
+        "body": "Ведомость корпусов ниже показывает только позиции основного плана и его плитки, а не полный список закупки. Полная фиксированная смета, отдельный опциональный заказ и распределение по этапам находятся в таблицах закупки материалов. Внешние буры и оплаченные опоры входят в фиксированную смету; общий резерв трасс Tier1 указан один раз в проекте склада. Длины и фактическое округление нативных трасс пока не измерены.",
+        "title": "Где находится полный заказ материалов"
+      }
+    ],
+    "tables": [
+      {
+        "caption": "Полная фиксированная базовая смета: корпуса, внешние буры, оплаченные плитки и опоры. Резерв трасс не включён.",
+        "columns": [
+          "Материал",
+          "Количество, шт"
+        ],
+        "rows": [
+          [
+            "Переносной бур",
+            "1"
+          ],
+          [
+            "Кабель",
+            "26"
+          ],
+          [
+            "Бетон",
+            "147"
+          ],
+          [
+            "Усиленная железная пластина",
+            "6"
+          ],
+          [
+            "Железная пластина",
+            "68"
+          ],
+          [
+            "Железный стержень",
+            "12"
+          ],
+          [
+            "Провод",
+            "17"
+          ]
+        ]
+      },
+      {
+        "caption": "Опциональный прирост: отдельный заказ, не добавляемый к обязательной базе автоматически. Резерв в последнем столбце уже входит в количество заказа.",
+        "columns": [
+          "Материал",
+          "Количество заказа, шт",
+          "В том числе резерв трасс, шт"
+        ],
+        "rows": [
+          [
+            "Кабель",
+            "16",
+            "0"
+          ],
+          [
+            "Бетон",
+            "55",
+            "0"
+          ],
+          [
+            "Усиленная железная пластина",
+            "4",
+            "0"
+          ],
+          [
+            "Железная пластина",
+            "22",
+            "0"
+          ],
+          [
+            "Железный стержень",
+            "5",
+            "0"
+          ],
+          [
+            "Провод",
+            "8",
+            "0"
+          ]
+        ]
+      },
+      {
+        "caption": "Распределение сметы по этапам — не повторная закупка. Отдельно оговорённые опциональные резервы входят только в свой этап.",
+        "columns": [
+          "Код этапа",
+          "Этап",
+          "Группа",
+          "Материал",
+          "Количество, шт"
+        ],
+        "rows": [
+          [
+            "finish-core",
+            "Построить26плит и4машинный медный контур",
+            "Обязательная база",
+            "Переносной бур",
+            "1"
+          ],
+          [
+            "finish-core",
+            "Построить26плит и4машинный медный контур",
+            "Обязательная база",
+            "Кабель",
+            "26"
+          ],
+          [
+            "finish-core",
+            "Построить26плит и4машинный медный контур",
+            "Обязательная база",
+            "Бетон",
+            "147"
+          ],
+          [
+            "finish-core",
+            "Построить26плит и4машинный медный контур",
+            "Обязательная база",
+            "Усиленная железная пластина",
+            "6"
+          ],
+          [
+            "finish-core",
+            "Построить26плит и4машинный медный контур",
+            "Обязательная база",
+            "Железная пластина",
+            "68"
+          ],
+          [
+            "finish-core",
+            "Построить26плит и4машинный медный контур",
+            "Обязательная база",
+            "Железный стержень",
+            "12"
+          ],
+          [
+            "finish-core",
+            "Построить26плит и4машинный медный контур",
+            "Обязательная база",
+            "Провод",
+            "17"
+          ]
+        ]
       }
     ]
   },
-  "evidence": {
-    "items": [
-      {
-        "id": "save",
-        "label": "Исходный сейв",
-        "status": "verified",
-        "detail": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6"
+  "placements": [
+    {
+      "baseline": true,
+      "buildPhaseId": "finish-core",
+      "clearance": {
+        "depth": 11,
+        "height": 11,
+        "width": 8
       },
-      {
-        "id": "forecast",
-        "label": "Технология и игровой замер",
-        "status": "unverified",
-        "detail": "Logistics; WB Extraction I. Сверить WB UI100% и работу в текущем107модовом профиле."
+      "clock": 0.8,
+      "componentId": "SmelterMk1_D5",
+      "depth": 9.0,
+      "height": 10.0,
+      "id": "SM-01",
+      "kind": "smelter",
+      "levelId": "L0",
+      "ports": [
+        {
+          "capacity": 750,
+          "direction": "input",
+          "face": "front",
+          "id": "in",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            8,
+            11.3,
+            5.5
+          ],
+          "schematic": true,
+          "type": "input"
+        },
+        {
+          "capacity": 750,
+          "direction": "output",
+          "face": "rear",
+          "id": "out",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            8,
+            20.7,
+            5.5
+          ],
+          "schematic": true,
+          "type": "output"
+        },
+        {
+          "direction": "bidirectional",
+          "face": "unknown",
+          "id": "power",
+          "nativeTransformStatus": "unknown; schematic electrical anchor only",
+          "point": [
+            8,
+            16,
+            6
+          ],
+          "schematic": true,
+          "type": "power"
+        }
+      ],
+      "processId": "IngotCopper",
+      "recipeKey": "Recipe_IngotCopper_C",
+      "rotationDeg": 0,
+      "width": 6.0,
+      "x": 8,
+      "y": 16,
+      "z": 4
+    },
+    {
+      "baseline": true,
+      "buildPhaseId": "finish-core",
+      "clearance": {
+        "depth": 12,
+        "height": 9,
+        "width": 10
       },
-      {
-        "id": "terrain",
-        "label": "Рельеф и высоты",
-        "status": "unverified",
-        "detail": "Обойти весь конверт и места входов, проверить коллизии и абсолютную отметку пола."
-      }
-    ],
-    "notes": [
-      "Рецепты будущих тиров помечены forecast: они не объявлены уже открытыми в снимке."
-    ],
-    "sources": [
-      {
-        "label": "Последовательный анализ мира",
-        "url": "/worlds/paradise-island/analysis/seed"
+      "clock": 0.8,
+      "componentId": "ConstructorMk1_D5",
+      "depth": 10.0,
+      "height": 8.0,
+      "id": "WR-01",
+      "kind": "constructor",
+      "levelId": "L0",
+      "ports": [
+        {
+          "capacity": 750,
+          "direction": "input",
+          "face": "front",
+          "id": "in",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            8,
+            34.8,
+            5.5
+          ],
+          "schematic": true,
+          "type": "input"
+        },
+        {
+          "capacity": 750,
+          "direction": "output",
+          "face": "rear",
+          "id": "out",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            8,
+            45.2,
+            5.5
+          ],
+          "schematic": true,
+          "type": "output"
+        },
+        {
+          "direction": "bidirectional",
+          "face": "unknown",
+          "id": "power",
+          "nativeTransformStatus": "unknown; schematic electrical anchor only",
+          "point": [
+            8,
+            40,
+            6
+          ],
+          "schematic": true,
+          "type": "power"
+        }
+      ],
+      "processId": "Wire",
+      "recipeKey": "Recipe_Wire_C",
+      "rotationDeg": 0,
+      "width": 8.0,
+      "x": 8,
+      "y": 40,
+      "z": 4
+    },
+    {
+      "baseline": true,
+      "buildPhaseId": "finish-core",
+      "clearance": {
+        "depth": 12,
+        "height": 9,
+        "width": 10
       },
-      {
-        "label": "WB-состояния",
-        "url": "/worlds/paradise-island/analysis/states"
+      "clock": 0.8,
+      "componentId": "ConstructorMk1_D5",
+      "depth": 10.0,
+      "height": 8.0,
+      "id": "WR-02",
+      "kind": "constructor",
+      "levelId": "L0",
+      "ports": [
+        {
+          "capacity": 750,
+          "direction": "input",
+          "face": "front",
+          "id": "in",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            24,
+            34.8,
+            5.5
+          ],
+          "schematic": true,
+          "type": "input"
+        },
+        {
+          "capacity": 750,
+          "direction": "output",
+          "face": "rear",
+          "id": "out",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            24,
+            45.2,
+            5.5
+          ],
+          "schematic": true,
+          "type": "output"
+        },
+        {
+          "direction": "bidirectional",
+          "face": "unknown",
+          "id": "power",
+          "nativeTransformStatus": "unknown; schematic electrical anchor only",
+          "point": [
+            24,
+            40,
+            6
+          ],
+          "schematic": true,
+          "type": "power"
+        }
+      ],
+      "processId": "Wire",
+      "recipeKey": "Recipe_Wire_C",
+      "rotationDeg": 0,
+      "width": 8.0,
+      "x": 24,
+      "y": 40,
+      "z": 4
+    },
+    {
+      "baseline": true,
+      "buildPhaseId": "finish-core",
+      "clearance": {
+        "depth": 12,
+        "height": 9,
+        "width": 10
       },
-      {
-        "label": "Архитектура и общий склад",
-        "url": "/worlds/paradise-island/analysis/architecture"
-      }
-    ],
-    "downloads": []
-  },
-  "sitePlan": {
-    "id": "copper-home",
-    "label": "Медный цех",
-    "x": -1685,
-    "y": 2920,
-    "width": 64,
-    "depth": 48,
-    "tier": 1,
-    "role": "Copper3 → кабель/провод; втире2 добавить медный лист.",
-    "verified": false
-  },
-  "target": {
-    "itemId": "Desc_Cable_C",
-    "label": "Кабель",
-    "rate": 240,
-    "unit": "/мин"
+      "clock": 0.4,
+      "componentId": "ConstructorMk1_D5",
+      "depth": 10.0,
+      "height": 8.0,
+      "id": "CB-01",
+      "kind": "constructor",
+      "levelId": "L0",
+      "ports": [
+        {
+          "capacity": 750,
+          "direction": "input",
+          "face": "front",
+          "id": "in",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            8,
+            50.8,
+            5.5
+          ],
+          "schematic": true,
+          "type": "input"
+        },
+        {
+          "capacity": 750,
+          "direction": "output",
+          "face": "rear",
+          "id": "out",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            8,
+            61.2,
+            5.5
+          ],
+          "schematic": true,
+          "type": "output"
+        },
+        {
+          "direction": "bidirectional",
+          "face": "unknown",
+          "id": "power",
+          "nativeTransformStatus": "unknown; schematic electrical anchor only",
+          "point": [
+            8,
+            56,
+            6
+          ],
+          "schematic": true,
+          "type": "power"
+        }
+      ],
+      "processId": "Cable",
+      "recipeKey": "Recipe_Cable_C",
+      "rotationDeg": 0,
+      "width": 8.0,
+      "x": 8,
+      "y": 56,
+      "z": 4
+    },
+    {
+      "baseline": true,
+      "buildPhaseId": "finish-core",
+      "clearance": {
+        "depth": 6,
+        "height": 4,
+        "width": 6
+      },
+      "clock": 0,
+      "componentId": "Build_ConveyorAttachmentSplitter_C",
+      "depth": 4.0,
+      "height": 3.0,
+      "id": "S-INGOT",
+      "kind": "splitter",
+      "levelId": "L0",
+      "orientation": {
+        "inputFace": "front",
+        "outputFaces": [
+          "left",
+          "right"
+        ]
+      },
+      "ports": [
+        {
+          "capacity": 750,
+          "direction": "input",
+          "face": "front",
+          "id": "input-front",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            16,
+            23.8,
+            5.5
+          ],
+          "schematic": true,
+          "type": "input"
+        },
+        {
+          "capacity": 750,
+          "direction": "output",
+          "face": "left",
+          "id": "output-left",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            13.8,
+            26,
+            5.5
+          ],
+          "schematic": true,
+          "type": "output"
+        },
+        {
+          "capacity": 750,
+          "direction": "output",
+          "face": "right",
+          "id": "output-right",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            18.2,
+            26,
+            5.5
+          ],
+          "schematic": true,
+          "type": "output"
+        }
+      ],
+      "processId": "",
+      "rotationDeg": 0,
+      "width": 4.0,
+      "x": 16,
+      "y": 26,
+      "z": 4
+    },
+    {
+      "baseline": true,
+      "buildPhaseId": "finish-core",
+      "clearance": {
+        "depth": 3,
+        "height": 8,
+        "width": 3
+      },
+      "clock": 0,
+      "componentId": "PowerPoleMk1",
+      "depth": 1.0,
+      "height": 7.0,
+      "id": "POLE-01",
+      "kind": "pole",
+      "levelId": "G0",
+      "ports": [
+        {
+          "direction": "bidirectional",
+          "face": "unknown",
+          "id": "power",
+          "nativeTransformStatus": "unknown; schematic electrical anchor only",
+          "point": [
+            4,
+            28,
+            7
+          ],
+          "schematic": true,
+          "type": "power"
+        }
+      ],
+      "processId": "",
+      "rotationDeg": 0,
+      "width": 1.0,
+      "x": 4,
+      "y": 28,
+      "z": 0
+    },
+    {
+      "baseline": true,
+      "buildPhaseId": "finish-core",
+      "clearance": {
+        "depth": 3,
+        "height": 8,
+        "width": 3
+      },
+      "clock": 0,
+      "componentId": "PowerPoleMk1",
+      "depth": 1.0,
+      "height": 7.0,
+      "id": "POLE-02",
+      "kind": "pole",
+      "levelId": "G0",
+      "ports": [
+        {
+          "direction": "bidirectional",
+          "face": "unknown",
+          "id": "power",
+          "nativeTransformStatus": "unknown; schematic electrical anchor only",
+          "point": [
+            30,
+            30,
+            7
+          ],
+          "schematic": true,
+          "type": "power"
+        }
+      ],
+      "processId": "",
+      "rotationDeg": 0,
+      "width": 1.0,
+      "x": 30,
+      "y": 30,
+      "z": 0
+    },
+    {
+      "baseline": true,
+      "buildPhaseId": "finish-core",
+      "clearance": {
+        "depth": 3,
+        "height": 8,
+        "width": 3
+      },
+      "clock": 0,
+      "componentId": "PowerPoleMk1",
+      "depth": 1.0,
+      "height": 7.0,
+      "id": "POLE-03",
+      "kind": "pole",
+      "levelId": "G0",
+      "ports": [
+        {
+          "direction": "bidirectional",
+          "face": "unknown",
+          "id": "power",
+          "nativeTransformStatus": "unknown; schematic electrical anchor only",
+          "point": [
+            30,
+            62,
+            7
+          ],
+          "schematic": true,
+          "type": "power"
+        }
+      ],
+      "processId": "",
+      "rotationDeg": 0,
+      "width": 1.0,
+      "x": 30,
+      "y": 62,
+      "z": 0
+    }
+  ],
+  "powerMW": 50.629174207045665,
+  "preview": {
+    "alt": "Инженерная сборка",
+    "caption": "Исходниковая схема, не игровые меши и не доказательство коллизий.",
+    "kind": "schematic",
+    "src": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/render.png"
   },
   "production": {
-    "targetItemId": "Desc_Cable_C",
-    "targetRate": 240,
-    "targets": [
+    "candidateRecipeCount": 370,
+    "comparisons": [
       {
         "itemId": "Desc_Cable_C",
-        "label": "Кабель",
-        "rate": 240,
-        "unit": "/мин"
+        "label": "Cable",
+        "variants": [
+          {
+            "availability": "Открыт в текущем аудированном сейве. Каталожный уровень открытия: 0; наличие определяется аудитом этого сейва.",
+            "byproducts": [],
+            "inputs": [
+              {
+                "exact": "2",
+                "itemId": "Desc_Wire_C",
+                "label": "Wire",
+                "rate": 2,
+                "unit": "шт/шт"
+              }
+            ],
+            "key": "Recipe_Cable_C",
+            "machineKind": "constructor",
+            "name": "Cable",
+            "notes": [
+              "Номинал одной машины D5 на 100%; не измеренный предел установленной сборки.",
+              "Выбран стандартный маршрут: 1 машин, каждая 40%. Альтернативы не подставлены в расчёт и не добавлены в доступный каталог."
+            ],
+            "outputAtFullClock": 150,
+            "path": "/Game/FactoryGame/Recipes/Constructor/Recipe_Cable.Recipe_Cable_C",
+            "selected": true
+          }
+        ]
+      },
+      {
+        "itemId": "Desc_CopperIngot_C",
+        "label": "Copper Ingot",
+        "variants": [
+          {
+            "availability": "Открыт в текущем аудированном сейве. Каталожный уровень открытия: 0; наличие определяется аудитом этого сейва.",
+            "byproducts": [],
+            "inputs": [
+              {
+                "exact": "1",
+                "itemId": "Desc_OreCopper_C",
+                "label": "Copper Ore",
+                "rate": 1,
+                "unit": "шт/шт"
+              }
+            ],
+            "key": "Recipe_IngotCopper_C",
+            "machineKind": "smelter",
+            "name": "Copper Ingot",
+            "notes": [
+              "Номинал одной машины D5 на 100%; не измеренный предел установленной сборки.",
+              "Выбран стандартный маршрут: 1 машин, каждая 80%. Альтернативы не подставлены в расчёт и не добавлены в доступный каталог."
+            ],
+            "outputAtFullClock": 150,
+            "path": "/Game/FactoryGame/Recipes/Smelter/Recipe_IngotCopper.Recipe_IngotCopper_C",
+            "selected": true
+          }
+        ]
       },
       {
         "itemId": "Desc_Wire_C",
-        "label": "Провод",
-        "rate": 480,
-        "unit": "/мин"
-      }
-    ],
-    "recipesFile": "/atlas/slave/copper-home/revisions/a92a7964e1a43d1dc88de2e37d77e3a927577688999fbda400517acd15b4aec6/recipes.json",
-    "recipesSha256": "5887a644bb4b67388aed06c9c048f9ca74f15cb2cf0610c556c9c46b7556fbd5",
-    "rawInputs": [
-      {
-        "itemId": "Desc_OreCopper_C",
-        "label": "Медная руда",
-        "rate": 480.0,
-        "unit": "/мин"
+        "label": "Wire",
+        "variants": [
+          {
+            "availability": "Открыт в текущем аудированном сейве. Каталожный уровень открытия: 0; наличие определяется аудитом этого сейва.",
+            "byproducts": [],
+            "inputs": [
+              {
+                "exact": "1/2",
+                "itemId": "Desc_CopperIngot_C",
+                "label": "Copper Ingot",
+                "rate": 0.5,
+                "unit": "шт/шт"
+              }
+            ],
+            "key": "Recipe_Wire_C",
+            "machineKind": "constructor",
+            "name": "Wire",
+            "notes": [
+              "Номинал одной машины D5 на 100%; не измеренный предел установленной сборки.",
+              "Выбран стандартный маршрут: 2 машин, каждая 80%. Альтернативы не подставлены в расчёт и не добавлены в доступный каталог."
+            ],
+            "outputAtFullClock": 150,
+            "path": "/Game/FactoryGame/Recipes/Constructor/Recipe_Wire.Recipe_Wire_C",
+            "selected": true
+          },
+          {
+            "availability": "Не открыт в текущем сейве. Нужны найденный жёсткий диск (HDD) и исследование MAM; получение именно этой альтернативы не гарантировано. Схема: /Game/FactoryGame/Schematics/Alternate/Parts/Schematic_Alternate_Wire1.Schematic_Alternate_Wire1_C. Дополнительные технологические пути: в источнике не указаны.",
+            "byproducts": [],
+            "inputs": [
+              {
+                "exact": "5/9",
+                "itemId": "Desc_IronIngot_C",
+                "label": "Iron Ingot",
+                "rate": 0.5555555555555556,
+                "unit": "шт/шт"
+              }
+            ],
+            "key": "Recipe_Alternate_Wire_1_C",
+            "machineKind": "constructor",
+            "name": "Alternate: Iron Wire",
+            "notes": [
+              "Номинал одной машины D5 на 100%; не измеренный предел установленной сборки.",
+              "Не выбран по умолчанию: местной меди достаточно, а железо нужно механике и стали. Имеет смысл только при отдельно обоснованном преимуществе железной трассы.",
+              "Наличие HardDriveCheat не подтверждает открытие рецепта или наличие жёсткого диска. Это только будущий кандидат, не действующий вход производственного плана."
+            ],
+            "outputAtFullClock": 112.5,
+            "path": "/Game/FactoryGame/Recipes/AlternateRecipes/Parts/Recipe_Alternate_Wire_1.Recipe_Alternate_Wire_1_C",
+            "selected": false
+          }
+        ]
       }
     ],
     "disposal": [],
+    "normalizedRecipeCount": 22,
+    "notes": [
+      "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки.",
+      "Каждому потребителю выделена параллельная ветвь. Обычный разветвитель не приоритетный: расход устанавливается при разгоне и обратном давлении. Конечный контейнер не стоит в транзите другой детали. Настроенная добыча и непрерывно принимаемый расход различаются; полный буфер вызывает простой."
+    ],
     "processes": [
       {
-        "id": "P01",
-        "recipeKey": "Recipe_Cable_C",
-        "recipePath": "/Game/FactoryGame/Recipes/Constructor/Recipe_Cable.Recipe_Cable_C",
-        "recipeName": "Cable",
-        "machineKind": "constructor",
-        "machineName": "WB constructor D5",
-        "machines": 2,
         "clock": 0.8,
-        "speedMultiplier": 5,
-        "durationSeconds": 2,
-        "cyclesPerMinute": 240.0,
-        "inputs": [
-          {
-            "itemId": "Desc_Wire_C",
-            "label": "Провод",
-            "rate": 480.0,
-            "unit": "/мин"
-          }
-        ],
-        "outputs": [
-          {
-            "itemId": "Desc_Cable_C",
-            "label": "Кабель",
-            "rate": 240.0,
-            "unit": "/мин"
-          }
-        ],
-        "note": "Одинаковая частота всех 2 машин группы. Выходы — валовые; нетто отдельно.",
-        "powerMW": 29.781867180621504
-      },
-      {
-        "id": "P02",
-        "recipeKey": "Recipe_Wire_C",
-        "recipePath": "/Game/FactoryGame/Recipes/Constructor/Recipe_Wire.Recipe_Wire_C",
-        "recipeName": "Wire",
-        "machineKind": "constructor",
-        "machineName": "WB constructor D5",
-        "machines": 7,
-        "clock": 0.9142857142857143,
-        "speedMultiplier": 5,
+        "clockFraction": "4/5",
+        "constructionBOM": {
+          "Desc_Cable_C": 16,
+          "Desc_IronPlateReinforced_C": 4
+        },
+        "cyclesFraction": "120",
+        "cyclesPerMinute": 120,
         "durationSeconds": 4,
-        "cyclesPerMinute": 480.0,
+        "id": "Wire",
         "inputs": [
           {
+            "exact": "120",
             "itemId": "Desc_CopperIngot_C",
-            "label": "Медные слитки",
-            "rate": 480.0,
-            "unit": "/мин"
+            "label": "Copper Ingot",
+            "rate": 120,
+            "unit": "шт/мин"
           }
         ],
+        "machineKind": "constructor",
+        "machineName": "Constructor",
+        "machines": 2,
+        "note": "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки.",
         "outputs": [
           {
+            "exact": "240",
             "itemId": "Desc_Wire_C",
-            "label": "Провод",
-            "rate": 960.0,
-            "unit": "/мин"
+            "label": "Wire",
+            "rate": 240,
+            "unit": "шт/мин"
           }
         ],
-        "note": "Одинаковая частота всех 7 машин группы. Выходы — валовые; нетто отдельно.",
-        "powerMW": 124.36012525584218
+        "powerMW": 29.781867180621504,
+        "recipeKey": "Recipe_Wire_C",
+        "recipeName": "Wire",
+        "recipePath": "/Game/FactoryGame/Recipes/Constructor/Recipe_Wire.Recipe_Wire_C",
+        "speedMultiplier": 5
       },
       {
-        "id": "P03",
-        "recipeKey": "Recipe_IngotCopper_C",
-        "recipePath": "/Game/FactoryGame/Recipes/Smelter/Recipe_IngotCopper.Recipe_IngotCopper_C",
-        "recipeName": "Copper Ingot",
-        "machineKind": "smelter",
-        "machineName": "WB smelter D5",
-        "machines": 4,
         "clock": 0.8,
-        "speedMultiplier": 5,
+        "clockFraction": "4/5",
+        "constructionBOM": {
+          "Desc_IronRod_C": 5,
+          "Desc_Wire_C": 8
+        },
+        "cyclesFraction": "120",
+        "cyclesPerMinute": 120,
         "durationSeconds": 2,
-        "cyclesPerMinute": 480.0,
+        "id": "IngotCopper",
         "inputs": [
           {
+            "exact": "120",
             "itemId": "Desc_OreCopper_C",
-            "label": "Медная руда",
-            "rate": 480.0,
-            "unit": "/мин"
+            "label": "Copper Ore",
+            "rate": 120,
+            "unit": "шт/мин"
           }
         ],
+        "machineKind": "smelter",
+        "machineName": "Smelter",
+        "machines": 1,
+        "note": "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки.",
         "outputs": [
           {
+            "exact": "120",
             "itemId": "Desc_CopperIngot_C",
-            "label": "Медные слитки",
-            "rate": 480.0,
-            "unit": "/мин"
+            "label": "Copper Ingot",
+            "rate": 120,
+            "unit": "шт/мин"
           }
         ],
-        "note": "Одинаковая частота всех 4 машин группы. Выходы — валовые; нетто отдельно.",
-        "powerMW": 59.56373436124301
+        "powerMW": 14.890933590310752,
+        "recipeKey": "Recipe_IngotCopper_C",
+        "recipeName": "Copper Ingot",
+        "recipePath": "/Game/FactoryGame/Recipes/Smelter/Recipe_IngotCopper.Recipe_IngotCopper_C",
+        "speedMultiplier": 5
+      },
+      {
+        "clock": 0.4,
+        "clockFraction": "2/5",
+        "constructionBOM": {
+          "Desc_Cable_C": 8,
+          "Desc_IronPlateReinforced_C": 2
+        },
+        "cyclesFraction": "60",
+        "cyclesPerMinute": 60,
+        "durationSeconds": 2,
+        "id": "Cable",
+        "inputs": [
+          {
+            "exact": "120",
+            "itemId": "Desc_Wire_C",
+            "label": "Wire",
+            "rate": 120,
+            "unit": "шт/мин"
+          }
+        ],
+        "machineKind": "constructor",
+        "machineName": "Constructor",
+        "machines": 1,
+        "note": "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки.",
+        "outputs": [
+          {
+            "exact": "60",
+            "itemId": "Desc_Cable_C",
+            "label": "Cable",
+            "rate": 60,
+            "unit": "шт/мин"
+          }
+        ],
+        "powerMW": 5.95637343611341,
+        "recipeKey": "Recipe_Cable_C",
+        "recipeName": "Cable",
+        "recipePath": "/Game/FactoryGame/Recipes/Constructor/Recipe_Cable.Recipe_Cable_C",
+        "speedMultiplier": 5
       }
     ],
-    "comparisons": [],
+    "rawInputs": [
+      {
+        "exact": "120",
+        "itemId": "Desc_OreCopper_C",
+        "label": "Copper Ore",
+        "rate": 120,
+        "unit": "шт/мин"
+      }
+    ],
+    "recipesFile": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/recipes.json",
+    "recipesSha256": "8c07079f64f7858390d01718e4b1c0c60b65dc04802f7212e204f9dd31673697",
     "scenarios": {
-      "caption": "Границы режима",
+      "caption": "Источник, не эффективный максимум модов",
       "columns": [
-        "Режим",
-        "Условие"
+        "Граница"
       ],
       "rows": [
         [
-          "Этот проект",
-          "Нетто: Кабель 240/мин, Провод 480/мин"
-        ],
-        [
-          "Альтернативы",
-          "Не предполагаются открытыми; пересчитать полную цепочку после реального исследования."
-        ],
-        [
-          "Другой режим того же двора",
-          "Не складывать сырьевые потребности с заменяемым режимом."
+          "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки."
         ]
       ]
     },
-    "notes": [
-      "Явный forecast стандартных рецептов SCIM и коэффициентов WB, не полная инвентаризация runtime-патчей107модов.",
-      "Производственные машиныD5, максимум100%; частоты в таблице для каждой машины группы.",
-      "Склад заполнится — линия остановится.100% частота бура не гарантирует100% duty cycle без потребителя.",
-      "Сырые винты остаются локальными. Каждая группа получает столько отдельных лент, сколько указано в интерфейсах; не объединять их в один узкий порт."
+    "targetItemId": "Desc_Cable_C",
+    "targetRate": 60,
+    "targets": [
+      {
+        "exact": "60",
+        "itemId": "Desc_Cable_C",
+        "label": "Cable",
+        "rate": 60,
+        "unit": "шт/мин"
+      },
+      {
+        "exact": "120",
+        "itemId": "Desc_Wire_C",
+        "label": "Wire",
+        "rate": 120,
+        "unit": "шт/мин"
+      }
+    ]
+  },
+  "progressRevision": "2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670",
+  "readiness": {
+    "blockers": [
+      "Рельеф, абсолютные высоты, береговая глубина и игровые коллизии не проверены.",
+      "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки."
     ],
-    "normalizedRecipeCount": 21,
-    "candidateRecipeCount": 3
+    "constructionReady": false
   },
-  "extraction": [
-    {
-      "nodeId": "BP_ResourceNode_Copper_3",
-      "actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65137E302_1945816889",
-      "xyz": [
-        -1745.9,
-        2929.59,
-        -1.85
+  "revision": "2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670",
+  "saveId": "slave",
+  "schemaVersion": 1,
+  "sitePlan": {
+    "depth": 72,
+    "id": "copper-home",
+    "label": "copper-home",
+    "projectId": "copper-home",
+    "role": "Surface core, dedicated item outputs",
+    "tier": 1,
+    "verified": false,
+    "width": 64,
+    "x": -1685,
+    "y": 2920
+  },
+  "source": {
+    "planSha256": "94fef71186b12e03d1d53b7bc6f1d71314ec52ee503b98e84b06a53ce9842d24",
+    "planning": {
+      "demandMode": "copper_early",
+      "demandSha256": "d49f8224b5002ae96abe20abb8da8a4ede77ac76f5cc4c84b7c17bef2b239dbc",
+      "density": 5,
+      "mode": "forecast",
+      "prerequisites": [
+        "Указанные рецепты и технологии",
+        "Обмер поверхности и проверка установленной сборки"
       ],
-      "miner": 1,
-      "clock": 1,
-      "raw": 480,
-      "ports": 2,
-      "belt": 750,
-      "lanes": 1,
-      "perLane": 480.0,
-      "powerMW": 20.0
-    }
-  ],
-  "powerMW": 233.7057267977067,
-  "preview": {
-    "src": "/atlas/slave/copper-home/revisions/a92a7964e1a43d1dc88de2e37d77e3a927577688999fbda400517acd15b4aec6/layout.svg",
-    "alt": "Производственный уровень1 · сетка и машины",
-    "caption": "Размерная схема; не игровой скриншот.",
-    "kind": "schematic"
+      "tier": 1
+    },
+    "recipeSha256": "8c07079f64f7858390d01718e4b1c0c60b65dc04802f7212e204f9dd31673697",
+    "saveSha256": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
+    "snapshotAt": "2026-10-30T10:55:59.913000+00:00",
+    "snapshotLabel": "slave · WB 1.0.3 · исходниковый прогноз"
   },
-  "progressRevision": "cb37fe319c838f0e4f98b6a0054ff51df67b9f79d4242ec169caa11f50ff33ad",
-  "progressSignature": "d259bf1ea6a387782e9cd7d8085c287616f8443681fffea7c339c1fb05f1b983"
+  "status": "blocked",
+  "subtitle": "Исходниковый прогноз; строительство и запуск не подтверждены",
+  "target": {
+    "exact": "60",
+    "itemId": "Desc_Cable_C",
+    "label": "Cable",
+    "rate": 60,
+    "unit": "шт/мин"
+  },
+  "title": "Ранняя медь",
+  "updatedAt": "2026-10-30T10:55:59.913000+00:00",
+  "progressSignature": "fccce94d5c3707961c193abafdb0e51728f9b064f7b28ca383d394256c3ea133"
 }

@@ -1,516 +1,5125 @@
 {
-  "schemaVersion": 1,
-  "id": "concrete",
-  "saveId": "slave",
-  "kind": "factory",
-  "title": "Бетонный двор",
-  "subtitle": "Paradise Island · тир1 · Бетонный двор",
-  "revision": "e0ae6c1aa93c621f3fec8fad902e3352f1e5dc73f71d0f1e4a72d78be5df92af",
-  "updatedAt": "2026-10-30T10:55:59.913Z",
-  "status": "blocked",
-  "drawingCount": 1,
-  "source": {
-    "saveSha256": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
-    "snapshotLabel": "slave ·30.10.2026 · WB1.0.3 ·107модов",
-    "snapshotAt": "2026-10-30T10:55:59.913Z",
-    "planning": {
-      "mode": "forecast",
-      "tier": 1,
-      "density": 5,
-      "prerequisites": [
-        "WB Extraction I",
-        "Игровая сверка WB100%, рецепта, стоимости и MW перед тиражированием"
-      ]
-    }
-  },
-  "dependencies": [],
-  "readiness": {
-    "constructionReady": false,
-    "blockers": [
-      "Проверить конверт на рельефе, не перекрыть ноды и установить фактический уровень пола.",
-      "WB Extraction I",
-      "107модов: расчёт WB не заменяет измерение первой машины."
-    ]
-  },
-  "overview": {
-    "paragraphs": [
-      "Центр конверта X=-1695м,Y=2735м; 48×48м. Это предлагаемое место, не установленная постройка.",
-      "Чертёж задаёт локальную сетку: X вправо,+Y к задней грузовой стороне; начало в юго-западном углу конверта. Z — метры над выбранным полом, не абсолютная высота мира.",
-      "Сначала открытый технологический каркас и проверка потоков, затем стены/фасад. Производительность указана для непрерывной подачи и свободного выхода."
-    ],
-    "decisions": [
-      {
-        "choice": "Отдельный контур снабжения",
-        "instead": "Смешать домашнюю стройку с фазовыми потоками",
-        "reason": "Фазовая отправка не должна обесточивать или оставлять без материалов дом.",
-        "tradeoff": "Дополнительные подписанные ленты и буферы."
-      }
-    ]
-  },
   "build": {
+    "commissioning": [
+      "Рельеф, абсолютные высоты, береговая глубина и игровые коллизии не проверены.",
+      "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки.",
+      "Порты заданы явно как условные точки у корпуса, не как извлечённые игровые коннекторы. Одноуровневая схема использует поверхностные ленты и только явно показанные короткие переходы. Нативные изгибы, опоры и привязки проверяются перед строительством."
+    ],
+    "notes": [
+      "Отметки в браузере не являются состоянием построек в сейве."
+    ],
     "steps": [
       {
-        "id": "survey",
-        "title": "Разметить площадку и входы",
-        "body": "Обойти конверт48×48м у(-1695;2735). Оставить16×24м вокруг каждой закреплённой ноды. Поставить четыре угловых маркера; выбрать реальный уровень пола выше препятствий. Локальный ноль — юго-западный угол, задняя сторона к+Y. До подачи питания выполнить: WB Extraction I. Не заказывать всю партию до пробного WB-здания.",
+        "actions": [
+          "Разрешено только после фактической приёмки1040пластин. Оплатить ровно16плит бетона,CC-01/02,Lime2Miner,S-ORE,M-CONCRETE,2бетонных электростолба и перечисленные опоры;остальные полы ждут получения160бетона.",
+          "Вручную отключить железную ветку при работе только бетона. PW-EARLY-CONCRETEпитаетPOLE-01бетона и сохраняется в окончательной схеме;это не временный провод для последующего демонтажа.",
+          "Отделённые320для устойчивого режима и12аварийных не использовать. Бетон запускается только на фактическом остатке общегоSTARTUP-300либо на явно пересчитанном и отдельно оплаченном пополнении.",
+          "CC-01установить в(6,16,4),CC-02оставить в(24,16,4). УCC-01все3якоря имеютX6;вход(6,10.8,5.5),выход(6,21.2,5.5),электроякорь(6,16,6). Изменены только конечные колонкиconcrete-E02/E04и конецPW-CC1;RAW,шахтёр,делитель,слиятель и16оплаченных плит сохраняются.",
+          "concrete-E03:из(18.2,13,5.5)сначала выйти в(18.5,13,5.5),далее(18.5,9.5,5.5)→(24,9.5,5.5)→(24,10.8,5.5). При ширине1м левая границаX18касается корпусаS-ORE,праваяX19касается сервисаCC-02;положительное проникновение запрещено. Авторский запас здесь0м,а не подтверждённый игровой зазор. X19вместо18.5не использовать."
+        ],
+        "baseline": true,
+        "bill": {
+          "BP_ItemDescriptorPortableMiner_C": 1,
+          "Desc_Cable_C": 18,
+          "Desc_Cement_C": 96,
+          "Desc_IronPlateReinforced_C": 4,
+          "Desc_IronPlate_C": 50,
+          "Desc_IronRod_C": 8,
+          "Desc_Wire_C": 6
+        },
+        "body": "После получения пластин собрать бетон на16новых плитах",
+        "checks": [
+          "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме.",
+          "Исключение относится только к непрерывному собственному сервисному подходу от точного порта/грани:выход префикса определяется полным1мполотном и1×1мпятном вершины/лифта,не только осью. Свой физический корпус,чужие сервисы/опоры и поздний повторный вход не освобождены от запрета."
+        ],
+        "constructionBOM": {
+          "BP_ItemDescriptorPortableMiner_C": 1,
+          "Desc_Cable_C": 18,
+          "Desc_Cement_C": 96,
+          "Desc_IronPlateReinforced_C": 4,
+          "Desc_IronPlate_C": 50,
+          "Desc_IronRod_C": 8,
+          "Desc_Wire_C": 6
+        },
+        "drawingIds": [
+          "campus-freight-concrete-only-01",
+          "state-concrete-only-layout",
+          "state-concrete-only-logistics-L0-Desc_Cement_C-01",
+          "state-concrete-only-logistics-L0-Desc_Stone_C-01",
+          "state-concrete-only-assembly-L0-row-01",
+          "state-concrete-only-assembly-L0-row-02",
+          "state-concrete-only-assembly-L0-row-03",
+          "state-concrete-only-layout-G0",
+          "state-concrete-only-logistics-G0-Desc_Cement_C-01",
+          "state-concrete-only-logistics-G0-Desc_Stone_C-01",
+          "state-concrete-only-assembly-G0-row-01",
+          "state-concrete-only-conveyor-supports-01",
+          "state-concrete-only-campus-freight-01",
+          "state-concrete-only-material-flow",
+          "state-concrete-only-layout-requirements"
+        ],
+        "edgeIds": [
+          "concrete-E01",
+          "concrete-E02",
+          "concrete-E03",
+          "concrete-E04",
+          "concrete-E05",
+          "concrete-E06"
+        ],
+        "externalLinkIds": [
+          "concrete-RAW-WORLD"
+        ],
+        "externalPlacementIds": [
+          "MINER-01"
+        ],
+        "externalPrerequisites": [
+          {
+            "projectId": "iron-home",
+            "stepId": "plate-active"
+          },
+          {
+            "projectId": "bio-start",
+            "stepId": "manual-fuel"
+          }
+        ],
+        "id": "concrete-chain",
+        "levelIds": [
+          "G0",
+          "L0"
+        ],
+        "materials": [
+          "BP_ItemDescriptorPortableMiner_C: 1",
+          "Cable: 18",
+          "Concrete: 96",
+          "Reinforced Iron Plate: 4",
+          "Iron Plate: 50",
+          "Iron Rod: 8",
+          "Wire: 6"
+        ],
+        "operatingState": "concrete-only",
+        "placementIds": [
+          "CC-01",
+          "CC-02",
+          "S-ORE",
+          "M-CONCRETE",
+          "POLE-01",
+          "POLE-02"
+        ],
+        "powerConnectionIds": [
+          "PW-EARLY-CONCRETE",
+          "PW-CC1",
+          "PW-CONCRETE-CHAIN",
+          "PW-CC2",
+          "PW-LIME-MINER"
+        ],
         "prerequisites": [],
-        "actions": [
-          "Обойти конверт48×48м у(-1695;2735). Оставить16×24м вокруг каждой закреплённой ноды.",
-          "Поставить четыре угловых маркера; выбрать реальный уровень пола выше препятствий. Локальный ноль — юго-западный угол, задняя сторона к+Y.",
-          "До подачи питания выполнить: WB Extraction I. Не заказывать всю партию до пробного WB-здания."
+        "russianInstructions": {
+          "actions": [
+            "Разрешено только после фактической приёмки1040пластин. Оплатить ровно16плит бетона,CC-01/02,Lime2Miner,S-ORE,M-CONCRETE,2бетонных электростолба и перечисленные опоры;остальные полы ждут получения160бетона.",
+            "Вручную отключить железную ветку при работе только бетона. PW-EARLY-CONCRETEпитаетPOLE-01бетона и сохраняется в окончательной схеме;это не временный провод для последующего демонтажа.",
+            "Отделённые320для устойчивого режима и12аварийных не использовать. Бетон запускается только на фактическом остатке общегоSTARTUP-300либо на явно пересчитанном и отдельно оплаченном пополнении.",
+            "CC-01установить в(6,16,4),CC-02оставить в(24,16,4). УCC-01все3якоря имеютX6;вход(6,10.8,5.5),выход(6,21.2,5.5),электроякорь(6,16,6). Изменены только конечные колонкиconcrete-E02/E04и конецPW-CC1;RAW,шахтёр,делитель,слиятель и16оплаченных плит сохраняются.",
+            "concrete-E03:из(18.2,13,5.5)сначала выйти в(18.5,13,5.5),далее(18.5,9.5,5.5)→(24,9.5,5.5)→(24,10.8,5.5). При ширине1м левая границаX18касается корпусаS-ORE,праваяX19касается сервисаCC-02;положительное проникновение запрещено. Авторский запас здесь0м,а не подтверждённый игровой зазор. X19вместо18.5не использовать."
+          ],
+          "body": "После получения пластин собрать бетон на16новых плитах",
+          "checks": [
+            "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме.",
+            "Исключение относится только к непрерывному собственному сервисному подходу от точного порта/грани:выход префикса определяется полным1мполотном и1×1мпятном вершины/лифта,не только осью. Свой физический корпус,чужие сервисы/опоры и поздний повторный вход не освобождены от запрета."
+          ],
+          "title": "После получения пластин собрать бетон на16новых плитах"
+        },
+        "sourceContractPhase": {
+          "actions": [
+            "Разрешено только после фактической приёмки1040пластин. Оплатить ровно16плит бетона,CC-01/02,Lime2Miner,S-ORE,M-CONCRETE,2бетонных электростолба и перечисленные опоры;остальные полы ждут получения160бетона.",
+            "Вручную отключить железную ветку при работе только бетона. PW-EARLY-CONCRETEпитаетPOLE-01бетона и сохраняется в окончательной схеме;это не временный провод для последующего демонтажа.",
+            "Отделённые320для устойчивого режима и12аварийных не использовать. Бетон запускается только на фактическом остатке общегоSTARTUP-300либо на явно пересчитанном и отдельно оплаченном пополнении.",
+            "CC-01установить в(6,16,4),CC-02оставить в(24,16,4). УCC-01все3якоря имеютX6;вход(6,10.8,5.5),выход(6,21.2,5.5),электроякорь(6,16,6). Изменены только конечные колонкиconcrete-E02/E04и конецPW-CC1;RAW,шахтёр,делитель,слиятель и16оплаченных плит сохраняются.",
+            "concrete-E03:из(18.2,13,5.5)сначала выйти в(18.5,13,5.5),далее(18.5,9.5,5.5)→(24,9.5,5.5)→(24,10.8,5.5). При ширине1м левая границаX18касается корпусаS-ORE,праваяX19касается сервисаCC-02;положительное проникновение запрещено. Авторский запас здесь0м,а не подтверждённый игровой зазор. X19вместо18.5не использовать."
+          ],
+          "baseline": true,
+          "bill": {
+            "BP_ItemDescriptorPortableMiner_C": 1,
+            "Desc_Cable_C": 18,
+            "Desc_Cement_C": 96,
+            "Desc_IronPlateReinforced_C": 4,
+            "Desc_IronPlate_C": 50,
+            "Desc_IronRod_C": 8,
+            "Desc_Wire_C": 6
+          },
+          "body": "После получения пластин собрать бетон на16новых плитах",
+          "checks": [
+            "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме.",
+            "Исключение относится только к непрерывному собственному сервисному подходу от точного порта/грани:выход префикса определяется полным1мполотном и1×1мпятном вершины/лифта,не только осью. Свой физический корпус,чужие сервисы/опоры и поздний повторный вход не освобождены от запрета."
+          ],
+          "edgeIds": [
+            "concrete-E01",
+            "concrete-E02",
+            "concrete-E03",
+            "concrete-E04",
+            "concrete-E05",
+            "concrete-E06"
+          ],
+          "externalLinkIds": [
+            "concrete-RAW-WORLD"
+          ],
+          "externalPrerequisites": [
+            {
+              "projectId": "iron-home",
+              "stepId": "plate-active"
+            },
+            {
+              "projectId": "bio-start",
+              "stepId": "manual-fuel"
+            }
+          ],
+          "id": "concrete-chain",
+          "operatingState": "concrete-only",
+          "placementIds": [
+            "CC-01",
+            "CC-02",
+            "S-ORE",
+            "M-CONCRETE",
+            "POLE-01",
+            "POLE-02",
+            "MINER-01"
+          ],
+          "powerConnectionIds": [
+            "PW-EARLY-CONCRETE",
+            "PW-CC1",
+            "PW-CONCRETE-CHAIN",
+            "PW-CC2",
+            "PW-LIME-MINER"
+          ],
+          "prerequisites": [],
+          "russianInstructions": {
+            "actions": [
+              "Разрешено только после фактической приёмки1040пластин. Оплатить ровно16плит бетона,CC-01/02,Lime2Miner,S-ORE,M-CONCRETE,2бетонных электростолба и перечисленные опоры;остальные полы ждут получения160бетона.",
+              "Вручную отключить железную ветку при работе только бетона. PW-EARLY-CONCRETEпитаетPOLE-01бетона и сохраняется в окончательной схеме;это не временный провод для последующего демонтажа.",
+              "Отделённые320для устойчивого режима и12аварийных не использовать. Бетон запускается только на фактическом остатке общегоSTARTUP-300либо на явно пересчитанном и отдельно оплаченном пополнении.",
+              "CC-01установить в(6,16,4),CC-02оставить в(24,16,4). УCC-01все3якоря имеютX6;вход(6,10.8,5.5),выход(6,21.2,5.5),электроякорь(6,16,6). Изменены только конечные колонкиconcrete-E02/E04и конецPW-CC1;RAW,шахтёр,делитель,слиятель и16оплаченных плит сохраняются.",
+              "concrete-E03:из(18.2,13,5.5)сначала выйти в(18.5,13,5.5),далее(18.5,9.5,5.5)→(24,9.5,5.5)→(24,10.8,5.5). При ширине1м левая границаX18касается корпусаS-ORE,праваяX19касается сервисаCC-02;положительное проникновение запрещено. Авторский запас здесь0м,а не подтверждённый игровой зазор. X19вместо18.5не использовать."
+            ],
+            "body": "После получения пластин собрать бетон на16новых плитах",
+            "checks": [
+              "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме.",
+              "Исключение относится только к непрерывному собственному сервисному подходу от точного порта/грани:выход префикса определяется полным1мполотном и1×1мпятном вершины/лифта,не только осью. Свой физический корпус,чужие сервисы/опоры и поздний повторный вход не освобождены от запрета."
+            ],
+            "title": "После получения пластин собрать бетон на16новых плитах"
+          },
+          "stepId": "concrete-chain",
+          "supportIds": [
+            "T-0-0",
+            "T-0-1",
+            "T-0-2",
+            "T-1-0",
+            "T-1-1",
+            "T-1-2",
+            "T-1-3",
+            "T-2-0",
+            "T-2-1",
+            "T-2-2",
+            "T-2-3",
+            "T-3-0",
+            "T-3-1",
+            "T-3-2",
+            "T-4-0",
+            "T-5-0",
+            "BELT-SUPPORT-01",
+            "BELT-SUPPORT-02",
+            "BELT-SUPPORT-03",
+            "BELT-SUPPORT-04"
+          ],
+          "title": "После получения пластин собрать бетон на16новых плитах"
+        },
+        "stepId": "concrete-chain",
+        "supportIds": [
+          "T-0-0",
+          "T-0-1",
+          "T-0-2",
+          "T-1-0",
+          "T-1-1",
+          "T-1-2",
+          "T-1-3",
+          "T-2-0",
+          "T-2-1",
+          "T-2-2",
+          "T-2-3",
+          "T-3-0",
+          "T-3-1",
+          "T-3-2",
+          "T-4-0",
+          "T-5-0",
+          "BELT-SUPPORT-01",
+          "BELT-SUPPORT-02",
+          "BELT-SUPPORT-03",
+          "BELT-SUPPORT-04"
         ],
-        "materials": [
-          "4 угловых маркера/фундамента; инструмент обмера"
-        ],
-        "checks": [
-          "Входы нод, дорога и будущие лифты доступны."
-        ],
-        "levelIds": [],
-        "drawingIds": [
-          "layout"
-        ]
+        "title": "После получения пластин собрать бетон на16новых плитах"
       },
       {
-        "id": "floor",
-        "title": "Собрать технологический каркас",
-        "body": "Разложить пол по сетке8м; конечный конверт48×48м. Сначала только занятые машинные ячейки и проходы, не фасад целиком. Производственных полов1: L0 Z+4. Между ними12м; нижние4м оставить под логистику. Добавить доступ на каждый этаж и задний стояк лифтов; не ставить опоры в габариты машин.",
-        "prerequisites": [
-          "survey"
-        ],
         "actions": [
-          "Разложить пол по сетке8м; конечный конверт48×48м. Сначала только занятые машинные ячейки и проходы, не фасад целиком.",
-          "Производственных полов1: L0 Z+4. Между ними12м; нижние4м оставить под логистику.",
-          "Добавить доступ на каждый этаж и задний стояк лифтов; не ставить опоры в габариты машин."
+          "Железную ветку вручную отключить. Использовать только фактический остаток общего стартового выделения300топлива.",
+          "Получить160бетона вCONTAINER-06.2мин при80/мин являются номинальным материальным эквивалентом, не бесплатным периодом после прогрева.",
+          "Если лимит исчерпан раньше получения160бетона, остановиться и отдельно профинансировать пополнение; не переходить к оставшимся полам на основании расчётного выпуска."
         ],
-        "materials": [
-          "Фундамент8×8: полное покрытие одного уровня 36шт; ядро вводить частями.",
-          "Базовый бетон/пластины и опоры — по фактическому покрытию, не условной полной смете."
-        ],
+        "baseline": true,
+        "bill": {},
+        "body": "Пуск бетона: получить160шт до исчерпания оставшегося общего стартового лимита",
         "checks": [
-          "Проход8м не занят входными лентами."
+          "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме.",
+          "Фактические приёмки и отдельные топливные выделения должны быть подтверждены до зависящих действий. Условные расчётные остатки не являются доказательством доставки или оплаты прогрева."
         ],
+        "constructionBOM": {},
+        "drawingIds": [
+          "campus-freight-concrete-only-01",
+          "state-concrete-only-layout",
+          "state-concrete-only-logistics-L0-Desc_Cement_C-01",
+          "state-concrete-only-logistics-L0-Desc_Stone_C-01",
+          "state-concrete-only-assembly-L0-row-01",
+          "state-concrete-only-assembly-L0-row-02",
+          "state-concrete-only-assembly-L0-row-03",
+          "state-concrete-only-conveyor-supports-01",
+          "state-concrete-only-campus-freight-01",
+          "state-concrete-only-material-flow",
+          "state-concrete-only-layout-requirements"
+        ],
+        "edgeIds": [],
+        "energizationPolicy": {
+          "accounting": "Withdraw full300from available inventory into a dedicated startup escrow before energization; debit conservatively once, never credit unspent balance. Actual per-branch burn unknown.",
+          "completion": "Both measured receipt gates must pass before starting later build based on those receipts.13/2minutes are nominal material-equivalent windows, not cold-start completion timers.",
+          "exhaustionAction": "STOP/disconnect loads before cap exhaustion. Do not borrow320core or12emergency. Reprice the remaining receipt requirement, manually gather/craft an explicitly funded supplemental batch and append actual transactions BEFORE resuming. No guessed wood amount or free warmup.",
+          "fuelAllocation": 300,
+          "fuelItemId": "Desc_Biofuel_C",
+          "id": "STARTUP-300",
+          "noPoweredTravel": "Disconnect generation/loads during building,travel,dispatch waits and manual handling unless their actual energy is charged to this same cap.",
+          "physicallySegregated": true,
+          "scope": "First energization through actual1040plate then160concrete receipts, including raw/material warmup,belt filling,settling and powered delivery tails",
+          "source": "Only300newmanuallycraftedfuel from120NEWwood. Reserve332onhand separately as320protectedsteadycore+12emergency."
+        },
+        "externalLinkIds": [],
+        "externalPlacementIds": [],
+        "externalPrerequisites": [
+          {
+            "projectId": "warehouse",
+            "stepId": "concrete-receiver"
+          }
+        ],
+        "id": "concrete-active",
         "levelIds": [
           "L0"
         ],
-        "drawingIds": [
-          "layout"
-        ]
-      },
-      {
-        "id": "install-p01",
-        "title": "P01 · поставить конструктор: Concrete",
-        "body": "Поставить3 WB конструкторD5 в отмеченные ячейки P01-01, P01-02, P01-03. Положение каждой машины — в таблице координат этапа. Ориентировать вход к своей подающей линии, выход к заднему коллектору. Выбрать Concrete; каждой машине установить71.1111%. Осколки/усилители не требуются. Вход группы: Известняк 480/мин. Выход группы: Бетон 160/мин. Не путать с нетто-складским выпуском. Интерфейс P01-Desc_Stone_C: RAW → P01 ·Известняк 480/мин; 1 отдельных WB-линий ≤750 каждая. Разделить по потребителям до узкого входа машины.",
+        "materials": [],
+        "operatingState": "concrete-only",
+        "placementIds": [],
+        "powerConnectionIds": [],
         "prerequisites": [
-          "floor"
+          "concrete-chain"
         ],
-        "actions": [
-          "Поставить3 WB конструкторD5 в отмеченные ячейки P01-01, P01-02, P01-03. Положение каждой машины — в таблице координат этапа.",
-          "Ориентировать вход к своей подающей линии, выход к заднему коллектору. Выбрать Concrete; каждой машине установить71.1111%. Осколки/усилители не требуются.",
-          "Вход группы: Известняк 480/мин. Выход группы: Бетон 160/мин. Не путать с нетто-складским выпуском.",
-          "Интерфейс P01-Desc_Stone_C: RAW → P01 ·Известняк 480/мин; 1 отдельных WB-линий ≤750 каждая. Разделить по потребителям до узкого входа машины."
-        ],
-        "materials": [
-          "3×WB конструкторD5: Усиленные пластины 6, Кабель 24"
-        ],
-        "checks": [
-          "UI-рецепт и частота совпадают. При временном тесте выходной буфер получает расчётный поток группы."
-        ],
-        "levelIds": [
-          "L0"
-        ],
-        "drawingIds": [
-          "layout"
-        ]
-      },
-      {
-        "id": "feed",
-        "title": "Подключить ноды и межцеховые входы",
-        "body": "BP_ResourceNode_Limestone_2([-1807.21, 2729.69, 0.95]): WB Miner1 100%, всего480/мин. Вывести1 линий по480; скорость каждой≤750. Не объединять назад в один ограниченный выход. Подключить подписанную ветвь питания. Производство38.23MW; добыча20.00MW отдельно. Сначала сверить общий сценарий станции и25% запаса над измеренным потреблением. Наполнить входы и проверить каждую ветвь с открытым выходом. Заполненный склад не использовать как последовательный транзит к другому заводу.",
-        "prerequisites": [
-          "install-p01"
-        ],
-        "actions": [
-          "BP_ResourceNode_Limestone_2([-1807.21, 2729.69, 0.95]): WB Miner1 100%, всего480/мин. Вывести1 линий по480; скорость каждой≤750. Не объединять назад в один ограниченный выход.",
-          "Подключить подписанную ветвь питания. Производство38.23MW; добыча20.00MW отдельно. Сначала сверить общий сценарий станции и25% запаса над измеренным потреблением.",
-          "Наполнить входы и проверить каждую ветвь с открытым выходом. Заполненный склад не использовать как последовательный транзит к другому заводу."
-        ],
-        "materials": [
-          "Буры по таблице выше; Miner II:10каркасов+10роторов+40труб каждый.",
-          "WB ленты/лифты, сплиттеры и провода — по обмеренной трассе; учесть все параллельные линии."
-        ],
-        "checks": [
-          "Добыча не занижена, обе нужные линии реально вывозят поток; сеть не перегружена."
-        ],
-        "levelIds": [
-          "L0"
-        ],
-        "drawingIds": [
-          "layout"
-        ]
-      },
-      {
-        "id": "commission",
-        "title": "Запустить и проверить нетто-выпуск",
-        "body": "Включать от сырья к последнему сборщику; дать заполниться магистралям и каждому потребительскому буферу. Отделить конечные выходы: Бетон 160/мин. Подписать назначение склад/лифт/соседний цех. Снять показания за5мин установившегося режима с незаполненными выходами. При отклонении сначала проверить коэффициенты107модов, рецепт, ленты и энергию; не компенсировать ошибку произвольным underclock бура.",
-        "prerequisites": [
-          "feed"
-        ],
-        "actions": [
-          "Включать от сырья к последнему сборщику; дать заполниться магистралям и каждому потребительскому буферу.",
-          "Отделить конечные выходы: Бетон 160/мин. Подписать назначение склад/лифт/соседний цех.",
-          "Снять показания за5мин установившегося режима с незаполненными выходами. При отклонении сначала проверить коэффициенты107модов, рецепт, ленты и энергию; не компенсировать ошибку произвольным underclock бура."
-        ],
-        "materials": [
-          "По одному раздельному приёмному буферу на конечный продукт."
-        ],
-        "checks": [
-          "За5мин: Бетон ≈800шт после стабилизации."
-        ],
-        "levelIds": [
-          "L0"
-        ],
-        "drawingIds": [
-          "layout"
-        ]
+        "receiptGate": {
+          "completionGuaranteed": false,
+          "counterBaseline": "Record receiver contents before concrete energization; count actual increments only",
+          "id": "CONCRETE-160",
+          "itemId": "Desc_Cement_C",
+          "measuredNetReceipts": 160,
+          "placementId": "CONTAINER-06",
+          "projectId": "warehouse",
+          "sharedFuelAllocationId": "STARTUP-300"
+        },
+        "russianInstructions": {
+          "actions": [
+            "Железную ветку вручную отключить. Использовать только фактический остаток общего стартового выделения300топлива.",
+            "Получить160бетона вCONTAINER-06.2мин при80/мин являются номинальным материальным эквивалентом, не бесплатным периодом после прогрева.",
+            "Если лимит исчерпан раньше получения160бетона, остановиться и отдельно профинансировать пополнение; не переходить к оставшимся полам на основании расчётного выпуска."
+          ],
+          "body": "Пуск бетона: получить160шт до исчерпания оставшегося общего стартового лимита",
+          "checks": [
+            "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме.",
+            "Фактические приёмки и отдельные топливные выделения должны быть подтверждены до зависящих действий. Условные расчётные остатки не являются доказательством доставки или оплаты прогрева."
+          ],
+          "title": "Пуск бетона: получить160шт до исчерпания оставшегося общего стартового лимита"
+        },
+        "sourceContractPhase": {
+          "actions": [
+            "Железную ветку вручную отключить. Использовать только фактический остаток общего стартового выделения300топлива.",
+            "Получить160бетона вCONTAINER-06.2мин при80/мин являются номинальным материальным эквивалентом, не бесплатным периодом после прогрева.",
+            "Если лимит исчерпан раньше получения160бетона, остановиться и отдельно профинансировать пополнение; не переходить к оставшимся полам на основании расчётного выпуска."
+          ],
+          "baseline": true,
+          "bill": {},
+          "body": "Пуск бетона: получить160шт до исчерпания оставшегося общего стартового лимита",
+          "checks": [
+            "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме.",
+            "Фактические приёмки и отдельные топливные выделения должны быть подтверждены до зависящих действий. Условные расчётные остатки не являются доказательством доставки или оплаты прогрева."
+          ],
+          "edgeIds": [],
+          "energizationPolicy": {
+            "accounting": "Withdraw full300from available inventory into a dedicated startup escrow before energization; debit conservatively once, never credit unspent balance. Actual per-branch burn unknown.",
+            "completion": "Both measured receipt gates must pass before starting later build based on those receipts.13/2minutes are nominal material-equivalent windows, not cold-start completion timers.",
+            "exhaustionAction": "STOP/disconnect loads before cap exhaustion. Do not borrow320core or12emergency. Reprice the remaining receipt requirement, manually gather/craft an explicitly funded supplemental batch and append actual transactions BEFORE resuming. No guessed wood amount or free warmup.",
+            "fuelAllocation": 300,
+            "fuelItemId": "Desc_Biofuel_C",
+            "id": "STARTUP-300",
+            "noPoweredTravel": "Disconnect generation/loads during building,travel,dispatch waits and manual handling unless their actual energy is charged to this same cap.",
+            "physicallySegregated": true,
+            "scope": "First energization through actual1040plate then160concrete receipts, including raw/material warmup,belt filling,settling and powered delivery tails",
+            "source": "Only300newmanuallycraftedfuel from120NEWwood. Reserve332onhand separately as320protectedsteadycore+12emergency."
+          },
+          "externalLinkIds": [],
+          "externalPrerequisites": [
+            {
+              "projectId": "warehouse",
+              "stepId": "concrete-receiver"
+            }
+          ],
+          "id": "concrete-active",
+          "operatingState": "concrete-only",
+          "placementIds": [],
+          "powerConnectionIds": [],
+          "prerequisites": [
+            "concrete-chain"
+          ],
+          "receiptGate": {
+            "completionGuaranteed": false,
+            "counterBaseline": "Record receiver contents before concrete energization; count actual increments only",
+            "id": "CONCRETE-160",
+            "itemId": "Desc_Cement_C",
+            "measuredNetReceipts": 160,
+            "placementId": "CONTAINER-06",
+            "projectId": "warehouse",
+            "sharedFuelAllocationId": "STARTUP-300"
+          },
+          "russianInstructions": {
+            "actions": [
+              "Железную ветку вручную отключить. Использовать только фактический остаток общего стартового выделения300топлива.",
+              "Получить160бетона вCONTAINER-06.2мин при80/мин являются номинальным материальным эквивалентом, не бесплатным периодом после прогрева.",
+              "Если лимит исчерпан раньше получения160бетона, остановиться и отдельно профинансировать пополнение; не переходить к оставшимся полам на основании расчётного выпуска."
+            ],
+            "body": "Пуск бетона: получить160шт до исчерпания оставшегося общего стартового лимита",
+            "checks": [
+              "Это инструкция исходного контракта,не выполненная проверка:игровые порты,местность,допустимые сплайны/высоты опор,провисание и эффективное поведение модов не проверены. Номинальное ограничение прямого провода100м учтено в буквальной схеме.",
+              "Фактические приёмки и отдельные топливные выделения должны быть подтверждены до зависящих действий. Условные расчётные остатки не являются доказательством доставки или оплаты прогрева."
+            ],
+            "title": "Пуск бетона: получить160шт до исчерпания оставшегося общего стартового лимита"
+          },
+          "stepId": "concrete-active",
+          "supportIds": [],
+          "title": "Пуск бетона: получить160шт до исчерпания оставшегося общего стартового лимита"
+        },
+        "stepId": "concrete-active",
+        "supportIds": [],
+        "title": "Пуск бетона: получить160шт до исчерпания оставшегося общего стартового лимита"
       }
-    ],
-    "commissioning": [
-      "Все входы обеспечены одновременно, источник не учтён вторично в другом режиме.",
-      "Пять минут устойчивого выпуска совпали с нетто-таблицей.",
-      "Рабочая сеть имеет25% резерва над измеренной нагрузкой; буферы не мешают перезапуску."
-    ],
-    "notes": [
-      "Отметка в браузере — личный прогресс, не факт постройки в сейве.",
-      "Стоимость машин — по WB-наследованию базовых рецептов; влияние других модов проверить до заказа всей партии. Трассовые длины и фасад не выдаются за точную смету."
     ]
   },
+  "composition": {
+    "assetHashes": {
+      "assets/assembly-G0-row-01.svg": "30671971ade15f67e4da9e76cd9423d6e6b295042ec2b16d7452085bf06909f3",
+      "assets/assembly-L0-row-01.svg": "d17eca64e90aac9408490a2a2c39483eed6c28dabeabe238d1b453e32b0c2e11",
+      "assets/assembly-L0-row-02.svg": "3b8a594bf68bd3f564901948fdad61fd9c0814e15511a2dc6ebd2c37ef022036",
+      "assets/assembly-L0-row-03.svg": "fbe068389fbd50d28438d306892861d2cd771b43d2057fa40ac7db84841219dd",
+      "assets/blender-plan.png": "62a93840254e9bc0f57663923e3b1cd963c3a348517e298d88b81945345ff2d0",
+      "assets/campus-freight-01.svg": "5dfed43ac0ef0358bf1f87354da7d06a89877e33c880f1b07b9cdb76d13cf90e",
+      "assets/campus-freight-concrete-only-01.svg": "12f9d9a0e54c8ac2af02b15957d48366dc8366a287a7127cab407ee951050365",
+      "assets/concept.webp": "21487a521aba170d27f83cc77d84fa0b60f8d663036d29e677d11e8b7227d403",
+      "assets/conveyor-supports-01.svg": "009f8ea358efa82f5c24ba495f4eb343d30008c6fbfa0bfbd388c7e15489fd8b",
+      "assets/engineering.blend": "8bb0df3949775f7440fb9cf23b5fd221ab31b3cc289ffc93d9f2c17085aaa260",
+      "assets/expansion-reservation-01.svg": "b323664eadbd4cef0c12dd4a65cf65fea21320f27ed33153a6d015477558fcdb",
+      "assets/expansion-reservation-02.svg": "98786269ffd19919e4e339764c689b4c38271097888a8ff08f3c45e80c56f552",
+      "assets/layout-G0.svg": "4b587d0c3888695c5c54d5ecf5852d4f45e81f2d4283ebda968c8e5495b7edb5",
+      "assets/layout-requirements.svg": "d6eb4ec95630bbf7dd41279b771e1a18cdcae5ffcbed3cd33feeee42837ee4ea",
+      "assets/layout.svg": "2c197364ebf307de23612953f042700c915d2c885af5971b050ea938ccb66623",
+      "assets/logistics-G0-Desc_Cement_C-01.svg": "16b8edeef3169c2bd4c1ac773dcfdcb4952ac89f5ebcc3462f8761885d363731",
+      "assets/logistics-G0-Desc_Stone_C-01.svg": "574df391f730fca664df12d7d26dbe8dbb86d37bf661eb38290fdd1edb88161b",
+      "assets/logistics-L0-Desc_Cement_C-01.svg": "d84510b2ba16b9410acd86f665cfecb32c9a162bf066e00c01bf831f618019f5",
+      "assets/logistics-L0-Desc_Stone_C-01.svg": "1c59b45fe57133ed1149dd32fae742096f0cecbc5caf9d6463710aade176af0a",
+      "assets/material-flow.svg": "3b9cb1832473e86b2b113c1272940342e61090061f2caf040b16056ef590df01",
+      "assets/render-provenance.json": "b1cd0467bcacbf736e2beb59c07165c64fc4e05f8b6f610c6ba8d67ea20b63a8",
+      "assets/render.png": "f73d7c8c0225edd18a5dc66be932c052e6e8140437bdee775215854934414390",
+      "assets/state-concrete-only-assembly-G0-row-01.svg": "696b0ed44526b31767a615dc9f8516d24865e48eab60b2933731a7b89451acda",
+      "assets/state-concrete-only-assembly-L0-row-01.svg": "0a8e78b8f182034f37bfcd24399a7f719f8ce750d7e16cee3a0828e02345d8f1",
+      "assets/state-concrete-only-assembly-L0-row-02.svg": "cb021916c5743bce5693fb327d49b9b0f725fe67e302baaa8738ca570d8f3213",
+      "assets/state-concrete-only-assembly-L0-row-03.svg": "538f51e326eb5254c27fe2505cde1836d633949dfa9538547a3fed916f982d4a",
+      "assets/state-concrete-only-campus-freight-01.svg": "2d16242e862a5e930bcab12bbb25e5a7835e0e4b24b91734dde70f6fa9466a62",
+      "assets/state-concrete-only-conveyor-supports-01.svg": "d22be41bb8f06c550641a6e6d8638e2e757121aafc4cf0f7ef26b948daab2f62",
+      "assets/state-concrete-only-layout-G0.svg": "7d5e58028ba6d70d0c541735dd418c760927fe21482aa65d08265da859feb227",
+      "assets/state-concrete-only-layout-requirements.svg": "cef337a9d3af006f9a85d7971c6e48cc70c2c88a92eaf7e0a33783bdaa99aab9",
+      "assets/state-concrete-only-layout.svg": "9a6f50954cb99ee723f7bcaabb7ad6f59b95d65f6581c094733a9f88cf722c0f",
+      "assets/state-concrete-only-logistics-G0-Desc_Cement_C-01.svg": "98bab194d7d042f463e0aa0b4352cba1366018b0c8cc420da7551a99a4f351bf",
+      "assets/state-concrete-only-logistics-G0-Desc_Stone_C-01.svg": "57e3814dab6fb32c854b5468709af4db4f36be7b69da50d7f47d657716d6f7cf",
+      "assets/state-concrete-only-logistics-L0-Desc_Cement_C-01.svg": "fa6d40f415e76fbf07418424908f2ea3456ae6d4971ae1c8d45eb9e603db21b1",
+      "assets/state-concrete-only-logistics-L0-Desc_Stone_C-01.svg": "2d2a6ab014b4b7059da7f50cca030ec03b58d47374a34239c7f1bd70c1967fd7",
+      "assets/state-concrete-only-material-flow.svg": "1b77c14a222fa95a11cc825699bfbb4a8d6b8c5d00a035323ec843953054da57"
+    },
+    "availableDemandModes": [
+      "concrete_home",
+      "concrete_tier4"
+    ],
+    "baselineFixedBOM": {
+      "BP_ItemDescriptorPortableMiner_C": 1,
+      "Desc_Cable_C": 18,
+      "Desc_Cement_C": 96,
+      "Desc_IronPlateReinforced_C": 4,
+      "Desc_IronPlate_C": 50,
+      "Desc_IronRod_C": 8,
+      "Desc_Wire_C": 6
+    },
+    "enumeratedBaselineBOM": {
+      "BP_ItemDescriptorPortableMiner_C": 1,
+      "Desc_Cable_C": 18,
+      "Desc_Cement_C": 96,
+      "Desc_IronPlateReinforced_C": 4,
+      "Desc_IronPlate_C": 50,
+      "Desc_IronRod_C": 8,
+      "Desc_Wire_C": 6
+    },
+    "enumeratedOptionalBOM": {},
+    "familyId": "concrete",
+    "forecastOnly": true,
+    "futureIncrementIncluded": false,
+    "literalPolicies": {
+      "baselineFixedBOM": {
+        "BP_ItemDescriptorPortableMiner_C": 1,
+        "Desc_Cable_C": 18,
+        "Desc_Cement_C": 96,
+        "Desc_IronPlateReinforced_C": 4,
+        "Desc_IronPlate_C": 50,
+        "Desc_IronRod_C": 8,
+        "Desc_Wire_C": 6
+      },
+      "baselineOwnership": {
+        "conveyorPosts": [
+          "BELT-SUPPORT-01",
+          "BELT-SUPPORT-02",
+          "BELT-SUPPORT-03",
+          "BELT-SUPPORT-04"
+        ],
+        "fixedBOM": {
+          "BP_ItemDescriptorPortableMiner_C": 1,
+          "Desc_Cable_C": 18,
+          "Desc_Cement_C": 96,
+          "Desc_IronPlateReinforced_C": 4,
+          "Desc_IronPlate_C": 50,
+          "Desc_IronRod_C": 8,
+          "Desc_Wire_C": 6
+        },
+        "foundationTiles": [
+          "T-0-0",
+          "T-0-1",
+          "T-0-2",
+          "T-1-0",
+          "T-1-1",
+          "T-1-2",
+          "T-1-3",
+          "T-2-0",
+          "T-2-1",
+          "T-2-2",
+          "T-2-3",
+          "T-3-0",
+          "T-3-1",
+          "T-3-2",
+          "T-4-0",
+          "T-5-0"
+        ],
+        "placements": [
+          "CC-01",
+          "CC-02",
+          "S-ORE",
+          "M-CONCRETE",
+          "POLE-01",
+          "POLE-02",
+          "MINER-01"
+        ]
+      },
+      "campusLinkRefs": [
+        "FREIGHT-CONCRETE"
+      ],
+      "campusPowerRefs": [
+        "PW-EARLY-CONCRETE",
+        "PW-CC1",
+        "PW-CONCRETE-CHAIN",
+        "PW-CC2",
+        "PW-LIME-MINER"
+      ],
+      "coordinateConvention": "Metres; sitePlan x/y are world XY centres. Placement x/y are centres from local lower-left. RelativeZ shares schematic datum only, not surveyed absolute terrain.",
+      "energizationPolicy": {
+        "accounting": "Withdraw full300from available inventory into a dedicated startup escrow before energization; debit conservatively once, never credit unspent balance. Actual per-branch burn unknown.",
+        "completion": "Both measured receipt gates must pass before starting later build based on those receipts.13/2minutes are nominal material-equivalent windows, not cold-start completion timers.",
+        "exhaustionAction": "STOP/disconnect loads before cap exhaustion. Do not borrow320core or12emergency. Reprice the remaining receipt requirement, manually gather/craft an explicitly funded supplemental batch and append actual transactions BEFORE resuming. No guessed wood amount or free warmup.",
+        "fuelAllocation": 300,
+        "fuelItemId": "Desc_Biofuel_C",
+        "id": "STARTUP-300",
+        "noPoweredTravel": "Disconnect generation/loads during building,travel,dispatch waits and manual handling unless their actual energy is charged to this same cap.",
+        "physicallySegregated": true,
+        "scope": "First energization through actual1040plate then160concrete receipts, including raw/material warmup,belt filling,settling and powered delivery tails",
+        "source": "Only300newmanuallycraftedfuel from120NEWwood. Reserve332onhand separately as320protectedsteadycore+12emergency."
+      },
+      "futureAuxiliary": [
+        {
+          "baseline": false,
+          "buildPhaseId": "future-concrete-expansion",
+          "clearance": {
+            "depth": 6,
+            "height": 4,
+            "width": 6
+          },
+          "componentId": "Build_ConveyorAttachmentMerger_C",
+          "depth": 4,
+          "height": 3,
+          "id": "M-CONCRETE-EXP",
+          "optionalGroup": "concrete-expansion",
+          "orientation": {
+            "inputFaces": [
+              "left",
+              "right"
+            ],
+            "outputFace": "rear"
+          },
+          "rotationDeg": 0,
+          "width": 4,
+          "x": 40,
+          "y": 32,
+          "z": 4
+        }
+      ],
+      "futureAuxiliaryPlacements": [
+        {
+          "baseline": false,
+          "buildPhaseId": "future-concrete-expansion",
+          "clearance": {
+            "depth": 6,
+            "height": 4,
+            "width": 6
+          },
+          "componentId": "Build_ConveyorAttachmentMerger_C",
+          "depth": 4,
+          "height": 3,
+          "id": "M-CONCRETE-EXP",
+          "optionalGroup": "concrete-expansion",
+          "orientation": {
+            "inputFaces": [
+              "left",
+              "right"
+            ],
+            "outputFace": "rear"
+          },
+          "rotationDeg": 0,
+          "width": 4,
+          "x": 40,
+          "y": 32,
+          "z": 4
+        }
+      ],
+      "futureIncrementBreakdown": {
+        "auxiliaryBOM": {
+          "Desc_IronPlate_C": 2,
+          "Desc_IronRod_C": 2
+        },
+        "excluded": "Later routing/power/support graph is a separately owned T2-T4 design; this reservation bill does not certify/fund unknown native splines.",
+        "machineBOM": {
+          "Desc_Cable_C": 8,
+          "Desc_IronPlateReinforced_C": 2
+        },
+        "newTileBOM": {
+          "Desc_Cement_C": 40,
+          "Desc_IronPlate_C": 16
+        },
+        "newTileCount": 8
+      },
+      "geometryOrigin": "literal-surface-contract",
+      "optionalIncrementBOM": {
+        "Desc_Cable_C": 8,
+        "Desc_Cement_C": 40,
+        "Desc_IronPlateReinforced_C": 2,
+        "Desc_IronPlate_C": 18,
+        "Desc_IronRod_C": 2
+      },
+      "routeProcurementAllocation": {
+        "concretePlate150Included": true,
+        "includesRelatedCampusFreightOwnedOnceByWarehouse": true,
+        "initialPlate140Included": false,
+        "itemId": "Desc_IronPlate_C",
+        "nativeConsumedCost": false,
+        "notAdditionalBOM": true,
+        "partOfGlobal851": true,
+        "quantity": 150
+      },
+      "sourceGeometryStatus": "v6 authored source correction; fresh independent approval pending",
+      "terrainAndNativePorts": "unknown; no runtime, native spline, terrain or effective mod-stack certification"
+    },
+    "mode": "concrete_home",
+    "modeContracts": {
+      "concrete_home": {
+        "external_input_per_min": {
+          "Desc_Stone_C": 240.0
+        },
+        "lanes": [
+          {
+            "aggregate_max_flow_per_min": 80.0,
+            "balanced_flow_each_per_min": 80.0,
+            "belt_capacity_each": 750,
+            "item": "Desc_Cement_C",
+            "parallel_lanes": 1
+          },
+          {
+            "aggregate_max_flow_per_min": 240.0,
+            "balanced_flow_each_per_min": 240.0,
+            "belt_capacity_each": 750,
+            "item": "Desc_Stone_C",
+            "parallel_lanes": 1
+          }
+        ],
+        "lines": [
+          {
+            "clock_percent_each": 53.333333333333336,
+            "count": 2,
+            "density": 5,
+            "input_per_min": {
+              "Desc_Stone_C": 240.0
+            },
+            "machine_family": "constructor",
+            "output_per_min": {
+              "Desc_Cement_C": 80.0
+            },
+            "per_machine_ports": {
+              "inputs": {
+                "Desc_Stone_C": 120.0
+              },
+              "outputs": {
+                "Desc_Cement_C": 40.0
+              },
+              "receiving_belt_capacity": 750
+            },
+            "power_MW": 17.42496601929272,
+            "recipe": "Recipe_Concrete_C"
+          }
+        ],
+        "machine_count": 2,
+        "machine_material_bill": {
+          "Desc_Cable_C": 16,
+          "Desc_IronPlateReinforced_C": 4
+        },
+        "material_balance": [
+          {
+            "external_input_per_min": 0,
+            "gross_internal_demand_per_min": 0,
+            "gross_produced_per_min": 80.0,
+            "internal_consumed_per_min": 0,
+            "item": "Desc_Cement_C",
+            "net_output_per_min": 80.0
+          },
+          {
+            "external_input_per_min": 240.0,
+            "gross_internal_demand_per_min": 240.0,
+            "gross_produced_per_min": 0,
+            "internal_consumed_per_min": 0,
+            "item": "Desc_Stone_C",
+            "net_output_per_min": 0
+          }
+        ],
+        "node_allocations": [
+          {
+            "active_WB_Belt1_lanes": 1,
+            "capacity_each": 750,
+            "clock_percent": 100,
+            "flow_per_active_lane": 240.0,
+            "miner_family": "WB Miner1",
+            "node_id": "BP_ResourceNode_Limestone_2",
+            "nominal_capacity_per_min": 480,
+            "ports": 2,
+            "required_delivered_per_min": 240.0,
+            "save_actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65137E302_2073301891",
+            "unused_capacity_per_min": 240.0,
+            "unused_capacity_policy": "unprocessed expansion capacity; finite buffers then backpressure, not a second useful material stream"
+          }
+        ],
+        "power_with_25pct_process_margin_MW": 21.781207524115903,
+        "process_MW": 17.42496601929272,
+        "target_net_output_per_min": {
+          "Desc_Cement_C": 80
+        }
+      },
+      "concrete_tier4": {
+        "external_input_per_min": {
+          "Desc_Stone_C": 480.0
+        },
+        "lanes": [
+          {
+            "aggregate_max_flow_per_min": 160.0,
+            "balanced_flow_each_per_min": 160.0,
+            "belt_capacity_each": 750,
+            "item": "Desc_Cement_C",
+            "parallel_lanes": 1
+          },
+          {
+            "aggregate_max_flow_per_min": 480.0,
+            "balanced_flow_each_per_min": 480.0,
+            "belt_capacity_each": 750,
+            "item": "Desc_Stone_C",
+            "parallel_lanes": 1
+          }
+        ],
+        "lines": [
+          {
+            "clock_percent_each": 71.11111111111111,
+            "count": 3,
+            "density": 5,
+            "input_per_min": {
+              "Desc_Stone_C": 480.0
+            },
+            "machine_family": "constructor",
+            "output_per_min": {
+              "Desc_Cement_C": 160.0
+            },
+            "per_machine_ports": {
+              "inputs": {
+                "Desc_Stone_C": 160.0
+              },
+              "outputs": {
+                "Desc_Cement_C": 53.333333333333336
+              },
+              "receiving_belt_capacity": 750
+            },
+            "power_MW": 38.23166613420404,
+            "recipe": "Recipe_Concrete_C"
+          }
+        ],
+        "machine_count": 3,
+        "machine_material_bill": {
+          "Desc_Cable_C": 24,
+          "Desc_IronPlateReinforced_C": 6
+        },
+        "material_balance": [
+          {
+            "external_input_per_min": 0,
+            "gross_internal_demand_per_min": 0,
+            "gross_produced_per_min": 160.0,
+            "internal_consumed_per_min": 0,
+            "item": "Desc_Cement_C",
+            "net_output_per_min": 160.0
+          },
+          {
+            "external_input_per_min": 480.0,
+            "gross_internal_demand_per_min": 480.0,
+            "gross_produced_per_min": 0,
+            "internal_consumed_per_min": 0,
+            "item": "Desc_Stone_C",
+            "net_output_per_min": 0
+          }
+        ],
+        "node_allocations": [
+          {
+            "active_WB_Belt1_lanes": 1,
+            "capacity_each": 750,
+            "clock_percent": 100,
+            "flow_per_active_lane": 480.0,
+            "miner_family": "WB Miner1",
+            "node_id": "BP_ResourceNode_Limestone_2",
+            "nominal_capacity_per_min": 480,
+            "ports": 2,
+            "required_delivered_per_min": 480.0,
+            "save_actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65137E302_2073301891",
+            "unused_capacity_per_min": 0.0,
+            "unused_capacity_policy": "unprocessed expansion capacity; finite buffers then backpressure, not a second useful material stream"
+          }
+        ],
+        "power_with_25pct_process_margin_MW": 47.78958266775505,
+        "process_MW": 38.23166613420404,
+        "target_net_output_per_min": {
+          "Desc_Cement_C": 160
+        }
+      }
+    },
+    "mutuallyExclusiveFamily": "concrete",
+    "optionalIncrementBOM": {
+      "Desc_Cable_C": 8,
+      "Desc_Cement_C": 40,
+      "Desc_IronPlateReinforced_C": 2,
+      "Desc_IronPlate_C": 18,
+      "Desc_IronRod_C": 2
+    },
+    "phase": "assets-finalized",
+    "phaseOptionalBOM": {},
+    "powerNetworkScenarios": [
+      {
+        "Biomass5_count": 2,
+        "Coal5_count": 0,
+        "Water2_count": 0,
+        "coal_per_min": 0,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_early",
+          "concrete_home"
+        ],
+        "explicit_exclusions": [
+          "fuel-fabricator constructors",
+          "storage charging",
+          "future assemblers",
+          "HUB backup power",
+          "unmeasured modded consumers"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 265.8614240306407,
+        "gross_generation_MW": 300,
+        "headroom_after_25pct_margin_MW": 34.138575969359295,
+        "id": "tier1_home",
+        "miners_MW": 60,
+        "nominal_load_MW": 212.68913922451256,
+        "optional_fuel_fabrication_MW": 1.8091557004267784,
+        "optional_fuel_total_load_MW": 214.49829492493933,
+        "optional_fuel_with25pct_MW": 268.12286865617415,
+        "other_consumers_allowance_MW": 0,
+        "process_MW": 152.68913922451256,
+        "production_process_MW": 152.68913922451256,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 0,
+        "water_demand_m3_per_min": 0,
+        "water_extractor_capacity_m3_per_min": 0
+      },
+      {
+        "Biomass5_count": 2,
+        "Coal5_count": 0,
+        "Water2_count": 0,
+        "coal_per_min": 0,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_home",
+          "concrete_home"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 285.4239984675788,
+        "gross_generation_MW": 300,
+        "headroom_after_25pct_margin_MW": 14.576001532421174,
+        "id": "tier2_sheets",
+        "miners_MW": 60,
+        "nominal_load_MW": 228.33919877406308,
+        "other_consumers_allowance_MW": 0,
+        "process_MW": 168.33919877406308,
+        "production_process_MW": 168.33919877406308,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 0,
+        "water_demand_m3_per_min": 0,
+        "water_extractor_capacity_m3_per_min": 0
+      },
+      {
+        "Biomass5_count": 0,
+        "Coal5_count": 4,
+        "Water2_count": 4,
+        "coal_per_min": 300,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_home",
+          "concrete_home",
+          "mechanics_stock"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 982.4085407993949,
+        "gross_generation_MW": 1500,
+        "headroom_after_25pct_margin_MW": 517.5914592006051,
+        "id": "stock",
+        "miners_MW": 100,
+        "nominal_load_MW": 785.926832639516,
+        "other_consumers_allowance_MW": 50,
+        "process_MW": 475.92683263951596,
+        "production_process_MW": 475.92683263951596,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 160,
+        "water_demand_m3_per_min": 900,
+        "water_extractor_capacity_m3_per_min": 960
+      },
+      {
+        "Biomass5_count": 0,
+        "Coal5_count": 3,
+        "Water2_count": 3,
+        "coal_per_min": 225,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_home",
+          "concrete_home",
+          "phase1_pilot"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 847.3429144738454,
+        "gross_generation_MW": 1125,
+        "headroom_after_25pct_margin_MW": 277.65708552615456,
+        "id": "phase1_pilot",
+        "miners_MW": 100,
+        "nominal_load_MW": 677.8743315790764,
+        "other_consumers_allowance_MW": 50,
+        "process_MW": 407.8743315790764,
+        "production_process_MW": 407.8743315790764,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 120,
+        "water_demand_m3_per_min": 675,
+        "water_extractor_capacity_m3_per_min": 720
+      },
+      {
+        "Biomass5_count": 0,
+        "Coal5_count": 6,
+        "Water2_count": 6,
+        "coal_per_min": 450,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_home",
+          "concrete_home",
+          "phase1_comfort"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 2028.0361263569048,
+        "gross_generation_MW": 2250,
+        "headroom_after_25pct_margin_MW": 221.9638736430952,
+        "id": "phase1_comfort",
+        "miners_MW": 120,
+        "nominal_load_MW": 1622.4289010855239,
+        "other_consumers_allowance_MW": 50,
+        "process_MW": 1212.4289010855239,
+        "production_process_MW": 1212.4289010855239,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 240,
+        "water_demand_m3_per_min": 1350,
+        "water_extractor_capacity_m3_per_min": 1440
+      },
+      {
+        "Biomass5_count": 0,
+        "Coal5_count": 6,
+        "Water2_count": 6,
+        "allocation_override": {
+          "mechanics_stock": "After phase1 use Iron3 MkI100480; stock mode historical allocation Iron2 before phase1 is not concurrent with steel."
+        },
+        "coal_per_min": 450,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_home",
+          "concrete_home",
+          "mechanics_stock",
+          "steel_start"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 1379.4078724340804,
+        "gross_generation_MW": 2250,
+        "headroom_after_25pct_margin_MW": 870.5921275659196,
+        "id": "steel_start",
+        "miners_MW": 140,
+        "nominal_load_MW": 1103.5262979472643,
+        "other_consumers_allowance_MW": 50,
+        "process_MW": 673.5262979472643,
+        "production_process_MW": 673.5262979472643,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 240,
+        "water_demand_m3_per_min": 1350,
+        "water_extractor_capacity_m3_per_min": 1440
+      },
+      {
+        "Biomass5_count": 0,
+        "Coal5_count": 7,
+        "Water2_count": 7,
+        "coal_per_min": 525,
+        "concurrent_network_modes": [
+          "iron_home",
+          "copper_tier4",
+          "concrete_tier4",
+          "mechanics_tier4_reuse_D5",
+          "steel_tier4_comfort_D5",
+          "components_tier4"
+        ],
+        "fuel_policy": "Manual finite stock/standby. Optional fuelfabricator is separately budgeted, not included in selected steady manufacturing load.",
+        "fuel_process_MW": 0,
+        "generation_with_25pct_margin_required_MW": 2307.2501320655892,
+        "gross_generation_MW": 2625,
+        "headroom_after_25pct_margin_MW": 317.74986793441076,
+        "id": "tier4_selected",
+        "max_extra_continuous_load_preserving_25pct_MW": 254.19989434752847,
+        "miners_MW": 220,
+        "nominal_load_MW": 1845.8001056524715,
+        "other_consumers_allowance_MW": 50,
+        "process_MW": 1295.8001056524715,
+        "production_process_MW": 1295.8001056524715,
+        "status": "nominal WB source model only; effective mod stack, lift/pump head and other consumers remain runtime gates",
+        "water_MW": 280,
+        "water_demand_m3_per_min": 1575,
+        "water_extractor_capacity_m3_per_min": 1680
+      }
+    ],
+    "recipeChassis": {},
+    "routeQuantitySchedule": [
+      {
+        "capacity": 750,
+        "id": "concrete-E01",
+        "length_m": 8.100000000000001,
+        "rate": 240
+      },
+      {
+        "capacity": 750,
+        "id": "concrete-E02",
+        "length_m": 12.600000000000001,
+        "rate": 120
+      },
+      {
+        "capacity": 750,
+        "id": "concrete-E03",
+        "length_m": 10.600000000000001,
+        "rate": 120
+      },
+      {
+        "capacity": 750,
+        "id": "concrete-E04",
+        "length_m": 13.600000000000001,
+        "rate": 40
+      },
+      {
+        "capacity": 750,
+        "id": "concrete-E05",
+        "length_m": 11.600000000000001,
+        "rate": 40
+      },
+      {
+        "capacity": 750,
+        "id": "concrete-E06",
+        "length_m": 8.8,
+        "rate": 80
+      }
+    ],
+    "sourceGeometryAnalysis": {
+      "bodyClearanceModel": {
+        "beltHeight_m": 0.4,
+        "beltWidth_m": 1,
+        "bodyFaceAnchorOffset_m": 0.2,
+        "planarMargin_m": 1,
+        "terminalPolicy": "Own connected terminal may occupy only its contiguous body-exterior service approach under fullribbon+1x1vertex/lift first-complete-exit policy. Physical body intersection, foreign service/stem intersection and later actual reentry remain strictly forbidden; centreline-only exit is insufficient. Exact boundarytouch atX18.5 has0authoringmargin, notnativelegality."
+      },
+      "nativePhysics": "unverified",
+      "sourceContractSha256": "41aa7f58515eed075f90f4aac11ffda921fa57fd793699c68801bd212556e5c0",
+      "terminalApproachModel": "Declared intended material endpoint with matching input/output face and exact anchor; outward nearest leg; Only the contiguous terminal ribbon prefix/suffix up to its first full-width exit from the own service envelope is eligible; a centreline vertex outside the envelope is not by itself a full-width exit. The whole clipped ribbon remains outside the declared body face, not an offset socket plane. Lateral travel in that own body-exterior margin is allowed, without a transverse one-belt-width restriction. Physical body volumes, every foreign service envelope and every foreign support stem remain blocked; later service re-entry is not exempt. This is a source-envelope interpretation, not native socket/spline physics."
+    },
+    "sourceRevision": "d6831556a7f48fb86e9277480da5d30a227912f896938128a7218624d907c5a1"
+  },
+  "dependencies": [],
+  "drawingCount": 33,
   "drawings": [
     {
-      "id": "layout",
+      "caption": "Схема инженерных конвертов, не игровые меши. Сетка 8 м, габариты, координаты, обслуживание и явно заданный резерв.",
       "family": "floors",
-      "label": "Производственный уровень1 · сетка и машины",
-      "caption": "Локальные метры; габариты базовых WB-мешей из SCIM. Направление входов/выходов сверить по голограмме.",
+      "id": "layout",
+      "label": "L0 · размерный план",
       "levelId": "L0",
-      "svg": "/atlas/slave/concrete/revisions/e0ae6c1aa93c621f3fec8fad902e3352f1e5dc73f71d0f1e4a72d78be5df92af/layout.svg"
-    }
-  ],
-  "levels": [
-    {
-      "id": "L0",
-      "name": "Производственный уровень1",
-      "z": 4,
-      "type": "production",
-      "purpose": "12м между производственными полами; нижние4м — логистика,8м передний проход."
-    }
-  ],
-  "placements": [
-    {
-      "id": "P01-01",
-      "processId": "P01",
-      "levelId": "L0",
-      "x": 8,
-      "y": 16,
-      "z": 4,
-      "kind": "constructor",
-      "clock": 0.7111111111111111,
-      "width": 8,
-      "depth": 10,
-      "height": 8
+      "operatingState": "steady",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/layout.svg"
     },
     {
-      "id": "P01-02",
-      "processId": "P01",
+      "caption": "Схема инженерных конвертов, не игровые меши. Не более шести физических участков на лист; общие участки учтены один раз.",
+      "family": "technical",
+      "id": "logistics-L0-Desc_Cement_C-01",
+      "label": "L0 · Desc_Cement_C · трассы 1",
       "levelId": "L0",
-      "x": 20,
-      "y": 16,
-      "z": 4,
-      "kind": "constructor",
-      "clock": 0.7111111111111111,
-      "width": 8,
-      "depth": 10,
-      "height": 8
+      "operatingState": "steady",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/logistics-L0-Desc_Cement_C-01.svg"
     },
     {
-      "id": "P01-03",
-      "processId": "P01",
+      "caption": "Схема инженерных конвертов, не игровые меши. Не более шести физических участков на лист; общие участки учтены один раз.",
+      "family": "technical",
+      "id": "logistics-L0-Desc_Stone_C-01",
+      "label": "L0 · Desc_Stone_C · трассы 1",
       "levelId": "L0",
-      "x": 32,
-      "y": 16,
-      "z": 4,
-      "kind": "constructor",
-      "clock": 0.7111111111111111,
-      "width": 8,
-      "depth": 10,
-      "height": 8
+      "operatingState": "steady",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/logistics-L0-Desc_Stone_C-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Проекция XZ одного ряда; исходные основания и высоты без придуманных опор.",
+      "family": "assembly",
+      "id": "assembly-L0-row-01",
+      "label": "L0 · сборка ряда Y 13 м",
+      "levelId": "L0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/assembly-L0-row-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Проекция XZ одного ряда; исходные основания и высоты без придуманных опор.",
+      "family": "assembly",
+      "id": "assembly-L0-row-02",
+      "label": "L0 · сборка ряда Y 16 м",
+      "levelId": "L0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/assembly-L0-row-02.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Проекция XZ одного ряда; исходные основания и высоты без придуманных опор.",
+      "family": "assembly",
+      "id": "assembly-L0-row-03",
+      "label": "L0 · сборка ряда Y 27 м",
+      "levelId": "L0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/assembly-L0-row-03.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Сетка 8 м, габариты, координаты, обслуживание и явно заданный резерв.",
+      "family": "floors",
+      "id": "layout-G0",
+      "label": "G0 · размерный план",
+      "levelId": "G0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/layout-G0.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Не более шести физических участков на лист; общие участки учтены один раз.",
+      "family": "technical",
+      "id": "logistics-G0-Desc_Cement_C-01",
+      "label": "G0 · Desc_Cement_C · трассы 1",
+      "levelId": "G0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/logistics-G0-Desc_Cement_C-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Не более шести физических участков на лист; общие участки учтены один раз.",
+      "family": "technical",
+      "id": "logistics-G0-Desc_Stone_C-01",
+      "label": "G0 · Desc_Stone_C · трассы 1",
+      "levelId": "G0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/logistics-G0-Desc_Stone_C-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Проекция XZ одного ряда; исходные основания и высоты без придуманных опор.",
+      "family": "assembly",
+      "id": "assembly-G0-row-01",
+      "label": "G0 · сборка ряда Y 28 м",
+      "levelId": "G0",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/assembly-G0-row-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Резерв расширения — не построено, отдельная смета. Только явные будущие конверты, вспомогательные компоненты и плиты; без портов, трасс, питания и обещаний выпуска.",
+      "family": "technical",
+      "id": "expansion-reservation-01",
+      "label": "Резерв расширения — не построено, отдельная смета · 1/2",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/expansion-reservation-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Резерв расширения — не построено, отдельная смета. Только явные будущие конверты, вспомогательные компоненты и плиты; без портов, трасс, питания и обещаний выпуска.",
+      "family": "technical",
+      "id": "expansion-reservation-02",
+      "label": "Резерв расширения — не построено, отдельная смета · 2/2",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/expansion-reservation-02.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Точные координаты, высоты, монтаж/демонтаж и принадлежность к линиям. Активное состояние отделено от закупки.",
+      "family": "technical",
+      "id": "conveyor-supports-01",
+      "label": "Опоры конвейеров · 1/1",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/conveyor-supports-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Точные world XY / relative Z; только связи указанного состояния, не более шести на лист.",
+      "family": "technical",
+      "id": "campus-freight-concrete-only-01",
+      "label": "Кампус · freight · concrete-only · 1",
+      "networkState": "concrete-only",
+      "operatingState": "concrete-only",
+      "operatingStates": [
+        "concrete-only"
+      ],
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/campus-freight-concrete-only-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Точные world XY / relative Z; только связи указанного состояния, не более шести на лист.",
+      "family": "technical",
+      "id": "campus-freight-01",
+      "label": "Кампус · freight · steady · 1",
+      "networkState": "steady",
+      "operatingState": "steady",
+      "operatingStates": [
+        "steady"
+      ],
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/campus-freight-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Направленные соединения, групповые расходы, количество линий и машин из документа.",
+      "family": "technical",
+      "id": "material-flow",
+      "label": "Материальные потоки",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/material-flow.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Отсутствующие данные названы явно; геометрия и расход не подменены предположениями.",
+      "family": "technical",
+      "id": "layout-requirements",
+      "label": "Поля и ограничения выпуска",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/layout-requirements.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Сетка 8 м, габариты, координаты, обслуживание и явно заданный резерв.",
+      "family": "floors",
+      "id": "state-concrete-only-layout",
+      "label": "concrete-only · L0 · размерный план",
+      "levelId": "L0",
+      "operatingState": "concrete-only",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/state-concrete-only-layout.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Не более шести физических участков на лист; общие участки учтены один раз.",
+      "family": "technical",
+      "id": "state-concrete-only-logistics-L0-Desc_Cement_C-01",
+      "label": "concrete-only · L0 · Desc_Cement_C · трассы 1",
+      "levelId": "L0",
+      "operatingState": "concrete-only",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/state-concrete-only-logistics-L0-Desc_Cement_C-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Не более шести физических участков на лист; общие участки учтены один раз.",
+      "family": "technical",
+      "id": "state-concrete-only-logistics-L0-Desc_Stone_C-01",
+      "label": "concrete-only · L0 · Desc_Stone_C · трассы 1",
+      "levelId": "L0",
+      "operatingState": "concrete-only",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/state-concrete-only-logistics-L0-Desc_Stone_C-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Проекция XZ одного ряда; исходные основания и высоты без придуманных опор.",
+      "family": "assembly",
+      "id": "state-concrete-only-assembly-L0-row-01",
+      "label": "concrete-only · L0 · сборка ряда Y 13 м",
+      "levelId": "L0",
+      "operatingState": "concrete-only",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/state-concrete-only-assembly-L0-row-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Проекция XZ одного ряда; исходные основания и высоты без придуманных опор.",
+      "family": "assembly",
+      "id": "state-concrete-only-assembly-L0-row-02",
+      "label": "concrete-only · L0 · сборка ряда Y 16 м",
+      "levelId": "L0",
+      "operatingState": "concrete-only",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/state-concrete-only-assembly-L0-row-02.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Проекция XZ одного ряда; исходные основания и высоты без придуманных опор.",
+      "family": "assembly",
+      "id": "state-concrete-only-assembly-L0-row-03",
+      "label": "concrete-only · L0 · сборка ряда Y 27 м",
+      "levelId": "L0",
+      "operatingState": "concrete-only",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/state-concrete-only-assembly-L0-row-03.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Сетка 8 м, габариты, координаты, обслуживание и явно заданный резерв.",
+      "family": "floors",
+      "id": "state-concrete-only-layout-G0",
+      "label": "concrete-only · G0 · размерный план",
+      "levelId": "G0",
+      "operatingState": "concrete-only",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/state-concrete-only-layout-G0.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Не более шести физических участков на лист; общие участки учтены один раз.",
+      "family": "technical",
+      "id": "state-concrete-only-logistics-G0-Desc_Cement_C-01",
+      "label": "concrete-only · G0 · Desc_Cement_C · трассы 1",
+      "levelId": "G0",
+      "operatingState": "concrete-only",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/state-concrete-only-logistics-G0-Desc_Cement_C-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Не более шести физических участков на лист; общие участки учтены один раз.",
+      "family": "technical",
+      "id": "state-concrete-only-logistics-G0-Desc_Stone_C-01",
+      "label": "concrete-only · G0 · Desc_Stone_C · трассы 1",
+      "levelId": "G0",
+      "operatingState": "concrete-only",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/state-concrete-only-logistics-G0-Desc_Stone_C-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Проекция XZ одного ряда; исходные основания и высоты без придуманных опор.",
+      "family": "assembly",
+      "id": "state-concrete-only-assembly-G0-row-01",
+      "label": "concrete-only · G0 · сборка ряда Y 28 м",
+      "levelId": "G0",
+      "operatingState": "concrete-only",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/state-concrete-only-assembly-G0-row-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Точные координаты, высоты, монтаж/демонтаж и принадлежность к линиям. Активное состояние отделено от закупки.",
+      "family": "technical",
+      "id": "state-concrete-only-conveyor-supports-01",
+      "label": "concrete-only · Опоры конвейеров · 1/1",
+      "operatingState": "concrete-only",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/state-concrete-only-conveyor-supports-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Точные world XY / relative Z; только связи указанного состояния, не более шести на лист.",
+      "family": "technical",
+      "id": "state-concrete-only-campus-freight-01",
+      "label": "concrete-only · Кампус · freight · concrete-only · 1",
+      "networkState": "concrete-only",
+      "operatingState": "concrete-only",
+      "operatingStates": [
+        "concrete-only"
+      ],
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/state-concrete-only-campus-freight-01.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Направленные соединения, групповые расходы, количество линий и машин из документа.",
+      "family": "technical",
+      "id": "state-concrete-only-material-flow",
+      "label": "concrete-only · Материальные потоки",
+      "operatingState": "concrete-only",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/state-concrete-only-material-flow.svg"
+    },
+    {
+      "caption": "Схема инженерных конвертов, не игровые меши. Отсутствующие данные названы явно; геометрия и расход не подменены предположениями.",
+      "family": "technical",
+      "id": "state-concrete-only-layout-requirements",
+      "label": "concrete-only · Поля и ограничения выпуска",
+      "operatingState": "concrete-only",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/state-concrete-only-layout-requirements.svg"
+    },
+    {
+      "caption": "Исходниковая схема, не игровые меши и не доказательство коллизий.",
+      "family": "volumes",
+      "id": "blender-assembly",
+      "label": "Объёмная сборка",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/render.png"
+    },
+    {
+      "caption": "Blender: верхняя проекция всех отметок / инженерные конверты, не игровые меши.",
+      "family": "floors",
+      "id": "blender-plan",
+      "label": "Blender: верхняя проекция",
+      "operatingState": "steady",
+      "svg": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/blender-plan.png"
     }
   ],
+  "evidence": {
+    "downloads": [
+      {
+        "label": "engineering.blend",
+        "path": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/engineering.blend"
+      },
+      {
+        "label": "render-provenance.json",
+        "path": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/render-provenance.json"
+      }
+    ],
+    "items": [
+      {
+        "detail": "Хеши входов и стандартных коэффициентов закреплены в инженерном плане.",
+        "id": "source",
+        "label": "Исходники",
+        "status": "verified"
+      },
+      {
+        "detail": "Рельеф, абсолютные высоты, береговая глубина и игровые коллизии не проверены.",
+        "id": "terrain",
+        "label": "Обмер",
+        "status": "unverified"
+      },
+      {
+        "detail": "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки.",
+        "id": "runtime",
+        "label": "Работа модов",
+        "status": "unverified"
+      }
+    ],
+    "notes": [
+      "Ассеты закреплены за исходниковым проектом; игровые ограничения не сняты."
+    ],
+    "sources": [
+      {
+        "label": "Текущий анализ прогрессии",
+        "url": "/worlds/paradise-island/analysis/progression"
+      }
+    ]
+  },
+  "extraction": [
+    {
+      "actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65137E302_2073301891",
+      "belt": 750,
+      "clock": 1,
+      "configuredCapacity": 480,
+      "deliveredRate": 240,
+      "lanes": 1,
+      "miner": 1,
+      "nodeId": "BP_ResourceNode_Limestone_2",
+      "perLane": 480.0,
+      "placementId": "MINER-01",
+      "ports": 2,
+      "powerMW": 20,
+      "raw": 480,
+      "status": "Настроенная добыча, не постоянная доставка: при заполнении буфера бур простаивает.",
+      "xyz": [
+        -1807.21,
+        2729.69,
+        0.95
+      ]
+    }
+  ],
+  "id": "concrete",
   "infrastructure": {
+    "diagrams": [],
     "notes": [
       {
-        "title": "Координаты и питание",
-        "body": "Конверт 48×48м, центр(-1695;2735). Вход питания на задней стороне, отдельная подписанная ветвь от распределителя. Ленты не перекрывают8м пешеходный доступ."
+        "body": "Каждому потребителю выделена параллельная ветвь. Обычный разветвитель не приоритетный: расход устанавливается при разгоне и обратном давлении. Конечный контейнер не стоит в транзите другой детали. Настроенная добыча и непрерывно принимаемый расход различаются; полный буфер вызывает простой.",
+        "title": "Приём выходов"
+      },
+      {
+        "body": "Порты заданы явно как условные точки у корпуса, не как извлечённые игровые коннекторы. Одноуровневая схема использует поверхностные ленты и только явно показанные короткие переходы. Нативные изгибы, опоры и привязки проверяются перед строительством.",
+        "title": "Порты и коридоры"
+      }
+    ],
+    "streams": [
+      {
+        "capacity": 750,
+        "fluid": false,
+        "from": [
+          "Concrete"
+        ],
+        "id": "steady-stream-0001",
+        "itemId": "Desc_Cement_C",
+        "label": "Concrete",
+        "lanes": 1,
+        "rate": 40,
+        "to": "STOCK"
+      },
+      {
+        "capacity": 750,
+        "fluid": false,
+        "from": [
+          "Concrete"
+        ],
+        "id": "steady-stream-0002",
+        "itemId": "Desc_Cement_C",
+        "label": "Concrete",
+        "lanes": 1,
+        "rate": 40,
+        "to": "STOCK"
+      },
+      {
+        "capacity": 750,
+        "fluid": false,
+        "from": [
+          "RAW"
+        ],
+        "id": "steady-stream-0003",
+        "itemId": "Desc_Stone_C",
+        "label": "Limestone",
+        "lanes": 1,
+        "rate": 120,
+        "to": "Concrete"
+      },
+      {
+        "capacity": 750,
+        "fluid": false,
+        "from": [
+          "RAW"
+        ],
+        "id": "steady-stream-0004",
+        "itemId": "Desc_Stone_C",
+        "label": "Limestone",
+        "lanes": 1,
+        "rate": 120,
+        "to": "Concrete"
       }
     ],
     "tables": [
       {
-        "caption": "Ноды и реальные выходы",
+        "caption": "Выбранный режим concrete_home: одновременные потоки и активное оборудование",
         "columns": [
-          "Нода / координаты,м",
-          "Бур",
-          "Общая добыча/мин",
-          "Вывоз"
+          "Показатель",
+          "Предмет / процесс",
+          "Количество",
+          "Единица / настройка"
         ],
         "rows": [
           [
-            "BP_ResourceNode_Limestone_2 · [-1807.21, 2729.69, 0.95]",
-            "Miner1 100%",
-            "480",
-            "1×480 ≤750; портов2"
+            "Нетто-выход",
+            "Бетон",
+            "80",
+            "шт/мин"
+          ],
+          [
+            "Внешний вход",
+            "Limestone",
+            "240",
+            "шт/мин"
+          ],
+          [
+            "Активные машины",
+            "Concrete",
+            "2",
+            "шт; каждая 53.333333%"
+          ],
+          [
+            "Номинальная нагрузка производства",
+            "Без добычи и внешних потребителей",
+            "17.424966",
+            "МВт"
           ]
         ]
       },
       {
-        "caption": "Мощность без воды станции и трассовых насосов",
+        "caption": "Выбранный выпуск и ресурсные границы — разные сценарии, не обещание одновременного максимума",
         "columns": [
-          "Контур",
-          "MW"
+          "Сценарий",
+          "Продукт",
+          "Выпуск, шт/мин",
+          "Ограничение"
         ],
         "rows": [
           [
-            "Производство",
-            "38.232"
+            "Выбранный одновременный режим",
+            "Бетон",
+            "80",
+            "Нетто при свободном приёме; выбранные потребители учитываются общей сетью."
           ],
           [
-            "Добыча",
-            "20.000"
+            "Тот же Miner I на 100%",
+            "Бетон",
+            "160",
+            "Требуется дополнительный конструктор; промышленный расход уменьшает домашний остаток."
           ],
           [
-            "Итого",
-            "58.232"
+            "Эффективный предел установленной сборки",
+            "Все продукты",
+            "Неизвестен",
+            "Стандартные коэффициенты не заменяют измерение модов, питания и приёма."
           ]
         ]
       }
-    ],
-    "diagrams": [],
-    "streams": [
+    ]
+  },
+  "kind": "factory",
+  "layout": {
+    "allPhysicalEdges": [
       {
-        "id": "P01-Desc_Stone_C",
-        "itemId": "Desc_Stone_C",
-        "label": "Известняк",
-        "from": [
-          "RAW"
-        ],
-        "to": "P01",
-        "rate": 480.0,
-        "fluid": false,
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
         "capacity": 750,
-        "lanes": 1
+        "from": {
+          "interfaceId": "RAW"
+        },
+        "id": "concrete-E01",
+        "itemId": "Desc_Stone_C",
+        "kind": "belt",
+        "operatingStates": [
+          "concrete-only",
+          "steady"
+        ],
+        "points": [
+          [
+            13.2,
+            9.5,
+            9.5
+          ],
+          [
+            13.2,
+            13,
+            9.5
+          ],
+          [
+            13.2,
+            13,
+            5.5
+          ],
+          [
+            13.8,
+            13,
+            5.5
+          ]
+        ],
+        "rate": 240,
+        "schematic": true,
+        "stageIds": [
+          "concrete-chain"
+        ],
+        "to": {
+          "placementId": "S-ORE",
+          "portId": "input-left"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "capacity": 750,
+        "from": {
+          "placementId": "S-ORE",
+          "portId": "output-front"
+        },
+        "id": "concrete-E02",
+        "itemId": "Desc_Stone_C",
+        "kind": "belt",
+        "operatingStates": [
+          "concrete-only",
+          "steady"
+        ],
+        "points": [
+          [
+            16,
+            10.8,
+            5.5
+          ],
+          [
+            16,
+            9.5,
+            5.5
+          ],
+          [
+            6,
+            9.5,
+            5.5
+          ],
+          [
+            6,
+            10.8,
+            5.5
+          ]
+        ],
+        "rate": 120,
+        "schematic": true,
+        "stageIds": [
+          "concrete-chain"
+        ],
+        "to": {
+          "placementId": "CC-01",
+          "portId": "in"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "capacity": 750,
+        "from": {
+          "placementId": "S-ORE",
+          "portId": "output-right"
+        },
+        "id": "concrete-E03",
+        "itemId": "Desc_Stone_C",
+        "kind": "belt",
+        "operatingStates": [
+          "concrete-only",
+          "steady"
+        ],
+        "points": [
+          [
+            18.2,
+            13,
+            5.5
+          ],
+          [
+            18.5,
+            13,
+            5.5
+          ],
+          [
+            18.5,
+            9.5,
+            5.5
+          ],
+          [
+            24,
+            9.5,
+            5.5
+          ],
+          [
+            24,
+            10.8,
+            5.5
+          ]
+        ],
+        "rate": 120,
+        "schematic": true,
+        "sourceBoundary": {
+          "CC02ServiceMinX_m": 19,
+          "authoringMargin_m": 0,
+          "nativeLegality": "unverified; exact source boundary is not a positive native clearance",
+          "positiveBodyPenetrationAllowed": false,
+          "positiveForeignServiceOverlapAllowed": false,
+          "ribbonMaxX_m": 19,
+          "ribbonMinX_m": 18,
+          "ribbonWidth_m": 1,
+          "splitterBodyMaxX_m": 18,
+          "turnColumnX_m": 18.5
+        },
+        "stageIds": [
+          "concrete-chain"
+        ],
+        "terminalDeparturePolicy": "Exact named output and outward nearest leg; full ribbon remains body-exterior before lateral turn. Own physical body is never exempt. Only contiguous intended own-service terminal prefix/suffix may qualify under declared full-ribbon exit policy.",
+        "to": {
+          "placementId": "CC-02",
+          "portId": "in"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "capacity": 750,
+        "from": {
+          "placementId": "CC-01",
+          "portId": "out"
+        },
+        "id": "concrete-E04",
+        "itemId": "Desc_Cement_C",
+        "kind": "belt",
+        "operatingStates": [
+          "concrete-only",
+          "steady"
+        ],
+        "points": [
+          [
+            6,
+            21.2,
+            5.5
+          ],
+          [
+            6,
+            27,
+            5.5
+          ],
+          [
+            13.8,
+            27,
+            5.5
+          ]
+        ],
+        "rate": 40,
+        "schematic": true,
+        "stageIds": [
+          "concrete-chain"
+        ],
+        "to": {
+          "placementId": "M-CONCRETE",
+          "portId": "input-left"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "capacity": 750,
+        "from": {
+          "placementId": "CC-02",
+          "portId": "out"
+        },
+        "id": "concrete-E05",
+        "itemId": "Desc_Cement_C",
+        "kind": "belt",
+        "operatingStates": [
+          "concrete-only",
+          "steady"
+        ],
+        "points": [
+          [
+            24,
+            21.2,
+            5.5
+          ],
+          [
+            24,
+            27,
+            5.5
+          ],
+          [
+            18.2,
+            27,
+            5.5
+          ]
+        ],
+        "rate": 40,
+        "schematic": true,
+        "stageIds": [
+          "concrete-chain"
+        ],
+        "to": {
+          "placementId": "M-CONCRETE",
+          "portId": "input-right"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "capacity": 750,
+        "from": {
+          "placementId": "M-CONCRETE",
+          "portId": "output-rear"
+        },
+        "id": "concrete-E06",
+        "itemId": "Desc_Cement_C",
+        "kind": "belt",
+        "operatingStates": [
+          "concrete-only",
+          "steady"
+        ],
+        "points": [
+          [
+            16,
+            29.2,
+            5.5
+          ],
+          [
+            16,
+            38,
+            5.5
+          ]
+        ],
+        "rate": 80,
+        "schematic": true,
+        "stageIds": [
+          "concrete-chain"
+        ],
+        "to": {
+          "interfaceId": "STOCK-CONCRETE"
+        }
       }
+    ],
+    "campusLinkRefs": [
+      "FREIGHT-CONCRETE"
+    ],
+    "campusPowerRefs": [
+      "PW-EARLY-CONCRETE",
+      "PW-CC1",
+      "PW-CONCRETE-CHAIN",
+      "PW-CC2",
+      "PW-LIME-MINER"
+    ],
+    "coordinateConvention": "Metres; sitePlan x/y are world XY centres. Placement x/y are centres from local lower-left. RelativeZ shares schematic datum only, not surveyed absolute terrain.",
+    "externalLinks": [
+      {
+        "absoluteZStatus": "All relative Z uses a proposed common construction datum; source node absolute Z retained separately. Terrain and native connector reconciliation unknown.",
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "capacity": 750,
+        "coordinateSpace": "worldXY-relativeZ",
+        "from": {
+          "placementId": "MINER-01",
+          "portId": "out-0",
+          "projectId": "concrete"
+        },
+        "fromPlacementId": "MINER-01",
+        "fromPortId": "out-0",
+        "fromProjectId": "concrete",
+        "id": "concrete-RAW-WORLD",
+        "itemId": "Desc_Stone_C",
+        "kind": "belt",
+        "operatingStates": [
+          "concrete-only",
+          "steady"
+        ],
+        "ownerProjectId": "concrete",
+        "pointsWorldXYRelativeZ": [
+          [
+            -1800.01,
+            2729.69,
+            1.5
+          ],
+          [
+            -1799.2,
+            2729.69,
+            1.5
+          ],
+          [
+            -1799.2,
+            2729.69,
+            9.5
+          ],
+          [
+            -1730,
+            2729.69,
+            9.5
+          ],
+          [
+            -1730,
+            2724.5,
+            9.5
+          ],
+          [
+            -1709.8,
+            2724.5,
+            9.5
+          ]
+        ],
+        "rate": 240,
+        "schematic": true,
+        "stageIds": [
+          "concrete-chain"
+        ],
+        "to": {
+          "interfaceId": "RAW",
+          "projectId": "concrete"
+        },
+        "toInterfaceId": "RAW",
+        "toProjectId": "concrete"
+      }
+    ],
+    "externalPlacements": [
+      {
+        "absoluteZStatus": "All relative Z uses a proposed common construction datum; source node absolute Z retained separately. Terrain and native connector reconciliation unknown.",
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "clearance": {
+          "depth": 16,
+          "height": 19,
+          "width": 10
+        },
+        "clock": 1,
+        "componentId": "Miner1",
+        "depth": 14.0,
+        "height": 18.0,
+        "id": "MINER-01",
+        "kind": "miner",
+        "levelId": "external-node",
+        "nominalCapacity": 480,
+        "ports": [
+          {
+            "capacity": 750,
+            "direction": "output",
+            "face": "right",
+            "id": "out-0",
+            "itemId": "Desc_Stone_C",
+            "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+            "point": [
+              -77.00999999999999,
+              14.690000000000055,
+              1.5
+            ],
+            "schematic": true,
+            "type": "output"
+          },
+          {
+            "direction": "bidirectional",
+            "face": "unknown",
+            "id": "power",
+            "nativeTransformStatus": "unknown; schematic electrical anchor only",
+            "point": [
+              -84.21000000000004,
+              14.690000000000055,
+              7
+            ],
+            "schematic": true,
+            "type": "power"
+          }
+        ],
+        "processId": "",
+        "reservedOutlets": 1,
+        "rotatedEnvelope": {
+          "depth": 8,
+          "width": 14
+        },
+        "rotationDeg": 270,
+        "sourceNode": {
+          "id": "BP_ResourceNode_Limestone_2",
+          "purity": "RP_Pure",
+          "saveActor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65137E302_2073301891",
+          "sourceAssetSha256": "cd4378a82dff7b0802c1c4977d6d078c053770d7f75eab0bb8f49a339ef06939",
+          "xyz_m": [
+            -1807.21,
+            2729.69,
+            0.95
+          ]
+        },
+        "usefulDraw": 240,
+        "width": 8.0,
+        "x": -84.21000000000004,
+        "y": 14.690000000000055,
+        "z": 0
+      }
+    ],
+    "floorTiles": [
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "depth": 8,
+        "height": 1,
+        "id": "T-0-0",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 0,
+        "y": 0,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "depth": 8,
+        "height": 1,
+        "id": "T-0-1",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 0,
+        "y": 8,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "depth": 8,
+        "height": 1,
+        "id": "T-0-2",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 0,
+        "y": 16,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "depth": 8,
+        "height": 1,
+        "id": "T-1-0",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 8,
+        "y": 0,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "depth": 8,
+        "height": 1,
+        "id": "T-1-1",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 8,
+        "y": 8,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "depth": 8,
+        "height": 1,
+        "id": "T-1-2",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 8,
+        "y": 16,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "depth": 8,
+        "height": 1,
+        "id": "T-1-3",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 8,
+        "y": 24,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "depth": 8,
+        "height": 1,
+        "id": "T-2-0",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 16,
+        "y": 0,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "depth": 8,
+        "height": 1,
+        "id": "T-2-1",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 16,
+        "y": 8,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "depth": 8,
+        "height": 1,
+        "id": "T-2-2",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 16,
+        "y": 16,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "depth": 8,
+        "height": 1,
+        "id": "T-2-3",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 16,
+        "y": 24,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "depth": 8,
+        "height": 1,
+        "id": "T-3-0",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 24,
+        "y": 0,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "depth": 8,
+        "height": 1,
+        "id": "T-3-1",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 24,
+        "y": 8,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "depth": 8,
+        "height": 1,
+        "id": "T-3-2",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 24,
+        "y": 16,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "depth": 8,
+        "height": 1,
+        "id": "T-4-0",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 32,
+        "y": 0,
+        "z": 3
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "depth": 8,
+        "height": 1,
+        "id": "T-5-0",
+        "initialPlateChain": false,
+        "width": 8,
+        "x": 40,
+        "y": 0,
+        "z": 3
+      }
+    ],
+    "futureAuxiliary": [
+      {
+        "baseline": false,
+        "buildPhaseId": "future-concrete-expansion",
+        "clearance": {
+          "depth": 6,
+          "height": 4,
+          "width": 6
+        },
+        "componentId": "Build_ConveyorAttachmentMerger_C",
+        "depth": 4,
+        "height": 3,
+        "id": "M-CONCRETE-EXP",
+        "optionalGroup": "concrete-expansion",
+        "orientation": {
+          "inputFaces": [
+            "left",
+            "right"
+          ],
+          "outputFace": "rear"
+        },
+        "rotationDeg": 0,
+        "width": 4,
+        "x": 40,
+        "y": 32,
+        "z": 4
+      }
+    ],
+    "futureFoundationTiles": [
+      {
+        "baseline": false,
+        "depth": 8,
+        "height": 1,
+        "id": "FUTURE-T-5-3",
+        "optionalGroup": "concrete-expansion",
+        "width": 8,
+        "x": 40,
+        "y": 24,
+        "z": 3
+      },
+      {
+        "baseline": false,
+        "depth": 8,
+        "height": 1,
+        "id": "FUTURE-T-5-4",
+        "optionalGroup": "concrete-expansion",
+        "width": 8,
+        "x": 40,
+        "y": 32,
+        "z": 3
+      },
+      {
+        "baseline": false,
+        "depth": 8,
+        "height": 1,
+        "id": "FUTURE-T-4-1",
+        "optionalGroup": "concrete-expansion",
+        "width": 8,
+        "x": 32,
+        "y": 8,
+        "z": 3
+      },
+      {
+        "baseline": false,
+        "depth": 8,
+        "height": 1,
+        "id": "FUTURE-T-4-2",
+        "optionalGroup": "concrete-expansion",
+        "width": 8,
+        "x": 32,
+        "y": 16,
+        "z": 3
+      },
+      {
+        "baseline": false,
+        "depth": 8,
+        "height": 1,
+        "id": "FUTURE-T-4-3",
+        "optionalGroup": "concrete-expansion",
+        "width": 8,
+        "x": 32,
+        "y": 24,
+        "z": 3
+      },
+      {
+        "baseline": false,
+        "depth": 8,
+        "height": 1,
+        "id": "FUTURE-T-4-4",
+        "optionalGroup": "concrete-expansion",
+        "width": 8,
+        "x": 32,
+        "y": 32,
+        "z": 3
+      },
+      {
+        "baseline": false,
+        "depth": 8,
+        "height": 1,
+        "id": "FUTURE-T-5-1",
+        "optionalGroup": "concrete-expansion",
+        "width": 8,
+        "x": 40,
+        "y": 8,
+        "z": 3
+      },
+      {
+        "baseline": false,
+        "depth": 8,
+        "height": 1,
+        "id": "FUTURE-T-5-2",
+        "optionalGroup": "concrete-expansion",
+        "width": 8,
+        "x": 40,
+        "y": 16,
+        "z": 3
+      }
+    ],
+    "futurePlacements": [
+      {
+        "baseline": false,
+        "clearance": {
+          "depth": 12,
+          "height": 9,
+          "width": 10
+        },
+        "depth": 10,
+        "future": true,
+        "height": 8,
+        "id": "CC-03",
+        "levelId": "L0",
+        "portBoundary": "Unwired oriented reservation only; no already-routed material/native ports asserted",
+        "recipe": "Recipe_Concrete_C",
+        "recipeKey": "Recipe_Concrete_C",
+        "rotationDeg": 0,
+        "width": 8,
+        "x": 40,
+        "y": 16,
+        "z": 4
+      }
+    ],
+    "geometryOrigin": "literal-surface-contract",
+    "interfaces": [
+      {
+        "capacity": 750,
+        "direction": "input",
+        "id": "RAW",
+        "itemId": "Desc_Stone_C",
+        "point": [
+          13.2,
+          9.5,
+          9.5
+        ],
+        "rate": 240,
+        "schematic": true
+      },
+      {
+        "capacity": 750,
+        "direction": "output",
+        "externalLinkId": "FREIGHT-CONCRETE",
+        "id": "STOCK-CONCRETE",
+        "itemId": "Desc_Cement_C",
+        "point": [
+          16,
+          38,
+          5.5
+        ],
+        "rate": 80,
+        "schematic": true
+      }
+    ],
+    "localToWorld": {
+      "absoluteFloorZ": "unknown",
+      "gamePortTransforms": "unknown",
+      "placementXY": "centres",
+      "xyOrigin_m": [
+        -1723.0,
+        2715.0
+      ]
+    },
+    "operatingState": "steady",
+    "physicalEdges": [
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "capacity": 750,
+        "from": {
+          "interfaceId": "RAW"
+        },
+        "id": "concrete-E01",
+        "itemId": "Desc_Stone_C",
+        "kind": "belt",
+        "logicalRouteIds": [
+          "steady-stream-0003-lane-1",
+          "steady-stream-0004-lane-1"
+        ],
+        "operatingStates": [
+          "concrete-only",
+          "steady"
+        ],
+        "points": [
+          [
+            13.2,
+            9.5,
+            9.5
+          ],
+          [
+            13.2,
+            13,
+            9.5
+          ],
+          [
+            13.2,
+            13,
+            5.5
+          ],
+          [
+            13.8,
+            13,
+            5.5
+          ]
+        ],
+        "rate": 240,
+        "schematic": true,
+        "schematicLength_m": 8.100000000000001,
+        "stageIds": [
+          "concrete-chain"
+        ],
+        "to": {
+          "placementId": "S-ORE",
+          "portId": "input-left"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "capacity": 750,
+        "from": {
+          "placementId": "S-ORE",
+          "portId": "output-front"
+        },
+        "id": "concrete-E02",
+        "itemId": "Desc_Stone_C",
+        "kind": "belt",
+        "logicalRouteIds": [
+          "steady-stream-0003-lane-1"
+        ],
+        "operatingStates": [
+          "concrete-only",
+          "steady"
+        ],
+        "points": [
+          [
+            16,
+            10.8,
+            5.5
+          ],
+          [
+            16,
+            9.5,
+            5.5
+          ],
+          [
+            6,
+            9.5,
+            5.5
+          ],
+          [
+            6,
+            10.8,
+            5.5
+          ]
+        ],
+        "rate": 120,
+        "schematic": true,
+        "schematicLength_m": 12.600000000000001,
+        "stageIds": [
+          "concrete-chain"
+        ],
+        "to": {
+          "placementId": "CC-01",
+          "portId": "in"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "capacity": 750,
+        "from": {
+          "placementId": "S-ORE",
+          "portId": "output-right"
+        },
+        "id": "concrete-E03",
+        "itemId": "Desc_Stone_C",
+        "kind": "belt",
+        "logicalRouteIds": [
+          "steady-stream-0004-lane-1"
+        ],
+        "operatingStates": [
+          "concrete-only",
+          "steady"
+        ],
+        "points": [
+          [
+            18.2,
+            13,
+            5.5
+          ],
+          [
+            18.5,
+            13,
+            5.5
+          ],
+          [
+            18.5,
+            9.5,
+            5.5
+          ],
+          [
+            24,
+            9.5,
+            5.5
+          ],
+          [
+            24,
+            10.8,
+            5.5
+          ]
+        ],
+        "rate": 120,
+        "schematic": true,
+        "schematicLength_m": 10.600000000000001,
+        "sourceBoundary": {
+          "CC02ServiceMinX_m": 19,
+          "authoringMargin_m": 0,
+          "nativeLegality": "unverified; exact source boundary is not a positive native clearance",
+          "positiveBodyPenetrationAllowed": false,
+          "positiveForeignServiceOverlapAllowed": false,
+          "ribbonMaxX_m": 19,
+          "ribbonMinX_m": 18,
+          "ribbonWidth_m": 1,
+          "splitterBodyMaxX_m": 18,
+          "turnColumnX_m": 18.5
+        },
+        "stageIds": [
+          "concrete-chain"
+        ],
+        "terminalDeparturePolicy": "Exact named output and outward nearest leg; full ribbon remains body-exterior before lateral turn. Own physical body is never exempt. Only contiguous intended own-service terminal prefix/suffix may qualify under declared full-ribbon exit policy.",
+        "to": {
+          "placementId": "CC-02",
+          "portId": "in"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "capacity": 750,
+        "from": {
+          "placementId": "CC-01",
+          "portId": "out"
+        },
+        "id": "concrete-E04",
+        "itemId": "Desc_Cement_C",
+        "kind": "belt",
+        "logicalRouteIds": [
+          "steady-stream-0001-lane-1"
+        ],
+        "operatingStates": [
+          "concrete-only",
+          "steady"
+        ],
+        "points": [
+          [
+            6,
+            21.2,
+            5.5
+          ],
+          [
+            6,
+            27,
+            5.5
+          ],
+          [
+            13.8,
+            27,
+            5.5
+          ]
+        ],
+        "rate": 40,
+        "schematic": true,
+        "schematicLength_m": 13.600000000000001,
+        "stageIds": [
+          "concrete-chain"
+        ],
+        "to": {
+          "placementId": "M-CONCRETE",
+          "portId": "input-left"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "capacity": 750,
+        "from": {
+          "placementId": "CC-02",
+          "portId": "out"
+        },
+        "id": "concrete-E05",
+        "itemId": "Desc_Cement_C",
+        "kind": "belt",
+        "logicalRouteIds": [
+          "steady-stream-0002-lane-1"
+        ],
+        "operatingStates": [
+          "concrete-only",
+          "steady"
+        ],
+        "points": [
+          [
+            24,
+            21.2,
+            5.5
+          ],
+          [
+            24,
+            27,
+            5.5
+          ],
+          [
+            18.2,
+            27,
+            5.5
+          ]
+        ],
+        "rate": 40,
+        "schematic": true,
+        "schematicLength_m": 11.600000000000001,
+        "stageIds": [
+          "concrete-chain"
+        ],
+        "to": {
+          "placementId": "M-CONCRETE",
+          "portId": "input-right"
+        }
+      },
+      {
+        "baseline": true,
+        "buildPhaseId": "concrete-chain",
+        "capacity": 750,
+        "from": {
+          "placementId": "M-CONCRETE",
+          "portId": "output-rear"
+        },
+        "id": "concrete-E06",
+        "itemId": "Desc_Cement_C",
+        "kind": "belt",
+        "logicalRouteIds": [
+          "steady-stream-0001-lane-1",
+          "steady-stream-0002-lane-1"
+        ],
+        "operatingStates": [
+          "concrete-only",
+          "steady"
+        ],
+        "points": [
+          [
+            16,
+            29.2,
+            5.5
+          ],
+          [
+            16,
+            38,
+            5.5
+          ]
+        ],
+        "rate": 80,
+        "schematic": true,
+        "schematicLength_m": 8.8,
+        "stageIds": [
+          "concrete-chain"
+        ],
+        "to": {
+          "interfaceId": "STOCK-CONCRETE"
+        }
+      }
+    ],
+    "powerConnections": [],
+    "reservations": [
+      {
+        "accessStatus": "Final front walkway funded; early eight-tile access is terrain-relative, no elevated stair certification",
+        "clearOfBodies": true,
+        "depth": 8,
+        "id": "FRONT-8M",
+        "kind": "service-aisle",
+        "width": 48,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "clearOfBodies": true,
+        "depth": 40,
+        "id": "SIDE-8M",
+        "kind": "expansion",
+        "width": 8,
+        "x": 48,
+        "y": 0
+      }
+    ],
+    "routes": [
+      {
+        "fromPlacementId": "CC-01",
+        "id": "steady-stream-0001-lane-1",
+        "kind": "belt",
+        "lane": 1,
+        "note": "Распределение по явно заданным физическим рёбрам; внутренний переход узла не является отдельной лентой.",
+        "operatingState": "steady",
+        "points": [
+          [
+            6,
+            21.2,
+            5.5
+          ],
+          [
+            6,
+            27,
+            5.5
+          ],
+          [
+            13.8,
+            27,
+            5.5
+          ],
+          [
+            16,
+            29.2,
+            5.5
+          ],
+          [
+            16,
+            38,
+            5.5
+          ]
+        ],
+        "rate": 40,
+        "sharedPhysicalEdgeIds": [
+          "concrete-E04",
+          "concrete-E06"
+        ],
+        "streamId": "steady-stream-0001"
+      },
+      {
+        "fromPlacementId": "CC-02",
+        "id": "steady-stream-0002-lane-1",
+        "kind": "belt",
+        "lane": 1,
+        "note": "Распределение по явно заданным физическим рёбрам; внутренний переход узла не является отдельной лентой.",
+        "operatingState": "steady",
+        "points": [
+          [
+            24,
+            21.2,
+            5.5
+          ],
+          [
+            24,
+            27,
+            5.5
+          ],
+          [
+            18.2,
+            27,
+            5.5
+          ],
+          [
+            16,
+            29.2,
+            5.5
+          ],
+          [
+            16,
+            38,
+            5.5
+          ]
+        ],
+        "rate": 40,
+        "sharedPhysicalEdgeIds": [
+          "concrete-E05",
+          "concrete-E06"
+        ],
+        "streamId": "steady-stream-0002"
+      },
+      {
+        "id": "steady-stream-0003-lane-1",
+        "kind": "belt",
+        "lane": 1,
+        "note": "Распределение по явно заданным физическим рёбрам; внутренний переход узла не является отдельной лентой.",
+        "operatingState": "steady",
+        "points": [
+          [
+            13.2,
+            9.5,
+            9.5
+          ],
+          [
+            13.2,
+            13,
+            9.5
+          ],
+          [
+            13.2,
+            13,
+            5.5
+          ],
+          [
+            13.8,
+            13,
+            5.5
+          ],
+          [
+            16,
+            10.8,
+            5.5
+          ],
+          [
+            16,
+            9.5,
+            5.5
+          ],
+          [
+            6,
+            9.5,
+            5.5
+          ],
+          [
+            6,
+            10.8,
+            5.5
+          ]
+        ],
+        "rate": 120,
+        "sharedPhysicalEdgeIds": [
+          "concrete-E01",
+          "concrete-E02"
+        ],
+        "streamId": "steady-stream-0003",
+        "toPlacementId": "CC-01"
+      },
+      {
+        "id": "steady-stream-0004-lane-1",
+        "kind": "belt",
+        "lane": 1,
+        "note": "Распределение по явно заданным физическим рёбрам; внутренний переход узла не является отдельной лентой.",
+        "operatingState": "steady",
+        "points": [
+          [
+            13.2,
+            9.5,
+            9.5
+          ],
+          [
+            13.2,
+            13,
+            9.5
+          ],
+          [
+            13.2,
+            13,
+            5.5
+          ],
+          [
+            13.8,
+            13,
+            5.5
+          ],
+          [
+            18.2,
+            13,
+            5.5
+          ],
+          [
+            18.5,
+            13,
+            5.5
+          ],
+          [
+            18.5,
+            9.5,
+            5.5
+          ],
+          [
+            24,
+            9.5,
+            5.5
+          ],
+          [
+            24,
+            10.8,
+            5.5
+          ]
+        ],
+        "rate": 120,
+        "sharedPhysicalEdgeIds": [
+          "concrete-E01",
+          "concrete-E03"
+        ],
+        "streamId": "steady-stream-0004",
+        "toPlacementId": "CC-02"
+      }
+    ],
+    "stateGeometry": {
+      "concrete-only": {
+        "edgeIds": [
+          "concrete-E01",
+          "concrete-E02",
+          "concrete-E03",
+          "concrete-E04",
+          "concrete-E05",
+          "concrete-E06"
+        ],
+        "externalLinkIds": [
+          "concrete-RAW-WORLD"
+        ],
+        "floorTiles": [
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "depth": 8,
+            "height": 1,
+            "id": "T-0-0",
+            "initialPlateChain": false,
+            "width": 8,
+            "x": 0,
+            "y": 0,
+            "z": 3
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "depth": 8,
+            "height": 1,
+            "id": "T-0-1",
+            "initialPlateChain": false,
+            "width": 8,
+            "x": 0,
+            "y": 8,
+            "z": 3
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "depth": 8,
+            "height": 1,
+            "id": "T-0-2",
+            "initialPlateChain": false,
+            "width": 8,
+            "x": 0,
+            "y": 16,
+            "z": 3
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "depth": 8,
+            "height": 1,
+            "id": "T-1-0",
+            "initialPlateChain": false,
+            "width": 8,
+            "x": 8,
+            "y": 0,
+            "z": 3
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "depth": 8,
+            "height": 1,
+            "id": "T-1-1",
+            "initialPlateChain": false,
+            "width": 8,
+            "x": 8,
+            "y": 8,
+            "z": 3
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "depth": 8,
+            "height": 1,
+            "id": "T-1-2",
+            "initialPlateChain": false,
+            "width": 8,
+            "x": 8,
+            "y": 16,
+            "z": 3
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "depth": 8,
+            "height": 1,
+            "id": "T-1-3",
+            "initialPlateChain": false,
+            "width": 8,
+            "x": 8,
+            "y": 24,
+            "z": 3
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "depth": 8,
+            "height": 1,
+            "id": "T-2-0",
+            "initialPlateChain": false,
+            "width": 8,
+            "x": 16,
+            "y": 0,
+            "z": 3
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "depth": 8,
+            "height": 1,
+            "id": "T-2-1",
+            "initialPlateChain": false,
+            "width": 8,
+            "x": 16,
+            "y": 8,
+            "z": 3
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "depth": 8,
+            "height": 1,
+            "id": "T-2-2",
+            "initialPlateChain": false,
+            "width": 8,
+            "x": 16,
+            "y": 16,
+            "z": 3
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "depth": 8,
+            "height": 1,
+            "id": "T-2-3",
+            "initialPlateChain": false,
+            "width": 8,
+            "x": 16,
+            "y": 24,
+            "z": 3
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "depth": 8,
+            "height": 1,
+            "id": "T-3-0",
+            "initialPlateChain": false,
+            "width": 8,
+            "x": 24,
+            "y": 0,
+            "z": 3
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "depth": 8,
+            "height": 1,
+            "id": "T-3-1",
+            "initialPlateChain": false,
+            "width": 8,
+            "x": 24,
+            "y": 8,
+            "z": 3
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "depth": 8,
+            "height": 1,
+            "id": "T-3-2",
+            "initialPlateChain": false,
+            "width": 8,
+            "x": 24,
+            "y": 16,
+            "z": 3
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "depth": 8,
+            "height": 1,
+            "id": "T-4-0",
+            "initialPlateChain": false,
+            "width": 8,
+            "x": 32,
+            "y": 0,
+            "z": 3
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "depth": 8,
+            "height": 1,
+            "id": "T-5-0",
+            "initialPlateChain": false,
+            "width": 8,
+            "x": 40,
+            "y": 0,
+            "z": 3
+          }
+        ],
+        "label": "concrete-only",
+        "phaseEdgeIds": [
+          "concrete-E01",
+          "concrete-E02",
+          "concrete-E03",
+          "concrete-E04",
+          "concrete-E05",
+          "concrete-E06"
+        ],
+        "physicalEdges": [
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "capacity": 750,
+            "from": {
+              "interfaceId": "RAW"
+            },
+            "id": "concrete-E01",
+            "itemId": "Desc_Stone_C",
+            "kind": "belt",
+            "logicalRouteIds": [
+              "concrete-only-stream-0003-lane-1",
+              "concrete-only-stream-0004-lane-1"
+            ],
+            "operatingStates": [
+              "concrete-only",
+              "steady"
+            ],
+            "points": [
+              [
+                13.2,
+                9.5,
+                9.5
+              ],
+              [
+                13.2,
+                13,
+                9.5
+              ],
+              [
+                13.2,
+                13,
+                5.5
+              ],
+              [
+                13.8,
+                13,
+                5.5
+              ]
+            ],
+            "rate": 240,
+            "schematic": true,
+            "schematicLength_m": 8.100000000000001,
+            "stageIds": [
+              "concrete-chain"
+            ],
+            "to": {
+              "placementId": "S-ORE",
+              "portId": "input-left"
+            }
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "capacity": 750,
+            "from": {
+              "placementId": "S-ORE",
+              "portId": "output-front"
+            },
+            "id": "concrete-E02",
+            "itemId": "Desc_Stone_C",
+            "kind": "belt",
+            "logicalRouteIds": [
+              "concrete-only-stream-0003-lane-1"
+            ],
+            "operatingStates": [
+              "concrete-only",
+              "steady"
+            ],
+            "points": [
+              [
+                16,
+                10.8,
+                5.5
+              ],
+              [
+                16,
+                9.5,
+                5.5
+              ],
+              [
+                6,
+                9.5,
+                5.5
+              ],
+              [
+                6,
+                10.8,
+                5.5
+              ]
+            ],
+            "rate": 120,
+            "schematic": true,
+            "schematicLength_m": 12.600000000000001,
+            "stageIds": [
+              "concrete-chain"
+            ],
+            "to": {
+              "placementId": "CC-01",
+              "portId": "in"
+            }
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "capacity": 750,
+            "from": {
+              "placementId": "S-ORE",
+              "portId": "output-right"
+            },
+            "id": "concrete-E03",
+            "itemId": "Desc_Stone_C",
+            "kind": "belt",
+            "logicalRouteIds": [
+              "concrete-only-stream-0004-lane-1"
+            ],
+            "operatingStates": [
+              "concrete-only",
+              "steady"
+            ],
+            "points": [
+              [
+                18.2,
+                13,
+                5.5
+              ],
+              [
+                18.5,
+                13,
+                5.5
+              ],
+              [
+                18.5,
+                9.5,
+                5.5
+              ],
+              [
+                24,
+                9.5,
+                5.5
+              ],
+              [
+                24,
+                10.8,
+                5.5
+              ]
+            ],
+            "rate": 120,
+            "schematic": true,
+            "schematicLength_m": 10.600000000000001,
+            "sourceBoundary": {
+              "CC02ServiceMinX_m": 19,
+              "authoringMargin_m": 0,
+              "nativeLegality": "unverified; exact source boundary is not a positive native clearance",
+              "positiveBodyPenetrationAllowed": false,
+              "positiveForeignServiceOverlapAllowed": false,
+              "ribbonMaxX_m": 19,
+              "ribbonMinX_m": 18,
+              "ribbonWidth_m": 1,
+              "splitterBodyMaxX_m": 18,
+              "turnColumnX_m": 18.5
+            },
+            "stageIds": [
+              "concrete-chain"
+            ],
+            "terminalDeparturePolicy": "Exact named output and outward nearest leg; full ribbon remains body-exterior before lateral turn. Own physical body is never exempt. Only contiguous intended own-service terminal prefix/suffix may qualify under declared full-ribbon exit policy.",
+            "to": {
+              "placementId": "CC-02",
+              "portId": "in"
+            }
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "capacity": 750,
+            "from": {
+              "placementId": "CC-01",
+              "portId": "out"
+            },
+            "id": "concrete-E04",
+            "itemId": "Desc_Cement_C",
+            "kind": "belt",
+            "logicalRouteIds": [
+              "concrete-only-stream-0001-lane-1"
+            ],
+            "operatingStates": [
+              "concrete-only",
+              "steady"
+            ],
+            "points": [
+              [
+                6,
+                21.2,
+                5.5
+              ],
+              [
+                6,
+                27,
+                5.5
+              ],
+              [
+                13.8,
+                27,
+                5.5
+              ]
+            ],
+            "rate": 40,
+            "schematic": true,
+            "schematicLength_m": 13.600000000000001,
+            "stageIds": [
+              "concrete-chain"
+            ],
+            "to": {
+              "placementId": "M-CONCRETE",
+              "portId": "input-left"
+            }
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "capacity": 750,
+            "from": {
+              "placementId": "CC-02",
+              "portId": "out"
+            },
+            "id": "concrete-E05",
+            "itemId": "Desc_Cement_C",
+            "kind": "belt",
+            "logicalRouteIds": [
+              "concrete-only-stream-0002-lane-1"
+            ],
+            "operatingStates": [
+              "concrete-only",
+              "steady"
+            ],
+            "points": [
+              [
+                24,
+                21.2,
+                5.5
+              ],
+              [
+                24,
+                27,
+                5.5
+              ],
+              [
+                18.2,
+                27,
+                5.5
+              ]
+            ],
+            "rate": 40,
+            "schematic": true,
+            "schematicLength_m": 11.600000000000001,
+            "stageIds": [
+              "concrete-chain"
+            ],
+            "to": {
+              "placementId": "M-CONCRETE",
+              "portId": "input-right"
+            }
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "capacity": 750,
+            "from": {
+              "placementId": "M-CONCRETE",
+              "portId": "output-rear"
+            },
+            "id": "concrete-E06",
+            "itemId": "Desc_Cement_C",
+            "kind": "belt",
+            "logicalRouteIds": [
+              "concrete-only-stream-0001-lane-1",
+              "concrete-only-stream-0002-lane-1"
+            ],
+            "operatingStates": [
+              "concrete-only",
+              "steady"
+            ],
+            "points": [
+              [
+                16,
+                29.2,
+                5.5
+              ],
+              [
+                16,
+                38,
+                5.5
+              ]
+            ],
+            "rate": 80,
+            "schematic": true,
+            "schematicLength_m": 8.8,
+            "stageIds": [
+              "concrete-chain"
+            ],
+            "to": {
+              "interfaceId": "STOCK-CONCRETE"
+            }
+          }
+        ],
+        "placementIds": [
+          "CC-01",
+          "CC-02",
+          "M-CONCRETE",
+          "MINER-01",
+          "POLE-01",
+          "POLE-02",
+          "S-ORE"
+        ],
+        "placements": [
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "clearance": {
+              "depth": 12,
+              "height": 9,
+              "width": 10
+            },
+            "clock": 0.5333333333333333,
+            "componentId": "ConstructorMk1_D5",
+            "depth": 10.0,
+            "height": 8.0,
+            "id": "CC-01",
+            "kind": "constructor",
+            "levelId": "L0",
+            "ports": [
+              {
+                "capacity": 750,
+                "direction": "input",
+                "face": "front",
+                "id": "in",
+                "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+                "point": [
+                  6,
+                  10.8,
+                  5.5
+                ],
+                "schematic": true,
+                "type": "input"
+              },
+              {
+                "capacity": 750,
+                "direction": "output",
+                "face": "rear",
+                "id": "out",
+                "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+                "point": [
+                  6,
+                  21.2,
+                  5.5
+                ],
+                "schematic": true,
+                "type": "output"
+              },
+              {
+                "direction": "bidirectional",
+                "face": "unknown",
+                "id": "power",
+                "nativeTransformStatus": "unknown; schematic electrical anchor only",
+                "point": [
+                  6,
+                  16,
+                  6
+                ],
+                "schematic": true,
+                "type": "power"
+              }
+            ],
+            "processId": "Concrete",
+            "recipeKey": "Recipe_Concrete_C",
+            "rotationDeg": 0,
+            "width": 8.0,
+            "x": 6,
+            "y": 16,
+            "z": 4
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "clearance": {
+              "depth": 12,
+              "height": 9,
+              "width": 10
+            },
+            "clock": 0.5333333333333333,
+            "componentId": "ConstructorMk1_D5",
+            "depth": 10.0,
+            "height": 8.0,
+            "id": "CC-02",
+            "kind": "constructor",
+            "levelId": "L0",
+            "ports": [
+              {
+                "capacity": 750,
+                "direction": "input",
+                "face": "front",
+                "id": "in",
+                "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+                "point": [
+                  24,
+                  10.8,
+                  5.5
+                ],
+                "schematic": true,
+                "type": "input"
+              },
+              {
+                "capacity": 750,
+                "direction": "output",
+                "face": "rear",
+                "id": "out",
+                "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+                "point": [
+                  24,
+                  21.2,
+                  5.5
+                ],
+                "schematic": true,
+                "type": "output"
+              },
+              {
+                "direction": "bidirectional",
+                "face": "unknown",
+                "id": "power",
+                "nativeTransformStatus": "unknown; schematic electrical anchor only",
+                "point": [
+                  24,
+                  16,
+                  6
+                ],
+                "schematic": true,
+                "type": "power"
+              }
+            ],
+            "processId": "Concrete",
+            "recipeKey": "Recipe_Concrete_C",
+            "rotationDeg": 0,
+            "width": 8.0,
+            "x": 24,
+            "y": 16,
+            "z": 4
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "clearance": {
+              "depth": 6,
+              "height": 4,
+              "width": 6
+            },
+            "clock": 0,
+            "componentId": "Build_ConveyorAttachmentSplitter_C",
+            "depth": 4.0,
+            "height": 3.0,
+            "id": "S-ORE",
+            "kind": "splitter",
+            "levelId": "L0",
+            "orientation": {
+              "inputFace": "left",
+              "outputFaces": [
+                "front",
+                "right"
+              ]
+            },
+            "ports": [
+              {
+                "capacity": 750,
+                "direction": "input",
+                "face": "left",
+                "id": "input-left",
+                "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+                "point": [
+                  13.8,
+                  13,
+                  5.5
+                ],
+                "schematic": true,
+                "type": "input"
+              },
+              {
+                "capacity": 750,
+                "direction": "output",
+                "face": "front",
+                "id": "output-front",
+                "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+                "point": [
+                  16,
+                  10.8,
+                  5.5
+                ],
+                "schematic": true,
+                "type": "output"
+              },
+              {
+                "capacity": 750,
+                "direction": "output",
+                "face": "right",
+                "id": "output-right",
+                "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+                "point": [
+                  18.2,
+                  13,
+                  5.5
+                ],
+                "schematic": true,
+                "type": "output"
+              }
+            ],
+            "processId": "",
+            "rotationDeg": 90,
+            "width": 4.0,
+            "x": 16,
+            "y": 13,
+            "z": 4
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "clearance": {
+              "depth": 6,
+              "height": 4,
+              "width": 6
+            },
+            "clock": 0,
+            "componentId": "Build_ConveyorAttachmentMerger_C",
+            "depth": 4.0,
+            "height": 3.0,
+            "id": "M-CONCRETE",
+            "kind": "merger",
+            "levelId": "L0",
+            "orientation": {
+              "inputFaces": [
+                "left",
+                "right"
+              ],
+              "outputFace": "rear"
+            },
+            "ports": [
+              {
+                "capacity": 750,
+                "direction": "input",
+                "face": "left",
+                "id": "input-left",
+                "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+                "point": [
+                  13.8,
+                  27,
+                  5.5
+                ],
+                "schematic": true,
+                "type": "input"
+              },
+              {
+                "capacity": 750,
+                "direction": "input",
+                "face": "right",
+                "id": "input-right",
+                "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+                "point": [
+                  18.2,
+                  27,
+                  5.5
+                ],
+                "schematic": true,
+                "type": "input"
+              },
+              {
+                "capacity": 750,
+                "direction": "output",
+                "face": "rear",
+                "id": "output-rear",
+                "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+                "point": [
+                  16,
+                  29.2,
+                  5.5
+                ],
+                "schematic": true,
+                "type": "output"
+              }
+            ],
+            "processId": "",
+            "rotationDeg": 180,
+            "width": 4.0,
+            "x": 16,
+            "y": 27,
+            "z": 4
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "clearance": {
+              "depth": 3,
+              "height": 8,
+              "width": 3
+            },
+            "clock": 0,
+            "componentId": "PowerPoleMk1",
+            "depth": 1.0,
+            "height": 7.0,
+            "id": "POLE-01",
+            "kind": "pole",
+            "levelId": "G0",
+            "nominalGroundFootprintStatus": "G0 in deliberately unpoured T-0-3; no added foundation",
+            "ports": [
+              {
+                "direction": "bidirectional",
+                "face": "unknown",
+                "id": "power",
+                "nativeTransformStatus": "unknown; schematic electrical anchor only",
+                "point": [
+                  1,
+                  28,
+                  7
+                ],
+                "schematic": true,
+                "type": "power"
+              }
+            ],
+            "processId": "",
+            "rotationDeg": 0,
+            "width": 1.0,
+            "x": 1,
+            "y": 28,
+            "z": 0
+          },
+          {
+            "baseline": true,
+            "buildPhaseId": "concrete-chain",
+            "clearance": {
+              "depth": 3,
+              "height": 8,
+              "width": 3
+            },
+            "clock": 0,
+            "componentId": "PowerPoleMk1",
+            "depth": 1.0,
+            "height": 7.0,
+            "id": "POLE-02",
+            "kind": "pole",
+            "levelId": "G0",
+            "ports": [
+              {
+                "direction": "bidirectional",
+                "face": "unknown",
+                "id": "power",
+                "nativeTransformStatus": "unknown; schematic electrical anchor only",
+                "point": [
+                  30,
+                  28,
+                  7
+                ],
+                "schematic": true,
+                "type": "power"
+              }
+            ],
+            "processId": "",
+            "rotationDeg": 0,
+            "width": 1.0,
+            "x": 30,
+            "y": 28,
+            "z": 0
+          }
+        ],
+        "production": {
+          "candidateRecipeCount": 370,
+          "comparisons": [
+            {
+              "itemId": "Desc_Cement_C",
+              "label": "Concrete",
+              "variants": [
+                {
+                  "availability": "Открыт в текущем аудированном сейве. Каталожный уровень открытия: 0; наличие определяется аудитом этого сейва.",
+                  "byproducts": [],
+                  "inputs": [
+                    {
+                      "exact": "3",
+                      "itemId": "Desc_Stone_C",
+                      "label": "Limestone",
+                      "rate": 3,
+                      "unit": "шт/шт"
+                    }
+                  ],
+                  "key": "Recipe_Concrete_C",
+                  "machineKind": "constructor",
+                  "name": "Concrete",
+                  "notes": [
+                    "Номинал одной машины D5 на 100%; не измеренный предел установленной сборки.",
+                    "Выбран стандартный маршрут: 2 машин, каждая 53.333333%. Альтернативы не подставлены в расчёт и не добавлены в доступный каталог."
+                  ],
+                  "outputAtFullClock": 75,
+                  "path": "/Game/FactoryGame/Recipes/Constructor/Recipe_Concrete.Recipe_Concrete_C",
+                  "selected": true
+                }
+              ]
+            }
+          ],
+          "disposal": [],
+          "normalizedRecipeCount": 22,
+          "notes": [
+            "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки.",
+            "Каждому потребителю выделена параллельная ветвь. Обычный разветвитель не приоритетный: расход устанавливается при разгоне и обратном давлении. Конечный контейнер не стоит в транзите другой детали. Настроенная добыча и непрерывно принимаемый расход различаются; полный буфер вызывает простой."
+          ],
+          "processes": [
+            {
+              "clock": 0.5333333333333333,
+              "clockFraction": "8/15",
+              "constructionBOM": {
+                "Desc_Cable_C": 16,
+                "Desc_IronPlateReinforced_C": 4
+              },
+              "cyclesFraction": "80",
+              "cyclesPerMinute": 80,
+              "durationSeconds": 4,
+              "id": "Concrete",
+              "inputs": [
+                {
+                  "exact": "240",
+                  "itemId": "Desc_Stone_C",
+                  "label": "Limestone",
+                  "rate": 240,
+                  "unit": "шт/мин"
+                }
+              ],
+              "machineKind": "constructor",
+              "machineName": "Constructor",
+              "machines": 2,
+              "note": "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки.",
+              "outputs": [
+                {
+                  "exact": "80",
+                  "itemId": "Desc_Cement_C",
+                  "label": "Concrete",
+                  "rate": 80,
+                  "unit": "шт/мин"
+                }
+              ],
+              "powerMW": 17.42496601929272,
+              "recipeKey": "Recipe_Concrete_C",
+              "recipeName": "Concrete",
+              "recipePath": "/Game/FactoryGame/Recipes/Constructor/Recipe_Concrete.Recipe_Concrete_C",
+              "speedMultiplier": 5
+            }
+          ],
+          "rawInputs": [
+            {
+              "exact": "240",
+              "itemId": "Desc_Stone_C",
+              "label": "Limestone",
+              "rate": 240,
+              "unit": "шт/мин"
+            }
+          ],
+          "recipesFile": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/recipes.json",
+          "recipesSha256": "8c07079f64f7858390d01718e4b1c0c60b65dc04802f7212e204f9dd31673697",
+          "scenarios": {
+            "caption": "Источник, не эффективный максимум модов",
+            "columns": [
+              "Граница"
+            ],
+            "rows": [
+              [
+                "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки."
+              ]
+            ]
+          },
+          "targetItemId": "Desc_Cement_C",
+          "targetRate": 80,
+          "targets": [
+            {
+              "exact": "80",
+              "itemId": "Desc_Cement_C",
+              "label": "Concrete",
+              "rate": 80,
+              "unit": "шт/мин"
+            }
+          ]
+        },
+        "rawInputs": {
+          "Desc_Stone_C": 240.0
+        },
+        "requiredPowerConnectionIds": [
+          "PW-CC1",
+          "PW-CC2",
+          "PW-CONCRETE-CHAIN",
+          "PW-EARLY-CONCRETE",
+          "PW-LIME-MINER"
+        ],
+        "routes": [
+          {
+            "fromPlacementId": "CC-01",
+            "id": "concrete-only-stream-0001-lane-1",
+            "kind": "belt",
+            "lane": 1,
+            "note": "Распределение по явно заданным физическим рёбрам; внутренний переход узла не является отдельной лентой.",
+            "operatingState": "concrete-only",
+            "points": [
+              [
+                6,
+                21.2,
+                5.5
+              ],
+              [
+                6,
+                27,
+                5.5
+              ],
+              [
+                13.8,
+                27,
+                5.5
+              ],
+              [
+                16,
+                29.2,
+                5.5
+              ],
+              [
+                16,
+                38,
+                5.5
+              ]
+            ],
+            "rate": 40,
+            "sharedPhysicalEdgeIds": [
+              "concrete-E04",
+              "concrete-E06"
+            ],
+            "streamId": "concrete-only-stream-0001"
+          },
+          {
+            "fromPlacementId": "CC-02",
+            "id": "concrete-only-stream-0002-lane-1",
+            "kind": "belt",
+            "lane": 1,
+            "note": "Распределение по явно заданным физическим рёбрам; внутренний переход узла не является отдельной лентой.",
+            "operatingState": "concrete-only",
+            "points": [
+              [
+                24,
+                21.2,
+                5.5
+              ],
+              [
+                24,
+                27,
+                5.5
+              ],
+              [
+                18.2,
+                27,
+                5.5
+              ],
+              [
+                16,
+                29.2,
+                5.5
+              ],
+              [
+                16,
+                38,
+                5.5
+              ]
+            ],
+            "rate": 40,
+            "sharedPhysicalEdgeIds": [
+              "concrete-E05",
+              "concrete-E06"
+            ],
+            "streamId": "concrete-only-stream-0002"
+          },
+          {
+            "id": "concrete-only-stream-0003-lane-1",
+            "kind": "belt",
+            "lane": 1,
+            "note": "Распределение по явно заданным физическим рёбрам; внутренний переход узла не является отдельной лентой.",
+            "operatingState": "concrete-only",
+            "points": [
+              [
+                13.2,
+                9.5,
+                9.5
+              ],
+              [
+                13.2,
+                13,
+                9.5
+              ],
+              [
+                13.2,
+                13,
+                5.5
+              ],
+              [
+                13.8,
+                13,
+                5.5
+              ],
+              [
+                16,
+                10.8,
+                5.5
+              ],
+              [
+                16,
+                9.5,
+                5.5
+              ],
+              [
+                6,
+                9.5,
+                5.5
+              ],
+              [
+                6,
+                10.8,
+                5.5
+              ]
+            ],
+            "rate": 120,
+            "sharedPhysicalEdgeIds": [
+              "concrete-E01",
+              "concrete-E02"
+            ],
+            "streamId": "concrete-only-stream-0003",
+            "toPlacementId": "CC-01"
+          },
+          {
+            "id": "concrete-only-stream-0004-lane-1",
+            "kind": "belt",
+            "lane": 1,
+            "note": "Распределение по явно заданным физическим рёбрам; внутренний переход узла не является отдельной лентой.",
+            "operatingState": "concrete-only",
+            "points": [
+              [
+                13.2,
+                9.5,
+                9.5
+              ],
+              [
+                13.2,
+                13,
+                9.5
+              ],
+              [
+                13.2,
+                13,
+                5.5
+              ],
+              [
+                13.8,
+                13,
+                5.5
+              ],
+              [
+                18.2,
+                13,
+                5.5
+              ],
+              [
+                18.5,
+                13,
+                5.5
+              ],
+              [
+                18.5,
+                9.5,
+                5.5
+              ],
+              [
+                24,
+                9.5,
+                5.5
+              ],
+              [
+                24,
+                10.8,
+                5.5
+              ]
+            ],
+            "rate": 120,
+            "sharedPhysicalEdgeIds": [
+              "concrete-E01",
+              "concrete-E03"
+            ],
+            "streamId": "concrete-only-stream-0004",
+            "toPlacementId": "CC-02"
+          }
+        ],
+        "streams": [
+          {
+            "capacity": 750,
+            "fluid": false,
+            "from": [
+              "Concrete"
+            ],
+            "id": "concrete-only-stream-0001",
+            "itemId": "Desc_Cement_C",
+            "label": "Concrete",
+            "lanes": 1,
+            "rate": 40,
+            "to": "STOCK"
+          },
+          {
+            "capacity": 750,
+            "fluid": false,
+            "from": [
+              "Concrete"
+            ],
+            "id": "concrete-only-stream-0002",
+            "itemId": "Desc_Cement_C",
+            "label": "Concrete",
+            "lanes": 1,
+            "rate": 40,
+            "to": "STOCK"
+          },
+          {
+            "capacity": 750,
+            "fluid": false,
+            "from": [
+              "RAW"
+            ],
+            "id": "concrete-only-stream-0003",
+            "itemId": "Desc_Stone_C",
+            "label": "Limestone",
+            "lanes": 1,
+            "rate": 120,
+            "to": "Concrete"
+          },
+          {
+            "capacity": 750,
+            "fluid": false,
+            "from": [
+              "RAW"
+            ],
+            "id": "concrete-only-stream-0004",
+            "itemId": "Desc_Stone_C",
+            "label": "Limestone",
+            "lanes": 1,
+            "rate": 120,
+            "to": "Concrete"
+          }
+        ],
+        "supportIds": [
+          "BELT-SUPPORT-01",
+          "BELT-SUPPORT-02",
+          "BELT-SUPPORT-03",
+          "BELT-SUPPORT-04",
+          "T-0-0",
+          "T-0-1",
+          "T-0-2",
+          "T-1-0",
+          "T-1-1",
+          "T-1-2",
+          "T-1-3",
+          "T-2-0",
+          "T-2-1",
+          "T-2-2",
+          "T-2-3",
+          "T-3-0",
+          "T-3-1",
+          "T-3-2",
+          "T-4-0",
+          "T-5-0"
+        ],
+        "targets": {
+          "Desc_Cement_C": 80
+        }
+      }
+    },
+    "supports": {
+      "conveyorPoles": [
+        {
+          "adjustableStemHeight_m": 5.5,
+          "baseline": true,
+          "bill": {
+            "Desc_Cement_C": 1,
+            "Desc_IronPlate_C": 1,
+            "Desc_IronRod_C": 1
+          },
+          "buildPhaseId": "concrete-chain",
+          "componentId": "Build_ConveyorPole_C",
+          "coordinateSpace": "project-local metres",
+          "depth": 2,
+          "edgeIds": [
+            "interface-STOCK-CONCRETE"
+          ],
+          "height": 1,
+          "heightStatus": "Source says adjustable; native allowable height and attachment legality unverified",
+          "id": "BELT-SUPPORT-01",
+          "supportTopZ": 5.5,
+          "width": 1,
+          "x": 16,
+          "y": 38,
+          "z": 0
+        },
+        {
+          "adjustableStemHeight_m": 9.5,
+          "baseline": true,
+          "bill": {
+            "Desc_Cement_C": 1,
+            "Desc_IronPlate_C": 1,
+            "Desc_IronRod_C": 1
+          },
+          "buildPhaseId": "concrete-chain",
+          "componentId": "Build_ConveyorPole_C",
+          "coordinateSpace": "project-local metres",
+          "depth": 2,
+          "edgeIds": [
+            "concrete-RAW-WORLD"
+          ],
+          "height": 1,
+          "heightStatus": "Source says adjustable; native allowable height and attachment legality unverified",
+          "id": "BELT-SUPPORT-02",
+          "supportTopZ": 9.5,
+          "width": 1,
+          "x": -7.0,
+          "y": 14.690000000000055,
+          "z": 0
+        },
+        {
+          "adjustableStemHeight_m": 9.5,
+          "baseline": true,
+          "bill": {
+            "Desc_Cement_C": 1,
+            "Desc_IronPlate_C": 1,
+            "Desc_IronRod_C": 1
+          },
+          "buildPhaseId": "concrete-chain",
+          "componentId": "Build_ConveyorPole_C",
+          "coordinateSpace": "project-local metres",
+          "depth": 2,
+          "edgeIds": [
+            "concrete-RAW-WORLD"
+          ],
+          "height": 1,
+          "heightStatus": "Source says adjustable; native allowable height and attachment legality unverified",
+          "id": "BELT-SUPPORT-03",
+          "supportTopZ": 9.5,
+          "width": 1,
+          "x": -7.0,
+          "y": 9.5,
+          "z": 0
+        },
+        {
+          "adjustableStemHeight_m": 9.5,
+          "baseline": true,
+          "bill": {
+            "Desc_Cement_C": 1,
+            "Desc_IronPlate_C": 1,
+            "Desc_IronRod_C": 1
+          },
+          "buildPhaseId": "concrete-chain",
+          "componentId": "Build_ConveyorPole_C",
+          "coordinateSpace": "project-local metres",
+          "depth": 2,
+          "edgeIds": [
+            "concrete-RAW-WORLD"
+          ],
+          "height": 1,
+          "heightStatus": "Source says adjustable; native allowable height and attachment legality unverified",
+          "id": "BELT-SUPPORT-04",
+          "supportTopZ": 9.5,
+          "width": 1,
+          "x": -41.59999999999991,
+          "y": 14.690000000000055,
+          "z": 0
+        }
+      ],
+      "foundationTileIds": [
+        "T-0-0",
+        "T-0-1",
+        "T-0-2",
+        "T-1-0",
+        "T-1-1",
+        "T-1-2",
+        "T-1-3",
+        "T-2-0",
+        "T-2-1",
+        "T-2-2",
+        "T-2-3",
+        "T-3-0",
+        "T-3-1",
+        "T-3-2",
+        "T-4-0",
+        "T-5-0"
+      ],
+      "groundMountedPlacementIds": [
+        "POLE-01",
+        "POLE-02"
+      ]
+    }
+  },
+  "levels": [
+    {
+      "id": "L0",
+      "name": "Surface production deck",
+      "purpose": "1m foundations top4; belts5.5",
+      "type": "production",
+      "z": 4
+    },
+    {
+      "id": "G0",
+      "name": "Ground / existing datum",
+      "purpose": "Ground-mounted paid power poles; no raised floor, added tiles or native terrain certification",
+      "type": "ground",
+      "z": 0
+    }
+  ],
+  "overview": {
+    "concept": {
+      "alt": "Концепция облика",
+      "caption": "Материалы и облик; количества и координаты берутся из инженерных листов.",
+      "kind": "concept",
+      "src": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/concept.webp"
+    },
+    "decisions": [
+      {
+        "choice": "Ресурсная группа с раздельными конечными ветвями",
+        "instead": "Независимые максимумы всех продуктов и общая неограниченная шина",
+        "reason": "Бетон расположен у чистой Lime2: близкая нода даёт резерв без длинной начальной трассы к обычной Lime1. Настроенная добыча ограничивается фактическим приёмом.",
+        "tradeoff": "Расширение использует ещё один конструктор и тот же Miner I, а не обязательный Miner II. После подключения промышленных балок часть бетона становится их входом, а не домашним остатком."
+      }
+    ],
+    "paragraphs": [
+      "Бетон расположен у чистой Lime2: близкая нода даёт резерв без длинной начальной трассы к обычной Lime1. Настроенная добыча ограничивается фактическим приёмом.",
+      "Расширение использует ещё один конструктор и тот же Miner I, а не обязательный Miner II. После подключения промышленных балок часть бетона становится их входом, а не домашним остатком.",
+      "Каждому потребителю выделена параллельная ветвь. Обычный разветвитель не приоритетный: расход устанавливается при разгоне и обратном давлении. Конечный контейнер не стоит в транзите другой детали. Настроенная добыча и непрерывно принимаемый расход различаются; полный буфер вызывает простой.",
+      "Порты заданы явно как условные точки у корпуса, не как извлечённые игровые коннекторы. Одноуровневая схема использует поверхностные ленты и только явно показанные короткие переходы. Нативные изгибы, опоры и привязки проверяются перед строительством."
     ]
   },
   "parts": {
     "items": [
       {
-        "code": "constructor",
-        "name": "WB конструкторD5",
-        "recipeKey": "Recipe_ConstructorMk1_C",
-        "recipePath": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConstructorMk1.Recipe_ConstructorMk1_C",
-        "mod": "WorldBalance/vanilla",
-        "role": "Производственная группа",
-        "quantity": "3",
-        "availability": "По указанной технологии; проверить игровую стоимость при107модах"
+        "availability": "По аудиту; фактическую стоимость и настройку сверить в UI",
+        "code": "Build_ConveyorAttachmentMerger_C",
+        "mod": "source catalog",
+        "name": "Conveyor Merger",
+        "quantity": "1",
+        "recipeKey": "Recipe_ConveyorAttachmentMerger_C",
+        "recipePath": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorAttachmentMerger.Recipe_ConveyorAttachmentMerger_C",
+        "role": "Точные размещения и принадлежность к очереди показаны в этапах"
       },
       {
-        "code": "BP_ResourceNode_Limestone_2",
-        "name": "WB Miner1",
-        "recipeKey": "Recipe_MinerMk1_C",
-        "recipePath": "/Game/FactoryGame/Recipes/Buildings/Recipe_MinerMk1.Recipe_MinerMk1_C",
-        "mod": "WorldBalance/vanilla",
-        "role": "100% · 480/мин",
+        "availability": "По аудиту; фактическую стоимость и настройку сверить в UI",
+        "code": "Build_ConveyorAttachmentSplitter_C",
+        "mod": "source catalog",
+        "name": "Conveyor Splitter",
         "quantity": "1",
-        "availability": "По указанной технологии; проверить игровую стоимость при107модах"
+        "recipeKey": "Recipe_ConveyorAttachmentSplitter_C",
+        "recipePath": "/Game/FactoryGame/Recipes/Buildings/Recipe_ConveyorAttachmentSplitter.Recipe_ConveyorAttachmentSplitter_C",
+        "role": "Точные размещения и принадлежность к очереди показаны в этапах"
+      },
+      {
+        "availability": "По аудиту; фактическую стоимость и настройку сверить в UI",
+        "code": "ConstructorMk1_D5",
+        "mod": "WorldBalance",
+        "name": "Constructor",
+        "quantity": "2",
+        "recipeKey": "Recipe_WB_ConstructorMk1_D5_C",
+        "recipePath": "/WorldBalance/Generated/Recipe_WB_ConstructorMk1_D5.Recipe_WB_ConstructorMk1_D5_C",
+        "role": "Точные размещения и принадлежность к очереди показаны в этапах"
+      },
+      {
+        "availability": "По аудиту; фактическую стоимость и настройку сверить в UI",
+        "code": "PowerPoleMk1",
+        "mod": "source catalog",
+        "name": "Power Pole Mk.1",
+        "quantity": "2",
+        "recipeKey": "Recipe_PowerPoleMk1_C",
+        "recipePath": "/Game/FactoryGame/Recipes/Buildings/Recipe_PowerPoleMk1.Recipe_PowerPoleMk1_C",
+        "role": "Точные размещения и принадлежность к очереди показаны в этапах"
+      },
+      {
+        "availability": "Исходниковая стоимость, не измерение рельефа",
+        "code": "foundation",
+        "mod": "source catalog",
+        "name": "Foundation (1 m)",
+        "quantity": "16",
+        "recipeKey": "Recipe_Foundation_8x1_01_C",
+        "recipePath": "/Game/FactoryGame/Recipes/Buildings/Foundations/Recipe_Foundation_8x1_01.Recipe_Foundation_8x1_01_C",
+        "role": "Только явные плитки пола"
       }
     ],
     "notes": [
       {
-        "title": "Что не входит в точное количество",
-        "body": "Фасад, подпорки, длины лент/проводов/труб и дополнительные насосы требуют обмера фактической площадки. Сначала построить технологическое ядро; не закупать условную длину как точную."
+        "body": "Фиксированные компоненты отделены от опциональных. Длины заданы полилиниями; нативное округление лент и регулировка опор ещё не измерены.",
+        "title": "Граница сметы"
       },
       {
-        "title": "Материалы всех машин",
-        "body": "3×WB конструкторD5: Усиленные пластины 6, Кабель 24; Буры: BP_ResourceNode_Limestone_2 →1×WB Miner1 на100%"
+        "body": "Ведомость корпусов ниже показывает только позиции основного плана и его плитки, а не полный список закупки. Полная фиксированная смета, отдельный опциональный заказ и распределение по этапам находятся в таблицах закупки материалов. Внешние буры и оплаченные опоры входят в фиксированную смету; общий резерв трасс Tier1 указан один раз в проекте склада. Длины и фактическое округление нативных трасс пока не измерены.",
+        "title": "Где находится полный заказ материалов"
+      }
+    ],
+    "tables": [
+      {
+        "caption": "Полная фиксированная базовая смета: корпуса, внешние буры, оплаченные плитки и опоры. Резерв трасс не включён.",
+        "columns": [
+          "Материал",
+          "Количество, шт"
+        ],
+        "rows": [
+          [
+            "Переносной бур",
+            "1"
+          ],
+          [
+            "Кабель",
+            "18"
+          ],
+          [
+            "Бетон",
+            "96"
+          ],
+          [
+            "Усиленная железная пластина",
+            "4"
+          ],
+          [
+            "Железная пластина",
+            "50"
+          ],
+          [
+            "Железный стержень",
+            "8"
+          ],
+          [
+            "Провод",
+            "6"
+          ]
+        ]
+      },
+      {
+        "caption": "Опциональный прирост: отдельный заказ, не добавляемый к обязательной базе автоматически. Резерв в последнем столбце уже входит в количество заказа.",
+        "columns": [
+          "Материал",
+          "Количество заказа, шт",
+          "В том числе резерв трасс, шт"
+        ],
+        "rows": [
+          [
+            "Кабель",
+            "8",
+            "0"
+          ],
+          [
+            "Бетон",
+            "40",
+            "0"
+          ],
+          [
+            "Усиленная железная пластина",
+            "2",
+            "0"
+          ],
+          [
+            "Железная пластина",
+            "18",
+            "0"
+          ],
+          [
+            "Железный стержень",
+            "2",
+            "0"
+          ]
+        ]
+      },
+      {
+        "caption": "Распределение сметы по этапам — не повторная закупка. Отдельно оговорённые опциональные резервы входят только в свой этап.",
+        "columns": [
+          "Код этапа",
+          "Этап",
+          "Группа",
+          "Материал",
+          "Количество, шт"
+        ],
+        "rows": [
+          [
+            "concrete-chain",
+            "После получения пластин собрать бетон на16новых плитах",
+            "Обязательная база",
+            "Переносной бур",
+            "1"
+          ],
+          [
+            "concrete-chain",
+            "После получения пластин собрать бетон на16новых плитах",
+            "Обязательная база",
+            "Кабель",
+            "18"
+          ],
+          [
+            "concrete-chain",
+            "После получения пластин собрать бетон на16новых плитах",
+            "Обязательная база",
+            "Бетон",
+            "96"
+          ],
+          [
+            "concrete-chain",
+            "После получения пластин собрать бетон на16новых плитах",
+            "Обязательная база",
+            "Усиленная железная пластина",
+            "4"
+          ],
+          [
+            "concrete-chain",
+            "После получения пластин собрать бетон на16новых плитах",
+            "Обязательная база",
+            "Железная пластина",
+            "50"
+          ],
+          [
+            "concrete-chain",
+            "После получения пластин собрать бетон на16новых плитах",
+            "Обязательная база",
+            "Железный стержень",
+            "8"
+          ],
+          [
+            "concrete-chain",
+            "После получения пластин собрать бетон на16новых плитах",
+            "Обязательная база",
+            "Провод",
+            "6"
+          ],
+          [
+            "concrete-active",
+            "Пуск бетона: получить160шт до исчерпания оставшегося общего стартового лимита",
+            "Обязательная база",
+            "Без новой закупки",
+            "—"
+          ]
+        ]
       }
     ]
   },
-  "evidence": {
-    "items": [
-      {
-        "id": "save",
-        "label": "Исходный сейв",
-        "status": "verified",
-        "detail": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6"
+  "placements": [
+    {
+      "baseline": true,
+      "buildPhaseId": "concrete-chain",
+      "clearance": {
+        "depth": 12,
+        "height": 9,
+        "width": 10
       },
-      {
-        "id": "forecast",
-        "label": "Технология и игровой замер",
-        "status": "unverified",
-        "detail": "WB Extraction I. Сверить WB UI100% и работу в текущем107модовом профиле."
+      "clock": 0.5333333333333333,
+      "componentId": "ConstructorMk1_D5",
+      "depth": 10.0,
+      "height": 8.0,
+      "id": "CC-01",
+      "kind": "constructor",
+      "levelId": "L0",
+      "ports": [
+        {
+          "capacity": 750,
+          "direction": "input",
+          "face": "front",
+          "id": "in",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            6,
+            10.8,
+            5.5
+          ],
+          "schematic": true,
+          "type": "input"
+        },
+        {
+          "capacity": 750,
+          "direction": "output",
+          "face": "rear",
+          "id": "out",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            6,
+            21.2,
+            5.5
+          ],
+          "schematic": true,
+          "type": "output"
+        },
+        {
+          "direction": "bidirectional",
+          "face": "unknown",
+          "id": "power",
+          "nativeTransformStatus": "unknown; schematic electrical anchor only",
+          "point": [
+            6,
+            16,
+            6
+          ],
+          "schematic": true,
+          "type": "power"
+        }
+      ],
+      "processId": "Concrete",
+      "recipeKey": "Recipe_Concrete_C",
+      "rotationDeg": 0,
+      "width": 8.0,
+      "x": 6,
+      "y": 16,
+      "z": 4
+    },
+    {
+      "baseline": true,
+      "buildPhaseId": "concrete-chain",
+      "clearance": {
+        "depth": 12,
+        "height": 9,
+        "width": 10
       },
-      {
-        "id": "terrain",
-        "label": "Рельеф и высоты",
-        "status": "unverified",
-        "detail": "Обойти весь конверт и места входов, проверить коллизии и абсолютную отметку пола."
-      }
-    ],
-    "notes": [
-      "Рецепты будущих тиров помечены forecast: они не объявлены уже открытыми в снимке."
-    ],
-    "sources": [
-      {
-        "label": "Последовательный анализ мира",
-        "url": "/worlds/paradise-island/analysis/seed"
+      "clock": 0.5333333333333333,
+      "componentId": "ConstructorMk1_D5",
+      "depth": 10.0,
+      "height": 8.0,
+      "id": "CC-02",
+      "kind": "constructor",
+      "levelId": "L0",
+      "ports": [
+        {
+          "capacity": 750,
+          "direction": "input",
+          "face": "front",
+          "id": "in",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            24,
+            10.8,
+            5.5
+          ],
+          "schematic": true,
+          "type": "input"
+        },
+        {
+          "capacity": 750,
+          "direction": "output",
+          "face": "rear",
+          "id": "out",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            24,
+            21.2,
+            5.5
+          ],
+          "schematic": true,
+          "type": "output"
+        },
+        {
+          "direction": "bidirectional",
+          "face": "unknown",
+          "id": "power",
+          "nativeTransformStatus": "unknown; schematic electrical anchor only",
+          "point": [
+            24,
+            16,
+            6
+          ],
+          "schematic": true,
+          "type": "power"
+        }
+      ],
+      "processId": "Concrete",
+      "recipeKey": "Recipe_Concrete_C",
+      "rotationDeg": 0,
+      "width": 8.0,
+      "x": 24,
+      "y": 16,
+      "z": 4
+    },
+    {
+      "baseline": true,
+      "buildPhaseId": "concrete-chain",
+      "clearance": {
+        "depth": 6,
+        "height": 4,
+        "width": 6
       },
-      {
-        "label": "WB-состояния",
-        "url": "/worlds/paradise-island/analysis/states"
+      "clock": 0,
+      "componentId": "Build_ConveyorAttachmentSplitter_C",
+      "depth": 4.0,
+      "height": 3.0,
+      "id": "S-ORE",
+      "kind": "splitter",
+      "levelId": "L0",
+      "orientation": {
+        "inputFace": "left",
+        "outputFaces": [
+          "front",
+          "right"
+        ]
       },
-      {
-        "label": "Архитектура и общий склад",
-        "url": "/worlds/paradise-island/analysis/architecture"
-      }
-    ],
-    "downloads": []
-  },
-  "sitePlan": {
-    "id": "concrete",
-    "label": "Бетонный двор",
-    "x": -1695,
-    "y": 2735,
-    "width": 48,
-    "depth": 48,
-    "tier": 1,
-    "role": "Limestone2, затем Limestone3; сохранить сами ноды свободными.",
-    "verified": false
-  },
-  "target": {
-    "itemId": "Desc_Cement_C",
-    "label": "Бетон",
-    "rate": 160,
-    "unit": "/мин"
+      "ports": [
+        {
+          "capacity": 750,
+          "direction": "input",
+          "face": "left",
+          "id": "input-left",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            13.8,
+            13,
+            5.5
+          ],
+          "schematic": true,
+          "type": "input"
+        },
+        {
+          "capacity": 750,
+          "direction": "output",
+          "face": "front",
+          "id": "output-front",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            16,
+            10.8,
+            5.5
+          ],
+          "schematic": true,
+          "type": "output"
+        },
+        {
+          "capacity": 750,
+          "direction": "output",
+          "face": "right",
+          "id": "output-right",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            18.2,
+            13,
+            5.5
+          ],
+          "schematic": true,
+          "type": "output"
+        }
+      ],
+      "processId": "",
+      "rotationDeg": 90,
+      "width": 4.0,
+      "x": 16,
+      "y": 13,
+      "z": 4
+    },
+    {
+      "baseline": true,
+      "buildPhaseId": "concrete-chain",
+      "clearance": {
+        "depth": 6,
+        "height": 4,
+        "width": 6
+      },
+      "clock": 0,
+      "componentId": "Build_ConveyorAttachmentMerger_C",
+      "depth": 4.0,
+      "height": 3.0,
+      "id": "M-CONCRETE",
+      "kind": "merger",
+      "levelId": "L0",
+      "orientation": {
+        "inputFaces": [
+          "left",
+          "right"
+        ],
+        "outputFace": "rear"
+      },
+      "ports": [
+        {
+          "capacity": 750,
+          "direction": "input",
+          "face": "left",
+          "id": "input-left",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            13.8,
+            27,
+            5.5
+          ],
+          "schematic": true,
+          "type": "input"
+        },
+        {
+          "capacity": 750,
+          "direction": "input",
+          "face": "right",
+          "id": "input-right",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            18.2,
+            27,
+            5.5
+          ],
+          "schematic": true,
+          "type": "input"
+        },
+        {
+          "capacity": 750,
+          "direction": "output",
+          "face": "rear",
+          "id": "output-rear",
+          "nativeTransformStatus": "unknown; body-face schematic anchor, not native socket",
+          "point": [
+            16,
+            29.2,
+            5.5
+          ],
+          "schematic": true,
+          "type": "output"
+        }
+      ],
+      "processId": "",
+      "rotationDeg": 180,
+      "width": 4.0,
+      "x": 16,
+      "y": 27,
+      "z": 4
+    },
+    {
+      "baseline": true,
+      "buildPhaseId": "concrete-chain",
+      "clearance": {
+        "depth": 3,
+        "height": 8,
+        "width": 3
+      },
+      "clock": 0,
+      "componentId": "PowerPoleMk1",
+      "depth": 1.0,
+      "height": 7.0,
+      "id": "POLE-01",
+      "kind": "pole",
+      "levelId": "G0",
+      "nominalGroundFootprintStatus": "G0 in deliberately unpoured T-0-3; no added foundation",
+      "ports": [
+        {
+          "direction": "bidirectional",
+          "face": "unknown",
+          "id": "power",
+          "nativeTransformStatus": "unknown; schematic electrical anchor only",
+          "point": [
+            1,
+            28,
+            7
+          ],
+          "schematic": true,
+          "type": "power"
+        }
+      ],
+      "processId": "",
+      "rotationDeg": 0,
+      "width": 1.0,
+      "x": 1,
+      "y": 28,
+      "z": 0
+    },
+    {
+      "baseline": true,
+      "buildPhaseId": "concrete-chain",
+      "clearance": {
+        "depth": 3,
+        "height": 8,
+        "width": 3
+      },
+      "clock": 0,
+      "componentId": "PowerPoleMk1",
+      "depth": 1.0,
+      "height": 7.0,
+      "id": "POLE-02",
+      "kind": "pole",
+      "levelId": "G0",
+      "ports": [
+        {
+          "direction": "bidirectional",
+          "face": "unknown",
+          "id": "power",
+          "nativeTransformStatus": "unknown; schematic electrical anchor only",
+          "point": [
+            30,
+            28,
+            7
+          ],
+          "schematic": true,
+          "type": "power"
+        }
+      ],
+      "processId": "",
+      "rotationDeg": 0,
+      "width": 1.0,
+      "x": 30,
+      "y": 28,
+      "z": 0
+    }
+  ],
+  "powerMW": 17.42496601929272,
+  "preview": {
+    "alt": "Инженерная сборка",
+    "caption": "Исходниковая схема, не игровые меши и не доказательство коллизий.",
+    "kind": "schematic",
+    "src": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/render.png"
   },
   "production": {
-    "targetItemId": "Desc_Cement_C",
-    "targetRate": 160,
-    "targets": [
+    "candidateRecipeCount": 370,
+    "comparisons": [
       {
         "itemId": "Desc_Cement_C",
-        "label": "Бетон",
-        "rate": 160,
-        "unit": "/мин"
-      }
-    ],
-    "recipesFile": "/atlas/slave/concrete/revisions/e0ae6c1aa93c621f3fec8fad902e3352f1e5dc73f71d0f1e4a72d78be5df92af/recipes.json",
-    "recipesSha256": "5887a644bb4b67388aed06c9c048f9ca74f15cb2cf0610c556c9c46b7556fbd5",
-    "rawInputs": [
-      {
-        "itemId": "Desc_Stone_C",
-        "label": "Известняк",
-        "rate": 480.0,
-        "unit": "/мин"
+        "label": "Concrete",
+        "variants": [
+          {
+            "availability": "Открыт в текущем аудированном сейве. Каталожный уровень открытия: 0; наличие определяется аудитом этого сейва.",
+            "byproducts": [],
+            "inputs": [
+              {
+                "exact": "3",
+                "itemId": "Desc_Stone_C",
+                "label": "Limestone",
+                "rate": 3,
+                "unit": "шт/шт"
+              }
+            ],
+            "key": "Recipe_Concrete_C",
+            "machineKind": "constructor",
+            "name": "Concrete",
+            "notes": [
+              "Номинал одной машины D5 на 100%; не измеренный предел установленной сборки.",
+              "Выбран стандартный маршрут: 2 машин, каждая 53.333333%. Альтернативы не подставлены в расчёт и не добавлены в доступный каталог."
+            ],
+            "outputAtFullClock": 75,
+            "path": "/Game/FactoryGame/Recipes/Constructor/Recipe_Concrete.Recipe_Concrete_C",
+            "selected": true
+          }
+        ]
       }
     ],
     "disposal": [],
+    "normalizedRecipeCount": 22,
+    "notes": [
+      "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки.",
+      "Каждому потребителю выделена параллельная ветвь. Обычный разветвитель не приоритетный: расход устанавливается при разгоне и обратном давлении. Конечный контейнер не стоит в транзите другой детали. Настроенная добыча и непрерывно принимаемый расход различаются; полный буфер вызывает простой."
+    ],
     "processes": [
       {
-        "id": "P01",
-        "recipeKey": "Recipe_Concrete_C",
-        "recipePath": "/Game/FactoryGame/Recipes/Constructor/Recipe_Concrete.Recipe_Concrete_C",
-        "recipeName": "Concrete",
-        "machineKind": "constructor",
-        "machineName": "WB constructor D5",
-        "machines": 3,
-        "clock": 0.7111111111111111,
-        "speedMultiplier": 5,
+        "clock": 0.5333333333333333,
+        "clockFraction": "8/15",
+        "constructionBOM": {
+          "Desc_Cable_C": 16,
+          "Desc_IronPlateReinforced_C": 4
+        },
+        "cyclesFraction": "80",
+        "cyclesPerMinute": 80,
         "durationSeconds": 4,
-        "cyclesPerMinute": 160.0,
+        "id": "Concrete",
         "inputs": [
           {
+            "exact": "240",
             "itemId": "Desc_Stone_C",
-            "label": "Известняк",
-            "rate": 480.0,
-            "unit": "/мин"
+            "label": "Limestone",
+            "rate": 240,
+            "unit": "шт/мин"
           }
         ],
+        "machineKind": "constructor",
+        "machineName": "Constructor",
+        "machines": 2,
+        "note": "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки.",
         "outputs": [
           {
+            "exact": "80",
             "itemId": "Desc_Cement_C",
-            "label": "Бетон",
-            "rate": 160.0,
-            "unit": "/мин"
+            "label": "Concrete",
+            "rate": 80,
+            "unit": "шт/мин"
           }
         ],
-        "note": "Одинаковая частота всех 3 машин группы. Выходы — валовые; нетто отдельно.",
-        "powerMW": 38.23166613420404
+        "powerMW": 17.42496601929272,
+        "recipeKey": "Recipe_Concrete_C",
+        "recipeName": "Concrete",
+        "recipePath": "/Game/FactoryGame/Recipes/Constructor/Recipe_Concrete.Recipe_Concrete_C",
+        "speedMultiplier": 5
       }
     ],
-    "comparisons": [],
+    "rawInputs": [
+      {
+        "exact": "240",
+        "itemId": "Desc_Stone_C",
+        "label": "Limestone",
+        "rate": 240,
+        "unit": "шт/мин"
+      }
+    ],
+    "recipesFile": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/recipes.json",
+    "recipesSha256": "8c07079f64f7858390d01718e4b1c0c60b65dc04802f7212e204f9dd31673697",
     "scenarios": {
-      "caption": "Границы режима",
+      "caption": "Источник, не эффективный максимум модов",
       "columns": [
-        "Режим",
-        "Условие"
+        "Граница"
       ],
       "rows": [
         [
-          "Этот проект",
-          "Нетто: Бетон 160/мин"
-        ],
-        [
-          "Альтернативы",
-          "Не предполагаются открытыми; пересчитать полную цепочку после реального исследования."
-        ],
-        [
-          "Другой режим того же двора",
-          "Не складывать сырьевые потребности с заменяемым режимом."
+          "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки."
         ]
       ]
     },
-    "notes": [
-      "Явный forecast стандартных рецептов SCIM и коэффициентов WB, не полная инвентаризация runtime-патчей107модов.",
-      "Производственные машиныD5, максимум100%; частоты в таблице для каждой машины группы.",
-      "Склад заполнится — линия остановится.100% частота бура не гарантирует100% duty cycle без потребителя.",
-      "Сырые винты остаются локальными. Каждая группа получает столько отдельных лент, сколько указано в интерфейсах; не объединять их в один узкий порт."
+    "targetItemId": "Desc_Cement_C",
+    "targetRate": 80,
+    "targets": [
+      {
+        "exact": "80",
+        "itemId": "Desc_Cement_C",
+        "label": "Concrete",
+        "rate": 80,
+        "unit": "шт/мин"
+      }
+    ]
+  },
+  "progressRevision": "edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb",
+  "readiness": {
+    "blockers": [
+      "Рельеф, абсолютные высоты, береговая глубина и игровые коллизии не проверены.",
+      "Расчёт закреплён исходниками WB 1.0.3. Эффективная частота, мощность и взаимодействие BetterOverclocking с другими модами не измерены; источник не задаёт фактический максимум сборки."
     ],
-    "normalizedRecipeCount": 21,
-    "candidateRecipeCount": 1
+    "constructionReady": false
   },
-  "extraction": [
-    {
-      "nodeId": "BP_ResourceNode_Limestone_2",
-      "actor": "Persistent_Level:PersistentLevel.BP_ResourceNode_C_UAID_30C59925E65137E302_2073301891",
-      "xyz": [
-        -1807.21,
-        2729.69,
-        0.95
+  "revision": "edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb",
+  "saveId": "slave",
+  "schemaVersion": 1,
+  "sitePlan": {
+    "depth": 40,
+    "id": "concrete",
+    "label": "concrete",
+    "projectId": "concrete",
+    "role": "Surface core, dedicated item outputs",
+    "tier": 1,
+    "verified": false,
+    "width": 56,
+    "x": -1695,
+    "y": 2735
+  },
+  "source": {
+    "planSha256": "e2266c40e0dff6c2c1d4fe27d53265b6c8dad65f13994b7bfe76d37ad58db25f",
+    "planning": {
+      "demandMode": "concrete_home",
+      "demandSha256": "d49f8224b5002ae96abe20abb8da8a4ede77ac76f5cc4c84b7c17bef2b239dbc",
+      "density": 5,
+      "mode": "forecast",
+      "prerequisites": [
+        "Указанные рецепты и технологии",
+        "Обмер поверхности и проверка установленной сборки"
       ],
-      "miner": 1,
-      "clock": 1,
-      "raw": 480,
-      "ports": 2,
-      "belt": 750,
-      "lanes": 1,
-      "perLane": 480.0,
-      "powerMW": 20.0
-    }
-  ],
-  "powerMW": 58.23166613420404,
-  "preview": {
-    "src": "/atlas/slave/concrete/revisions/e0ae6c1aa93c621f3fec8fad902e3352f1e5dc73f71d0f1e4a72d78be5df92af/layout.svg",
-    "alt": "Производственный уровень1 · сетка и машины",
-    "caption": "Размерная схема; не игровой скриншот.",
-    "kind": "schematic"
+      "tier": 1
+    },
+    "recipeSha256": "8c07079f64f7858390d01718e4b1c0c60b65dc04802f7212e204f9dd31673697",
+    "saveSha256": "3ab3d2d99ad17dcbd3f5a9b8ba71d767191d00c96331a4b8f8ceea5413e9a6b6",
+    "snapshotAt": "2026-10-30T10:55:59.913000+00:00",
+    "snapshotLabel": "slave · WB 1.0.3 · исходниковый прогноз"
   },
-  "progressRevision": "52117aa1cc8ce2351632950edf8760936f528e041772d3fe392d8cdd6a087b4b",
-  "progressSignature": "4b643ccf3b9e1eafdfe91d5080ffd91ea974e53df314ea5814df8c0511d8c4b4"
+  "status": "blocked",
+  "subtitle": "Исходниковый прогноз; строительство и запуск не подтверждены",
+  "target": {
+    "exact": "80",
+    "itemId": "Desc_Cement_C",
+    "label": "Concrete",
+    "rate": 80,
+    "unit": "шт/мин"
+  },
+  "title": "Бетон для строительства",
+  "updatedAt": "2026-10-30T10:55:59.913000+00:00",
+  "progressSignature": "1cbf0d937dc28be3c5407c67979648efc480260687628728952c1527285d1d97"
 }

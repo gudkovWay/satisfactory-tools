@@ -8,37 +8,37 @@
     {
       "id": "seed",
       "title": "01 · Сейв и остров",
-      "summary": "Фактический снимок slave: что уже открыто, где находятся ресурсы и что ещё не проверено в игре.",
+      "summary": "Текущий сейв и безопасные факты аудита; установка модов не доказывает их активацию.",
       "path": "analysis/seed.json",
-      "sha256": "02d102cc00601a51b87cc8917f65dae57f9cf5dd797e03a8d3abe390f0f0b3b0"
+      "sha256": "a31051e64047aa3c70fe0956a67e432fca5d430a4763373f87b2fd694654caff"
     },
     {
       "id": "states",
       "title": "02 · Возможности WB",
-      "summary": "Полные ноды, независимые выходы, транспорт, плотность и энергия — до выбора размеров заводов.",
+      "summary": "Выбранные режимы и номинальные сценарии WB; эффективные пределы BetterOverclocking неизвестны.",
       "path": "analysis/states.json",
-      "sha256": "39766c8185d433ec327abdb81ce9466392db96cce6949c5d62d034e34c5bb6d1"
+      "sha256": "fe980649fd6fc8daf41d55679823a3c92990d992fda5afe8d197ebe3a6f32172"
     },
     {
       "id": "architecture",
       "title": "03 · Глобальная архитектура",
-      "summary": "HUB, склад, лифт и электросеть — четыре разные роли, не один огромный склад всего мира.",
+      "summary": "Строительные продукты у дома, фазовые цепочки у потребителя; расширение D5 без обязательного сноса.",
       "path": "analysis/architecture.json",
-      "sha256": "0b5740adf1a4be84b60dff2f50a8be40b21df70913d3f901a6d9ddc7a68bef61"
+      "sha256": "d2f0b06f697473c162bb1a9dcf9ba70bd9b9415cb97f9d8accb47837600cf2ab"
     },
     {
       "id": "progression",
       "title": "04 · Порядок и граница острова",
-      "summary": "Пуск100% → запас для зданий → фаза1 → сталь → домашние компоненты → материковая массовая фаза2.",
+      "summary": "Bootstrap и Logistics → запас → первая фаза125мин → переиспользование D5 → материковая фаза2.",
       "path": "analysis/progression.json",
-      "sha256": "d0a777a51a31561d4e6dfc553e13cb2b747a7ee82364f66f3fc53c87836c39a4"
+      "sha256": "a0a1b0677f7ef4c51641df6180c16b4b1989e6a880b24fd43d2863816950aec3"
     }
   ],
   "tiers": [
     {
       "id": 1,
       "title": "Дом и строительное снабжение",
-      "goal": "Пять самостоятельных потоков, небольшой склад и понятный биостарт.",
+      "goal": "Небольшой пуск, Logistics, шесть строительных потоков и конечные запасы.",
       "gate": "Доступно сейчас после пропуска onboarding",
       "milestones": [
         {
@@ -112,27 +112,93 @@
       "sequence": [
         {
           "project": "hub",
-          "action": "Сохранить HUB; купить Logistics"
+          "stageId": "logistics",
+          "action": "ОткрытьLogistics и дождаться отправки240с"
+        },
+        {
+          "project": "hub",
+          "stageId": "recover-portables",
+          "action": "Собрать содержимое и10переносных шахтёровCu3/Lime2"
         },
         {
           "project": "bio-start",
-          "action": "Вводить1→2→4сжигателя по нагрузке"
-        },
-        {
-          "project": "concrete",
-          "action": "480известняка →160бетона"
+          "stageId": "manual-fuel",
+          "action": "Ручное топливо:300нового отделить от защищённых332;сначала1горелка"
         },
         {
           "project": "iron-home",
-          "action": "240железа →100пластин+90стержней"
-        },
-        {
-          "project": "copper-home",
-          "action": "480меди →240кабеля+480провода"
+          "stageId": "plate-chain",
+          "action": "Собрать первую прямую цепьSM-01→PL-01 на8плитах"
         },
         {
           "project": "warehouse",
-          "action": "Первый модуль склада, затем8ячеек"
+          "stageId": "plate-receiver",
+          "action": "Поставить толькоCONTAINER-01и пусковую доставку пластин"
+        },
+        {
+          "project": "iron-home",
+          "stageId": "plate-active",
+          "action": "Пуск пластин: получить1040шт в пределах общего стартового лимита300топлива"
+        },
+        {
+          "project": "warehouse",
+          "stageId": "concrete-receiver",
+          "action": "После приёмки пластин поставитьCONTAINER-06"
+        },
+        {
+          "project": "concrete",
+          "stageId": "concrete-chain",
+          "action": "После получения пластин собрать бетон на16новых плитах"
+        },
+        {
+          "project": "concrete",
+          "stageId": "concrete-active",
+          "action": "Пуск бетона: получить160шт до исчерпания оставшегося общего стартового лимита"
+        },
+        {
+          "project": "warehouse",
+          "stageId": "retire-commissioning",
+          "action": "Убрать пусковую доставку,сохранив окончательный провод бетона"
+        },
+        {
+          "project": "bio-start",
+          "stageId": "finish-core",
+          "action": "Поставить вторую горелку без обязательных топливных конструкторов"
+        },
+        {
+          "project": "iron-home",
+          "stageId": "finish-core",
+          "action": "Убрать пусковые обходы до достройки железа"
+        },
+        {
+          "project": "copper-home",
+          "stageId": "finish-core",
+          "action": "Построить26плит и4машинный медный контур"
+        },
+        {
+          "project": "warehouse",
+          "stageId": "finish-core",
+          "action": "Достроить склад и окончательно связать6грузопотоков и электросеть"
+        },
+        {
+          "project": "warehouse",
+          "stageId": "core-conditioning-funding",
+          "action": "До8мин устойчивой работы отдельно оплатить прогрев и хвост доставки"
+        },
+        {
+          "project": "warehouse",
+          "stageId": "wholecore-active",
+          "action": "8мин устойчивого одновременного производства после отдельно оплаченного заполнения"
+        },
+        {
+          "project": "warehouse",
+          "stageId": "core-receipts",
+          "action": "Подтвердить6фактических приёмок передPartAssembly"
+        },
+        {
+          "project": "hub",
+          "stageId": "part-assembly",
+          "action": "КупитьPartAssemblyтолько после6фактических приёмок"
         }
       ],
       "globals": [
@@ -146,14 +212,14 @@
         "concrete"
       ],
       "exitChecks": [
-        "Домашние5потоковпроверены;600MWбиогенерации;естьручнойзапастоплива.",
-        "Logisticsкуплен,запасыдляPartAssemblyнепотраченынафасад."
+        "До выхода подтвердить оплату Logistics и реальный малый запуск; ручное топливо не считать бесконечным.",
+        "Нетто подтверждено по опубликованным targets; конечные запасы не учтены дважды; игровая сверка ещё требуется."
       ]
     },
     {
       "id": 2,
       "title": "Автономная энергия и первая отправка",
-      "goal": "Уголь ДО масштабной сборки; фазовые детали не съедают домашнюю стройку.",
+      "goal": "Прежние документы сохранены; численные действия не обновлены. См. опубликованные редакции.",
       "gate": "Доступно сейчас после пропуска onboarding",
       "milestones": [
         {
@@ -288,31 +354,31 @@
       "sequence": [
         {
           "project": "copper-sheets",
-          "action": "Part Assembly;переналадить50листов/мин"
+          "action": "Прежняя редакция · Добавить медные листы"
         },
         {
           "project": "coal-start",
-          "action": "КупитьEarlyCoal;ввести2модуля,пока сохранить4биосжигателя"
+          "action": "Прежняя редакция · Ранняя угольная станция ·2→4→6"
         },
         {
           "project": "frame-stock",
-          "action": "Запуститьмеханическийдворнагибриде;сначалаRIPвбуфер,потомкаркасы"
+          "action": "Прежняя редакция · Партия модульных каркасов"
         },
         {
           "project": "rotor-stock",
-          "action": "Накопить400роторов;расширятьуголь4→6изэтихзапасов"
+          "action": "Прежняя редакция · Переключить двор на роторы"
         },
         {
           "project": "elevator",
-          "action": "Построитьлифт иподатьпервыйSP-буфер"
+          "action": "Прежняя редакция · Лифт и отдельные фазовые буферы"
         },
         {
           "project": "phase-one",
-          "action": "Ввести40SP/минпослешестиугольныхмодулей"
+          "action": "Прежняя редакция · Фаза1 · два полных бура"
         },
         {
           "project": "phase-one-boost",
-          "action": "Тольконеобязательныйвариант:оценить6железных+3угольныхосколка/14модулей"
+          "action": "Опциональный, не доказанный в игре сценарий · Опция · ускорить фазу1"
         }
       ],
       "globals": [
@@ -330,14 +396,14 @@
         "phase-one-boost"
       ],
       "exitChecks": [
-        "5000SPотправлены;домработаетнезависимо.",
-        "ШестьугольныхмодулейзапускаютсябезHUB;запасыкаркасов/роторовнеравнынулю."
+        "Сверить опубликованную редакцию, режим и его условия до строительства.",
+        "Не суммировать альтернативные режимы одного двора; исходный прогноз не заменяет игровой запуск."
       ]
     },
     {
       "id": 3,
       "title": "Сталь и новое распределение нод",
-      "goal": "После5000SP прекратить фазовый режим; переназначить Iron2/3.",
+      "goal": "Прежние документы сохранены; численные действия не обновлены. См. опубликованные редакции.",
       "gate": "Только после отправки5000SP;тиры3/4открываютсявместе",
       "milestones": [
         {
@@ -464,23 +530,23 @@
       "sequence": [
         {
           "project": "steel-start",
-          "action": "BasicSteel:480железа+480угля →стальнойстарт"
+          "action": "Прежняя редакция · Первый стальной модуль"
         },
         {
           "project": "steel-expanded",
-          "action": "ExtractionIIиD10;перейтина960+960"
+          "action": "Прежняя редакция · Стальной двор D10"
         },
         {
           "project": "mechanics-stock",
-          "action": "Iron3MinerII100% →нетто-механика"
+          "action": "Прежняя редакция · Механика для стройки D10"
         },
         {
           "project": "power-expanded",
-          "action": "Coal2MinerII;станциядо8модулей"
+          "action": "Прежняя редакция · Энергетика · восемь модулей"
         },
         {
           "project": "warehouse-expanded",
-          "action": "24адреса;соединитьготовыепродукты"
+          "action": "Прежняя редакция · Склад ·24адреса и связи районов"
         }
       ],
       "globals": [
@@ -498,14 +564,14 @@
         "mechanics-stock"
       ],
       "exitChecks": [
-        "Iron2/Coal1сталь,Iron3механика,Coal2энергетика:нетдвойногоучёта.",
-        "8Coal5работаютпередEIB/моторами;D5неперепутансD10."
+        "Сверить опубликованную редакцию, режим и его условия до строительства.",
+        "Не суммировать альтернативные режимы одного двора; исходный прогноз не заменяет игровой запуск."
       ]
     },
     {
       "id": 4,
       "title": "Компоненты, резерв и материковый заказ",
-      "goal": "Освоить домашние материалы тира4 и выйти к масштабу фазы2 без83часового пилота.",
+      "goal": "Прежние документы сохранены; численные действия не обновлены. См. опубликованные редакции.",
       "gate": "Только после отправки5000SP;тиры3/4открываютсявместе",
       "milestones": [
         {
@@ -624,19 +690,19 @@
       "sequence": [
         {
           "project": "concrete-expanded",
-          "action": "Втораяpure-нода →160бетона;неотниматьдомашние160"
+          "action": "Прежняя редакция · Вторая бетонная линия"
         },
         {
           "project": "components",
-          "action": "AdvancedSteel →EIB20+мотор10"
+          "action": "Прежняя редакция · EIB, статоры и моторы"
         },
         {
           "project": "power-annex",
-          "action": "ExpandedPowerInfrastructure →4Storage5"
+          "action": "Прежняя редакция · Батарейный аннекс и распределение"
         },
         {
           "project": "departure",
-          "action": "Зафиксироватьмассовыйзаказ,разведатьматериковыеноды и трассу"
+          "action": "Прежняя редакция · Первый выход на материк · техническое задание"
         }
       ],
       "globals": [
@@ -655,8 +721,8 @@
         "components"
       ],
       "exitChecks": [
-        "EIB20/мотор10проверены;чистыеостаткискладаучтены.",
-        "Батареинеобъявленыгенераторами;материковыйзаказсохранён,узлыещёнуждаютсявразведке."
+        "Сверить опубликованную редакцию, режим и его условия до строительства.",
+        "Не суммировать альтернативные режимы одного двора; исходный прогноз не заменяет игровой запуск."
       ]
     }
   ],
@@ -666,73 +732,106 @@
       "title": "Домашнее железо",
       "tier": 1,
       "category": "factories",
-      "stages": 7,
-      "site": "Домашнее железо",
-      "powerMW": 90.14252927386235,
+      "stages": 3,
+      "site": "iron-home",
+      "powerMW": 84.63499899817418,
       "outputs": [
         {
+          "exact": "80",
           "itemId": "Desc_IronPlate_C",
-          "label": "Пластины",
-          "rate": 100,
-          "unit": "/мин"
+          "label": "Iron Plate",
+          "rate": 80,
+          "unit": "шт/мин"
         },
         {
+          "exact": "90",
           "itemId": "Desc_IronRod_C",
-          "label": "Стержни",
+          "label": "Iron Rod",
           "rate": 90,
-          "unit": "/мин"
+          "unit": "шт/мин"
+        },
+        {
+          "exact": "120",
+          "itemId": "Desc_IronScrew_C",
+          "label": "Screws",
+          "rate": 120,
+          "unit": "шт/мин"
         }
       ],
       "optional": false,
-      "revision": "500ded861d03834de2ad511ccb1de3ed1a0d262bf659473c736797b350c21129"
+      "revision": "a7c0718cac501ca6ad8d9f1fec281267c78670b9e4e4670a52f361ed463995f4",
+      "integrationStatus": "current-selected",
+      "preview": {
+        "alt": "Концепция облика",
+        "caption": "Материалы и облик; количества и координаты берутся из инженерных листов.",
+        "kind": "concept",
+        "src": "/atlas/slave/iron-home/revisions/a7c0718cac501ca6ad8d9f1fec281267c78670b9e4e4670a52f361ed463995f4/assets/concept.webp"
+      }
     },
     {
       "id": "copper-home",
-      "title": "Провод и кабель",
+      "title": "Ранняя медь",
       "tier": 1,
       "category": "factories",
-      "stages": 7,
-      "site": "Медный цех",
-      "powerMW": 233.7057267977067,
+      "stages": 1,
+      "site": "copper-home",
+      "powerMW": 50.629174207045665,
       "outputs": [
         {
+          "exact": "60",
           "itemId": "Desc_Cable_C",
-          "label": "Кабель",
-          "rate": 240,
-          "unit": "/мин"
+          "label": "Cable",
+          "rate": 60,
+          "unit": "шт/мин"
         },
         {
+          "exact": "120",
           "itemId": "Desc_Wire_C",
-          "label": "Провод",
-          "rate": 480,
-          "unit": "/мин"
+          "label": "Wire",
+          "rate": 120,
+          "unit": "шт/мин"
         }
       ],
       "optional": false,
-      "revision": "a92a7964e1a43d1dc88de2e37d77e3a927577688999fbda400517acd15b4aec6"
+      "revision": "2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670",
+      "integrationStatus": "current-selected",
+      "preview": {
+        "alt": "Концепция облика",
+        "caption": "Материалы и облик; количества и координаты берутся из инженерных листов.",
+        "kind": "concept",
+        "src": "/atlas/slave/copper-home/revisions/2495f42076d3a93bb25eb1e55e687785a5a84a91b24062e2fb8a39804c70b670/assets/concept.webp"
+      }
     },
     {
       "id": "concrete",
-      "title": "Бетонный двор",
+      "title": "Бетон для строительства",
       "tier": 1,
       "category": "factories",
-      "stages": 5,
-      "site": "Бетонный двор",
-      "powerMW": 58.23166613420404,
+      "stages": 2,
+      "site": "concrete",
+      "powerMW": 17.42496601929272,
       "outputs": [
         {
+          "exact": "80",
           "itemId": "Desc_Cement_C",
-          "label": "Бетон",
-          "rate": 160,
-          "unit": "/мин"
+          "label": "Concrete",
+          "rate": 80,
+          "unit": "шт/мин"
         }
       ],
       "optional": false,
-      "revision": "e0ae6c1aa93c621f3fec8fad902e3352f1e5dc73f71d0f1e4a72d78be5df92af"
+      "revision": "edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb",
+      "integrationStatus": "current-selected",
+      "preview": {
+        "alt": "Концепция облика",
+        "caption": "Материалы и облик; количества и координаты берутся из инженерных листов.",
+        "kind": "concept",
+        "src": "/atlas/slave/concrete/revisions/edb4d14fca6c96e8e7bda1349c28bca8f39fcfe87302693f4edc1577398458fb/assets/concept.webp"
+      }
     },
     {
       "id": "copper-sheets",
-      "title": "Добавить медные листы",
+      "title": "Прежняя редакция · Добавить медные листы",
       "tier": 2,
       "category": "factories",
       "stages": 8,
@@ -759,11 +858,18 @@
         }
       ],
       "optional": false,
-      "revision": "3f482cce1c6333f2f9f23b965c7a2cbab46dce51dc10e81f211182c83dbd1991"
+      "revision": "3f482cce1c6333f2f9f23b965c7a2cbab46dce51dc10e81f211182c83dbd1991",
+      "integrationStatus": "preserved-previous",
+      "preview": {
+        "src": "/atlas/slave/copper-sheets/revisions/3f482cce1c6333f2f9f23b965c7a2cbab46dce51dc10e81f211182c83dbd1991/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      }
     },
     {
       "id": "frame-stock",
-      "title": "Партия модульных каркасов",
+      "title": "Прежняя редакция · Партия модульных каркасов",
       "tier": 2,
       "category": "factories",
       "stages": 10,
@@ -778,11 +884,18 @@
         }
       ],
       "optional": false,
-      "revision": "b1b0bae18d53a583bd1b8b91c139e6225489fb88ff034e5afe5fcee21badb558"
+      "revision": "b1b0bae18d53a583bd1b8b91c139e6225489fb88ff034e5afe5fcee21badb558",
+      "integrationStatus": "preserved-previous",
+      "preview": {
+        "src": "/atlas/slave/frame-stock/revisions/b1b0bae18d53a583bd1b8b91c139e6225489fb88ff034e5afe5fcee21badb558/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      }
     },
     {
       "id": "rotor-stock",
-      "title": "Переключить двор на роторы",
+      "title": "Прежняя редакция · Переключить двор на роторы",
       "tier": 2,
       "category": "factories",
       "stages": 8,
@@ -797,11 +910,18 @@
         }
       ],
       "optional": false,
-      "revision": "350c9d0c0910eebed11c7266d9dbac3e0ded699773baef71af240f34cef5abe7"
+      "revision": "350c9d0c0910eebed11c7266d9dbac3e0ded699773baef71af240f34cef5abe7",
+      "integrationStatus": "preserved-previous",
+      "preview": {
+        "src": "/atlas/slave/rotor-stock/revisions/350c9d0c0910eebed11c7266d9dbac3e0ded699773baef71af240f34cef5abe7/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      }
     },
     {
       "id": "phase-one",
-      "title": "Фаза1 · два полных бура",
+      "title": "Прежняя редакция · Фаза1 · два полных бура",
       "tier": 2,
       "category": "factories",
       "stages": 11,
@@ -822,11 +942,18 @@
         }
       ],
       "optional": false,
-      "revision": "13d134c53f4368a1d3427f1fab6db04f3671c9f99c617792d3dd6be4c2460ab2"
+      "revision": "13d134c53f4368a1d3427f1fab6db04f3671c9f99c617792d3dd6be4c2460ab2",
+      "integrationStatus": "preserved-previous",
+      "preview": {
+        "src": "/atlas/slave/phase-one/revisions/13d134c53f4368a1d3427f1fab6db04f3671c9f99c617792d3dd6be4c2460ab2/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      }
     },
     {
       "id": "phase-one-boost",
-      "title": "Опция · ускорить фазу1",
+      "title": "Прежняя редакция · Опция · ускорить фазу1",
       "tier": 2,
       "category": "factories",
       "stages": 12,
@@ -847,11 +974,18 @@
         }
       ],
       "optional": true,
-      "revision": "35292b5813b34b9e127d22dc9965c8afce4343c42a0bc44b0b1a4308e4ded3cd"
+      "revision": "35292b5813b34b9e127d22dc9965c8afce4343c42a0bc44b0b1a4308e4ded3cd",
+      "integrationStatus": "preserved-previous",
+      "preview": {
+        "src": "/atlas/slave/phase-one-boost/revisions/35292b5813b34b9e127d22dc9965c8afce4343c42a0bc44b0b1a4308e4ded3cd/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      }
     },
     {
       "id": "steel-start",
-      "title": "Первый стальной модуль",
+      "title": "Прежняя редакция · Первый стальной модуль",
       "tier": 3,
       "category": "factories",
       "stages": 7,
@@ -872,11 +1006,18 @@
         }
       ],
       "optional": false,
-      "revision": "baa975342b884613b0dcb5564f8a54195c746cfa014dda23bf01818af3143b29"
+      "revision": "baa975342b884613b0dcb5564f8a54195c746cfa014dda23bf01818af3143b29",
+      "integrationStatus": "preserved-previous",
+      "preview": {
+        "src": "/atlas/slave/steel-start/revisions/baa975342b884613b0dcb5564f8a54195c746cfa014dda23bf01818af3143b29/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      }
     },
     {
       "id": "steel-expanded",
-      "title": "Стальной двор D10",
+      "title": "Прежняя редакция · Стальной двор D10",
       "tier": 3,
       "category": "factories",
       "stages": 7,
@@ -897,11 +1038,18 @@
         }
       ],
       "optional": false,
-      "revision": "167a851023661aba530465c2c956a2808e6798d6f4d9b2387a587479f9ca6ad9"
+      "revision": "167a851023661aba530465c2c956a2808e6798d6f4d9b2387a587479f9ca6ad9",
+      "integrationStatus": "preserved-previous",
+      "preview": {
+        "src": "/atlas/slave/steel-expanded/revisions/167a851023661aba530465c2c956a2808e6798d6f4d9b2387a587479f9ca6ad9/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      }
     },
     {
       "id": "mechanics-stock",
-      "title": "Механика для стройки D10",
+      "title": "Прежняя редакция · Механика для стройки D10",
       "tier": 3,
       "category": "factories",
       "stages": 11,
@@ -934,11 +1082,18 @@
         }
       ],
       "optional": false,
-      "revision": "6431a76d3c81e62a82c8c520720e429de3191ea684ce220e0705723c13440cc1"
+      "revision": "6431a76d3c81e62a82c8c520720e429de3191ea684ce220e0705723c13440cc1",
+      "integrationStatus": "preserved-previous",
+      "preview": {
+        "src": "/atlas/slave/mechanics-stock/revisions/6431a76d3c81e62a82c8c520720e429de3191ea684ce220e0705723c13440cc1/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      }
     },
     {
       "id": "concrete-expanded",
-      "title": "Вторая бетонная линия",
+      "title": "Прежняя редакция · Вторая бетонная линия",
       "tier": 4,
       "category": "factories",
       "stages": 5,
@@ -953,11 +1108,18 @@
         }
       ],
       "optional": false,
-      "revision": "b926abe8a01b9596eaef5d46e0a7cff5ab66ec2e05a634bdb2ee3567a863c8bd"
+      "revision": "b926abe8a01b9596eaef5d46e0a7cff5ab66ec2e05a634bdb2ee3567a863c8bd",
+      "integrationStatus": "preserved-previous",
+      "preview": {
+        "src": "/atlas/slave/concrete-expanded/revisions/b926abe8a01b9596eaef5d46e0a7cff5ab66ec2e05a634bdb2ee3567a863c8bd/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      }
     },
     {
       "id": "components",
-      "title": "EIB, статоры и моторы",
+      "title": "Прежняя редакция · EIB, статоры и моторы",
       "tier": 4,
       "category": "factories",
       "stages": 7,
@@ -978,47 +1140,83 @@
         }
       ],
       "optional": false,
-      "revision": "3db91072228ae9fcc614f507e1cc6e6073a58d9b98d64a8cc6aeb940891eb1a9"
+      "revision": "3db91072228ae9fcc614f507e1cc6e6073a58d9b98d64a8cc6aeb940891eb1a9",
+      "integrationStatus": "preserved-previous",
+      "preview": {
+        "src": "/atlas/slave/components/revisions/3db91072228ae9fcc614f507e1cc6e6073a58d9b98d64a8cc6aeb940891eb1a9/layout.svg",
+        "alt": "Производственный уровень1 · сетка и машины",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      }
     },
     {
       "id": "hub",
-      "title": "HUB и исследовательский двор",
+      "title": "HUB и покупки технологий",
       "tier": 1,
       "category": "global",
-      "stages": 4,
-      "site": "HUB · существующий",
+      "stages": 3,
+      "site": "hub",
       "powerMW": null,
       "outputs": [],
       "optional": false,
-      "revision": "821df5187e42a80744e97859e022712d96c9cb5de8ee3d4d0fed6a6691571d9f"
+      "revision": "190f8a103abcdb025c84c4b6e3096d4df4357bc4af104e1c6d430bf9ad987ed5",
+      "integrationStatus": "current-selected",
+      "preview": {
+        "alt": "Концепция облика",
+        "caption": "Материалы и облик; количества и координаты берутся из инженерных листов.",
+        "kind": "concept",
+        "src": "/atlas/slave/hub/revisions/190f8a103abcdb025c84c4b6e3096d4df4357bc4af104e1c6d430bf9ad987ed5/assets/concept.webp"
+      }
     },
     {
       "id": "warehouse",
-      "title": "Склад · первые восемь ячеек",
+      "title": "Адресный склад",
       "tier": 1,
       "category": "global",
-      "stages": 4,
-      "site": "Склад стройматериалов",
+      "stages": 7,
+      "site": "warehouse",
       "powerMW": null,
       "outputs": [],
       "optional": false,
-      "revision": "d37703dad01705cacecdefd465c647c2474b7ab3c09c08b55df01d7a983ed730"
+      "revision": "c78755998eb4a26c676c3c9596348b8f2c5b736065f8453e20a1293df94c2956",
+      "integrationStatus": "current-selected",
+      "preview": {
+        "alt": "Концепция облика",
+        "caption": "Материалы и облик; количества и координаты берутся из инженерных листов.",
+        "kind": "concept",
+        "src": "/atlas/slave/warehouse/revisions/c78755998eb4a26c676c3c9596348b8f2c5b736065f8453e20a1293df94c2956/assets/concept.webp"
+      }
     },
     {
       "id": "bio-start",
-      "title": "Биостарт и независимый перезапуск",
+      "title": "Пуск на биотопливе",
       "tier": 1,
       "category": "global",
-      "stages": 4,
-      "site": "Временный биостарт",
-      "powerMW": null,
-      "outputs": [],
+      "stages": 3,
+      "site": "bio-start",
+      "powerMW": 1.8091557004267784,
+      "outputs": [
+        {
+          "exact": "40",
+          "itemId": "Desc_Biofuel_C",
+          "label": "Solid Biofuel",
+          "rate": 40,
+          "unit": "шт/мин"
+        }
+      ],
       "optional": false,
-      "revision": "eaa9bf50efcb4a243226f10a2537417a10a6823cf7e617af895cefd86359e560"
+      "revision": "614796122f2e5c13f79b0a16d8182f2d962c2e8f4273ea98612157b8801c550a",
+      "integrationStatus": "current-selected",
+      "preview": {
+        "alt": "Концепция облика",
+        "caption": "Материалы и облик; количества и координаты берутся из инженерных листов.",
+        "kind": "concept",
+        "src": "/atlas/slave/bio-start/revisions/614796122f2e5c13f79b0a16d8182f2d962c2e8f4273ea98612157b8801c550a/assets/concept.webp"
+      }
     },
     {
       "id": "elevator",
-      "title": "Лифт и отдельные фазовые буферы",
+      "title": "Прежняя редакция · Лифт и отдельные фазовые буферы",
       "tier": 2,
       "category": "global",
       "stages": 4,
@@ -1026,11 +1224,18 @@
       "powerMW": null,
       "outputs": [],
       "optional": false,
-      "revision": "ee0e8b9216c75b935c9e754c415114829afa9f07534cd89c4f4fb14bb5a6672f"
+      "revision": "ee0e8b9216c75b935c9e754c415114829afa9f07534cd89c4f4fb14bb5a6672f",
+      "integrationStatus": "preserved-previous",
+      "preview": {
+        "src": "/atlas/slave/elevator/revisions/ee0e8b9216c75b935c9e754c415114829afa9f07534cd89c4f4fb14bb5a6672f/layout.svg",
+        "alt": "Размерная схема и рабочие проходы",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      }
     },
     {
       "id": "coal-start",
-      "title": "Ранняя угольная станция ·2→4→6",
+      "title": "Прежняя редакция · Ранняя угольная станция ·2→4→6",
       "tier": 2,
       "category": "global",
       "stages": 5,
@@ -1038,11 +1243,18 @@
       "powerMW": null,
       "outputs": [],
       "optional": false,
-      "revision": "8aaaa943292c07999d09ec6a0f5fce7fb5348cfbd1a55a428b71004d82de878f"
+      "revision": "8aaaa943292c07999d09ec6a0f5fce7fb5348cfbd1a55a428b71004d82de878f",
+      "integrationStatus": "preserved-previous",
+      "preview": {
+        "src": "/atlas/slave/coal-start/revisions/8aaaa943292c07999d09ec6a0f5fce7fb5348cfbd1a55a428b71004d82de878f/layout.svg",
+        "alt": "Размерная схема и рабочие проходы",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      }
     },
     {
       "id": "warehouse-expanded",
-      "title": "Склад ·24адреса и связи районов",
+      "title": "Прежняя редакция · Склад ·24адреса и связи районов",
       "tier": 3,
       "category": "global",
       "stages": 3,
@@ -1050,11 +1262,18 @@
       "powerMW": null,
       "outputs": [],
       "optional": false,
-      "revision": "f8e3b85d44381f5d3584dc675d2bcb2193a24b6cbaf2820f7a0ddb76f37efb05"
+      "revision": "f8e3b85d44381f5d3584dc675d2bcb2193a24b6cbaf2820f7a0ddb76f37efb05",
+      "integrationStatus": "preserved-previous",
+      "preview": {
+        "src": "/atlas/slave/warehouse-expanded/revisions/f8e3b85d44381f5d3584dc675d2bcb2193a24b6cbaf2820f7a0ddb76f37efb05/concept.webp",
+        "alt": "Образ склада и отдельного батарейного аннекса",
+        "caption": "GPT Image2:образматериалов/функциональныхзон. Количество/раскладкаячеек — поразмерномучертежу,непокартинке.",
+        "kind": "concept"
+      }
     },
     {
       "id": "power-expanded",
-      "title": "Энергетика · восемь модулей",
+      "title": "Прежняя редакция · Энергетика · восемь модулей",
       "tier": 3,
       "category": "global",
       "stages": 2,
@@ -1062,11 +1281,18 @@
       "powerMW": null,
       "outputs": [],
       "optional": false,
-      "revision": "3535102afe4810e6a51d09c0db27ba868b6cd384c7de8cbce88a7154670a35b5"
+      "revision": "3535102afe4810e6a51d09c0db27ba868b6cd384c7de8cbce88a7154670a35b5",
+      "integrationStatus": "preserved-previous",
+      "preview": {
+        "src": "/atlas/slave/power-expanded/revisions/3535102afe4810e6a51d09c0db27ba868b6cd384c7de8cbce88a7154670a35b5/layout.svg",
+        "alt": "Размерная схема и рабочие проходы",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      }
     },
     {
       "id": "power-annex",
-      "title": "Батарейный аннекс и распределение",
+      "title": "Прежняя редакция · Батарейный аннекс и распределение",
       "tier": 4,
       "category": "global",
       "stages": 4,
@@ -1074,11 +1300,18 @@
       "powerMW": null,
       "outputs": [],
       "optional": false,
-      "revision": "6063769b3db6ce880725911adacce6e5872a57d9a3e569db71e772d6649a5dd1"
+      "revision": "6063769b3db6ce880725911adacce6e5872a57d9a3e569db71e772d6649a5dd1",
+      "integrationStatus": "preserved-previous",
+      "preview": {
+        "src": "/atlas/slave/power-annex/revisions/6063769b3db6ce880725911adacce6e5872a57d9a3e569db71e772d6649a5dd1/concept.webp",
+        "alt": "Образ склада и отдельного батарейного аннекса",
+        "caption": "GPT Image2:образматериалов/функциональныхзон. Количество/раскладкаячеек — поразмерномучертежу,непокартинке.",
+        "kind": "concept"
+      }
     },
     {
       "id": "departure",
-      "title": "Первый выход на материк · техническое задание",
+      "title": "Прежняя редакция · Первый выход на материк · техническое задание",
       "tier": 4,
       "category": "global",
       "stages": 3,
@@ -1086,53 +1319,100 @@
       "powerMW": null,
       "outputs": [],
       "optional": false,
-      "revision": "1485d483f3d0c1e54524671b1fe6d71e4fc129a72d9a595216d7514956edd03c"
+      "revision": "1485d483f3d0c1e54524671b1fe6d71e4fc129a72d9a595216d7514956edd03c",
+      "integrationStatus": "preserved-previous",
+      "preview": {
+        "src": "/atlas/slave/departure/revisions/1485d483f3d0c1e54524671b1fe6d71e4fc129a72d9a595216d7514956edd03c/layout.svg",
+        "alt": "Размерная схема и рабочие проходы",
+        "caption": "Размерная схема; не игровой скриншот.",
+        "kind": "schematic"
+      }
     }
   ],
   "saveId": "slave",
   "sourceAnalysisId": "seed",
-  "summary": "Домашний остров, WB1.0.3, лифт ×100. Последовательный маршрут тиров1–4 до материкового масштаба.",
+  "summary": "Заводы, склад и порядок строительства на домашнем острове.",
   "presentation": {
     "eyebrow": "slave / seed1635395380 / WB1.0.3",
-    "intro": "От карты ресурсов — к районам, заводам и конкретным действиям на каждом тире.",
+    "intro": "Выбери проект или продолжи строительство по порядку.",
     "facts": [
       {
-        "label": "Снимок",
-        "value": "30.10.2026"
+        "label": "Начать",
+        "value": "Тир 1 · домашнее снабжение"
       },
       {
-        "label": "Ресурсы и профиль",
-        "value": "14 нод ·107 модов"
+        "label": "Хранение",
+        "value": "Раздельные запасы шести продуктов"
       },
       {
-        "label": "Логистика",
-        "value": "Лифт ×100 · WB-лента I750/мин"
+        "label": "Дальше",
+        "value": "Сборка деталей и выход на материк"
       }
     ],
-    "architectureTitle": "Архитектурное направление",
-    "architectureBody": "Склад стройматериалов и энергорезерв рядом; генерация у воды; лифт на собственной площадке. Сырьё не возим через дом.",
+    "architectureTitle": "Склад строительных материалов",
+    "architectureBody": "Раздельные ячейки для строительных материалов. Доставка и питание заводов показаны отдельно.",
     "concept": {
-      "src": "/worlds/paradise-island/assets/campus-concept.webp",
-      "alt": "Примерный облик кампуса на террасах Paradise Island",
-      "caption": "GPT Image2 · приблизительный внешний облик на авторском ландшафтном референсе. Не игровой скриншот; позиции и количество машин брать из планов.",
-      "kind": "concept"
+      "alt": "Концепция облика",
+      "caption": "Материалы и облик; количества и координаты берутся из инженерных листов.",
+      "kind": "concept",
+      "src": "/atlas/slave/warehouse/revisions/c78755998eb4a26c676c3c9596348b8f2c5b736065f8453e20a1293df94c2956/assets/concept.webp"
     },
     "links": [
       {
-        "label": "Координатный генплан SVG",
-        "url": "/worlds/paradise-island/assets/campus-plan.svg"
+        "label": "Кампус · freight · concrete-only · 1",
+        "url": "/atlas/slave/warehouse/revisions/c78755998eb4a26c676c3c9596348b8f2c5b736065f8453e20a1293df94c2956/assets/campus-freight-concrete-only-01.svg"
       },
       {
-        "label": "Масштабный объёмный план Blender",
-        "url": "/worlds/paradise-island/assets/campus-blender.png"
+        "label": "Кампус · freight · first-plate · 1",
+        "url": "/atlas/slave/warehouse/revisions/c78755998eb4a26c676c3c9596348b8f2c5b736065f8453e20a1293df94c2956/assets/campus-freight-first-plate-01.svg"
+      },
+      {
+        "label": "Кампус · freight · steady · 1",
+        "url": "/atlas/slave/warehouse/revisions/c78755998eb4a26c676c3c9596348b8f2c5b736065f8453e20a1293df94c2956/assets/campus-freight-01.svg"
+      },
+      {
+        "label": "Кампус · power · concrete-only · 1",
+        "url": "/atlas/slave/warehouse/revisions/c78755998eb4a26c676c3c9596348b8f2c5b736065f8453e20a1293df94c2956/assets/campus-power-concrete-only-01.svg"
+      },
+      {
+        "label": "Кампус · power · first-plate · 1",
+        "url": "/atlas/slave/warehouse/revisions/c78755998eb4a26c676c3c9596348b8f2c5b736065f8453e20a1293df94c2956/assets/campus-power-first-plate-01.svg"
+      },
+      {
+        "label": "Кампус · power · optional-fuel · 1",
+        "url": "/atlas/slave/warehouse/revisions/c78755998eb4a26c676c3c9596348b8f2c5b736065f8453e20a1293df94c2956/assets/campus-power-optional-fuel-01.svg"
+      },
+      {
+        "label": "Кампус · power · steady · 1",
+        "url": "/atlas/slave/warehouse/revisions/c78755998eb4a26c676c3c9596348b8f2c5b736065f8453e20a1293df94c2956/assets/campus-power-01.svg"
+      },
+      {
+        "label": "Кампус · power · steady · 2",
+        "url": "/atlas/slave/warehouse/revisions/c78755998eb4a26c676c3c9596348b8f2c5b736065f8453e20a1293df94c2956/assets/campus-power-02.svg"
+      },
+      {
+        "label": "Кампус · power · steady · 3",
+        "url": "/atlas/slave/warehouse/revisions/c78755998eb4a26c676c3c9596348b8f2c5b736065f8453e20a1293df94c2956/assets/campus-power-03.svg"
+      },
+      {
+        "label": "Кампус · power · steady · 4",
+        "url": "/atlas/slave/warehouse/revisions/c78755998eb4a26c676c3c9596348b8f2c5b736065f8453e20a1293df94c2956/assets/campus-power-04.svg"
+      },
+      {
+        "label": "Кампус · power · steady · 5",
+        "url": "/atlas/slave/warehouse/revisions/c78755998eb4a26c676c3c9596348b8f2c5b736065f8453e20a1293df94c2956/assets/campus-power-05.svg"
+      },
+      {
+        "label": "Объёмная схема склада · Blender",
+        "url": "/atlas/slave/warehouse/revisions/c78755998eb4a26c676c3c9596348b8f2c5b736065f8453e20a1293df94c2956/assets/render.png"
       }
     ],
     "boundary": {
-      "title": "Когда покидать остров",
-      "body": "Тиры1–4 и первая отправка остаются здесь. После домашней стали, моторов и энергорезерва — разведка материковых площадок под массовую фазу2. Не маленький пилот с многосуточным ожиданием.",
-      "analysisId": "progression"
+      "title": "Следующий шаг: материк",
+      "analysisId": "progression",
+      "body": "Для следующей фазы понадобятся новые площадки. Посмотри порядок расширения и требования к сырью."
     },
-    "limitations": "Сохранение игры не меняется. Частоты и потоки — расчёт по указанным источникам; глубина воды, коллизии, осколки и фактическая работа107модов требуют проверки в игре."
+    "limitations": "Расчёт по авторскому исходному профилю WB, не измерение игры. Для BetterOverclocking 1.2.0 восстановлена заменяющая формула мощности; эффективные значения, доступность разгона и порядок модовых обработчиков не наблюдались. Жидкости HeavyFluids1.4.5 не сведены к единому коэффициенту: фактический состав кэша рецептов неизвестен. Сейв не меняется; 107модов в метаданных сейва не доказывают их текущую активацию. Рельеф, вода, напор, коллизии и реальная доступность нуждаются в игровой проверке."
   },
   "map": {
     "nodeAnalysisId": "seed",
@@ -1162,7 +1442,10 @@
         "RP_Normal": 1,
         "RP_Pure": 2
       },
-      "minimumClock": 1
+      "minimumClock": 1,
+      "evidenceStatus": "nominal-WB-authored-model",
+      "minimumClockPolicy": "Authoring constraint for the selected nominal extractor scenarios, not an effective runtime floor.",
+      "effectiveRuntimeClockAndShardCeiling": "unknown; BetterOverclocking interaction unverified"
     },
     "powerFile": "data/power.json",
     "phaseWindows": {
@@ -1182,5 +1465,37 @@
         }
       }
     }
+  },
+  "integration": {
+    "version": 1,
+    "stage": "tier1",
+    "demandSha256": "d49f8224b5002ae96abe20abb8da8a4ede77ac76f5cc4c84b7c17bef2b239dbc",
+    "currentProjectIds": [
+      "bio-start",
+      "concrete",
+      "copper-home",
+      "hub",
+      "iron-home",
+      "warehouse"
+    ],
+    "preservedProjectIds": [
+      "coal-start",
+      "components",
+      "concrete-expanded",
+      "copper-sheets",
+      "departure",
+      "elevator",
+      "frame-stock",
+      "mechanics-stock",
+      "phase-one",
+      "phase-one-boost",
+      "power-annex",
+      "power-expanded",
+      "rotor-stock",
+      "steel-expanded",
+      "steel-start",
+      "warehouse-expanded"
+    ],
+    "display": "Обновлены только шесть проектов тира1. Тиры2–4 и старые сети сохранены как прежние редакции; их числа не описывают совместную работу с новым домом."
   }
 }
